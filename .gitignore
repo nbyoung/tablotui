@@ -1,0 +1,12 @@
+# Build output
+/tablotui
+/tablotui.exe
+/dist/
+
+# Test output
+*.test
+*.out
+
+# Personal workspaces live above the umbrella repository, never here
+go.work
+go.work.sum

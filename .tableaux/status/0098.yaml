@@ -1,2 +1,4 @@
 gate: defined
 state: nominal
+reason: review
+note: The module skeleton, workflows and README sections await design review on task/0098; CI verification waits for implementation because no Go toolchain runs here
