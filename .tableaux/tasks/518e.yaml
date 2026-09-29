@@ -1,0 +1,11 @@
+title: Actions
+description: >
+  Keys that run the tabloio write commands from the selected task: record a
+  status, review a gate, reaffirm, authorise. Each shows the commit it will make
+  and asks for confirmation.
+assignee: noreply@anthropic.com
+requires:
+  - { id: "0afa", from: implementation, to: design, text: The panes the actions act from }
+junctions:
+  mockup:         { applies: false }
+parent: { id: "40e8", order: 6 }

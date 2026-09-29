@@ -1,0 +1,10 @@
+title: Live refresh
+description: >
+  Watches the repository's HEAD and the .tableaux directory and reloads the
+  project when either changes, and a flag that views the project at a ref.
+assignee: noreply@anthropic.com
+requires:
+  - { id: "0098", from: implementation, to: implementation, text: The module }
+junctions:
+  mockup:         { applies: false }
+parent: { id: "40e8", order: 5 }

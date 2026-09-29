@@ -1,0 +1,11 @@
+title: Detail panes
+description: >
+  Panes beside the grid for the selected task's definition, the current
+  person's work queue, the blockage tree and the history, following the
+  selection in the grid.
+assignee: noreply@anthropic.com
+requires:
+  - { id: "679b", from: implementation, to: design, text: The grid the panes follow }
+junctions:
+  mockup:         { applies: false }
+parent: { id: "40e8", order: 3 }

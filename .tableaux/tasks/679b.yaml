@@ -1,0 +1,14 @@
+title: Tableau grid
+description: >
+  The global tableau as a scrollable grid: the task tree with expand and
+  collapse, a gate window around the next gates in view with the columns
+  outside folded to a count, any column hidden or shown by a key with the
+  choice kept in a settings file, the state symbol in
+  each current gate cell, and the marks for reviewers, agents, subprojects and
+  inapplicable gates.
+assignee: noreply@anthropic.com
+requires:
+  - { id: "0098", from: implementation, to: implementation, text: The module }
+junctions:
+  mockup:         { applies: false }
+parent: { id: "40e8", order: 2 }

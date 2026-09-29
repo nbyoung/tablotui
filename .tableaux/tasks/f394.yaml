@@ -1,0 +1,13 @@
+title: Role and context
+description: >
+  A flag that names the person at the keyboard, defaulting to the Git identity.
+  The owner starts at the root with the tree collapsed; a contributor starts at
+  the parents of their assigned tasks in a gate window around their next
+  gates. A key switches the role; the columns the viewer chose stay as they
+  were.
+assignee: noreply@anthropic.com
+requires:
+  - { id: "679b", from: implementation, to: design, text: The grid that the context focuses }
+junctions:
+  mockup:         { applies: false }
+parent: { id: "40e8", order: 4 }
