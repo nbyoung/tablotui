@@ -39,6 +39,82 @@ in the `tableaux` repository pins this project as the submodule
 `subprojects/tablotui` and tracks its root task through a recursive junction, states the review policy every task here inherits, and
 proposes Go as the implementation language.
 
+## Layout
+
+```
+cmd/tablotui/       # the command: main.go and its tests
+internal/ui/        # the Bubble Tea model, Bubbles components and Lip Gloss styles
+.github/workflows/  # ci.yml on push and pull request, release.yml on a tag
+.goreleaser.yaml    # the cross-compilation and release matrix
+.golangci.yml       # the lint configuration
+.tableaux/          # the plan
+```
+
+The module is `github.com/nbyoung/tablotui`. The four subprojects share this
+shape: one command under `cmd/`, packages under `internal/`, and the same
+workflow, release and lint files.
+
+## Build and test
+
+Go is the only build dependency, and only a developer needs it; a user runs a
+release binary. `go.mod` names the Go release the module requires, and CI reads
+it through `go-version-file`, so one edit moves every job.
+
+```
+go build ./cmd/tablotui        # the binary, which prints its version
+go test ./...                  # the tests
+go vet ./... && gofmt -l .     # the checks CI runs
+golangci-lint run              # the linters in .golangci.yml
+```
+
+CI runs those four checks on every push and pull request. The golangci-lint
+job uses the official action at its latest release, and `.golangci.yml` keeps
+the standard linter set. A pull request merges when CI passes.
+
+## Release
+
+A tag `v*` pushed to GitHub runs `release.yml`, which hands the repository to
+GoReleaser. `.goreleaser.yaml` builds `cmd/tablotui` with `CGO_ENABLED=0` for
+Linux, macOS and Windows on amd64 and arm64, packs each as a tar.gz, or a zip
+on Windows, and publishes the six archives with `checksums.txt` to a GitHub
+release for the tag. The build sets `main.version` from the tag, so the binary
+reports it; a build from source reports the module version that `go install`
+records, or `dev`.
+
+Tags follow semantic versioning. While the major version is `0`, a minor bump
+may change the interface.
+
+## Dependencies
+
+| Module                                  | Path                                  | Major | Role                        |
+|-----------------------------------------|---------------------------------------|-------|-----------------------------|
+| [tablo](https://github.com/nbyoung/tablo) | `github.com/nbyoung/tablo`          | v0    | The view data this front end renders |
+| Bubble Tea                              | `github.com/charmbracelet/bubbletea`  | v1    | The program and its event loop |
+| Bubbles                                 | `github.com/charmbracelet/bubbles`    | v0    | The list, table and viewport components |
+| Lip Gloss                               | `github.com/charmbracelet/lipgloss`   | v1    | The styles                  |
+
+The bootstrap states these modules and leaves the `require` lines and `go.sum`
+to implementation, when a toolchain resolves them. The Charm v2 modules under
+`charm.land/` are the alternative; the owner confirms the major at design
+review.
+
+**tablo.** This front end never reads a task file; it takes view data from
+tablo. tablo has no release yet, and its bootstrap runs alongside this one, so
+`go.mod` carries no `require` for it until it tags. The policy then:
+
+- Go modules select the minimum version, so a declared range is a floor plus a
+  ceiling that convention keeps. The `require` line names the floor, the oldest
+  tablo release whose view data this front end reads.
+- While tablo is at major `0`, the range is one minor: `v0.N.x`. A tablo minor
+  bump may change the data, so a tablotui release follows it deliberately by
+  raising the floor.
+- From tablo `v1`, the range is the major: `v1.x.y`, and Go's import path
+  carries any later major.
+- No `replace` directive enters `go.mod`. Day-to-day work across the siblings
+  uses the personal `go.work` in the directory above the `tableaux` repository
+  that its plan describes, which points at the local `tablo` checkout and stays
+  uncommitted. A release builds against the tagged tablo alone.
+
 ## Licence
 
 [MIT](LICENSE).
