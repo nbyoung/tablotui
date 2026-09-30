@@ -4,6 +4,10 @@ description: >
   person's work queue, the blockage tree and the history, following the
   selection in the grid.
 assignee: noreply@anthropic.com
+references:
+  - { url: https://github.com/nbyoung/tableaux/blob/main/.tableaux/tasks/e9c6.yaml, text: "The abstract views and their focusing parameters" }
+  - { url: https://github.com/nbyoung/tableaux/blob/main/.tableaux/tasks/bc86.yaml, text: "The Markdown mockups of the pane views" }
+  - { url: README.md#what-it-does, text: "The panes that follow the selection" }
 requires:
   - { id: "679b", from: implementation, to: design, text: The grid the panes follow }
 junctions:

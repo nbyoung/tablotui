@@ -6,6 +6,11 @@ description: >
   gates. A key switches the role; the columns the viewer chose stay as they
   were.
 assignee: noreply@anthropic.com
+references:
+  - { url: https://github.com/nbyoung/tableaux/blob/main/README.md#roles, text: "The owner and contributor roles" }
+  - { url: https://github.com/nbyoung/tableaux/blob/main/.tableaux/tasks/e9c6.yaml, text: "The abstract views and their focusing parameters" }
+  - { url: https://github.com/nbyoung/tableaux/blob/main/.tableaux/tasks/c545.yaml, text: "The contextual tableau in Markdown" }
+  - { url: https://github.com/nbyoung/tableaux/blob/main/.tableaux/tasks/69eb.yaml, text: "The contextual tableau in HTML, the disclosure" }
 requires:
   - { id: "679b", from: implementation, to: design, text: The grid that the context focuses }
 junctions:
