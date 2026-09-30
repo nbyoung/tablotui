@@ -6,7 +6,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"runtime/debug"
 )
 
@@ -16,7 +15,7 @@ var version = "dev"
 
 func main() {
 	info, _ := debug.ReadBuildInfo()
-	fmt.Fprintln(os.Stdout, banner(resolveVersion(version, info)))
+	fmt.Println(banner(resolveVersion(version, info)))
 }
 
 // resolveVersion picks the version to report. A version set by the linker
