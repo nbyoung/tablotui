@@ -4,6 +4,10 @@ description: >
   status, review a gate, reaffirm, authorise. Each shows the commit it will make
   and asks for confirmation.
 assignee: noreply@anthropic.com
+references:
+  - { url: https://github.com/nbyoung/tableaux/blob/main/README.md#roles, text: "The roles that may record, review and authorise" }
+  - { url: https://github.com/nbyoung/tableaux/blob/main/SYNTAX.md#commit-trailers, text: "The commits the actions show" }
+  - { url: https://github.com/nbyoung/tableaux/blob/main/README.md#status, text: "What recording a status writes" }
 requires:
   - { id: "0afa", from: implementation, to: design, text: The panes the actions act from }
 junctions:
