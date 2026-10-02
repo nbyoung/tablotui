@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2026-09-20",
+    "commit": "06c6679",
+    "by": "dan@example.org",
+    "task": "3c5d",
+    "event": "task"
+  },
+  {
+    "date": "2026-09-21",
+    "commit": "74bc0b8",
+    "by": "ada@example.org",
+    "task": "3c5d",
+    "event": "authorised"
+  },
+  {
+    "date": "2026-09-22",
+    "commit": "55f57c1",
+    "by": "dan@example.org",
+    "task": "3c5d",
+    "event": "status",
+    "gate": "defined",
+    "state": "nominal"
+  },
+  {
+    "date": "2026-09-27",
+    "commit": "1b8cfb1",
+    "by": "dan@example.org",
+    "task": "3c5d",
+    "event": "task"
+  }
+]
