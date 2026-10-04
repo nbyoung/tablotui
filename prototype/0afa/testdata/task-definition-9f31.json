@@ -1,0 +1,229 @@
+{
+  "detail": {
+    "authorisation": {
+      "state": "authorised",
+      "way": "merge"
+    },
+    "authorities": [
+      "ben@example.org",
+      "ada@example.org"
+    ],
+    "children": null,
+    "dependents": [
+      {
+        "id": "c07d",
+        "title": "Node firmware",
+        "from": "design",
+        "to": "implementation",
+        "text": "Pin map and sensor bus",
+        "met": false,
+        "due": true,
+        "condition": "unmet"
+      }
+    ],
+    "description": "The PCB that carries the barometer, hygrometer and thermometer and powers them from the solar cell within the power budget.",
+    "junctions": [
+      {
+        "contributor": "ada@example.org",
+        "gate": "undefined",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "❔"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "defined",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "📝"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "mockup",
+        "kind": "plain",
+        "marks": [
+          "🧑",
+          "👀"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "ben@example.org",
+        "subproject": null,
+        "symbol": "📌"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "function",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "⚙️"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "performance",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": [
+          {
+            "text": "Power budget",
+            "url": "docs/sensor-board.md#power-budget"
+          }
+        ],
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "⚡"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "reliability",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "⚓"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "design",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "📐"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "implementation",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "🛠️"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "unit",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "🧩"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "integrate",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "🖼️"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "validate",
+        "kind": "plain",
+        "marks": [
+          "🧑",
+          "👀"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "ben@example.org",
+        "subproject": null,
+        "symbol": "🌍"
+      },
+      {
+        "contributor": "ada@example.org",
+        "gate": "release",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "🚀"
+      }
+    ],
+    "references": [
+      {
+        "url": "docs/sensor-board.md"
+      },
+      {
+        "text": "Barometer datasheet",
+        "url": "https://example.org/datasheets/bmp390.pdf"
+      }
+    ],
+    "requires": null
+  },
+  "glance": {
+    "assignee": "ada@example.org",
+    "id": "9f31",
+    "next_gate": "performance",
+    "parent": {
+      "id": "4e2b",
+      "order": 1,
+      "title": "Sensor node"
+    },
+    "status": {
+      "gate": "function",
+      "state": "stalled",
+      "reason": "blocked",
+      "note": "Barometer ICs on 14-week backorder",
+      "date": "2026-09-28",
+      "recorder": "ada@example.org",
+      "commit": "edb30d2baa5ea3c7e3fb8eef8ac6cce6e145221a"
+    },
+    "title": "Sensor board"
+  },
+  "on_trunk": true,
+  "params": {
+    "task": "9f31",
+    "level": "detail",
+    "window": -1
+  },
+  "ref": "edb30d2baa5ea3c7e3fb8eef8ac6cce6e145221a",
+  "view": "task"
+}

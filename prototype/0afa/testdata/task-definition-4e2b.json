@@ -1,0 +1,211 @@
+{
+  "detail": {
+    "authorisation": {
+      "state": "authorised",
+      "way": "commit"
+    },
+    "authorities": [
+      "ada@example.org"
+    ],
+    "children": [
+      "9f31",
+      "c07d"
+    ],
+    "dependents": null,
+    "description": "The mast-mounted node: a sensor board and the firmware that reads it, sleeps between readings and publishes to the gateway.",
+    "junctions": [
+      {
+        "contributor": "ben@example.org",
+        "gate": "undefined",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "❔"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "defined",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "📝"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "mockup",
+        "kind": "plain",
+        "marks": [
+          "🧑",
+          "👀"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "ben@example.org",
+        "subproject": null,
+        "symbol": "📌"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "function",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "⚙️"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "performance",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "⚡"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "reliability",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "⚓"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "design",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "📐"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "implementation",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "🛠️"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "unit",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "🧩"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "integrate",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "🖼️"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "validate",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "🌍"
+      },
+      {
+        "contributor": "ben@example.org",
+        "gate": "release",
+        "kind": "plain",
+        "marks": [
+          "🧑"
+        ],
+        "model": "",
+        "references": null,
+        "reviewer": "",
+        "subproject": null,
+        "symbol": "🚀"
+      }
+    ],
+    "references": [
+      {
+        "text": "Node overview",
+        "url": "docs/overview.md#sensor-node"
+      }
+    ],
+    "requires": null
+  },
+  "glance": {
+    "assignee": "ben@example.org",
+    "id": "4e2b",
+    "next_gate": "performance",
+    "parent": {
+      "id": "a1c0",
+      "order": 1,
+      "title": "Weather station"
+    },
+    "status": {
+      "gate": "function",
+      "state": "stalled",
+      "reason": "blocked",
+      "note": "Barometer ICs on 14-week backorder",
+      "date": "2026-09-17",
+      "derived": true,
+      "from": "9f31"
+    },
+    "title": "Sensor node"
+  },
+  "on_trunk": true,
+  "params": {
+    "task": "4e2b",
+    "level": "detail",
+    "window": -1
+  },
+  "ref": "edb30d2baa5ea3c7e3fb8eef8ac6cce6e145221a",
+  "view": "task"
+}

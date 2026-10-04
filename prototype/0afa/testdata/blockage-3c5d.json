@@ -1,0 +1,40 @@
+{
+  "view": "work-blockage-tree",
+  "ref": "main",
+  "causes": [
+    {
+      "kind": "authorisation",
+      "cause": "3c5d Dashboard is proposed",
+      "task": "3c5d",
+      "resolver": "ada@example.org",
+      "action": "commit a trailer: Authorised: 3c5d",
+      "holds": 1,
+      "tree": [
+        {
+          "task": "3c5d",
+          "title": "Dashboard",
+          "gate": "mockup"
+        }
+      ]
+    }
+  ],
+  "not_yet_due": [
+    {
+      "task": "3c5d",
+      "requires": "7b2e",
+      "from": "function",
+      "to": "integrate",
+      "text": "Readings API",
+      "met": false,
+      "due": false,
+      "condition": "pending"
+    }
+  ],
+  "not_derived": [
+    "review outstanding",
+    "subproject pin not advanced"
+  ],
+  "params": {
+    "task": "3c5d"
+  }
+}
