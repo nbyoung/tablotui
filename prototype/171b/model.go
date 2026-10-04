@@ -101,8 +101,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-// View renders the status.
-func (m Model) View() string {
+func (m Model) rows(chrome bool) string {
 	label := lipgloss.NewStyle().Bold(true).Width(9)
 	row := func(k, v string) string {
 		line := label.Render(k) + v
@@ -112,7 +111,9 @@ func (m Model) View() string {
 		return line
 	}
 	var b strings.Builder
-	b.WriteString(row("tablotui", "171b live refresh") + "\n\n")
+	if chrome {
+		b.WriteString(row("tablotui", "171b live refresh") + "\n\n")
+	}
 	if m.loaded {
 		b.WriteString(row("commit", m.view.Commit) + "\n")
 		b.WriteString(row("digest", fmt.Sprintf("%s (%d files)", m.view.Digest, m.view.Files)) + "\n")
@@ -121,15 +122,25 @@ func (m Model) View() string {
 	}
 	b.WriteString(row("ref", m.src.Ref) + "\n")
 	b.WriteString(row("mode", m.src.Mode()) + "\n")
-	b.WriteString(row("reloads", fmt.Sprint(m.reloads)) + "\n")
-	last := "never"
-	if !m.lastReload.IsZero() {
-		last = m.lastReload.Format("15:04:05")
+	if chrome {
+		b.WriteString(row("reloads", fmt.Sprint(m.reloads)) + "\n")
+		last := "never"
+		if !m.lastReload.IsZero() {
+			last = m.lastReload.Format("15:04:05")
+		}
+		b.WriteString(row("loaded", last) + "\n")
+		if m.err != nil {
+			b.WriteString(row("error", m.err.Error()+" (showing the last good view)") + "\n")
+		}
+		b.WriteString("\nq quits\n")
 	}
-	b.WriteString(row("loaded", last) + "\n")
-	if m.err != nil {
-		b.WriteString(row("error", m.err.Error()+" (showing the last good view)") + "\n")
-	}
-	b.WriteString("\nq quits\n")
 	return b.String()
 }
+
+// Data renders the project data alone: commit, digest and file count, ref and
+// mode. The title, reload counter, load time, error line and key hint are
+// chrome.
+func (m Model) Data() string { return m.rows(false) }
+
+// View renders the status with its chrome.
+func (m Model) View() string { return m.rows(true) }

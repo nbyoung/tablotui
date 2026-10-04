@@ -12,18 +12,43 @@ go test ./...                 # the tests build repositories under t.TempDir()
 go run . -C /path/to/repo     # live: the working tree on HEAD, refreshing
 go run . --at v1.0            # pinned to the commit v1.0 names, no refresh
 go run . --at main --follow   # follows the ref main as it moves
-go run . --dump               # load once, print the view, exit
+go run . --dump               # load once, print the project data, exit
+go run . --dump --chrome      # the same, with what View() draws about itself
 ```
+
+Long options take two hyphens; a single hyphen is for `-C` only. `-dump` and its kind are refused with status 2 and a message naming the `--` form. The usage text:
+
+```
+Usage: 171b [options]
+
+Options:
+  -C string    the repository directory (default ".")
+  --at string  view the project at this ref and stop refreshing
+  --follow     with --at, follow the ref as it moves (default false)
+  --dump       load once, print the project data and exit (default false)
+  --chrome     with --dump, print what View returns, chrome included (default false)
+```
+
+The view takes no keys but `q` and no size, so there are no `--keys` or `--size` options.
 
 ## What it shows
 
-One screen. `go run . --dump` in this repository:
+One screen. The default `go run . --dump` in this repository prints the project data alone:
+
+```
+commit   8fe12c3a63ddc7fb374063deaf4027c312f6e186
+digest   b5ae48a9b823 (15 files)
+ref      HEAD
+mode     live: watching HEAD and .tableaux
+```
+
+With `--chrome` the dump is exactly what `View()` returns:
 
 ```
 tablotui 171b live refresh
 
-commit   334df71e592de6545270557bdbc38d52c43238dc
-digest   86525dfc5fa1 (15 files)
+commit   8fe12c3a63ddc7fb374063deaf4027c312f6e186
+digest   b5ae48a9b823 (15 files)
 ref      HEAD
 mode     live: watching HEAD and .tableaux
 reloads  0
@@ -31,6 +56,8 @@ loaded   14:02:26
 
 q quits
 ```
+
+Chrome here: the title line, the `reloads` and `loaded` lines, the `error` line and the `q quits` hint. Project data: `commit`, `digest`, `ref` and `mode`.
 
 A failed reload keeps the last good lines and adds `error   <message> (showing the last good view)`. `reloads` counts successful reloads after the first load. `--at HEAD` shows `mode     pinned to HEAD: no refresh`.
 
