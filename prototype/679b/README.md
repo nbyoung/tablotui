@@ -43,7 +43,7 @@ a1c0 ▾ Weather station      🟢  🧑  🧑 🧑 🧑 🧑
 9f31       Sensor board     🧑 🧑👀 🧑 🧑 🧑 🧑
 c07d       Node firmware    🧑  🧑  🧑 —  🟢 🪆
 7b2e     Gateway            🧑  🧑  🧑 🧑 🧑 🧑
-3c5d     Dashboard          🧑  🧑  🧑 🧑 🧑 🧑
+3c5d     Dashboard          🟢  🧑  🧑 🧑 🧑 🧑
 ```
 
 With `--chrome` the dump is exactly `View()`: the same table cut to the window height, the selected row reversed, and below it
