@@ -1,6 +1,9 @@
 package main
 
 import (
+	"errors"
+	"flag"
+	"io"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -374,4 +377,36 @@ func TestSample(t *testing.T) {
 	t.Logf("preview:\n%s", m.View())
 	m = press(t, m, "n")
 	t.Logf("cancelled:\n%s", m.View())
+}
+
+func TestLongOptionsNeedTwoHyphens(t *testing.T) {
+	for _, bad := range []string{"-repo", "-model=x"} {
+		_, _, err := parseArgs([]string{bad}, io.Discard)
+		if err == nil || !strings.Contains(err.Error(), "use -"+bad) {
+			t.Errorf("%s: err %v", bad, err)
+		}
+	}
+	if _, _, err := parseArgs([]string{"--", "-repo"}, io.Discard); err != nil && strings.Contains(err.Error(), "two hyphens") {
+		t.Errorf("check did not stop at --: %v", err)
+	}
+	r, a, err := parseArgs([]string{"--repo", "x", "--model=m"}, io.Discard)
+	if err != nil || r != "x" || a.Model != "m" {
+		t.Errorf("%q %+v %v", r, a, err)
+	}
+}
+
+func TestUsageText(t *testing.T) {
+	var b strings.Builder
+	_, _, err := parseArgs([]string{"--help"}, &b)
+	if !errors.Is(err, flag.ErrHelp) {
+		t.Fatalf("err %v", err)
+	}
+	for _, want := range []string{"--repo string", "--model string", "--name string"} {
+		if !strings.Contains(b.String(), want) {
+			t.Errorf("usage lacks %q:\n%s", want, b.String())
+		}
+	}
+	if strings.Contains(b.String(), "\n  -repo") {
+		t.Errorf("usage prints a single hyphen:\n%s", b.String())
+	}
 }

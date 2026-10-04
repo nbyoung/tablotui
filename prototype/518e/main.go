@@ -12,6 +12,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -449,12 +450,56 @@ func (m model) formView() string {
 	return b.String()
 }
 
+// usage prints each long option with its double hyphen, as the convention
+// requires; the flag package would print one.
+func usage(fs *flag.FlagSet) {
+	out := fs.Output()
+	_, _ = fmt.Fprintf(out, "Usage: 518e [--repo DIR] [--model ID] [--name NAME]\n\nOptions:\n")
+	fs.VisitAll(func(f *flag.Flag) {
+		_, _ = fmt.Fprintf(out, "  --%s string\n    \t%s (default %q)\n", f.Name, f.Usage, f.DefValue)
+	})
+}
+
+// checkArgs refuses a long option written with one hyphen, such as -repo. It
+// stops at a bare --.
+func checkArgs(args []string) error {
+	for _, a := range args {
+		if a == "--" {
+			return nil
+		}
+		if len(a) > 2 && a[0] == '-' && a[1] != '-' {
+			return fmt.Errorf("%s: long options take two hyphens, use -%s", a, a)
+		}
+	}
+	return nil
+}
+
+func parseArgs(args []string, errOut io.Writer) (repo string, a Agent, err error) {
+	fs := flag.NewFlagSet("518e", flag.ContinueOnError)
+	fs.SetOutput(errOut)
+	fs.Usage = func() { usage(fs) }
+	if err = checkArgs(args); err != nil {
+		return "", a, err
+	}
+	r := fs.String("repo", ".", "repository with a .tableaux directory")
+	mdl := fs.String("model", "", "Model trailer (empty: a person's commit, no trailer)")
+	name := fs.String("name", "", "Co-Authored-By display name")
+	if err = fs.Parse(args); err != nil {
+		return "", a, err
+	}
+	return *r, Agent{Model: *mdl, Name: *name}, nil
+}
+
 func main() {
-	repo := flag.String("repo", ".", "repository with a .tableaux directory")
-	model_ := flag.String("model", "", "Model trailer (empty: a person's commit, no trailer)")
-	name := flag.String("name", "", "Co-Authored-By display name")
-	flag.Parse()
-	m, err := newModel(*repo, nil, Agent{Model: *model_, Name: *name})
+	repo, agent, err := parseArgs(os.Args[1:], os.Stderr)
+	if errors.Is(err, flag.ErrHelp) {
+		return
+	}
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(2)
+	}
+	m, err := newModel(repo, nil, agent)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

@@ -15,6 +15,8 @@ go test ./...
 go test -v -run Sample ./...     # the rendered sample below
 ```
 
+Options: `--repo`, `--model`, `--name`. `--help` prints them with two hyphens. An argument such as `-repo` (one hyphen, long name) is refused with an error naming `--repo`, exit status 2; the check stops at a bare `--`. The prototype has no scripted dump, so it has no chrome to separate.
+
 Keys: `j`/`k` select, `r` record, `v` review, `a` reaffirm, `u` authorise, `q` quit. In the form: Tab and Shift+Tab move, Left and Right choose, Enter shows the commit, Esc cancels. In the preview: `y` or Enter applies, `n` or Esc cancels. An error shows until Enter.
 
 ## Files
