@@ -6,18 +6,18 @@ Task `679b` builds the global tableau as a scrollable grid. This prototype answe
 2. Do expand and collapse over the task tree, vertical scrolling in a fixed-height window and a moving selection work as a Bubble Tea model over the real global-tableau view data?
 3. Does the gate window fold the outside columns to a count, and does a key hide or show a column, with the choice written to and read back from a settings file?
 
-Answers: yes to 2 and 3. Question 1 is yes with one condition: Lip Gloss v1.1.0 counts a narrow base plus U+FE0F as two cells, so the grid is aligned on terminals that widen the cluster and misaligned on older ones that keep one cell. `-strip-vs16` removes the selector, and then every terminal agrees.
+Answers: yes to 2 and 3. Question 1 is yes with one condition: Lip Gloss v1.1.0 counts a narrow base plus U+FE0F as two cells, so the grid is aligned on terminals that widen the cluster and misaligned on older ones that keep one cell. `--strip-vs16` removes the selector, and then every terminal agrees.
 
 ## Run
 
 ```
 cd prototype/679b
-go run . [-settings FILE] [-strip-vs16] testdata/global-tableau.json testdata/global-tableau-window0.json
-go run . -dump -size 100x10 -keys down,left,4,w testdata/global-tableau.json testdata/global-tableau-window0.json
+go run . [--settings FILE] [--strip-vs16] testdata/global-tableau.json testdata/global-tableau-window0.json
+go run . --dump --size 100x10 --keys down,left,4,w testdata/global-tableau.json testdata/global-tableau-window0.json
 go test ./...
 ```
 
-The first file opens; `w` cycles through the others. `-dump` prints `View()` after a scripted key sequence (`up down left right enter pgup pgdown home end space` or a single character). Without `-settings` the hidden columns are not kept.
+The first file opens; `w` cycles through the others. `--dump` prints the view after a scripted `--keys` sequence (`up down left right enter pgup pgdown home end space` or a single character). Without `--settings` the hidden columns are not kept.
 
 Keys: up/down or j/k move; pgup/pgdown, home/end (g/G) jump; right/l expands a collapsed parent or enters an expanded one; left/h collapses an expanded parent or moves to the parent; enter or space toggles; `e` expands all; `c` collapses to depth one (the glance level); `1`-`9` hide or show the n-th column of the window; `0` shows all; `w` cycles the window variant; `q` quits.
 
@@ -33,7 +33,7 @@ Copies of tablo prototype 886d's output for the corpus entry `weather-station` a
 
 ## What it shows
 
-Default window, after `down down down down 4 w`, with the function column hidden and the window 0 variant open (the folded column before the window shows `‹1`, the hidden column `⊘1`, the fold after `0›`):
+The default dump (no chrome) after `--keys down,down,down,down,4,w` with `--settings`, the function column hidden and the window 0 variant open (the folded column before the window shows `‹1`, the hidden column `⊘1`, the fold after `0›`):
 
 ```
 Id   Task                ‹1 📝  📌  ⚡ ⚓ 📐 🛠️ ⊘1 0›
@@ -43,9 +43,20 @@ a1c0 ▾ Weather station      🟢  🧑  🧑 🧑 🧑 🧑
 9f31       Sensor board     🧑 🧑👀 🧑 🧑 🧑 🧑
 c07d       Node firmware    🧑  🧑  🧑 —  🟢 🪆
 7b2e     Gateway            🧑  🧑  🧑 🧑 🧑 🧑
+3c5d     Dashboard          🧑  🧑  🧑 🧑 🧑 🧑
+```
+
+With `--chrome` the dump is exactly `View()`: the same table cut to the window height, the selected row reversed, and below it
+
+```
 main window 0, rows 1-5 of 6, selected 7b2e | folded before undefined..undefined 1 | folded after u…
 columns 1📝 2📌 (3⚙️) 4⚡ 5⚓ 6📐 7🛠️
+↑↓ move  ←→ collapse/expand  enter toggle  e/c all/glance  1-9 column  0 show all  w window  q quit
 ```
+
+The chrome is the selection cursor (the reversed row), the padding to the window height, and the status, column and help lines. The header, the rule, the rows, the symbols and the fold counts are project data. `--size` bounds the width in both forms.
+
+Options take two hyphens; a single hyphen before a long name (`-dump`) exits with status 2 and names the `--` form. `--help` prints the usage.
 
 The settings file then reads `{"hidden_gates": ["function"]}`. Collapsing `4e2b` in the default window gives `▸ Sensor node (2)`, the count of rows it hides.
 
@@ -77,7 +88,7 @@ CI does not run this prototype's tests: the root module skips the nested module.
 
 ## Proposed settings location
 
-`os.UserConfigDir()/tablotui/settings.json`, so `~/.config/tablotui/settings.json` on Linux, with `{"hidden_gates": [...]}`. The prototype takes the path from `-settings` and never writes to the home directory itself.
+`os.UserConfigDir()/tablotui/settings.json`, so `~/.config/tablotui/settings.json` on Linux, with `{"hidden_gates": [...]}`. The prototype takes the path from `--settings` and never writes to the home directory itself.
 
 ## What the design gate must decide
 

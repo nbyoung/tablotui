@@ -1,6 +1,6 @@
 // Command 679b is the functional prototype of the tablotui tableau grid.
 //
-//	679b [-settings FILE] [-strip-vs16] [-dump -size WxH -keys k,k,...] VIEW.json...
+//	679b [--settings FILE] [--strip-vs16] [--dump [--size WxH] [--keys k,k,...] [--chrome]] FILE [FILE]
 //
 // The first file is the opening window; w cycles through the rest.
 package main
@@ -9,6 +9,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 
@@ -29,48 +30,97 @@ func keyMsg(k string) tea.KeyMsg {
 	return tea.KeyMsg{Type: tea.KeyRunes, Runes: []rune(k)}
 }
 
-func run() error {
-	settings := flag.String("settings", "", "settings file for the hidden columns (empty keeps none)")
-	stripVS := flag.Bool("strip-vs16", false, "remove variation selectors from symbols")
-	dump := flag.Bool("dump", false, "print the view after the keys and exit")
-	size := flag.String("size", "100x14", "window size WxH for -dump")
-	keys := flag.String("keys", "", "comma-separated keys to send before -dump")
-	flag.Parse()
-	if flag.NArg() == 0 {
-		return errors.New("usage: 679b [flags] FILE [FILE]")
+// checkHyphens refuses a long option written with one hyphen.
+func checkHyphens(args []string) error {
+	for _, a := range args {
+		if a == "--" {
+			return nil
+		}
+		if len(a) > 2 && a[0] == '-' && a[1] != '-' {
+			name, _, _ := strings.Cut(a[1:], "=")
+			return fmt.Errorf("long option %s needs two hyphens: --%s", a, name)
+		}
+	}
+	return nil
+}
+
+// usage prints each long option with its double hyphen.
+func usage(fs *flag.FlagSet, w io.Writer) {
+	_, _ = fmt.Fprintln(w, "usage: 679b [options] FILE [FILE]")
+	_, _ = fmt.Fprintln(w, "options:")
+	fs.VisitAll(func(f *flag.Flag) {
+		def := ""
+		if f.DefValue != "" && f.DefValue != "false" {
+			def = fmt.Sprintf(" (default %q)", f.DefValue)
+		}
+		_, _ = fmt.Fprintf(w, "  --%s\n    \t%s%s\n", f.Name, f.Usage, def)
+	})
+}
+
+func run(args []string, stdout, stderr io.Writer) int {
+	fs := flag.NewFlagSet("679b", flag.ContinueOnError)
+	fs.SetOutput(stderr)
+	fs.Usage = func() { usage(fs, stderr) }
+	settings := fs.String("settings", "", "settings file for the hidden columns (empty keeps none)")
+	stripVS := fs.Bool("strip-vs16", false, "remove variation selectors from symbols")
+	dump := fs.Bool("dump", false, "print the view after the keys and exit")
+	size := fs.String("size", "100x14", "window size WxH for --dump")
+	keys := fs.String("keys", "", "comma-separated keys to send before --dump")
+	chrome := fs.Bool("chrome", false, "include the chrome in --dump")
+	if err := checkHyphens(args); err != nil {
+		_, _ = fmt.Fprintln(stderr, err)
+		fs.Usage()
+		return 2
+	}
+	if err := fs.Parse(args); err != nil {
+		if errors.Is(err, flag.ErrHelp) {
+			return 0
+		}
+		return 2
+	}
+	if fs.NArg() == 0 {
+		fs.Usage()
+		return 2
 	}
 	var variants []Data
-	for _, p := range flag.Args() {
+	for _, p := range fs.Args() {
 		d, err := LoadData(p)
 		if err != nil {
-			return err
+			_, _ = fmt.Fprintln(stderr, err)
+			return 1
 		}
 		variants = append(variants, d)
 	}
 	m := NewModel(variants, *settings)
 	m.StripVS16 = *stripVS
 	if !*dump {
-		_, err := tea.NewProgram(m, tea.WithAltScreen()).Run()
-		return err
+		if _, err := tea.NewProgram(m, tea.WithAltScreen()).Run(); err != nil {
+			_, _ = fmt.Fprintln(stderr, err)
+			return 1
+		}
+		return 0
 	}
 	var w, h int
 	if _, err := fmt.Sscanf(*size, "%dx%d", &w, &h); err != nil {
-		return fmt.Errorf("size %q: %w", *size, err)
+		_, _ = fmt.Fprintf(stderr, "size %q: %v\n", *size, err)
+		return 2
 	}
 	var tm tea.Model = m
 	tm, _ = tm.Update(tea.WindowSizeMsg{Width: w, Height: h})
 	for _, k := range strings.Split(*keys, ",") {
+		if k == "comma" {
+			k = ","
+		}
 		if k != "" {
 			tm, _ = tm.Update(keyMsg(k))
 		}
 	}
-	fmt.Println(tm.View())
-	return nil
+	if *chrome {
+		_, _ = fmt.Fprintln(stdout, tm.View())
+	} else {
+		_, _ = fmt.Fprintln(stdout, tm.(Model).Data())
+	}
+	return 0
 }
 
-func main() {
-	if err := run(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-}
+func main() { os.Exit(run(os.Args[1:], os.Stdout, os.Stderr)) }

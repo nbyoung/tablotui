@@ -54,8 +54,16 @@ func foldLabel(f Fold) string {
 	return fmt.Sprintf("%d›", f.Count)
 }
 
-// View implements tea.Model.
-func (m Model) View() string {
+// View implements tea.Model: the data and the chrome.
+func (m Model) View() string { return m.render(true) }
+
+// Data returns the project data alone: the header, the rule and the visible
+// rows, with no cursor, no padding and no status, column or help line.
+func (m Model) Data() string { return m.render(false) }
+
+// render draws the grid. The chrome is the selection cursor, the padding to
+// the window height and the three lines below the table.
+func (m Model) render(chrome bool) string {
 	d := m.data()
 	shown := m.shown()
 	vis := m.visible()
@@ -147,7 +155,11 @@ func (m Model) View() string {
 
 	bh := m.bodyHeight()
 	sel := m.selIndex(vis)
-	for p := m.top; p < m.top+bh; p++ {
+	first, end := m.top, m.top+bh
+	if !chrome {
+		first, end = 0, len(vis)
+	}
+	for p := first; p < end; p++ {
 		if p >= len(vis) {
 			lines = append(lines, line("", "", make([]string, len(cols))))
 			continue
@@ -166,12 +178,15 @@ func (m Model) View() string {
 			}
 		}
 		s := line(r.ID, m.taskLabel(i), cells)
-		if p == sel {
+		if chrome && p == sel {
 			s = selStyle.Render(s)
 		}
 		lines = append(lines, s)
 	}
 
+	if !chrome {
+		return strings.Join(lines, "\n")
+	}
 	lines = append(lines, dimStyle.Render(truncate(m.statusLine(vis), m.width)))
 	lines = append(lines, truncate(m.columnLine(), m.width))
 	lines = append(lines, dimStyle.Render(truncate("↑↓ move  ←→ collapse/expand  enter toggle  e/c all/glance  1-9 column  0 show all  w window  q quit", m.width)))
