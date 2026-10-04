@@ -1,0 +1,128 @@
+{
+  "glance": {
+    "folded": 0,
+    "gates": [
+      {
+        "key": "undefined",
+        "name": "Undefined",
+        "symbol": "❔"
+      },
+      {
+        "key": "defined",
+        "name": "Defined",
+        "symbol": "📝"
+      },
+      {
+        "key": "mockup",
+        "name": "Mockup",
+        "symbol": "📌"
+      },
+      {
+        "key": "function",
+        "name": "Functional prototype",
+        "symbol": "⚙️"
+      },
+      {
+        "key": "performance",
+        "name": "Performance prototype",
+        "symbol": "⚡"
+      },
+      {
+        "key": "reliability",
+        "name": "Reliability prototype",
+        "symbol": "⚓"
+      },
+      {
+        "key": "design",
+        "name": "Design",
+        "symbol": "📐"
+      },
+      {
+        "key": "implementation",
+        "name": "Implementation",
+        "symbol": "🛠️"
+      },
+      {
+        "key": "unit",
+        "name": "Unit test",
+        "symbol": "🧩"
+      },
+      {
+        "key": "integrate",
+        "name": "Integration",
+        "symbol": "🖼️"
+      },
+      {
+        "key": "validate",
+        "name": "Validation",
+        "symbol": "🌍"
+      },
+      {
+        "key": "release",
+        "name": "Release",
+        "symbol": "🚀"
+      }
+    ],
+    "marks": [
+      {
+        "meaning": "an agent contributes",
+        "symbol": "🤖"
+      },
+      {
+        "meaning": "a reviewer accepts",
+        "symbol": "👀"
+      },
+      {
+        "meaning": "a subproject does the work",
+        "symbol": "🪆"
+      },
+      {
+        "meaning": "the gate does not apply",
+        "symbol": "—"
+      },
+      {
+        "meaning": "a person contributes",
+        "symbol": "🧑"
+      }
+    ],
+    "reasons": [
+      {
+        "key": "overloaded",
+        "symbol": "🪫"
+      },
+      {
+        "key": "blocked",
+        "symbol": "⛔"
+      }
+    ],
+    "states": [
+      {
+        "key": "undefined",
+        "symbol": "⚪"
+      },
+      {
+        "key": "nominal",
+        "symbol": "🟢"
+      },
+      {
+        "key": "at_risk",
+        "symbol": "🟡"
+      },
+      {
+        "key": "stalled",
+        "symbol": "🔴"
+      },
+      {
+        "key": "complete",
+        "symbol": "✅"
+      }
+    ]
+  },
+  "on_trunk": true,
+  "params": {
+    "level": "glance",
+    "window": -1
+  },
+  "ref": "edb30d2baa5ea3c7e3fb8eef8ac6cce6e145221a",
+  "view": "gate"
+}
