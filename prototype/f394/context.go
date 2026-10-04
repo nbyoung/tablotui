@@ -27,6 +27,23 @@ type Person struct {
 	ContribNext []Next
 }
 
+// Roles lists the roles the person holds, from the view data: the owner
+// holds owner, and contributor too with assigned or contributed tasks; a
+// contributor holds contributor; a person who appears nowhere (or has no
+// task) holds observer alone.
+func (p Person) Roles() []Role {
+	hasTasks := len(p.Assigned) > 0 || len(p.ContribNext) > 0
+	switch {
+	case p.Owner && hasTasks:
+		return []Role{Owner, Contributor}
+	case p.Owner:
+		return []Role{Owner}
+	case hasTasks:
+		return []Role{Contributor}
+	}
+	return []Role{Observer}
+}
+
 // Role is the role the person starts in: the owner, else a contributor with
 // tasks, else an observer.
 func (p Person) Role() Role {
@@ -172,10 +189,16 @@ func ContributorStart(v Views, p Person) Start {
 	return Start{Mode: Contributor, Expanded: expanded, First: first, Last: last}
 }
 
-// StartFor derives the state for a role.
+// StartFor derives the state for a role the person holds. The observer's
+// layout is the owner's, under the observer label.
 func StartFor(v Views, p Person, role Role) Start {
-	if role == Owner {
+	switch role {
+	case Owner:
 		return OwnerStart(v)
+	case Contributor:
+		return ContributorStart(v, p)
 	}
-	return ContributorStart(v, p)
+	s := OwnerStart(v)
+	s.Mode = Observer
+	return s
 }

@@ -205,33 +205,149 @@ func TestInitialStateFollowsRole(t *testing.T) {
 
 func TestSwitchKeepsHiddenColumns(t *testing.T) {
 	v := views(t)
-	m := NewModel(v, "ben@example.org") // contributor, window design..unit
-	m = press(m, "x")                   // hides design
-	if !m.Hidden["design"] {
+	m := NewModel(v, "ada@example.org") // owner, window undefined..unit
+	m = press(m, "l", "x")              // hides defined
+	if !m.Hidden["defined"] {
 		t.Fatalf("hidden %v", m.Hidden)
 	}
 	before := m.View()
 
-	m = press(m, "r") // to the owner's state
+	m = press(m, "r") // to her contributor state
+	if m.Mode != Contributor || !reflect.DeepEqual(ids(m.Expanded), []string{"4e2b", "a1c0"}) || m.Last != "reliability" {
+		t.Errorf("contributor state: %+v", m)
+	}
+	if !reflect.DeepEqual(ids(m.Hidden), []string{"defined"}) {
+		t.Errorf("hidden after switch: %v", ids(m.Hidden))
+	}
+	if cols := m.VisibleColumns(); !reflect.DeepEqual(cols, []string{"undefined", "mockup", "function", "performance", "reliability"}) {
+		t.Errorf("columns %v", cols)
+	}
+	if header := strings.Split(m.Render(false), "\n")[1]; strings.Contains(header, "defin") {
+		t.Error("the hidden column shows after the switch")
+	}
+
+	m = press(m, "r") // back to the owner
 	if m.Mode != Owner || len(m.Expanded) != 0 || m.First != "undefined" || m.Last != "unit" {
 		t.Errorf("owner state: %+v", m)
 	}
-	if !reflect.DeepEqual(ids(m.Hidden), []string{"design"}) {
-		t.Errorf("hidden after switch: %v", ids(m.Hidden))
-	}
-	if cols := m.VisibleColumns(); strings.Contains(strings.Join(cols, " "), "design") || len(cols) != 8 {
-		t.Errorf("columns %v", cols)
-	}
-	if header := strings.Split(m.View(), "\n")[3]; strings.Contains(header, "desig") {
-		t.Error("the hidden column shows in the owner's view")
-	}
-
-	m = press(m, "r") // back
-	if m.Mode != Contributor || !reflect.DeepEqual(ids(m.Expanded), []string{"4e2b", "a1c0"}) || m.First != "design" {
-		t.Errorf("contributor state: %+v", m)
-	}
 	if m.View() != before {
 		t.Errorf("round trip changed the view:\n%s\n%s", before, m.View())
+	}
+}
+
+func TestRolesHeld(t *testing.T) {
+	v := views(t)
+	cases := map[string][]Role{
+		"ada@example.org":    {Owner, Contributor},
+		"ben@example.org":    {Contributor},
+		"opus@example.org":   {Observer},
+		"nobody@example.org": {Observer},
+	}
+	for email, want := range cases {
+		if got := Classify(v, email).Roles(); !reflect.DeepEqual(got, want) {
+			t.Errorf("%s: %v", email, got)
+		}
+	}
+}
+
+func TestStrangerStaysObserver(t *testing.T) {
+	m := NewModel(views(t), "nobody@example.org")
+	before := m.Render(false)
+	m = press(m, "r", "r")
+	if m.Mode != Observer || m.Render(false) != before {
+		t.Errorf("mode %s", m.Mode)
+	}
+	if !strings.Contains(m.View(), "one role only: observer") {
+		t.Errorf("the display must say so:\n%s", m.View())
+	}
+	if strings.Contains(before, "role: owner") {
+		t.Error("an observer must not read as owner")
+	}
+	if press(m, "j").Notice != "" {
+		t.Error("the notice must clear on the next key")
+	}
+}
+
+func TestContributorCannotBecomeOwner(t *testing.T) {
+	m := NewModel(views(t), "ben@example.org")
+	before := m.Render(false)
+	m = press(m, "r")
+	if m.Mode != Contributor || m.Render(false) != before {
+		t.Errorf("mode %s", m.Mode)
+	}
+	if !strings.Contains(m.View(), "one role only: contributor") {
+		t.Error("the display must say so")
+	}
+}
+
+func TestExpandAndCollapseAll(t *testing.T) {
+	m := NewModel(views(t), "ada@example.org")
+	m = press(m, "E")
+	if len(m.VisibleRows()) != 6 || !reflect.DeepEqual(ids(m.Expanded), []string{"4e2b", "a1c0"}) {
+		t.Errorf("E: %d rows %v", len(m.VisibleRows()), ids(m.Expanded))
+	}
+	m = press(m, "x", "C")
+	if len(m.VisibleRows()) != 1 || len(m.Hidden) != 1 {
+		t.Errorf("C: %d rows, hidden %v", len(m.VisibleRows()), m.Hidden)
+	}
+	if m = press(NewModel(views(t), "dan@example.org"), "C", "E"); len(m.VisibleRows()) != 6 {
+		t.Error("E after C must show every task")
+	}
+}
+
+func TestDumpAndChrome(t *testing.T) {
+	var out, errb strings.Builder
+	if code := run([]string{"--as", "dan@example.org", "--dump", "--keys", "j,l"}, &out, &errb); code != 0 {
+		t.Fatal(code, errb.String())
+	}
+	data := out.String()
+	for _, chrome := range []string{"window ", "expanded", "roles ", ">"} {
+		if chrome != ">" && strings.Contains(data, chrome) || chrome == ">" && strings.Contains(data, "\n>") {
+			t.Errorf("chrome %q in the data dump:\n%s", chrome, data)
+		}
+	}
+	if !strings.Contains(data, "role: contributor") || !strings.Contains(data, "3c5d Dashboard") || strings.HasSuffix(data, "\n\n") {
+		t.Errorf("data dump:\n%s", data)
+	}
+	for _, l := range strings.Split(data, "\n") {
+		if l != strings.TrimRight(l, " ") {
+			t.Errorf("trailing space: %q", l)
+		}
+	}
+	out.Reset()
+	run([]string{"--as", "dan@example.org", "--dump", "--chrome", "--keys", "j,l"}, &out, &errb)
+	m := press(NewModel(views(t), "dan@example.org"), "j", "l")
+	if out.String() != m.View() || !strings.Contains(out.String(), "window defined..function") {
+		t.Errorf("chrome dump differs from View:\n%s", out.String())
+	}
+}
+
+func TestRefusesSingleHyphenLongOption(t *testing.T) {
+	var out, errb strings.Builder
+	if code := run([]string{"-dump"}, &out, &errb); code != 2 || !strings.Contains(errb.String(), "--dump") {
+		t.Errorf("code %d: %s", code, errb.String())
+	}
+	if err := checkArgs([]string{"--", "-dump"}); err != nil {
+		t.Error("the check stops at --")
+	}
+	if err := checkArgs([]string{"--as", "-x", "a@b"}); err != nil {
+		t.Error(err)
+	}
+}
+
+func TestUsage(t *testing.T) {
+	var out, errb strings.Builder
+	if code := run([]string{"--help"}, &out, &errb); code != 0 {
+		t.Fatal(code)
+	}
+	u := errb.String()
+	for _, want := range []string{"  --as\n", "  --keys\n", "  --dump\n", "  --chrome\n"} {
+		if !strings.Contains(u, want) {
+			t.Errorf("usage lacks %q:\n%s", want, u)
+		}
+	}
+	if strings.Contains(u, "  -as") || strings.Contains(u, "  -dump") {
+		t.Error("a long option shows with one hyphen")
 	}
 }
 

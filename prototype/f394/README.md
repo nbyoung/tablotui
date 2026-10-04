@@ -2,6 +2,8 @@
 
 Task `f394` Role and context, gate `function`.
 
+This prototype demonstrates the function only. Its tree, marks and keys are a stand-in for the grid of task 679b, and its subject is the derivation of the starting state from the person. The layout belongs to the mockups and the design gate.
+
 ## The question
 
 Can the front end derive its starting state from the view data alone, without reading a task file? The starting state is the person's role, the expanded set of the tree and the gate window. The prototype also shows that the flag, the Git default and the role key work, and that a switch of role leaves the hidden columns alone.
@@ -11,13 +13,19 @@ Can the front end derive its starting state from the view data alone, without re
 ```
 cd prototype/f394
 go test ./...
-go run . --as ben@example.org                 # the full-screen program (needs a terminal)
-go run . --as ben@example.org --dump          # print the starting view and exit
-go run . --as ben@example.org --script x,r    # apply keys, then print
-go run . --dump                               # as `git config user.email`
+go run . --as ben@example.org                       # the full-screen program (needs a terminal)
+go run . --as ben@example.org --dump                # print the starting data and exit
+go run . --as ada@example.org --dump --keys E,r     # send keys, then print
+go run . --dump --chrome                            # include the chrome; as `git config user.email`
 ```
 
-Keys: `j`/`k` row, `h`/`l` column, `enter` expand or collapse a parent, `x` hide the column at the cursor, `X` show every column, `r` switch the role, `q` quit. A person with no tasks switches between two identical states, since the contributor state falls back to the owner's.
+Options: `--as <email>` (default: `git config user.email`), `--dump`, `--keys <k1,k2,...>` (comma is named `comma`), `--chrome`. The help prints each with two hyphens, and the program refuses `-dump` with status 2. The view does not depend on the window size, so there is no `--size`.
+
+Keys: `j`/`k` row, `h`/`l` column, `enter` expand or collapse a parent, `E` expand every task, `C` collapse every task, `x` hide the column at the cursor, `X` show every column, `r` switch the role, `q` quit.
+
+The role key cycles through the roles the person holds, from the view data: the owner holds `owner`, and `contributor` too with assigned tasks (Ada); a contributor who is not the owner holds `contributor` (Ben, Dan); a person who appears nowhere, or has no task (opus), holds `observer`. With one role the key changes nothing and the status line says "one role only". The observer starts in the owner's layout under the observer label and never reads as `owner`.
+
+The chrome is the status line (window, expanded, hidden, roles held, notices), the cursor `>`, the column underline and the blank line. The project data is the title line that names the person and the role (the subject of this prototype), the column headers and the task rows with their marks. `--dump` prints the data alone, trimmed; `--dump --chrome` prints exactly what `View()` returns.
 
 ## What derives from which view
 
@@ -54,28 +62,43 @@ Cross-checks in the tests: the contextual tableau for Ben (`contextual-person-be
 
 ## What it shows
 
-Ben (contributor), at start, then `x` and `r` (the owner's state, the `design` column still hidden):
+Ada (owner and contributor), `--dump --keys E`: the owner's starting state, expanded.
 
 ```
-tablotui f394  as ben@example.org (contributor)  showing: contributor
-window design..unit  expanded 4e2b,a1c0  hidden -
-
-  task                             desig imple unit
->- a1c0 Weather station            .     .     .
-   - 4e2b Sensor node              .     .     .
-       9f31 Sensor board           .     .     .
-       c07d Node firmware          *     >     .
-     7b2e Gateway                  .     .     .
-     3c5d Dashboard                .     .     .
-
-tablotui f394  as ben@example.org (contributor)  showing: owner
-window undefined..unit  expanded -  hidden design
-
-  task                             undef defin mocku funct perfo relia imple unit
->+ a1c0 Weather station            .     *     >     .     .     .     .     .
+tablotui f394  as ada@example.org  role: owner
+task                              undef defin mocku funct perfo relia desig imple unit
+- a1c0 Weather station            .     *     >     .     .     .     .     .     .
+  - 4e2b Sensor node              .     .     .     *     >     .     .     .     .
+      9f31 Sensor board           .     .     .     *     >     .     .     .     .
+      c07d Node firmware          .     .     .     .     .     .     *     >     .
+    7b2e Gateway                  *     >     .     .     .     .     .     .     .
+    3c5d Dashboard                .     *     >     .     .     .     .     .     .
 ```
 
-`*` marks a task's status gate and `>` its next gate. The model's `Update` takes the keys; `TestSwitchKeepsHiddenColumns` drives it with key messages and also checks that two switches restore the view.
+Ben (contributor), `--dump`: the parents of his tasks expanded, the window around `implementation`.
+
+```
+tablotui f394  as ben@example.org  role: contributor
+task                              desig imple unit
+- a1c0 Weather station            .     .     .
+  - 4e2b Sensor node              .     .     .
+      9f31 Sensor board           .     .     .
+      c07d Node firmware          *     >     .
+    7b2e Gateway                  .     .     .
+    3c5d Dashboard                .     .     .
+```
+
+A stranger, `--dump --chrome --keys r`: the owner's layout under the observer label, and the key changes nothing.
+
+```
+tablotui f394  as nobody@example.org  role: observer
+window undefined..unit  expanded -  hidden -  roles observer
+one role only: observer
+  task                             undef defin mocku funct perfo relia desig imple unit
+>+ a1c0 Weather station            .     *     >     .     .     .     .     .     .
+```
+
+`*` marks a task's status gate and `>` its next gate. `TestSwitchKeepsHiddenColumns` drives `Update` with key messages: Ada hides a column, switches to contributor and back, and the hidden set stays.
 
 ## Test data
 
@@ -88,14 +111,14 @@ All in `testdata/`, copied from tablo (`/home/nbyoung/Projects/Tableaux/tablo`, 
 
 ## What it leaves out
 
-The grid, its cells and symbols (the stand-in prints the gate key, so the symbol-width question of `e0f7` does not arise; the data still carries the old symbols), the panes, persistence of hidden columns between sessions, `--at`, refresh, and a call to tablo. The views load from embedded copies. Reviewer and authority starts. CI does not run this prototype's tests: it is a nested module that the root `go test ./...` skips.
+The grid, its cells and symbols (the stand-in prints the gate key, so the symbol-width question of `e0f7` does not arise; the data still carries the old symbols), the panes, persistence of hidden columns between sessions, `--at`, refresh, and a call to tablo. The views load from embedded copies. Reviewer and authority starts. Viewing as a role the person does not hold (a preview), such as Ben looking at the owner's layout: a question for the design gate. CI does not run this prototype's tests: it is a nested module that the root `go test ./...` skips.
 
 ## What the design gate must decide
 
 - **`--as` against `person`.** README "What it does" names the flag `--as <email>`; VIEWS.md names the parameter `person`, "the viewer by default", and tabloio's queue example uses `--person`. Question for the owner: is `--as` a front-end flag that sets the `person` parameter (the prototype's reading), or should the flag be `--person`?
 - The owner's window: the prototype windows the whole project's next gates. VIEWS.md says "the next gates of the tasks in view", which for a collapsed root is the root's rolled-up gate alone.
 - The expanded set: ancestors of the assigned tasks only (the prototype), or the assigned parents too (so `4e2b` opens for Ben).
-- A person who is both owner and contributor starts as the owner.
-- Whether the observer shows the owner's state, and whether `r` is useful to an observer.
+- A person who is both owner and contributor starts as the owner and switches between those two roles.
+- Whether the observer shows the owner's layout (the prototype does, labelled observer), and whether a preview of a role not held is wanted.
 - Whether tablo adds the facts in the list above, or the front end keeps joining views.
 - Charm majors: Bubble Tea v1.3.10 and Lip Gloss v1.1.0 serve; `Update` and `View` run without a terminal, so tests need no program. Nothing here depends on the major.
