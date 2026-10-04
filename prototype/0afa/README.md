@@ -13,9 +13,10 @@ Answer: yes on all three counts. A test drives `Update` and `View` and checks th
 ```
 export PATH=$PATH:/usr/local/go/bin
 go run .                                      # the interface
-go run . -as ben@example.org                  # another current person
-go run . -script "j j tab j" -size 110x26     # print View() after keys
-go run . -strip-vs16                          # drop the emoji variation selector
+go run . --as ben@example.org                 # another current person
+go run . --dump --keys j,j --size 110x26      # print the project data after the keys
+go run . --dump --keys j,j --chrome           # print exactly what View() returns
+go run . --strip-vs16                         # drop the emoji variation selector
 go test ./...
 ```
 
@@ -25,7 +26,71 @@ CI does not run this prototype's tests: it is a nested module (`go.mod`, `go.sum
 
 ## What it shows
 
-Sample at 110x26 with the selection on `9f31` (the grid stand-in is the list at the left: the ids and titles of `global-tableau.json`, a selection that moves by key):
+Options use two hyphens; a single hyphen before a long name (`-dump`) is refused with status 2. `--dump` prints the view after `--keys` (comma separated, `comma` names the comma key) at `--size` and exits.
+
+**The default dump** prints the project data: for each pane the layout shows, in layout order (definition, blockage, queue, history; one pane in the single mode), a plain title line that names the view and the task or person, then the pane's whole content wrapped to the width. Chrome, which the default leaves out: the task list (a stand-in with its cursor), borders, the focus mark, scroll offsets and ranges, clipping to the pane height, the key-help line and padding. The `▸` mark in the queue is project data (the item names the selected task) and stays. `--chrome` prints exactly what `View()` returns at `--size`; the exact-size tests apply to that form.
+
+```
+Task 3c5d
+3c5d Dashboard
+assignee dan@example.org
+parent   a1c0 Weather station, order 0
+status   📝 defined, nominal, 2026-09-22
+authorised proposed ()
+authorities ada@example.org
+
+A web page on the gateway that charts the last week of readings and
+the current values, with the battery state alongside.
+
+requires
+  7b2e Gateway, function to integrate, pending: Readings API
+
+references
+  Dashboard overview docs/overview.md#dashboard
+
+junctions
+  ❔ undefined      🧑 dan@example.org
+  📝 defined        🧑 dan@example.org
+  📌 mockup         🧑 dan@example.org
+  ⚙️ function       🧑 dan@example.org
+  ⚡ performance    🧑 dan@example.org
+  ⚓ reliability    🧑 dan@example.org
+  📐 design         🧑 dan@example.org
+  🛠️ implementation 🧑 dan@example.org
+  🧩 unit           🧑 dan@example.org
+  🖼️ integrate      🧑 dan@example.org
+  🌍 validate       🧑 dan@example.org
+  🚀 release        🧑 dan@example.org
+
+Blockage 3c5d
+3c5d Dashboard is proposed
+  ada@example.org resolves, holds 1
+  action: commit a trailer: Authorised: 3c5d
+  - 3c5d Dashboard at mockup
+
+not yet due
+  3c5d requires 7b2e, function to integrate: Readings API
+
+Queue ada@example.org
+▸ authorisation owed: 3c5d Dashboard
+    proposed; the deciding commit is not by an authority
+  work ready: 7b2e Gateway at defined
+  reaffirmation: 9f31 Sensor board at function
+  work waiting: 9f31 Sensor board at performance
+    blocked: Barometer ICs on 14-week backorder
+
+History 3c5d
+2026-09-27 1b8cfb1 task
+  by dan@example.org
+2026-09-22 55f57c1 status defined nominal
+  by dan@example.org
+2026-09-21 74bc0b8 authorised
+  by ada@example.org
+2026-09-20 06c6679 task
+  by dan@example.org
+```
+
+Sample of the `--chrome` form at 110x26 with the selection on `9f31` (the grid stand-in is the list at the left: the ids and titles of `global-tableau.json`, a selection that moves by key):
 
 ```
 ╭─ Tasks ─────────────────╮╭─ Task 9f31 ───────────────────────────╮╭─ Blockage 9f31 ────────────────────────╮
@@ -92,7 +157,7 @@ For a task with no data, a pane shows its title, `No data.` and `The source hold
 
 - Bubble Tea v1.3.10 and Lip Gloss v1.1.0 suffice. I did not use Bubbles: the list and panes are a few lines each, and the viewport's scroll is in the pane model because the clipping must stay inside the border.
 - Lip Gloss `Style.Width`/`Height` is not used for the clipping: it pads, but I clip with `github.com/charmbracelet/x/ansi` (`Truncate`, `Wrap`, `StringWidth`), which Lip Gloss already requires. It never splits a wide symbol: at an odd column a wide symbol that does not fit moves to the next line. The one added direct dependency is that package; the implementation will need it or the v2 equivalent.
-- Lip Gloss and `x/ansi` count a base plus U+FE0F (`⚙️`) as two cells. Terminals that count one (see tabloio prototype e0f7) would push the right border out. `-strip-vs16` removes the selector so every terminal agrees; the test passes both ways. The design gate decides the policy, as for e0f7.
+- Lip Gloss and `x/ansi` count a base plus U+FE0F (`⚙️`) as two cells. Terminals that count one (see tabloio prototype e0f7) would push the right border out. `--strip-vs16` removes the selector so every terminal agrees; the test passes both ways. The design gate decides the policy, as for e0f7.
 - Bubble Tea's `Update` and `View` run without a terminal, so the tests use no `tea.Program`.
 
 ## What it leaves out

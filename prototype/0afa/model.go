@@ -305,3 +305,27 @@ func (m Model) listLines(w int) []string {
 	}
 	return out
 }
+
+// Dump prints the project data alone: each visible pane's title line naming
+// its view and task or person, then its whole content wrapped to the window
+// width, in layout order. It leaves out the list (a stand-in), borders, focus
+// marks, scroll offsets, clipping to the pane height, key help and padding.
+func (m Model) Dump() string {
+	l := m.layout()
+	if l.tooSmall {
+		return "Terminal too small"
+	}
+	var out []string
+	for _, b := range l.boxes {
+		if b.pane < 0 {
+			continue
+		}
+		if len(out) > 0 {
+			out = append(out, "")
+		}
+		p := m.panes[b.pane]
+		out = append(out, ansi.Truncate(p.title, m.w, ""))
+		out = append(out, wrap(p.content, m.w)...)
+	}
+	return strings.Join(out, "\n")
+}

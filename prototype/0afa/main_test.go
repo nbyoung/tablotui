@@ -208,3 +208,60 @@ func TestEverySize(t *testing.T) {
 		checkExact(t, send(m, tea.WindowSizeMsg{Width: 77, Height: h}), 77, h, "sweep")
 	}
 }
+
+func TestRefuseSingleHyphenLongOption(t *testing.T) {
+	var out, errb strings.Builder
+	if code := run([]string{"-dump"}, &out, &errb); code != 2 || !strings.Contains(errb.String(), "--dump") {
+		t.Errorf("code %d, stderr %q", code, errb.String())
+	}
+	errb.Reset()
+	if code := run([]string{"--", "-dump"}, &out, &errb); strings.Contains(errb.String(), "two hyphens") {
+		t.Errorf("check did not stop at --: %d", code)
+	}
+}
+
+func TestUsageText(t *testing.T) {
+	var out, errb strings.Builder
+	run([]string{"--help"}, &out, &errb)
+	u := errb.String()
+	for _, want := range []string{"--as", "--dump", "--keys", "--size", "--chrome", "--strip-vs16", `(default "100x30")`} {
+		if !strings.Contains(u, want) {
+			t.Errorf("usage lacks %q", want)
+		}
+	}
+	if strings.Contains(u, "\n  -") && !strings.Contains(u, "\n  --") {
+		t.Error("single hyphen in usage")
+	}
+}
+
+func TestDumpWithoutAndWithChrome(t *testing.T) {
+	var out, errb strings.Builder
+	if code := run([]string{"--dump", "--keys", "j,j", "--size", "110x26"}, &out, &errb); code != 0 {
+		t.Fatalf("code %d: %s", code, errb.String())
+	}
+	d := out.String()
+	for _, want := range []string{"Task 9f31\n", "Blockage 9f31\n", "Queue ada@example.org\n", "History 9f31\n", "Barometer ICs"} {
+		if !strings.Contains(d, want) {
+			t.Errorf("dump lacks %q", want)
+		}
+	}
+	for _, chrome := range []string{"╭", "│", "tab focus", "▸ ", "1-1", "Tasks"} {
+		if strings.Contains(d, chrome) && chrome != "▸ " {
+			t.Errorf("dump holds chrome %q", chrome)
+		}
+	}
+	if strings.HasSuffix(strings.TrimSuffix(d, "\n"), "\n") || strings.Contains(d, "\n\n\n") {
+		t.Error("dump has trailing padding")
+	}
+	for _, l := range strings.Split(d, "\n") {
+		if ansi.StringWidth(l) > 110 {
+			t.Errorf("dump line wider than --size: %q", l)
+		}
+	}
+	out.Reset()
+	run([]string{"--dump", "--chrome", "--keys", "j,j", "--size", "110x26"}, &out, &errb)
+	m := keys(newModel(t, 110, 26, false), "j", "j")
+	if strings.TrimSuffix(out.String(), "\n") != m.View() {
+		t.Error("--chrome differs from View()")
+	}
+}
