@@ -1,3 +1,3 @@
 gate: function
 state: nominal
-note: prototype/171b/ shows live refresh: git-polling watcher for HEAD and .tableaux (loose, packed, detached, worktree, submodule) feeding a Bubble Tea model, and --at to pin a ref
+note: prototype/171b/ shows live refresh, a git-polling watcher for HEAD and .tableaux (loose, packed, detached, worktree, submodule) feeding a Bubble Tea model, and --at to pin a ref
