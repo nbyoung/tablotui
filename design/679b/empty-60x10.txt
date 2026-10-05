@@ -1,0 +1,10 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id Task ❔ ×0 📝 📌 🔧 📐 🧱 📏 🔗 🌍 🚀
+── ──── ───── ── ── ── ── ── ── ── ── ──
+no task in view
+
+
+
+
+rows 0 of 0 · window 1 · historical off
+↑↓ row  ←→ column  enter fold  E all  ? help  q quit
