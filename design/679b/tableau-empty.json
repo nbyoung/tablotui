@@ -1,0 +1,26 @@
+{
+  "view": "tableau",
+  "project": "Tableaux tooling",
+  "ref": "main",
+  "commit": "3cdae52",
+  "date": "2026-10-05",
+  "level": "detail",
+  "window": 1,
+  "historical": false,
+  "person": "",
+  "gates": [
+    {"key": "undefined", "symbol": "❔", "name": "Undefined", "window": false, "count": 0},
+    {"key": "defined", "symbol": "📝", "name": "Defined", "window": true, "count": 0},
+    {"key": "mockup", "symbol": "📌", "name": "Mockup", "window": true, "count": 0},
+    {"key": "function", "symbol": "🔧", "name": "Functional prototype", "window": true, "count": 0},
+    {"key": "design", "symbol": "📐", "name": "Design", "window": true, "count": 0},
+    {"key": "implementation", "symbol": "🧱", "name": "Implementation", "window": true, "count": 0},
+    {"key": "unit", "symbol": "📏", "name": "Unit test", "window": true, "count": 0},
+    {"key": "integrate", "symbol": "🔗", "name": "Integration", "window": true, "count": 0},
+    {"key": "validate", "symbol": "🌍", "name": "Validation", "window": true, "count": 0},
+    {"key": "release", "symbol": "🚀", "name": "Release", "window": true, "count": 0}
+  ],
+  "rows": [
+
+  ]
+}
