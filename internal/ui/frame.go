@@ -375,7 +375,7 @@ func (m Model) body() []string {
 		return m.fit(strings.Split(m.mode.View(m.w, h, m.modeContext()), "\n"), m.w, h)
 	}
 	type seg struct {
-		x    int
+		x, w int
 		text string
 	}
 	rows := make([][]seg, h)
@@ -384,19 +384,27 @@ func (m Model) body() []string {
 		if i < 0 || !m.isOpen(r.Pane) || r.W <= 0 {
 			continue
 		}
-		x, w := max(0, r.X), min(r.W, m.w-max(0, r.X))
+		x := max(0, r.X)
+		w := min(r.W, m.w-x)
 		if w <= 0 {
 			continue
 		}
 		lines := m.fit(strings.Split(m.panes[i].View(r.W, r.H, m.context(r.Pane)), "\n"), r.W, r.H)
 		for j, ln := range lines {
 			if y := r.Y + j; y >= 0 && y < h {
-				rows[y] = append(rows[y], seg{x, m.measure.Fit(ln, w)})
+				if w < r.W {
+					ln = m.measure.Fit(ln, w)
+				}
+				rows[y] = append(rows[y], seg{x, w, ln})
 			}
 		}
 	}
 	out := make([]string, h)
 	for y, segs := range rows {
+		if len(segs) == 0 {
+			out[y] = blank
+			continue
+		}
 		slices.SortFunc(segs, func(a, b seg) int { return a.x - b.x })
 		var b strings.Builder
 		at := 0
@@ -406,13 +414,10 @@ func (m Model) body() []string {
 			}
 			b.WriteString(strings.Repeat(" ", s.x-at))
 			b.WriteString(s.text)
-			at = s.x + m.measure.Width(s.text)
+			at = s.x + s.w
 		}
 		b.WriteString(strings.Repeat(" ", max(0, m.w-at)))
 		out[y] = b.String()
-		if len(segs) == 0 {
-			out[y] = blank
-		}
 	}
 	return out
 }
