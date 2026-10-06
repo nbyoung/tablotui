@@ -26,7 +26,7 @@ never reads a task file itself.
 - **Refresh** when the repository changes, and view any ref.
 
 ```
-tablotui                          # the project at HEAD, as the Git identity
+tablotui                          # the working tree on HEAD, as the Git identity
 tablotui --as ada@example.org     # as another participant
 tablotui --ref v1.0               # at a tag
 ```
@@ -44,6 +44,8 @@ proposes Go as the implementation language.
 ```
 cmd/tablotui/       # the command: main.go and its tests
 internal/ui/        # the Bubble Tea model, Bubbles components and Lip Gloss styles
+internal/watch/     # the Git-polling watcher: what counts as a change, with its test clock
+internal/refresh/   # the Bubble Tea component that reloads once per settled change
 .github/workflows/  # ci.yml on push and pull request, release.yml on a tag
 .goreleaser.yaml    # the cross-compilation and release matrix
 .golangci.yml       # the lint configuration
