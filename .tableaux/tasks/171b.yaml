@@ -10,6 +10,7 @@ references:
   - { url: https://github.com/nbyoung/tableaux/blob/main/PLAN.md#views, text: "The ref parameter every view takes" }
 requires:
   - { id: "0098", from: implementation, to: implementation, text: The module }
+  - { id: "679b", from: implementation, to: integrate, text: The frame that embeds the component }
 junctions:
   mockup:         { applies: false }
 parent: { id: "40e8", order: 5 }

@@ -28,7 +28,7 @@ never reads a task file itself.
 ```
 tablotui                          # the project at HEAD, as the Git identity
 tablotui --as ada@example.org     # as another participant
-tablotui --at v1.0                # at a tag
+tablotui --ref v1.0               # at a tag
 ```
 
 ## Plan
