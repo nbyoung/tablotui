@@ -1,0 +1,12 @@
+# The texts Status.Where and Status.Notice return, one case per line.
+# Fields: case | Where | Notice. An empty Notice means the frame draws no notice line.
+# Times are 14:02:26 for the last good load and 14:03:10 for the first failure after it.
+live-first | working tree | Loading
+live-branch | working tree on main at 3cdae52 |
+live-detached | working tree at 3cdae52, detached |
+at-first | v1.0 | Loading
+at-good | v1.0 at 3cdae52 |
+reload-failed | working tree on main at 3cdae52 | Reload failed at 14:03:10, showing the view of 14:02:26: status/9f31.yaml:2:8: S3 unknown state "nomnal"
+repository-broken | working tree on main at 3cdae52 | Reload failed at 14:03:10, showing the view of 14:02:26: not a git repository (or any parent up to mount point /)
+ref-gone | v1.0 at 3cdae52 | Reload failed at 14:03:10, showing the view of 14:02:26: Needed a single revision
+no-view-yet | working tree | No view yet: no .tableaux directory

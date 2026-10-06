@@ -1,3 +1,4 @@
 gate: function
 state: nominal
-note: prototype/171b/ shows live refresh, a git-polling watcher for HEAD and .tableaux (loose, packed, detached, worktree, submodule) feeding a Bubble Tea model, and --at to pin a ref
+reason: review
+note: design/171b.md on branch wave/171b awaits the owner's review at the design gate
