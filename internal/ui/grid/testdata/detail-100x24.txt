@@ -1,0 +1,24 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                                              ❔ ×0 📝  📌  🔧  📐   🧱  📏 🔗  🌍  🚀
+──── ───────────────────────────────────────────────── ───── ── ──── ── ──── ──── ── ── ──── ──
+437e ▾ Tableaux tooling                                      🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+bc63   ▾ Method                                              🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+c2ad       Roles                                                              🟢  —  —  🤖👀 🧑
+2034     ▾ Views                                             🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+e9c6         Abstract views                                              🟢   🤖  —  —  🤖👀 🧑
+bc86       ▾ Markdown views                                  🟢 🤖👀 —   —    —   —  —   —   —
+99f0           Gate definition view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —
+05a9           Task definition view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —
+a9ce           Authority delegation view in Markdown         🟢 🤖👀 —   —    —   —  —   —   —
+bb7c           Task assignment view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —
+c74a           Contributor work queue view in Markdown       🟢 🤖👀 —   —    —   —  —   —   —
+efff           Work-blockage tree view in Markdown           🟢 🤖👀 —   —    —   —  —   —   —
+ab8e           Global tableau view in Markdown               🟢 🤖👀 —   —    —   —  —   —   —
+c545           Contextual tableau view in Markdown           🟢 🤖👀 —   —    —   —  —   —   —
+────────────────────────────────────────────────────────────────────────────────────────────────────
+c2ad Roles · 🧱 implementation 🟢 nominal · 2026-09-30
+The Roles text is on the trunk and covers all seven roles; the validate gate awaits the owner
+
+
+c2ad · rows 1–14 of 37 · window 1 · historical off
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  p provenance  x hide  ? help  q quit

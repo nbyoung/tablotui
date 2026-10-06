@@ -1,0 +1,12 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task          📌  🔧  📐   🧱  📏 🔗  🌍
+──── ──────────── ──── ── ──── ──── ── ── ────
+437e ▾ Tableaux … 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀
+bc63   ▾ Method   🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀
+c2ad       Roles                🟢  —  —  🤖👀
+2034     ▸ Views… 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀
+e3cb       Schem…                   🟢 —  🤖👀
+fcec       Confo…               🟢  🤖 🤖 🤖👀
+ac33       Agent…          🟢  🤖👀 —  —  🤖👀
+bc63 × 🌍 validate · columns 3–9 of 10 · rows 1…
+↑↓ row  ←→ column  enter fold  ? help  q quit
