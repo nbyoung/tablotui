@@ -521,3 +521,17 @@ func TestStylesStripToPlain(t *testing.T) {
 		t.Errorf("stripped styled view differs from the plain view:\n%q\n%q", ansi.Strip(s), p)
 	}
 }
+
+// The frame broadcasts a ReloadMsg to every pane, closed ones too, as the
+// watcher's component and a command after a write will send it.
+func TestReloadMsgReachesEveryPane(t *testing.T) {
+	r, home, side := twoPanes(t)
+	r.send(ui.ReloadMsg{})
+	if home.count("ui.ReloadMsg") != 1 || side.count("ui.ReloadMsg") != 1 {
+		t.Errorf("reloads: home %d, side %d", home.count("ui.ReloadMsg"), side.count("ui.ReloadMsg"))
+	}
+	r.send(tea.FocusMsg{})
+	if home.count("tea.FocusMsg") != 1 || side.count("tea.FocusMsg") != 1 {
+		t.Error("another message did not reach every pane")
+	}
+}
