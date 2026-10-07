@@ -98,6 +98,7 @@ may change the interface.
 | Bubbles                                 | `charm.land/bubbles/v2`               | v2    | The key bindings; later the viewport and the text input |
 | Lip Gloss                               | `charm.land/lipgloss/v2`              | v2    | The styles                  |
 | x/ansi                                  | `github.com/charmbracelet/x/ansi`     | v0    | The two width methods, cutting and stripping |
+| colorprofile                            | `github.com/charmbracelet/colorprofile` | v0    | The colour profiles the tests fix; Bubble Tea requires it already |
 
 The Charm modules are the v2 line under `charm.land/`, which reports the
 terminal's grapheme mode to the model, so the grid measures a symbol as the
