@@ -8,14 +8,12 @@ import (
 
 // Clock is the time the watcher sleeps on. A test supplies its own.
 type Clock interface {
-	Now() time.Time
 	After(d time.Duration) <-chan time.Time
 }
 
 // systemClock is the clock of a watcher made by New.
 type systemClock struct{}
 
-func (systemClock) Now() time.Time                         { return time.Now() }
 func (systemClock) After(d time.Duration) <-chan time.Time { return time.After(d) }
 
 // Watcher polls one source. The zero value is not usable; call New.

@@ -79,7 +79,7 @@ func (h *harness) asked(want time.Duration) {
 }
 
 // tick releases the wait the watcher stands in.
-func (h *harness) tick() { h.clk.Tick <- h.clk.T }
+func (h *harness) tick() { h.clk.Tick <- time.Time{} }
 
 // none checks that no result has arrived.
 func (h *harness) none(c chan result) {

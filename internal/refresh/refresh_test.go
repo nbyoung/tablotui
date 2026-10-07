@@ -280,7 +280,7 @@ func TestT20SlowLoadDoesNotStack(t *testing.T) {
 	if d := <-clk.Asked; d != w.Settle {
 		t.Fatalf("the watcher waits %v first, want the settle %v", d, w.Settle)
 	}
-	clk.Tick <- clk.T
+	clk.Tick <- time.Time{}
 	ch, ok := (<-waiting).(changed)
 	if !ok || ch.state.Commit != head {
 		t.Fatalf("the wait yields %#v, want a change to %s", ch, head)

@@ -19,20 +19,17 @@ import (
 type Clock struct {
 	Asked chan time.Duration // receives the duration of each After call; capacity 64
 	Tick  chan time.Time     // After returns it; a send releases the one waiter
-	T     time.Time          // what Now returns
 }
 
-// NewClock returns a clock whose Now is a fixed time.
+// NewClock returns a clock with its channels made.
 func NewClock() *Clock {
 	return &Clock{
 		Asked: make(chan time.Duration, 64),
 		Tick:  make(chan time.Time),
-		T:     time.Date(2026, 10, 6, 12, 0, 0, 0, time.UTC),
 	}
 }
 
 // Now returns T.
-func (c *Clock) Now() time.Time { return c.T }
 
 // After announces d on Asked and returns Tick.
 func (c *Clock) After(d time.Duration) <-chan time.Time {
