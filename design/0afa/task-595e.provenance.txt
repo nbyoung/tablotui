@@ -1,0 +1,114 @@
+1 Task 595e · provenance
+595e tableaud: local daemon and HTML
+assignee     nbyoung@nbyoung.com
+parent       437e Tableaux tooling, order 5
+status       📝 defined 🟢 nominal, 🪆 from the subproject
+             subprojects/tableaud
+note         prototype/49ce serves the ten views with a stdlib HEAD and
+             .tableaux watcher, ETag 304 polling through htmx, a Source
+             interface and a loopback Host check
+recorded     2026-09-30, from the subproject
+
+Status commit
+  commit            e66abe2 Record the defined gate for the subproject tasks
+  date              2026-09-30
+  author            Claude Haiku 4.5, noreply@anthropic.com
+  committer         Claude Haiku 4.5, noreply@anthropic.com
+  trailers          Model: claude-haiku-4-5-20251001
+
+Description
+
+
+Place in the tree
+path         437e Tableaux tooling › 595e tableaud: local daemon and HTML
+order        5 of 6 under 437e
+children     none
+authorities  nbyoung@nbyoung.com (437e)
+authorised   yes
+
+Authorisation commit
+  commit            6b6c99a Plan the Tableaux tooling
+  date              2026-09-29
+  author            Norman Young, nbyoung@nbyoung.com
+  committer         Norman Young, nbyoung@nbyoung.com
+  accepts by        a change on the trunk
+  the authority is  the author and the committer
+
+Requires: 2
+  77b2 tablo: backend library and plumbing · implementation → implementation ·
+    The library it embeds · 📝 defined 🟢 nominal · unmet, not yet due
+  5fe3 HTML views · mockup → design · The HTML mockups it reproduces · 📝
+    defined 🟢 nominal · unmet, not yet due
+
+Dependents: none
+
+Junctions
+  ❔ undefined · passed
+  📝 defined · 🤖👀 · noreply@anthropic.com · claude-haiku · reviewer the
+    assignee, nbyoung@nbyoung.com · passed; the status stands here
+  📌 mockup · 🪆 · subprojects/tableaud 8608 tableaud · next
+  🔧 function · 🪆 · subprojects/tableaud 8608 tableaud · later
+  📐 design · 🪆 · subprojects/tableaud 8608 tableaud · later
+  🧱 implementation · 🪆 · subprojects/tableaud 8608 tableaud · later
+  📏 unit · 🪆 · subprojects/tableaud 8608 tableaud · later
+  🔗 integrate · 🪆 · subprojects/tableaud 8608 tableaud · later
+  🌍 validate · 🪆 · subprojects/tableaud 8608 tableaud · later
+  🚀 release · 🪆 · subprojects/tableaud 8608 tableaud · later
+
+Subproject snapshot
+task         subprojects/tableaud 8608 tableaud
+assignee     nbyoung@nbyoung.com
+status       🔧 function 🟢 nominal, rolled up from 49ce Server
+note         prototype/49ce serves the ten views with a stdlib HEAD and
+             .tableaux watcher, ETag 304 polling through htmx, a Source
+             interface and a loopback Host check
+  7425 Bootstrap · 🧱 implementation 🟢 nominal
+  49ce Server · 🔧 function 🟢 nominal
+  097c HTML views · 🔧 function 🟢 nominal
+  db74 Progressive disclosure · 🔧 function 🟢 nominal
+  6160 Static export · 🔧 function 🟢 nominal
+  5a2f Accessibility and theming · 🔧 function 🟢 nominal
+
+Linkages
+  📌 mockup
+    url: `subprojects/tableaud`, stated in `.tableaux/tasks/595e.yaml` at each
+      of the eight junctions
+    Form of the url: A path that is a Git submodule, so the submodule's pin
+      fixes the commit
+    Pin: `e6ec4ec`, in full `e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e`
+    commit field: Not stated; nothing restates the pin in the task file
+    The pinned commit: `e6ec4ec` Accept the accessibility and theming function
+      prototype, 2026-10-05, author and committer Norman Young,
+      nbyoung@nbyoung.com, on the subproject's trunk `main`
+    id: Not stated; the junction reads the subproject's root, `8608`
+    Pin set by: `3cdae52` Advance tableaud to the eight function prototypes,
+      2026-10-05, author and committer Norman Young, nbyoung@nbyoung.com: the
+      pin moves from `cffbfa6` to `e6ec4ec`
+    Gate recorded by: `e66abe2` Record the defined gate for the subproject
+      tasks, 2026-09-30, author and committer Claude Haiku 4.5,
+      noreply@anthropic.com, `Model: claude-haiku-4-5-20251001`, which agrees
+      with `claude-haiku`
+    Authorisation: `6b6c99a` Plan the Tableaux tooling, 2026-09-29, author and
+      committer Norman Young, nbyoung@nbyoung.com
+
+Where each junction field comes from
+
+Reviews: none
+
+Models: none
+
+Newest events
+  11 events; the newest 3, newest first.
+  2026-10-05 · 3cdae52 · nbyoung@nbyoung.com · pin · subprojects/tableaud
+    cffbfa6 → e6ec4ec
+  2026-10-02 · 552d38f · nbyoung@nbyoung.com · pin · subprojects/tableaud
+    b06cad0 → cffbfa6
+  2026-10-02 · fb8c0b2 · nbyoung@nbyoung.com · pin · subprojects/tableaud
+    2061a7f → b06cad0
+  … and 8 earlier
+
+Commands
+  git ls-tree 3cdae52 subprojects/tableaud
+  git -C subprojects/tableaud show e6ec4ec:.tableaux/tasks/8608.yaml
+  git log --format='%as %h %ae' 3cdae52 -- .tableaux/tasks/595e.yaml
+    .tableaux/status/595e.yaml subprojects/tableaud

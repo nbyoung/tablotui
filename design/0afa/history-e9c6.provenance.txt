@@ -1,0 +1,50 @@
+4 History e9c6 · 8 events · provenance
+2026-09-29 · nbyoung@nbyoung.com · task, authorised · the task file appears
+  Status after: ❔ undefined ⚪ undefined
+  Effect: an authority commits the task file on the trunk, so the task is
+    authorised
+  Model: none recorded; exempt
+2026-09-29 · noreply@anthropic.com · status · 📝 defined 🟢 nominal
+  Status after: 📝 defined 🟢 nominal
+  Note: Design waits for Roles (c2ad) at design
+  Model: none recorded; exempt
+  Committer: nbyoung@nbyoung.com
+2026-09-29 · noreply@anthropic.com · reviewed · 📝 defined
+  Status after: 📝 defined 🟢 nominal, unchanged
+  Effect: none; the authorisation stands as the review
+  Model: none recorded; exempt
+  Committer: nbyoung@nbyoung.com
+2026-09-30 · noreply@anthropic.com · status · 📝 defined 🟢 nominal 👓 review
+  Status after: 📝 defined 🟢 nominal 👓 review
+  Note: The VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd awaits
+    the owner's review at the design gate
+  Effect: the contributor hands the work to the reviewer
+  Model: claude-fable-5-1; the 📐 design junction states claude-fable
+2026-09-30 · noreply@anthropic.com · status · 📝 defined 🟢 nominal 👓 review
+  Status after: 📝 defined 🟢 nominal 👓 review
+  Note: The revised VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd
+    awaits the owner's acceptance at the design gate
+  Effect: the contributor hands the work to the reviewer
+  Model: claude-fable-5-1; the 📐 design junction states claude-fable
+2026-09-30 · nbyoung@nbyoung.com · reviewed · 📐 design
+  Status after: 📝 defined 🟢 nominal 👓 review, unchanged
+  Effect: the reviewer accepts the work at the gate
+  Model: claude-opus-5-5
+2026-09-30 · noreply@anthropic.com · status · 📐 design 🟢 nominal
+  Status after: 📐 design 🟢 nominal
+  Note: VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may
+    start, and implementation puts the text in place
+  Model: claude-fable-5-1; the 📐 design junction states claude-fable
+  Commit: 879b4471c0ffee00d15ea5e0fabc0de0feedbeef
+  Subject: Advance the abstract views task to its design gate
+  Author: Claude Fable 5.1 <noreply@anthropic.com>, 2026-09-30T16:02:11-04:00
+  Committer: Claude Fable 5.1 <noreply@anthropic.com>,
+    2026-09-30T16:02:11-04:00
+  Trailers: Model: claude-fable-5-1, Co-Authored-By: Claude Fable 5.1
+    <noreply@anthropic.com>
+  Files: .tableaux/status/e9c6.yaml (changed)
+    git show --stat 879b447 # the commit
+
+Commands
+  git log --format='%h %as %ae %s' 3cdae52 -- .tableaux/tasks/e9c6.yaml
+    .tableaux/status/e9c6.yaml # the events of the task

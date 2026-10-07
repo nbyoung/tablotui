@@ -1,0 +1,30 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                                              ❔ ×0 📝  📌  🔧  📐   🧱  📏 🔗  🌍  🚀
+──── ───────────────────────────────────────────────── ───── ── ──── ── ──── ──── ── ── ──── ──
+437e ▾ Tableaux tooling                                      🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+bc63   ▾ Method                                              🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+c2ad       Roles                                                              🟢  —  —  🤖👀 🧑
+2034     ▾ Views                                             🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+e9c6         Abstract views                                              🟢   🤖  —  —  🤖👀 🧑
+bc86       ▾ Markdown views                                  🟢 🤖👀 —   —    —   —  —   —   —
+99f0           Gate definition view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —
+05a9           Task definition view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —
+a9ce           Authority delegation view in Markdown         🟢 🤖👀 —   —    —   —  —   —   —
+bb7c           Task assignment view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —
+c74a           Contributor work queue view in Markdown       🟢 🤖👀 —   —    —   —  —   —   —
+efff           Work-blockage tree view in Markdown           🟢 🤖👀 —   —    —   —  —   —   —
+┌─ 1 Task e9c6 · detail ─────────────────────────────────────────────────────────────── 1–12 of 55 ─
+│ e9c6 Abstract views
+│ assignee     noreply@anthropic.com
+│ parent       2034 Views, order 1
+│ status       📐 design 🟢 nominal
+│ note         VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may start, and
+│              implementation puts the text in place
+│ recorded     2026-09-30 by noreply@anthropic.com
+│
+│ Description
+│ VIEWS.md defines each view independently of any format: its question, the roles it serves, the
+│ data it draws from the project and the history, the parameters that focus it (a task, a person, a
+│ gate window or a list of columns, a ref) and its progressive-disclosure levels. The views are the
+task e9c6 · detail · lines 1–12 of 55
+↑↓ line  enter select task  d detail  p provenance  f fold  ? help  q quit

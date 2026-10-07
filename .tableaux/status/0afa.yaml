@@ -1,3 +1,4 @@
 gate: function
 state: nominal
-note: prototype/0afa shows panes that follow a list selection, with exact-size split layouts at three terminal sizes
+reason: review
+note: design/0afa.md on branch wave/0afa awaits the owner's review at the design gate

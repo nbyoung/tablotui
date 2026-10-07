@@ -1,0 +1,96 @@
+1 Task e9c6 · detail
+e9c6 Abstract views
+assignee     noreply@anthropic.com
+parent       2034 Views, order 1
+status       📐 design 🟢 nominal
+note         VIEWS.md is on the trunk
+             at language 0.3.1; the
+             twenty mockups may start,
+             and implementation puts
+             the text in place
+recorded     2026-09-30 by
+             noreply@anthropic.com
+
+Description
+VIEWS.md defines each view
+independently of any format: its
+question, the roles it serves, the
+data it draws from the project and the
+history, the parameters that focus it
+(a task, a person, a gate window or a
+list of columns, a ref) and its
+progressive-disclosure levels. The
+views are the gate definition, the
+task definition, authority delegation,
+task assignment, the contributor work
+queue, the work-blockage tree, the
+global tableau, the contextual
+tableau, the history and the audit.
+References:
+  Proposed views, PLAN.md#views
+
+Place in the tree
+path         437e Tableaux tooling ›
+             bc63 Method › 2034 Views
+             › e9c6 Abstract views
+order        1 of 3 under 2034
+children     none
+authorities  nbyoung@nbyoung.com
+             (2034, bc63, 437e)
+authorised   yes
+
+Requires: 1
+  c2ad Roles · design → design · The
+    role names the views refer to · 🧱
+    implementation 🟢 nominal · met
+
+Dependents: 21
+  99f0 Gate definition view in
+    Markdown · design → mockup · The
+    abstract definition of the view ·
+    met
+  05a9 Task definition view in
+    Markdown · design → mockup · The
+    abstract definition of the view ·
+    met
+  a9ce Authority delegation view in
+    Markdown · design → mockup · The
+    abstract definition of the view ·
+    met
+  … and 17 more: bb7c c74a efff ab8e
+    c545 d615 b14e a6f7 7dff b1b7 ea51
+    7783 5471 32e7 69eb 3194 a8b4 ·
+    design → mockup · The abstract
+    definition of the view · met
+  77b2 tablo: backend library and
+    plumbing · implementation → design
+    · The abstract views it derives ·
+    unmet, not yet due
+
+Junctions
+  ❔ undefined · passed
+  📝 defined · 🤖 ·
+    noreply@anthropic.com ·
+    claude-haiku · reviewer the
+    assignee, noreply@anthropic.com ·
+    passed
+  📌 mockup · — · does not apply
+  🔧 function · — · does not apply
+  📐 design · 🤖👀 ·
+    noreply@anthropic.com ·
+    claude-fable · reviewer
+    nbyoung@nbyoung.com · passed,
+    reviewed; the status stands here
+  🧱 implementation · 🤖 ·
+    noreply@anthropic.com ·
+    claude-sonnet · reviewer the
+    assignee, noreply@anthropic.com ·
+    next
+  📏 unit · — · does not apply
+  🔗 integrate · — · does not apply
+  🌍 validate · 🤖👀 ·
+    noreply@anthropic.com ·
+    claude-opus · reviewer
+    nbyoung@nbyoung.com · later
+  🚀 release · 🧑 ·
+    nbyoung@nbyoung.com · later

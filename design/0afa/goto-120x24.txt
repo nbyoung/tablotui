@@ -1,0 +1,24 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                               ❔ ×0 📝  📌  🔧  📐   🧱  📏 🔗  🌍  🚀┌─ 2 Queue noreply@anthropic.com · 60 …
+──── ────────────────────────────────── ───── ── ──── ── ──── ──── ── ── ──── ──│ Work ready: 28
+437e ▾ Tableaux tooling                       🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑│   c2ad Roles · 🌍 validate ·
+bc63   ▾ Method                               🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑│     claude-opus · 2026-09-30
+c2ad       Roles                                               🟢  —  —  🤖👀 🧑│ > e9c6 Abstract views · 🧱
+2034     ▾ Views                              🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑│     implementation · claude-sonnet ·
+e9c6         Abstract views                               🟢   🤖  —  —  🤖👀 🧑│     2026-09-30
+bc86       ▸ Markdown views (10)              🟢 🤖👀 —   —    —   —  —   —   — │   99f0 Gate definition view in
+5fe3       ▸ HTML views (10)                  🟢 🤖👀 —   —    —   —  —   —   — │     Markdown · 📌 mockup · claude-opus
+e3cb       Schema files                                            🟢 —  🤖👀 🧑│     · 2026-09-29
+fcec       Conformance corpus                                  🟢  🤖 🤖 🤖👀 🧑│   05a9 Task definition view in
+ac33       Agent identity                                 🟢  🤖👀 —  —  🤖👀 🧑│     Markdown · 📌 mockup · claude-opus
+9f3f       Subproject linkage                             🟢  🤖👀 —  —  🤖👀 🧑│     · 2026-09-29
+7861       Productivity evidence                               🟢  —  —  🤖👀 🧑│   a9ce Authority delegation view in
+7166       Language clarifications                        🟢  🤖👀 —  —  🤖👀 🧑│     Markdown · 📌 mockup · claude-opus
+77b2     tablo: backend library and pl…       🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆│     · 2026-09-29
+6103     tabloio: command line, output…       🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆│   … and 17 more: bb7c c74a efff ab8e
+c6e8     tablotui: terminal user inter…       🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆│     c545 d615 b14e a6f7 7dff b1b7 ea51
+595e     tableaud: local daemon and HT…       🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆│     7783 5471 32e7 69eb 3194 a8b4 · 📌
+                                                                                │     mockup · claude-opus · 2026-09-29
+                                                                                │   e3cb Schema files · 🌍 validate ·
+queue noreply@anthropic.com · glance · lines 1–20 of 79 · enter selects e9c6 × implementation
+↑↓ line  enter select task  d detail  p provenance  f fold  ? help  q quit

@@ -1,0 +1,13 @@
+40x5 grid,task focus grid: grid 0,0 40x5;
+40x5 grid,task focus task: task 0,0 40x5;
+80x21 grid,task focus grid: grid 0,0 80x11; task 0,11 80x10;
+80x21 grid,task,queue focus grid: grid 0,0 80x11; task 0,11 40x10; queue 40,11 40x10;
+80x21 grid,task,queue,blockage,history focus grid: grid 0,0 80x11; task 0,11 40x5; queue 40,11 40x5; blockage 0,16 40x5; history 40,16 40x5;
+80x11 grid,task focus grid: grid 0,0 80x11;
+100x27 grid,task,queue,blockage focus task: grid 0,0 100x14; task 0,14 50x7; queue 50,14 50x7; blockage 0,21 100x6;
+120x21 grid,task focus grid: grid 0,0 80x21; task 80,0 40x21;
+120x21 grid,task,queue,blockage,history focus grid: grid 0,0 80x21; task 80,0 40x6; queue 80,6 40x5; blockage 80,11 40x5; history 80,16 40x5;
+120x9 grid,task,queue focus grid: grid 0,0 80x9; queue 80,0 40x9;
+120x9 grid,task,queue focus task: grid 0,0 80x9; task 80,0 40x9;
+160x42 grid,task,queue,blockage,history focus grid: grid 0,0 107x42; task 107,0 53x11; queue 107,11 53x11; blockage 107,22 53x10; history 107,32 53x10;
+240x42 grid,task,queue,blockage,history focus grid: grid 0,0 160x42; task 160,0 40x21; queue 200,0 40x21; blockage 160,21 40x21; history 200,21 40x21;

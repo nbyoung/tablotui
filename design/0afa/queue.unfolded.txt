@@ -1,0 +1,73 @@
+2 Queue noreply@anthropic.com · 60 items · glance
+Work ready: 28
+  c2ad Roles · 🌍 validate · claude-opus · 2026-09-30
+  e9c6 Abstract views · 🧱 implementation · claude-sonnet · 2026-09-30
+  99f0 Gate definition view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+  05a9 Task definition view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+  a9ce Authority delegation view in Markdown · 📌 mockup · claude-opus ·
+    2026-09-29
+  bb7c Task assignment view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+  c74a Contributor work queue view in Markdown · 📌 mockup · claude-opus ·
+    2026-09-29
+  efff Work-blockage tree view in Markdown · 📌 mockup · claude-opus ·
+    2026-09-29
+  ab8e Global tableau view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+  c545 Contextual tableau view in Markdown · 📌 mockup · claude-opus ·
+    2026-09-29
+  d615 History view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+  b14e Audit view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+  a6f7 Gate definition view in Html · 📌 mockup · claude-opus · 2026-09-29
+  7dff Task definition view in Html · 📌 mockup · claude-opus · 2026-09-29
+  b1b7 Authority delegation view in Html · 📌 mockup · claude-opus ·
+    2026-09-29
+  ea51 Task assignment view in Html · 📌 mockup · claude-opus · 2026-09-29
+  7783 Contributor work queue view in Html · 📌 mockup · claude-opus ·
+    2026-09-29
+  5471 Work-blockage tree view in Html · 📌 mockup · claude-opus · 2026-09-29
+  32e7 Global tableau view in Html · 📌 mockup · claude-opus · 2026-09-29
+  69eb Contextual tableau view in Html · 📌 mockup · claude-opus · 2026-09-29
+  3194 History view in Html · 📌 mockup · claude-opus · 2026-09-29
+  a8b4 Audit view in Html · 📌 mockup · claude-opus · 2026-09-29
+  e3cb Schema files · 🌍 validate · claude-opus · 2026-09-30
+  fcec Conformance corpus · 📏 unit · claude-sonnet · 2026-09-30
+  ac33 Agent identity · 🧱 implementation · claude-sonnet · 2026-09-30
+  9f3f Subproject linkage · 🧱 implementation · claude-sonnet · 2026-09-30
+  7861 Productivity evidence · 🌍 validate · claude-opus · 2026-09-30
+  7166 Language clarifications · 🧱 implementation · claude-sonnet ·
+    2026-09-30
+
+Reaffirmations: 32
+  99f0 Gate definition view in Markdown · 📝 defined · 2026-09-29, 6 days
+  05a9 Task definition view in Markdown · 📝 defined · 2026-09-29, 6 days
+  a9ce Authority delegation view in Markdown · 📝 defined · 2026-09-29, 6 days
+  bb7c Task assignment view in Markdown · 📝 defined · 2026-09-29, 6 days
+  c74a Contributor work queue view in Markdown · 📝 defined · 2026-09-29, 6
+    days
+  efff Work-blockage tree view in Markdown · 📝 defined · 2026-09-29, 6 days
+  ab8e Global tableau view in Markdown · 📝 defined · 2026-09-29, 6 days
+  c545 Contextual tableau view in Markdown · 📝 defined · 2026-09-29, 6 days
+  d615 History view in Markdown · 📝 defined · 2026-09-29, 6 days
+  b14e Audit view in Markdown · 📝 defined · 2026-09-29, 6 days
+  a6f7 Gate definition view in Html · 📝 defined · 2026-09-29, 6 days
+  7dff Task definition view in Html · 📝 defined · 2026-09-29, 6 days
+  b1b7 Authority delegation view in Html · 📝 defined · 2026-09-29, 6 days
+  ea51 Task assignment view in Html · 📝 defined · 2026-09-29, 6 days
+  7783 Contributor work queue view in Html · 📝 defined · 2026-09-29, 6 days
+  5471 Work-blockage tree view in Html · 📝 defined · 2026-09-29, 6 days
+  32e7 Global tableau view in Html · 📝 defined · 2026-09-29, 6 days
+  69eb Contextual tableau view in Html · 📝 defined · 2026-09-29, 6 days
+  3194 History view in Html · 📝 defined · 2026-09-29, 6 days
+  a8b4 Audit view in Html · 📝 defined · 2026-09-29, 6 days
+  7166 Language clarifications · 📐 design · 2026-09-30, 5 days
+  ac33 Agent identity · 📐 design · 2026-09-30, 5 days
+  c2ad Roles · 🧱 implementation · 2026-09-30, 5 days
+  e3cb Schema files · 📏 unit · 2026-09-30, 5 days
+  7861 Productivity evidence · 🧱 implementation · 2026-09-30, 5 days
+  fcec Conformance corpus · 🧱 implementation · 2026-09-30, 5 days
+  9f3f Subproject linkage · 📐 design · 2026-09-30, 5 days
+  77b2 tablo: backend library and plumbing · 📝 defined · 2026-09-30, 5 days
+  6103 tabloio: command line, output and input · 📝 defined · 2026-09-30, 5
+    days
+  c6e8 tablotui: terminal user interface · 📝 defined · 2026-09-30, 5 days
+  595e tableaud: local daemon and HTML · 📝 defined · 2026-09-30, 5 days
+  e9c6 Abstract views · 📐 design · 2026-09-30, 5 days
