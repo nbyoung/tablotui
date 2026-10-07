@@ -1,0 +1,14 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                                              ❔ ×0 📝  📌  🔧  📐   🧱  📏 🔗  🌍  🚀
+──── ───────────────────────────────────────────────── ───── ── ──── ── ──── ──── ── ── ──── ──
+437e ▾ Tableaux tooling                                      🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+bc63   ▸ Method (31)                                         🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+77b2     tablo: backend library and plumbing                 🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+6103     tabloio: command line, output and input             🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+c6e8     tablotui: terminal user interface                   🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+595e     tableaud: local daemon and HTML                     🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+
+
+
+no Git identity: reading as an observer; pass --as <email>
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  p provenance  x hide  ? help  q quit

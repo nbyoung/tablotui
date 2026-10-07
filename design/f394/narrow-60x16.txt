@@ -1,0 +1,16 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05 · viewer nby…
+Id   Task           ❔ ×0 📝  📌  🔧  📐    🧱   📏 🔗…🚀 ×0
+──── ────────────── ───── ── ──── ── ──── ────── ── ────────
+437e ▾ Tableaux to…       🟢 🤖👀 🤖 🤖👀   🤖   🤖
+bc63   ▾ Method           🟢 🤖👀 🤖 🤖👀   🤖   🤖
+c2ad       Roles ·…                         🟢   —
+2034     ▸ Views (…       🟢 🤖👀 🤖 🤖👀   🤖   🤖
+e3cb       Schema …                              🟢
+fcec       Conform…                         🟢   🤖
+────────────────────────────────────────────────────────────
+437e Tableaux tooling · 📝 defined 🟢 nominal · 2026-09-29
+Mockup waits for Abstract views (e9c6) at design
+
+rolled up from 99f0 Gate definition view in Markdown
+reading as assignee, 2 of 3
+↑↓ row  ←→ column  enter fold  E all  ? help  q quit
