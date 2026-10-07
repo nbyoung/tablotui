@@ -1,0 +1,8 @@
+Weather station · working tree on main …
+> gate    < design >
+  state   the subproject states it
+  reason  the subproject states it
+  note    the subproject states it
+
+record c07d · gate · 4 of 9
+enter plan  ↑↓ field  ? help  q quit

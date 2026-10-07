@@ -1,0 +1,16 @@
+Weather station · working tree on main at 3cdae52
+record 9f31 Sensor board
+
+  now     function at_risk, blocked · The supplier slips the prototype boards t…
+
+> gate    < design >
+  state   < nominal >
+  reason  < none >
+  note
+
+
+
+
+
+record 9f31 · gate · 5 of 10
+enter plan  ↑↓ field  ←→ choice  esc cancel  ? help  q quit
