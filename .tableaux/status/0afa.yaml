@@ -1,3 +1,3 @@
-gate: design
+gate: implementation
 state: nominal
-note: design/0afa.md is on the trunk with the owner's decisions of 2026-10-07; implementation is next, on the grid and the frame as built, and the role a pane opens at waits for f394
+note: the four panes, their keys and layout, ui.GotoMsg and the list source stand and draw from the fixtures; the unit gate runs T1 to T20; the tablo adapter joins at integrate, and the level a pane opens at takes the role once f394 puts the viewer on source.Request
