@@ -1,0 +1,44 @@
+2 Queue nbyoung@nbyoung.com · 5 items · detail
+Reviews owed: 1
+  e9c6 Abstract views · 📐 design · claude-fable · 2026-09-30
+    Gate: 📐 design, Design: A model and sufficient tests exist
+    Contributor: 🤖 noreply@anthropic.com, model claude-fable, from bc63
+    Reviewer: 👀 nbyoung@nbyoung.com, from 437e
+    Requires:
+      c2ad Roles, design → design, The role names the views refer to: met
+    Unblocks:
+      99f0 Gate definition view in Markdown, design → mockup, The abstract
+        definition of the view: met
+    Status: 📝 defined 🟢 nominal 👓 review, 2026-09-30,
+      noreply@anthropic.com: The VIEWS.md design on branch
+      worktree-agent-a6b84238bbacc4fcd awaits the owner's review at the design
+      gate
+
+Authorisations owed: 1
+  3c5d Dashboard; proposed; the deciding commit is not by an authority · 📌
+    mockup · 2026-09-22
+    Gate: 📌 mockup, Mockup: A non-technical mockup of the outcome exists
+
+Work ready: 1
+  7166 Language clarifications · 🚀 release · 2026-09-30
+    Gate: 🚀 release, Release: All variants documented and approved
+    Contributor: 🧑 nbyoung@nbyoung.com, by default
+
+Reaffirmations: 1
+  437e Tableaux tooling · 📝 defined · 2026-09-29, 1 day
+    Gate: 📝 defined, Defined: Title, description, assignee and references
+      exist
+
+Work waiting: 1
+  99f0 Gate definition view in Markdown; waits for `e9c6` at design · 📌
+    mockup · claude-opus · 2026-09-29
+    Gate: 📌 mockup, Mockup: A non-technical mockup of the outcome exists
+    Requires:
+      e9c6 Abstract views, design → mockup, The abstract definition of the
+        view: unmet
+    Its parent unblocks:
+      bc86 Markdown views at 📌 mockup · 6103 tabloio: command line, output
+        and input, mockup → design, The Markdown mockups it reproduces: unmet
+    Status: 📝 defined 🟢 nominal, 2026-09-29, noreply@anthropic.com: Mockup
+      waits for Abstract views (e9c6) at design
+    Do not start: the cause stands.

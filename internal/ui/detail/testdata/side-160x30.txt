@@ -1,0 +1,30 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                                              ❔ ×0 📝  📌  🔧  📐   🧱  📏 🔗  🌍  🚀            ┌─ 1 Task e9c6 · detail ──────────────── 1–13 of 74 ─
+──── ───────────────────────────────────────────────── ───── ── ──── ── ──── ──── ── ── ──── ──            │ e9c6 Abstract views
+437e ▾ Tableaux tooling                                      🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑            │ assignee     noreply@anthropic.com
+bc63   ▾ Method                                              🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑            │ parent       2034 Views, order 1
+c2ad       Roles                                                              🟢  —  —  🤖👀 🧑            │ status       📐 design 🟢 nominal
+2034     ▾ Views                                             🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑            │ note         VIEWS.md is on the trunk at language
+e9c6         Abstract views                                              🟢   🤖  —  —  🤖👀 🧑            │              0.3.1; the twenty mockups may start,
+bc86       ▾ Markdown views                                  🟢 🤖👀 —   —    —   —  —   —   —             │              and implementation puts the text in
+99f0           Gate definition view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —             │              place
+05a9           Task definition view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —             │ recorded     2026-09-30 by noreply@anthropic.com
+a9ce           Authority delegation view in Markdown         🟢 🤖👀 —   —    —   —  —   —   —             │
+bb7c           Task assignment view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —             │ Description
+c74a           Contributor work queue view in Markdown       🟢 🤖👀 —   —    —   —  —   —   —             │ VIEWS.md defines each view independently of any
+efff           Work-blockage tree view in Markdown           🟢 🤖👀 —   —    —   —  —   —   —             │ format: its question, the roles it serves, the data
+ab8e           Global tableau view in Markdown               🟢 🤖👀 —   —    —   —  —   —   —             ┌─ 2 Queue noreply@anthropic.com · 60 items · detail
+c545           Contextual tableau view in Markdown           🟢 🤖👀 —   —    —   —  —   —   —             │ Work ready: 28
+d615           History view in Markdown                      🟢 🤖👀 —   —    —   —  —   —   —             │   c2ad Roles · 🌍 validate · claude-opus ·
+b14e           Audit view in Markdown                        🟢 🤖👀 —   —    —   —  —   —   —             │     2026-09-30
+5fe3       ▾ HTML views                                      🟢 🤖👀 —   —    —   —  —   —   —             │     Gate: 🌍 validate, Validation: Passes user and
+a6f7           Gate definition view in Html                  🟢 🤖👀 —   —    —   —  —   —   —             │       field tests
+7dff           Task definition view in Html                  🟢 🤖👀 —   —    —   —  —   —   —             │     Contributor: 🤖 noreply@anthropic.com, model
+b1b7           Authority delegation view in Html             🟢 🤖👀 —   —    —   —  —   —   —             │       claude-opus, from 437e
+ea51           Task assignment view in Html                  🟢 🤖👀 —   —    —   —  —   —   —             │     Reviewer: 👀 nbyoung@nbyoung.com, from 437e
+7783           Contributor work queue view in Html           🟢 🤖👀 —   —    —   —  —   —   —             │     Status: 🧱 implementation 🟢 nominal,
+5471           Work-blockage tree view in Html               🟢 🤖👀 —   —    —   —  —   —   —             │       2026-09-30, noreply@anthropic.com: The Roles
+32e7           Global tableau view in Html                   🟢 🤖👀 —   —    —   —  —   —   —             │       text is on the trunk and covers all seven
+69eb           Contextual tableau view in Html               🟢 🤖👀 —   —    —   —  —   —   —             │       roles; the validate gate awaits the owner
+e9c6 · rows 1–25 of 37 · window 1 · historical off
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  p provenance  x hide  s show  X window  w/W widen/narrow  H historical  ? help  q quit

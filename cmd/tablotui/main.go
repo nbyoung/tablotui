@@ -2,8 +2,10 @@
 //
 //	tablotui [-C <dir>] [--settings <file>] [--fixture <dir>] [--version] [--help]
 //
-// It draws the global tableau as a full-screen grid. This build draws from
-// fixture files; the tablo source joins at the integrate gate.
+// It draws the global tableau as a full-screen grid, and beside it the panes
+// for the task, the work queue, the blockage tree and the history, which the
+// keys 1 to 4 open. This build draws from fixture files; the tablo source
+// joins at the integrate gate.
 package main
 
 import (
@@ -22,6 +24,7 @@ import (
 	"github.com/nbyoung/tablotui/internal/settings"
 	"github.com/nbyoung/tablotui/internal/source"
 	"github.com/nbyoung/tablotui/internal/ui"
+	"github.com/nbyoung/tablotui/internal/ui/detail"
 	"github.com/nbyoung/tablotui/internal/ui/grid"
 )
 
@@ -48,14 +51,14 @@ func main() {
 	os.Exit(run(os.Args[1:], os.Stdout, os.Stderr))
 }
 
-// run parses the arguments, wires the source, the grid and the frame, and
+// run parses the arguments, wires the source, the panes and the frame, and
 // returns the exit code.
 func run(args []string, stdout, stderr io.Writer) int {
 	fs := flag.NewFlagSet("tablotui", flag.ContinueOnError)
 	fs.SetOutput(io.Discard)
 	dir := fs.String("C", ".", "the project directory")
 	settingsPath := fs.String("settings", "", "the settings file (default: tablotui/settings.json in the user configuration directory)")
-	fixtures := fs.String("fixture", "", "draw from the tableau files in this directory")
+	fixtures := fs.String("fixture", "", "draw from the tableau and list files in this directory")
 	showVersion := fs.Bool("version", false, "print the version and exit")
 	if err := checkHyphens(args, fs); err != nil {
 		_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
@@ -99,12 +102,19 @@ func run(args []string, stdout, stderr io.Writer) int {
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	g := grid.New(grid.Options{
-		Source:   source.File{Dir: inDir(*dir, *fixtures)},
-		Settings: path,
-		Start:    grid.GlanceStart(),
-	})
-	opts := ui.Options{Panes: []ui.Pane{g}, Styles: ui.DefaultStyles(), Context: ctx}
+	// The one place the program's panes and commands come together: the grid is
+	// the home pane, the detail panes follow it, and each task that adds a pane
+	// or a command extends this list.
+	src := source.File{Dir: inDir(*dir, *fixtures)}
+	g := grid.New(grid.Options{Source: src, Settings: path, Start: grid.GlanceStart()})
+	details := detail.New(detail.Options{Source: src})
+	opts := ui.Options{
+		Panes:    append([]ui.Pane{g}, details.Panes...),
+		Commands: details.Commands,
+		Layout:   details.Layout,
+		Styles:   ui.DefaultStyles(),
+		Context:  ctx,
+	}
 	if err := ui.CheckKeys(opts); err != nil {
 		_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
 		return exitFailure

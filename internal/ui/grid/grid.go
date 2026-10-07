@@ -182,6 +182,8 @@ func (g Grid) Update(msg tea.Msg, c ui.Context) (ui.Pane, tea.Cmd) {
 		g, cmd = g.ask(c)
 	case StartMsg:
 		g, cmd = g.start(msg.Start, c)
+	case ui.GotoMsg:
+		g, cmd = g.goTo(msg, c)
 	case tea.KeyPressMsg:
 		g, cmd = g.key(msg, c)
 	}
@@ -201,6 +203,38 @@ func (g Grid) start(s Start, c ui.Context) (Grid, tea.Cmd) {
 	g.pending = &s
 	g.col = 0
 	return g.ask(c)
+}
+
+// goTo selects the task a pane names: it unfolds the task's ancestors, moves
+// the row cursor, and moves the column cursor when the gate shows as a column
+// of its own.
+func (g Grid) goTo(msg ui.GotoMsg, c ui.Context) (Grid, tea.Cmd) {
+	if g.data == nil {
+		return g, nil
+	}
+	rows := g.data.Rows
+	at := slices.IndexFunc(rows, func(r view.Row) bool { return r.ID == msg.Task })
+	if at < 0 {
+		return g, notice(msg.Task+" is not in the tableau in view", false)
+	}
+	g.open = maps.Clone(g.open)
+	depth := rows[at].Depth
+	for i := at - 1; i >= 0 && depth > 0; i-- {
+		if rows[i].Depth < depth {
+			g.open[rows[i].ID] = true
+			depth = rows[i].Depth
+		}
+	}
+	g.sel = msg.Task
+	g = g.settled(c.Width, c.Height, c.Measure)
+	if i := slices.IndexFunc(g.data.Gates, func(gt view.Gate) bool { return gt.Key == msg.Gate }); i >= 0 {
+		for k, col := range g.m.cols {
+			if !col.folded && col.gates[0] == i {
+				g.col = k + 1
+			}
+		}
+	}
+	return g, nil
 }
 
 // loaded takes the answer to a request. The bool says that a view arrived.

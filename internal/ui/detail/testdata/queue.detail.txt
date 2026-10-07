@@ -1,0 +1,97 @@
+2 Queue noreply@anthropic.com · 60 items · detail
+Work ready: 28
+  c2ad Roles · 🌍 validate · claude-opus · 2026-09-30
+    Gate: 🌍 validate, Validation: Passes user and field tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus, from 437e
+    Reviewer: 👀 nbyoung@nbyoung.com, from 437e
+    Status: 🧱 implementation 🟢 nominal, 2026-09-30, noreply@anthropic.com:
+      The Roles text is on the trunk and covers all seven roles; the validate
+      gate awaits the owner
+  e9c6 Abstract views · 🧱 implementation · claude-sonnet · 2026-09-30
+    Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
+      integration and validation tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet, from 437e
+    Reviewer: the assignee, noreply@anthropic.com
+    References:
+      Proposed views, PLAN.md#views
+    Unblocks:
+      77b2 tablo: backend library and plumbing, implementation → design, The
+        abstract views it derives: unmet, not yet due
+    Also required by:
+      99f0 Gate definition view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      05a9 Task definition view in Markdown, design → mockup, The abstract
+        definition of the view: met
+    Status: 📐 design 🟢 nominal, 2026-09-30, noreply@anthropic.com, 879b447:
+      VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may
+      start, and implementation puts the text in place
+  99f0 Gate definition view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+    Gate: 📌 mockup, Mockup: A non-technical mockup of the outcome exists
+  05a9 Task definition view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+    Gate: 📌 mockup, Mockup: A non-technical mockup of the outcome exists
+  a9ce Authority delegation view in Markdown · 📌 mockup · claude-opus ·
+    2026-09-29
+    Gate: 📌 mockup, Mockup: A non-technical mockup of the outcome exists
+> … and 17 more: bb7c c74a efff ab8e c545 d615 b14e a6f7 7dff b1b7 ea51 7783
+    5471 32e7 69eb 3194 a8b4 · 📌 mockup · claude-opus · 2026-09-29
+  e3cb Schema files · 🌍 validate · claude-opus · 2026-09-30
+    Gate: 🌍 validate, Validation: Passes user and field tests
+  fcec Conformance corpus · 📏 unit · claude-sonnet · 2026-09-30
+    Gate: 📏 unit, Unit test: All prescribed tests pass
+  ac33 Agent identity · 🧱 implementation · claude-sonnet · 2026-09-30
+    Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
+      integration and validation tests
+  9f3f Subproject linkage · 🧱 implementation · claude-sonnet · 2026-09-30
+    Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
+      integration and validation tests
+  7861 Productivity evidence · 🌍 validate · claude-opus · 2026-09-30
+    Gate: 🌍 validate, Validation: Passes user and field tests
+  7166 Language clarifications · 🧱 implementation · claude-sonnet ·
+    2026-09-30
+    Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
+      integration and validation tests
+
+Reaffirmations: 32
+  99f0 Gate definition view in Markdown · 📝 defined · 2026-09-29, 6 days
+    Gate: 📝 defined, Defined: Title, description, assignee and references
+      exist
+  05a9 Task definition view in Markdown · 📝 defined · 2026-09-29, 6 days
+    Gate: 📝 defined, Defined: Title, description, assignee and references
+      exist
+  a9ce Authority delegation view in Markdown · 📝 defined · 2026-09-29, 6 days
+    Gate: 📝 defined, Defined: Title, description, assignee and references
+      exist
+> … and 17 more: bb7c c74a efff ab8e c545 d615 b14e a6f7 7dff b1b7 ea51 7783
+    5471 32e7 69eb 3194 a8b4 · 📝 defined · 2026-09-29, 6 days
+  7166 Language clarifications · 📐 design · 2026-09-30, 5 days
+    Gate: 📐 design, Design: A model and sufficient tests exist
+  ac33 Agent identity · 📐 design · 2026-09-30, 5 days
+    Gate: 📐 design, Design: A model and sufficient tests exist
+  c2ad Roles · 🧱 implementation · 2026-09-30, 5 days
+    Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
+      integration and validation tests
+  e3cb Schema files · 📏 unit · 2026-09-30, 5 days
+    Gate: 📏 unit, Unit test: All prescribed tests pass
+  7861 Productivity evidence · 🧱 implementation · 2026-09-30, 5 days
+    Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
+      integration and validation tests
+  fcec Conformance corpus · 🧱 implementation · 2026-09-30, 5 days
+    Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
+      integration and validation tests
+  9f3f Subproject linkage · 📐 design · 2026-09-30, 5 days
+    Gate: 📐 design, Design: A model and sufficient tests exist
+  77b2 tablo: backend library and plumbing · 📝 defined · 2026-09-30, 5 days
+    Gate: 📝 defined, Defined: Title, description, assignee and references
+      exist
+  6103 tabloio: command line, output and input · 📝 defined · 2026-09-30, 5
+    days
+    Gate: 📝 defined, Defined: Title, description, assignee and references
+      exist
+  c6e8 tablotui: terminal user interface · 📝 defined · 2026-09-30, 5 days
+    Gate: 📝 defined, Defined: Title, description, assignee and references
+      exist
+  595e tableaud: local daemon and HTML · 📝 defined · 2026-09-30, 5 days
+    Gate: 📝 defined, Defined: Title, description, assignee and references
+      exist
+  e9c6 Abstract views · 📐 design · 2026-09-30, 5 days
+    Gate: 📐 design, Design: A model and sufficient tests exist

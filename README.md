@@ -45,10 +45,12 @@ proposes Go as the implementation language.
 ```
 cmd/tablotui/       # the command: main.go and its tests
 internal/view/      # the tableau as the grid reads it, and its decoder
+internal/view/list/ # the data of the four list views the detail panes draw, and its decoder
 internal/source/    # the Tableaux interface and the fixture source
 internal/settings/  # the per-viewer column choices and their file
 internal/ui/        # the frame: the Bubble Tea root model, panes, modes, measure and styles
 internal/ui/grid/   # the tableau grid pane
+internal/ui/detail/ # the four detail panes, the keys that open them and their layout
 internal/watch/     # the Git-polling watcher: what counts as a change, with its test clock
 internal/refresh/   # the Bubble Tea component that reloads once per settled change
 .github/workflows/  # ci.yml on push and pull request, release.yml on a tag

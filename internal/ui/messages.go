@@ -40,3 +40,8 @@ type ShowPaneMsg struct {
 
 // FocusMsg focuses a pane, and opens it when it is closed.
 type FocusMsg struct{ Pane string }
+
+// GotoMsg asks the home pane to select a task, and a gate column when Gate
+// names one. A detail pane sends it for the task its cursor line names; the
+// home pane answers with a SelectionMsg, or a notice when it lacks the task.
+type GotoMsg struct{ Task, Gate string }
