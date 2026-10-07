@@ -1,0 +1,91 @@
+1 Task 5fe3 · provenance
+5fe3 HTML views
+assignee     noreply@anthropic.com
+parent       2034 Views, order 3
+status       📝 defined 🟢 nominal, rolled up from a6f7 Gate definition view
+             in Html
+note         Mockup waits for Abstract views (e9c6) at design
+recorded     2026-09-29, the oldest among its children
+
+Description
+
+
+Place in the tree
+path         437e Tableaux tooling › bc63 Method › 2034 Views › 5fe3 HTML
+             views
+order        3 of 3 under 2034
+children     10
+  a6f7 Gate definition view in Html · 📝 defined 🟢 nominal
+  7dff · 📝 defined 🟢 nominal
+  b1b7 · 📝 defined 🟢 nominal
+  ea51 · 📝 defined 🟢 nominal
+  7783 · 📝 defined 🟢 nominal
+  5471 · 📝 defined 🟢 nominal
+  32e7 · 📝 defined 🟢 nominal
+  69eb · 📝 defined 🟢 nominal
+  3194 · 📝 defined 🟢 nominal
+  a8b4 · 📝 defined 🟢 nominal
+authorities  nbyoung@nbyoung.com (2034, bc63, 437e)
+authorised   yes
+
+Authorisation commit
+  commit            6b6c99a Plan the Tableaux tooling
+  date              2026-09-29
+  author            Norman Young, nbyoung@nbyoung.com
+  committer         Norman Young, nbyoung@nbyoung.com
+  accepts by        a change on the trunk
+  the authority is  the author and the committer
+
+Requires: none
+
+Dependents: 2
+  c6e8 tablotui: terminal user interface · mockup → design · The HTML mockups
+    that fix the disclosure levels · unmet, not yet due
+  595e tableaud: local daemon and HTML · mockup → design · The HTML mockups it
+    reproduces · unmet, not yet due
+
+Junctions
+  ❔ undefined · passed
+  📝 defined · 🤖 · noreply@anthropic.com · claude-haiku · reviewer the
+    assignee, noreply@anthropic.com · passed; the status stands here
+  📌 mockup · 🤖👀 · noreply@anthropic.com · claude-opus · reviewer
+    nbyoung@nbyoung.com · next
+  🔧 function · — · does not apply
+  📐 design · — · does not apply
+  🧱 implementation · — · does not apply
+  📏 unit · — · does not apply
+  🔗 integrate · — · does not apply
+  🌍 validate · — · does not apply
+  🚀 release · — · does not apply
+
+Roll-up
+  Children considered: All ten; each is nominal, which has severity 1
+  Gate: 📝 defined, the earliest among them
+  State and note: Those of `a6f7`: the ten tie at nominal, and `a6f7` is the
+    first in display order, order 1
+  Date: 2026-09-29, the oldest among them
+  Commit behind `a6f7`: `1a17bfc` Record the defined gate for the views and
+    mockups, 2026-09-29, author Claude Fable 5.1, noreply@anthropic.com,
+    committer Norman Young, nbyoung@nbyoung.com
+
+Where each junction field comes from
+  📝 defined · contributor · noreply@anthropic.com · 437e
+  📝 defined · model · claude-haiku · 437e
+  📝 defined · reviewer · noreply@anthropic.com · the plain default
+  📌 mockup · contributor · noreply@anthropic.com · 437e
+  📌 mockup · model · claude-opus · 437e
+  📌 mockup · reviewer · nbyoung@nbyoung.com · 437e
+  🔧 function · applies · false · 5fe3
+  📐 design · applies · false · 5fe3
+  🧱 implementation · applies · false · 5fe3
+  📏 unit · applies · false · 5fe3
+  🔗 integrate · applies · false · 5fe3
+  🌍 validate · applies · false · 5fe3
+  🚀 release · applies · false · 5fe3
+
+Reviews: none
+
+Models: none
+
+Newest events
+  0 events; the newest 0, newest first.

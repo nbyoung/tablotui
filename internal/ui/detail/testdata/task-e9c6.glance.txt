@@ -1,0 +1,8 @@
+1 Task e9c6 · glance
+e9c6 Abstract views
+assignee     noreply@anthropic.com
+parent       2034 Views, order 1
+status       📐 design 🟢 nominal
+note         VIEWS.md is on the trunk at language 0.3.1; the twenty mockups
+             may start, and implementation puts the text in place
+recorded     2026-09-30 by noreply@anthropic.com

@@ -1,0 +1,37 @@
+2 Queue noreply@anthropic.com · 60 items · glance
+Work ready: 28
+  c2ad Roles · 🌍 validate · claude-opus · 2026-09-30
+> e9c6 Abstract views · 🧱 implementation · claude-sonnet · 2026-09-30
+  99f0 Gate definition view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+  05a9 Task definition view in Markdown · 📌 mockup · claude-opus · 2026-09-29
+  a9ce Authority delegation view in Markdown · 📌 mockup · claude-opus ·
+    2026-09-29
+  … and 17 more: bb7c c74a efff ab8e c545 d615 b14e a6f7 7dff b1b7 ea51 7783
+    5471 32e7 69eb 3194 a8b4 · 📌 mockup · claude-opus · 2026-09-29
+  e3cb Schema files · 🌍 validate · claude-opus · 2026-09-30
+  fcec Conformance corpus · 📏 unit · claude-sonnet · 2026-09-30
+  ac33 Agent identity · 🧱 implementation · claude-sonnet · 2026-09-30
+  9f3f Subproject linkage · 🧱 implementation · claude-sonnet · 2026-09-30
+  7861 Productivity evidence · 🌍 validate · claude-opus · 2026-09-30
+  7166 Language clarifications · 🧱 implementation · claude-sonnet ·
+    2026-09-30
+
+Reaffirmations: 32
+  99f0 Gate definition view in Markdown · 📝 defined · 2026-09-29, 6 days
+  05a9 Task definition view in Markdown · 📝 defined · 2026-09-29, 6 days
+  a9ce Authority delegation view in Markdown · 📝 defined · 2026-09-29, 6 days
+  … and 17 more: bb7c c74a efff ab8e c545 d615 b14e a6f7 7dff b1b7 ea51 7783
+    5471 32e7 69eb 3194 a8b4 · 📝 defined · 2026-09-29, 6 days
+  7166 Language clarifications · 📐 design · 2026-09-30, 5 days
+  ac33 Agent identity · 📐 design · 2026-09-30, 5 days
+  c2ad Roles · 🧱 implementation · 2026-09-30, 5 days
+  e3cb Schema files · 📏 unit · 2026-09-30, 5 days
+  7861 Productivity evidence · 🧱 implementation · 2026-09-30, 5 days
+  fcec Conformance corpus · 🧱 implementation · 2026-09-30, 5 days
+  9f3f Subproject linkage · 📐 design · 2026-09-30, 5 days
+  77b2 tablo: backend library and plumbing · 📝 defined · 2026-09-30, 5 days
+  6103 tabloio: command line, output and input · 📝 defined · 2026-09-30, 5
+    days
+  c6e8 tablotui: terminal user interface · 📝 defined · 2026-09-30, 5 days
+  595e tableaud: local daemon and HTML · 📝 defined · 2026-09-30, 5 days
+> e9c6 Abstract views · 📐 design · 2026-09-30, 5 days

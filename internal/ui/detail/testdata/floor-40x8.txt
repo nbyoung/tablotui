@@ -1,0 +1,8 @@
+Tableaux tooling · main at 3cdae52, 202…
+┌─ 1 Task e9c6 · detail ──── 1–4 of 95 ─
+│ e9c6 Abstract views
+│ assignee     noreply@anthropic.com
+│ parent       2034 Views, order 1
+│ status       📐 design 🟢 nominal
+task e9c6 · detail · lines 1–4 of 95
+↑↓ line  ? help  q quit

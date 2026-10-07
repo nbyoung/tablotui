@@ -1,0 +1,900 @@
+{
+  "view": "task",
+  "level": "provenance",
+  "project": {
+    "id": "437e",
+    "title": "Tableaux tooling"
+  },
+  "ref": {
+    "name": "main",
+    "commit": "3cdae527d47d37fdff55bc302c76c017cf91c606",
+    "date": "2026-10-05",
+    "on_trunk": true
+  },
+  "params": {
+    "task": "e9c6"
+  },
+  "legend": {
+    "gates": [
+      {
+        "key": "undefined",
+        "symbol": "❔",
+        "name": "Undefined",
+        "criteria": "No one has started work on the definition"
+      },
+      {
+        "key": "defined",
+        "symbol": "📝",
+        "name": "Defined",
+        "criteria": "Title, description, assignee and references exist"
+      },
+      {
+        "key": "mockup",
+        "symbol": "📌",
+        "name": "Mockup",
+        "criteria": "A non-technical mockup of the outcome exists"
+      },
+      {
+        "key": "function",
+        "symbol": "🔧",
+        "name": "Functional prototype",
+        "criteria": "A technical demonstration of function exists"
+      },
+      {
+        "key": "design",
+        "symbol": "📐",
+        "name": "Design",
+        "criteria": "A model and sufficient tests exist"
+      },
+      {
+        "key": "implementation",
+        "symbol": "🧱",
+        "name": "Implementation",
+        "criteria": "Artifacts suffice for unit, integration and validation tests"
+      },
+      {
+        "key": "unit",
+        "symbol": "📏",
+        "name": "Unit test",
+        "criteria": "All prescribed tests pass"
+      },
+      {
+        "key": "integrate",
+        "symbol": "🔗",
+        "name": "Integration",
+        "criteria": "Assembled with neighbouring components"
+      },
+      {
+        "key": "validate",
+        "symbol": "🌍",
+        "name": "Validation",
+        "criteria": "Passes user and field tests"
+      },
+      {
+        "key": "release",
+        "symbol": "🚀",
+        "name": "Release",
+        "criteria": "All variants documented and approved"
+      }
+    ],
+    "states": [
+      {
+        "key": "undefined",
+        "symbol": "⚪",
+        "severity": 0,
+        "synopsis": "The work has not yet been defined"
+      },
+      {
+        "key": "nominal",
+        "symbol": "🟢",
+        "severity": 1,
+        "synopsis": "The work is proceeding as expected"
+      },
+      {
+        "key": "at_risk",
+        "symbol": "🟡",
+        "severity": 2,
+        "synopsis": "The work is at risk of stalling"
+      },
+      {
+        "key": "stalled",
+        "symbol": "🔴",
+        "severity": 3,
+        "synopsis": "Practically all progress has stalled"
+      },
+      {
+        "key": "complete",
+        "symbol": "✅",
+        "severity": 0,
+        "synopsis": "All deliverables satisfy their requirements"
+      }
+    ],
+    "reasons": [
+      {
+        "key": "overloaded",
+        "symbol": "🪫",
+        "synopsis": "The assigned resource is overloaded"
+      },
+      {
+        "key": "blocked",
+        "symbol": "⛔",
+        "synopsis": "An external resource is unavailable"
+      },
+      {
+        "key": "review",
+        "symbol": "👓",
+        "synopsis": "The work waits for its reviewer",
+        "reserved": true
+      }
+    ],
+    "marks": [
+      {
+        "key": "person",
+        "symbol": "🧑",
+        "meaning": "A person contributes",
+        "junction": "Plain; the contributor is a person"
+      },
+      {
+        "key": "agent",
+        "symbol": "🤖",
+        "meaning": "An agent contributes",
+        "junction": "Plain; the junction states a `model`"
+      },
+      {
+        "key": "reviewer",
+        "symbol": "👀",
+        "meaning": "A reviewer accepts",
+        "junction": "Plain; the reviewer accepts the work at the gate"
+      },
+      {
+        "key": "subproject",
+        "symbol": "🪆",
+        "meaning": "A subproject does the work",
+        "junction": "Recursive; another Tableaux project does the work"
+      },
+      {
+        "key": "exempt",
+        "symbol": "—",
+        "meaning": "The gate does not apply",
+        "junction": "Not applicable; the entry exempts the task from the gate"
+      }
+    ]
+  },
+  "task": {
+    "id": "e9c6",
+    "title": "Abstract views"
+  },
+  "assignee": "noreply@anthropic.com",
+  "parent": {
+    "id": "2034",
+    "title": "Views",
+    "order": 1
+  },
+  "status": {
+    "gate": "design",
+    "state": "nominal",
+    "reason": "",
+    "note": "VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may start, and implementation puts the text in place",
+    "date": "2026-09-30",
+    "recorder": "noreply@anthropic.com"
+  },
+  "description": "VIEWS.md defines each view independently of any format: its question, the roles it serves, the data it draws from the project and the history, the parameters that focus it (a task, a person, a gate window or a list of columns, a ref) and its progressive-disclosure levels. The views are the gate definition, the task definition, authority delegation, task assignment, the contributor work queue, the work-blockage tree, the global tableau, the contextual tableau, the history and the audit.",
+  "references": [
+    {
+      "text": "Proposed views",
+      "url": "PLAN.md#views"
+    }
+  ],
+  "path": [
+    {
+      "id": "437e",
+      "title": "Tableaux tooling"
+    },
+    {
+      "id": "bc63",
+      "title": "Method"
+    },
+    {
+      "id": "2034",
+      "title": "Views"
+    },
+    {
+      "id": "e9c6",
+      "title": "Abstract views"
+    }
+  ],
+  "siblings": 3,
+  "children": [],
+  "authorities": [
+    {
+      "email": "nbyoung@nbyoung.com",
+      "by": "2034"
+    },
+    {
+      "email": "nbyoung@nbyoung.com",
+      "by": "bc63"
+    },
+    {
+      "email": "nbyoung@nbyoung.com",
+      "by": "437e"
+    }
+  ],
+  "authorised": true,
+  "requires": [
+    {
+      "task": {
+        "id": "c2ad",
+        "title": "Roles"
+      },
+      "from": "design",
+      "to": "design",
+      "text": "The role names the views refer to",
+      "met": true,
+      "due": true,
+      "status": {
+        "gate": "implementation",
+        "state": "nominal",
+        "reason": "",
+        "note": "",
+        "date": "",
+        "recorder": ""
+      }
+    }
+  ],
+  "dependents": [
+    {
+      "task": {
+        "id": "99f0",
+        "title": "Gate definition view in Markdown"
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "05a9",
+        "title": "Task definition view in Markdown"
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "a9ce",
+        "title": "Authority delegation view in Markdown"
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "bb7c",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "c74a",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "efff",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "ab8e",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "c545",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "d615",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "b14e",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "a6f7",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "7dff",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "b1b7",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "ea51",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "7783",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "5471",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "32e7",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "69eb",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "3194",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "a8b4",
+        "title": ""
+      },
+      "from": "design",
+      "to": "mockup",
+      "text": "The abstract definition of the view",
+      "met": true,
+      "due": true
+    },
+    {
+      "task": {
+        "id": "77b2",
+        "title": "tablo: backend library and plumbing"
+      },
+      "from": "implementation",
+      "to": "design",
+      "text": "The abstract views it derives",
+      "met": false,
+      "due": false
+    }
+  ],
+  "junctions": [
+    {
+      "gate": "undefined",
+      "marks": [],
+      "acts": false,
+      "contributor": "",
+      "model": "",
+      "reviewer": "",
+      "reviewer_by_default": false,
+      "stands": "passed",
+      "reviewed": false
+    },
+    {
+      "gate": "defined",
+      "marks": [
+        "agent"
+      ],
+      "acts": false,
+      "contributor": "noreply@anthropic.com",
+      "model": "claude-haiku",
+      "reviewer": "noreply@anthropic.com",
+      "reviewer_by_default": true,
+      "stands": "passed",
+      "reviewed": false
+    },
+    {
+      "gate": "mockup",
+      "marks": [
+        "exempt"
+      ],
+      "acts": false,
+      "contributor": "",
+      "model": "",
+      "reviewer": "",
+      "reviewer_by_default": false,
+      "stands": "exempt",
+      "reviewed": false
+    },
+    {
+      "gate": "function",
+      "marks": [
+        "exempt"
+      ],
+      "acts": false,
+      "contributor": "",
+      "model": "",
+      "reviewer": "",
+      "reviewer_by_default": false,
+      "stands": "exempt",
+      "reviewed": false
+    },
+    {
+      "gate": "design",
+      "marks": [
+        "agent",
+        "reviewer"
+      ],
+      "acts": true,
+      "contributor": "noreply@anthropic.com",
+      "model": "claude-fable",
+      "reviewer": "nbyoung@nbyoung.com",
+      "reviewer_by_default": false,
+      "stands": "here",
+      "reviewed": true
+    },
+    {
+      "gate": "implementation",
+      "marks": [
+        "agent"
+      ],
+      "acts": false,
+      "contributor": "noreply@anthropic.com",
+      "model": "claude-sonnet",
+      "reviewer": "noreply@anthropic.com",
+      "reviewer_by_default": true,
+      "stands": "next",
+      "reviewed": false
+    },
+    {
+      "gate": "unit",
+      "marks": [
+        "exempt"
+      ],
+      "acts": false,
+      "contributor": "",
+      "model": "",
+      "reviewer": "",
+      "reviewer_by_default": false,
+      "stands": "exempt",
+      "reviewed": false
+    },
+    {
+      "gate": "integrate",
+      "marks": [
+        "exempt"
+      ],
+      "acts": false,
+      "contributor": "",
+      "model": "",
+      "reviewer": "",
+      "reviewer_by_default": false,
+      "stands": "exempt",
+      "reviewed": false
+    },
+    {
+      "gate": "validate",
+      "marks": [
+        "agent",
+        "reviewer"
+      ],
+      "acts": true,
+      "contributor": "noreply@anthropic.com",
+      "model": "claude-opus",
+      "reviewer": "nbyoung@nbyoung.com",
+      "reviewer_by_default": false,
+      "stands": "later",
+      "reviewed": false
+    },
+    {
+      "gate": "release",
+      "marks": [
+        "person"
+      ],
+      "acts": true,
+      "contributor": "nbyoung@nbyoung.com",
+      "model": "",
+      "reviewer": "",
+      "reviewer_by_default": false,
+      "stands": "later",
+      "reviewed": false
+    }
+  ],
+  "status_commit": {
+    "hash": "879b447",
+    "subject": "Advance the abstract views task to its design gate",
+    "date": "2026-09-30",
+    "author": {
+      "name": "Claude Fable 5.1",
+      "email": "noreply@anthropic.com"
+    },
+    "committer": {
+      "name": "Claude Fable 5.1",
+      "email": "noreply@anthropic.com"
+    },
+    "trailers": [
+      "Model: claude-fable-5-1"
+    ]
+  },
+  "authorisation": {
+    "commit": {
+      "hash": "6b6c99a",
+      "subject": "Plan the Tableaux tooling",
+      "date": "2026-09-29",
+      "author": {
+        "name": "Norman Young",
+        "email": "nbyoung@nbyoung.com"
+      },
+      "committer": {
+        "name": "Norman Young",
+        "email": "nbyoung@nbyoung.com"
+      },
+      "trailers": []
+    },
+    "way": "change",
+    "by": "author"
+  },
+  "sources": [
+    {
+      "gate": "defined",
+      "field": "contributor",
+      "value": "noreply@anthropic.com",
+      "by": "437e"
+    },
+    {
+      "gate": "defined",
+      "field": "model",
+      "value": "claude-haiku",
+      "by": "437e"
+    },
+    {
+      "gate": "defined",
+      "field": "reviewer",
+      "value": "noreply@anthropic.com",
+      "by": "default"
+    },
+    {
+      "gate": "mockup",
+      "field": "applies",
+      "value": "false",
+      "by": "e9c6"
+    },
+    {
+      "gate": "function",
+      "field": "applies",
+      "value": "false",
+      "by": "e9c6"
+    },
+    {
+      "gate": "design",
+      "field": "contributor",
+      "value": "noreply@anthropic.com",
+      "by": "bc63"
+    },
+    {
+      "gate": "design",
+      "field": "model",
+      "value": "claude-fable",
+      "by": "bc63"
+    },
+    {
+      "gate": "design",
+      "field": "reviewer",
+      "value": "nbyoung@nbyoung.com",
+      "by": "437e"
+    },
+    {
+      "gate": "implementation",
+      "field": "contributor",
+      "value": "noreply@anthropic.com",
+      "by": "437e"
+    },
+    {
+      "gate": "implementation",
+      "field": "model",
+      "value": "claude-sonnet",
+      "by": "437e"
+    },
+    {
+      "gate": "implementation",
+      "field": "reviewer",
+      "value": "noreply@anthropic.com",
+      "by": "default"
+    },
+    {
+      "gate": "unit",
+      "field": "applies",
+      "value": "false",
+      "by": "e9c6"
+    },
+    {
+      "gate": "integrate",
+      "field": "applies",
+      "value": "false",
+      "by": "e9c6"
+    },
+    {
+      "gate": "validate",
+      "field": "contributor",
+      "value": "noreply@anthropic.com",
+      "by": "bc63"
+    },
+    {
+      "gate": "validate",
+      "field": "model",
+      "value": "claude-opus",
+      "by": "bc63"
+    },
+    {
+      "gate": "validate",
+      "field": "reviewer",
+      "value": "nbyoung@nbyoung.com",
+      "by": "437e"
+    },
+    {
+      "gate": "release",
+      "field": "contributor",
+      "value": "nbyoung@nbyoung.com",
+      "by": "437e"
+    }
+  ],
+  "reviews": [
+    {
+      "gate": "defined",
+      "reviewer": "noreply@anthropic.com",
+      "effect": "authorisation"
+    },
+    {
+      "gate": "design",
+      "reviewer": "nbyoung@nbyoung.com",
+      "effect": "accepts",
+      "commit": {
+        "hash": "0704a09",
+        "subject": "Accept the abstract views design",
+        "date": "2026-09-30",
+        "author": {
+          "name": "Norman Young",
+          "email": "nbyoung@nbyoung.com"
+        },
+        "committer": {
+          "name": "Norman Young",
+          "email": "nbyoung@nbyoung.com"
+        },
+        "trailers": [
+          "Reviewed: e9c6 design"
+        ]
+      }
+    }
+  ],
+  "models": [
+    {
+      "commit": "1a17bfc",
+      "gate": "defined",
+      "stated": "claude-haiku",
+      "trailer": "",
+      "reading": "exempt"
+    },
+    {
+      "commit": "0fed913",
+      "gate": "design",
+      "stated": "claude-fable",
+      "trailer": "claude-fable-5-1",
+      "reading": "agrees"
+    },
+    {
+      "commit": "26defc7",
+      "gate": "design",
+      "stated": "claude-fable",
+      "trailer": "claude-fable-5-1",
+      "reading": "agrees"
+    },
+    {
+      "commit": "879b447",
+      "gate": "design",
+      "stated": "claude-fable",
+      "trailer": "claude-fable-5-1",
+      "reading": "agrees"
+    }
+  ],
+  "events": [
+    {
+      "date": "2026-09-30",
+      "commit": "879b447",
+      "by": "noreply@anthropic.com",
+      "kinds": [
+        "status"
+      ],
+      "status": {
+        "gate": "design",
+        "state": "nominal",
+        "reason": "",
+        "note": "VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may start, and implementation puts the text in place",
+        "date": "",
+        "recorder": ""
+      }
+    },
+    {
+      "date": "2026-09-30",
+      "commit": "0704a09",
+      "by": "nbyoung@nbyoung.com",
+      "kinds": [
+        "reviewed"
+      ],
+      "gate": "design"
+    },
+    {
+      "date": "2026-09-30",
+      "commit": "26defc7",
+      "by": "noreply@anthropic.com",
+      "kinds": [
+        "status"
+      ],
+      "status": {
+        "gate": "defined",
+        "state": "nominal",
+        "reason": "review",
+        "note": "The revised VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd awaits the owner's acceptance at the design gate",
+        "date": "",
+        "recorder": ""
+      }
+    },
+    {
+      "date": "2026-09-30",
+      "commit": "0fed913",
+      "by": "noreply@anthropic.com",
+      "kinds": [
+        "status"
+      ],
+      "status": {
+        "gate": "defined",
+        "state": "nominal",
+        "reason": "review",
+        "note": "The VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd awaits the owner's review at the design gate",
+        "date": "",
+        "recorder": ""
+      }
+    },
+    {
+      "date": "2026-09-29",
+      "commit": "5958858",
+      "by": "noreply@anthropic.com",
+      "kinds": [
+        "reviewed"
+      ],
+      "gate": "defined"
+    }
+  ],
+  "event_count": 7,
+  "commands": [
+    {
+      "text": "git log -1 --format='%h %as %ae' 3cdae52 -- .tableaux/status/e9c6.yaml",
+      "comment": "the status commit"
+    },
+    {
+      "text": "git log --first-parent -1 --format='%h %as %ae %ce' 3cdae52 -- .tableaux/tasks/e9c6.yaml",
+      "comment": "the authorisation commit"
+    },
+    {
+      "text": "grep -l 'id: \"e9c6\"' .tableaux/tasks/*.yaml",
+      "comment": "the dependents"
+    },
+    {
+      "text": "git log --format='%h %as %ae %ce' -E --grep='^Reviewed: e9c6 ' 3cdae52",
+      "comment": "the reviews"
+    },
+    {
+      "text": "git log --format='%as %h %ae' 3cdae52 -- .tableaux/tasks/e9c6.yaml .tableaux/status/e9c6.yaml",
+      "comment": "the events"
+    },
+    {
+      "text": "git log --format='%as %h %ae' -E --grep='^(Authorised|Reaffirmed): e9c6$' --grep='^Reviewed: e9c6 ' 3cdae52",
+      "comment": "the events"
+    }
+  ]
+}

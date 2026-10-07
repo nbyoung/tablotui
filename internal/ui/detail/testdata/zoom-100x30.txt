@@ -1,0 +1,30 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+┌─ 3 Blockage 437e · 2 causes · provenance ──────────────────────────────────────────── 1–26 of 31 ─
+│ 5471 Work-blockage tree view in Html awaits review at 📌 mockup · 👀 nbyoung@nbyoung.com reviews ·
+│   holds 4
+│   Action: nbyoung@nbyoung.com accepts the mockup with a commit that carries `Reviewed: 5471
+│     mockup`.
+│   5471 Work-blockage tree view in Html at 📌 mockup: the cause holds the task itself.
+│     5fe3 HTML views at 📌 mockup: the parent of 5471.
+│       c6e8 tablotui: terminal user interface at 📐 design: requires 5fe3 at 📌 mockup, The HTML
+│         mockups that fix the disclosure levels. Also under cause 2.
+│       595e tableaud: local daemon and HTML at 📐 design: requires 5fe3 at 📌 mockup, The HTML
+│         mockups it reproduces.
+│   Hand-off. `.tableaux/status/5471.yaml` states the reason `review` since 2026-10-04, recorded by
+│     noreply@anthropic.com
+│   Reviewer. nbyoung@nbyoung.com, stated at the mockup junction of `437e`
+│     tabloio review 5471 mockup # accepts the mockup
+│
+│ efff Work-blockage tree view in Markdown has not passed 📌 mockup · 🤖 noreply@anthropic.com
+│   contributes · holds 3
+│   Action: noreply@anthropic.com draws the mockup and hands it off with the reason `review`.
+│   bc86 Markdown views at 📌 mockup: the parent of efff.
+│     6103 tabloio: command line, output and input at 📐 design: requires bc86 at 📌 mockup, The
+│       Markdown mockups it reproduces.
+│     c6e8 tablotui: terminal user interface at 📐 design: requires bc86 at 📌 mockup, The Markdown
+│       mockups that fix the textual layout. Also under cause 1.
+│
+│ Next: 1 requirement not yet due
+│   77b2 tablo: backend library and plumbing stands at 📝 defined 🟢 nominal; next 📌 mockup.
+blockage 437e · provenance · lines 1–26 of 31 · enter selects 5471 × mockup
+↑↓ line  enter select task  d detail  p provenance  f fold  ? help  q quit

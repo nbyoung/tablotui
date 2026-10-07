@@ -1,0 +1,20 @@
+4 History 595e · 4 events · detail
+2026-09-29 · nbyoung@nbyoung.com · pin · subprojects/tableaud new 2061a7f
+  Status after: ❔ undefined ⚪ undefined
+2026-09-30 · noreply@anthropic.com · status · 📝 defined
+  Status after: 📝 defined
+  Model: claude-haiku-4-5-20251001; the 📝 defined junction states
+    claude-haiku
+2026-10-02 · nbyoung@nbyoung.com · pin · subprojects/tableaud 2061a7f →
+  b06cad0
+  Status after: 📝 defined 🟢 nominal
+  595e tableaud: local daemon and HTML after: 📝 defined 🟢 nominal
+  Subproject events: 2 events in 2 commits of subprojects/tableaud
+    2026-10-01 · noreply@anthropic.com · status · 5a2f Bootstrap · 🔧 function
+      🟢 nominal · claude-sonnet-5-5
+    2026-10-02 · noreply@anthropic.com · status · 49ce Server · 🔧 function 🟢
+      nominal · claude-sonnet-5-5
+2026-10-05 · nbyoung@nbyoung.com · pin (proposal) · subprojects/tableaud
+  cffbfa6 → e6ec4ec
+  Status after: 📝 defined 🟢 nominal
+  Effect: moved
