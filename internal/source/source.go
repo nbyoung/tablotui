@@ -1,7 +1,7 @@
-// Package source names where the tableau grid gets its view data. The grid
-// asks through the Tableaux interface and never learns how the data arrives:
-// this build serves fixture files, and the tablo adapter joins at the
-// integrate gate.
+// Package source names where the panes get their view data. The grid asks
+// through the Tableaux interface, the detail panes through Lists, and the role
+// pane through Viewers; none learns how the data arrives: this build serves
+// fixture files, and the tablo adapter joins at the integrate gate.
 package source
 
 import (
@@ -19,6 +19,8 @@ type Request struct {
 	Window     int
 	Historical bool
 	Level      string // "detail" or "provenance"
+	Viewer     string // the email of the person at the keyboard; "" is nobody
+	Role       string // the role the viewer reads as; "" is the viewer's own
 }
 
 // Tableaux loads a tableau. A call blocks; the frame runs it in a command.
