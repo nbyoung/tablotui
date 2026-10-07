@@ -9,7 +9,7 @@ import (
 
 func TestDecodeFixtures(t *testing.T) {
 	files, err := filepath.Glob("../ui/grid/testdata/*.json")
-	if err != nil || len(files) != 5 {
+	if err != nil || len(files) != 6 {
 		t.Fatalf("fixtures = %v, %v", files, err)
 	}
 	for _, f := range files {
