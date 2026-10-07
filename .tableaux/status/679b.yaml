@@ -1,3 +1,3 @@
-gate: implementation
+gate: unit
 state: nominal
-note: the grid and the frame stand and draw from fixtures behind source.Tableaux; the unit gate runs T1 to T17; the tablo adapter and the embedded live refresh join at integrate, which waits on tablo 886d and 4ed9 and on 171b
+note: T1 to T17 pass with no skip under go test -count=1 and go test -race on this host; the tablo adapter, its proof on weather-station and the umbrella plan and the timed w round trip wait for integrate, which needs tablo 886d and 4ed9 and 171b at implementation; the terminal checks wait for validate
