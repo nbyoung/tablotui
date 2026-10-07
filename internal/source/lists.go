@@ -22,11 +22,6 @@ type ListRequest struct {
 	Role   string // the role the viewer reads as; "" is the viewer's own
 }
 
-// Reading says whom the panes read for and as which role. The role pane sends
-// it at every arrival, the frame broadcasts it, and each pane that asks for a
-// list view states the two on its requests.
-type Reading struct{ Viewer, Role string }
-
 // Lists loads the list-shaped views. A call blocks; a pane runs it in a command.
 type Lists interface {
 	Task(ctx context.Context, r ListRequest) (list.Task, error)

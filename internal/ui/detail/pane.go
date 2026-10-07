@@ -424,7 +424,7 @@ func (p Pane) Update(msg tea.Msg, c ui.Context) (ui.Pane, tea.Cmd) {
 		} else {
 			p.stale = true
 		}
-	case source.Reading:
+	case ui.ReadingMsg:
 		p, cmd = p.reading(msg, c)
 	case ui.LoadedMsg:
 		if msg.Pane != p.k.id {
@@ -442,7 +442,7 @@ func (p Pane) Update(msg tea.Msg, c ui.Context) (ui.Pane, tea.Cmd) {
 // reading takes the viewer and the role the role pane names. An open pane asks
 // again when either changed, since the role decides the level a view opens at;
 // a closed pane asks when it opens.
-func (p Pane) reading(msg source.Reading, c ui.Context) (Pane, tea.Cmd) {
+func (p Pane) reading(msg ui.ReadingMsg, c ui.Context) (Pane, tea.Cmd) {
 	if msg.Viewer == p.viewer && msg.Role == p.role {
 		return p, nil
 	}

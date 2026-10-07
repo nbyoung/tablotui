@@ -182,7 +182,7 @@ func (p Pane) ask(c ui.Context) tea.Cmd {
 // start arrives the grid and tells the panes whom they read for and as which
 // role: the two travel together, so a pane never lags behind the grid.
 func start(s grid.Start) tea.Cmd {
-	reading := source.Reading{Viewer: s.Request.Viewer, Role: s.Request.Role}
+	reading := ui.ReadingMsg{Viewer: s.Request.Viewer, Role: s.Request.Role}
 	return tea.Batch(
 		func() tea.Msg { return grid.StartMsg{Start: s} },
 		func() tea.Msg { return reading },
