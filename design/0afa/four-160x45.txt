@@ -1,0 +1,45 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                                              ❔ ×0 📝  📌  🔧  📐   🧱  📏 🔗  🌍  🚀            ┌─ 1 Task e9c6 · detail ──────────────── 1–10 of 74 ─
+──── ───────────────────────────────────────────────── ───── ── ──── ── ──── ──── ── ── ──── ──            │ e9c6 Abstract views
+437e ▾ Tableaux tooling                                      🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑            │ assignee     noreply@anthropic.com
+bc63   ▾ Method                                              🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑            │ parent       2034 Views, order 1
+c2ad       Roles                                                              🟢  —  —  🤖👀 🧑            │ status       📐 design 🟢 nominal
+2034     ▾ Views                                             🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑            │ note         VIEWS.md is on the trunk at language
+e9c6         Abstract views                                              🟢   🤖  —  —  🤖👀 🧑            │              0.3.1; the twenty mockups may start,
+bc86       ▾ Markdown views                                  🟢 🤖👀 —   —    —   —  —   —   —             │              and implementation puts the text in
+99f0           Gate definition view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —             │              place
+05a9           Task definition view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —             │ recorded     2026-09-30 by noreply@anthropic.com
+a9ce           Authority delegation view in Markdown         🟢 🤖👀 —   —    —   —  —   —   —             │
+bb7c           Task assignment view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —             ┌─ 2 Queue noreply@anthropic.com · 60 items · detail
+c74a           Contributor work queue view in Markdown       🟢 🤖👀 —   —    —   —  —   —   —             │ Work ready: 28
+efff           Work-blockage tree view in Markdown           🟢 🤖👀 —   —    —   —  —   —   —             │   c2ad Roles · 🌍 validate · claude-opus ·
+ab8e           Global tableau view in Markdown               🟢 🤖👀 —   —    —   —  —   —   —             │     2026-09-30
+c545           Contextual tableau view in Markdown           🟢 🤖👀 —   —    —   —  —   —   —             │     Gate: 🌍 validate, Validation: Passes user and
+d615           History view in Markdown                      🟢 🤖👀 —   —    —   —  —   —   —             │       field tests
+b14e           Audit view in Markdown                        🟢 🤖👀 —   —    —   —  —   —   —             │     Contributor: 🤖 noreply@anthropic.com, model
+5fe3       ▾ HTML views                                      🟢 🤖👀 —   —    —   —  —   —   —             │       claude-opus, from 437e
+a6f7           Gate definition view in Html                  🟢 🤖👀 —   —    —   —  —   —   —             │     Reviewer: 👀 nbyoung@nbyoung.com, from 437e
+7dff           Task definition view in Html                  🟢 🤖👀 —   —    —   —  —   —   —             │     Status: 🧱 implementation 🟢 nominal,
+b1b7           Authority delegation view in Html             🟢 🤖👀 —   —    —   —  —   —   —             │       2026-09-30, noreply@anthropic.com: The Roles
+ea51           Task assignment view in Html                  🟢 🤖👀 —   —    —   —  —   —   —             ┌─ 3 Blockage e9c6 · 0 causes · detail ──────────────
+7783           Contributor work queue view in Html           🟢 🤖👀 —   —    —   —  —   —   —             │ No cause holds any task.
+5471           Work-blockage tree view in Html               🟢 🤖👀 —   —    —   —  —   —   —             │
+32e7           Global tableau view in Html                   🟢 🤖👀 —   —    —   —  —   —   —             │
+69eb           Contextual tableau view in Html               🟢 🤖👀 —   —    —   —  —   —   —             │
+3194           History view in Html                          🟢 🤖👀 —   —    —   —  —   —   —             │
+a8b4           Audit view in Html                            🟢 🤖👀 —   —    —   —  —   —   —             │
+e3cb       Schema files                                                           🟢 —  🤖👀 🧑            │
+fcec       Conformance corpus                                                 🟢  🤖 🤖 🤖👀 🧑            │
+ac33       Agent identity                                                🟢  🤖👀 —  —  🤖👀 🧑            │
+9f3f       Subproject linkage                                            🟢  🤖👀 —  —  🤖👀 🧑            ┌─ 4 History e9c6 · 8 events · detail ─ 45–53 of 53 ─
+7861       Productivity evidence                                              🟢  —  —  🤖👀 🧑            │   Model: claude-opus-5-5
+7166       Language clarifications                                       🟢  🤖👀 —  —  🤖👀 🧑            │ 2026-09-30 · noreply@anthropic.com · status · 📐
+77b2     tablo: backend library and plumbing                 🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆            │   design 🟢 nominal
+6103     tabloio: command line, output and input             🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆            │   Status after: 📐 design 🟢 nominal
+c6e8     tablotui: terminal user interface                   🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆            │   Note: VIEWS.md is on the trunk at language 0.3.1;
+595e     tableaud: local daemon and HTML                     🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆            │     the twenty mockups may start, and
+                                                                                                           │     implementation puts the text in place
+                                                                                                           │   Model: claude-fable-5-1; the 📐 design junction
+                                                                                                           │     states claude-fable
+history e9c6 · detail · lines 45–53 of 53 · enter selects e9c6 × design
+↑↓ line  enter select task  d detail  p provenance  f fold  ? help  q quit

@@ -1,0 +1,8 @@
+4 History e9c6 · 8 events · glance
+2026-09-29 · nbyoung@nbyoung.com · task, authorised · the task file appears
+2026-09-29 · noreply@anthropic.com · status · 📝 defined 🟢 nominal
+2026-09-29 · noreply@anthropic.com · reviewed · 📝 defined
+2026-09-30 · noreply@anthropic.com · status · 📝 defined 🟢 nominal 👓 review
+2026-09-30 · noreply@anthropic.com · status · 📝 defined 🟢 nominal 👓 review
+2026-09-30 · nbyoung@nbyoung.com · reviewed · 📐 design
+2026-09-30 · noreply@anthropic.com · status · 📐 design 🟢 nominal
