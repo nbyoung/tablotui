@@ -75,6 +75,40 @@ func TestEveryLineFits(t *testing.T) {
 	}
 }
 
+// T2 at every size: the column plan depends on the width, the data and the
+// measure, not on the keys, so the largest fixture with no key draws at each
+// of the 3,333 sizes under both methods, where the test above samples the
+// sizes and runs every fixture and script (the owner's ruling of 2026-10-06).
+func TestEveryLineFitsAtEverySize(t *testing.T) {
+	src := newCached()
+	for _, method := range []ansi.Method{ansi.WcWidth, ansi.GraphemeWidth} {
+		t.Run(fmt.Sprintf("tableau/%d", method), func(t *testing.T) {
+			t.Parallel()
+			start := GlanceStart()
+			start.Request = reqGlobal
+			r := newRig(t, src, "", start, 100, 30)
+			if method == ansi.GraphemeWidth {
+				r.send(tea.ModeReportMsg{Mode: ansi.ModeUnicodeCore, Value: ansi.ModeSet})
+			}
+			r.keys("E")
+			for w := 40; w <= 140; w++ {
+				for h := 8; h <= 40; h++ {
+					r.send(tea.WindowSizeMsg{Width: w, Height: h})
+					lines := r.content()
+					if len(lines) != h {
+						t.Fatalf("%dx%d: %d lines", w, h, len(lines))
+					}
+					for i, l := range lines {
+						if got := method.StringWidth(ansi.Strip(l)); got != w {
+							t.Fatalf("%dx%d line %d is %d cells: %q", w, h, i, got, ansi.Strip(l))
+						}
+					}
+				}
+			}
+		})
+	}
+}
+
 // The keys applied at the size, not before it, fit as well.
 func TestEveryLineFitsWhenTheKeysComeAtTheSize(t *testing.T) {
 	src := newCached()
