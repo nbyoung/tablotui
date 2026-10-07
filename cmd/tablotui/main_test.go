@@ -195,6 +195,7 @@ func TestUsageErrorsExitTwo(t *testing.T) {
 		{"single hyphen as", []string{"-as", "ada@example.org", "--fixture", "x"}, "--as"},
 		{"as is no email", []string{"--as", "ada", "--fixture", "x"}, "usage: --as ada: not an email"},
 		{"as is no email, joined", []string{"--as=ada@", "--fixture", "x"}, "not an email"},
+		{"as is no email, and no source", []string{"--as", "ada"}, "usage: --as ada: not an email"},
 		{"single hyphen with a value", []string{"-settings=x"}, "--settings"},
 		{"single hyphen version", []string{"-version"}, "--version"},
 		{"unknown option", []string{"--nope"}, "nope"},

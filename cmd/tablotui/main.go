@@ -93,6 +93,16 @@ func run(args []string, stdout, stderr io.Writer) int {
 		_, _ = fmt.Fprintf(stderr, "tablotui: -C %s: not a directory\n", *dir)
 		return exitUsage
 	}
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	// The viewer is read once, here: a change of the Git identity shows at the
+	// next start. A malformed --as is a usage error whatever else is missing,
+	// so the check stands before the one for a source.
+	email, err := identity.Email(ctx, *dir, *as)
+	if err != nil {
+		_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
+		return exitUsage
+	}
 	if *fixtures == "" {
 		_, _ = fmt.Fprintf(stderr, "tablotui: %s\n", noSourceText)
 		return exitFailure
@@ -105,15 +115,6 @@ func run(args []string, stdout, stderr io.Writer) int {
 		path = inDir(*dir, path)
 	}
 
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-	// The viewer is read once, here: a change of the Git identity shows at the
-	// next start.
-	email, err := identity.Email(ctx, *dir, *as)
-	if err != nil {
-		_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
-		return exitUsage
-	}
 	// The one place the program's panes and commands come together: the grid is
 	// the home pane, the detail panes follow it, the role pane that never opens
 	// comes last, and each task that adds a pane or a command extends this list.
