@@ -1,3 +1,3 @@
-gate: implementation
+gate: unit
 state: nominal
-note: the four panes, their keys and layout, ui.GotoMsg and the list source stand and draw from the fixtures; the unit gate runs T1 to T20; the tablo adapter joins at integrate, and the level a pane opens at takes the role once f394 puts the viewer on source.Request
+note: T1 to T20 pass with no skip under go test -count=1 and go test -race on this host, T19 as the unchanged grid tests; the tablo adapter behind source.Lists, the opening level a role gives a pane which tablo resolves and the timed cursor move with four panes wait for integrate; the terminal checks wait for validate
