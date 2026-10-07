@@ -26,7 +26,7 @@ never reads a task file itself.
 - **Refresh** when the repository changes, and view any ref.
 
 ```
-tablotui                          # the project at HEAD, as the Git identity
+tablotui                          # the working tree on HEAD, as the Git identity
 tablotui --as ada@example.org     # as another participant
 tablotui --ref v1.0               # at a tag
 tablotui --settings <file>        # keep the column choices in another file
@@ -49,6 +49,8 @@ internal/source/    # the Tableaux interface and the fixture source
 internal/settings/  # the per-viewer column choices and their file
 internal/ui/        # the frame: the Bubble Tea root model, panes, modes, measure and styles
 internal/ui/grid/   # the tableau grid pane
+internal/watch/     # the Git-polling watcher: what counts as a change, with its test clock
+internal/refresh/   # the Bubble Tea component that reloads once per settled change
 .github/workflows/  # ci.yml on push and pull request, release.yml on a tag
 .goreleaser.yaml    # the cross-compilation and release matrix
 .golangci.yml       # the lint configuration
