@@ -1,0 +1,16 @@
+Weather station · working tree on main at 3cdae52
+authorise 9f31: not committed
+
+git commit: exit 1
+pre-commit: tablo validate reports 1 error
+.tableaux/status/9f31.yaml:1:1: error: S11 the status passes design without a
+review
+
+the checkout stands as it stood before the commit
+
+
+
+
+
+error: not committed: git commit: exit 1
+enter close  ↑↓ scroll  ? help  q quit
