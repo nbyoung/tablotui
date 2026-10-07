@@ -1,0 +1,14 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05 · viewer nbyoung@nbyoung.com, owner
+Id   Task                                              ❔ ×0 📝  📌  🔧  📐   🧱  📏 🔗  🌍  🚀
+──── ───────────────────────────────────────────────── ───── ── ──── ── ──── ──── ── ── ──── ──
+437e ▾ Tableaux tooling                                      🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+bc63   ▸ Method (31)                                         🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+77b2     tablo: backend library and plumbing                 🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+6103     tabloio: command line, output and input             🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+c6e8     tablotui: terminal user interface                   🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+595e     tableaud: local daemon and HTML                     🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+
+
+
+437e · rows 1–6 of 6 · window 1 · historical off
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  p provenance  x hide  ? help  q quit

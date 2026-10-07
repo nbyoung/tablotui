@@ -14,6 +14,30 @@ import (
 	"github.com/charmbracelet/x/ansi"
 )
 
+// TestMain gives every test of the command no Git identity: no author
+// variable, no global or system configuration, and a working directory that
+// no repository holds, so that the host's identity never reaches a test.
+func TestMain(m *testing.M) {
+	os.Exit(runTests(m))
+}
+
+func runTests(m *testing.M) int {
+	for _, kv := range [][2]string{{"GIT_CONFIG_GLOBAL", os.DevNull}, {"GIT_CONFIG_SYSTEM", os.DevNull}, {"GIT_AUTHOR_EMAIL", ""}} {
+		if err := os.Setenv(kv[0], kv[1]); err != nil {
+			panic(err)
+		}
+	}
+	dir, err := os.MkdirTemp("", "tablotui-main")
+	if err != nil {
+		panic(err)
+	}
+	defer func() { _ = os.RemoveAll(dir) }()
+	if err := os.Chdir(dir); err != nil {
+		panic(err)
+	}
+	return m.Run()
+}
+
 func TestResolveVersion(t *testing.T) {
 	installed := &debug.BuildInfo{Main: debug.Module{Version: "v0.3.1"}}
 	devel := &debug.BuildInfo{Main: debug.Module{Version: "(devel)"}}
@@ -150,7 +174,7 @@ func TestHelpOption(t *testing.T) {
 	if code != 0 {
 		t.Errorf("--help exits %d", code)
 	}
-	for _, want := range []string{"usage: tablotui", "--settings", "--fixture", "--version", "-C"} {
+	for _, want := range []string{"usage: tablotui", "--as", "--settings", "--fixture", "--version", "-C"} {
 		if !strings.Contains(out, want) {
 			t.Errorf("usage lacks %q:\n%s", want, out)
 		}
@@ -168,6 +192,10 @@ func TestUsageErrorsExitTwo(t *testing.T) {
 		want string
 	}{
 		{"single hyphen", []string{"-fixture", "x"}, "--fixture"},
+		{"single hyphen as", []string{"-as", "ada@example.org", "--fixture", "x"}, "--as"},
+		{"as is no email", []string{"--as", "ada", "--fixture", "x"}, "usage: --as ada: not an email"},
+		{"as is no email, joined", []string{"--as=ada@", "--fixture", "x"}, "not an email"},
+		{"as is no email, and no source", []string{"--as", "ada"}, "usage: --as ada: not an email"},
 		{"single hyphen with a value", []string{"-settings=x"}, "--settings"},
 		{"single hyphen version", []string{"-version"}, "--version"},
 		{"unknown option", []string{"--nope"}, "nope"},
@@ -376,5 +404,83 @@ func TestALoadThatFailsNeverEndsTheProgram(t *testing.T) {
 	}
 	if !strings.HasPrefix(got[1], "error: ") {
 		t.Errorf("body = %q", got[1])
+	}
+}
+
+// T16: --as and the Git identity reach the context line.
+func TestTheViewerReachesTheContextLine(t *testing.T) {
+	t.Setenv("HOME", t.TempDir())
+	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
+	cases := []struct {
+		name string
+		env  string
+		args []string
+		want string
+	}{
+		{"--as", "", []string{"--as", "ada@example.org"}, "Fixture project · main at abc1234, 2026-10-06 · viewer ada@example.org, observer"},
+		{"the author variable", "ben@example.org", nil, "Fixture project · main at abc1234, 2026-10-06 · viewer ben@example.org, observer"},
+		{"--as before the variable", "ben@example.org", []string{"--as", "ada@example.org"}, "Fixture project · main at abc1234, 2026-10-06 · viewer ada@example.org, observer"},
+		{"nobody", "", nil, "Fixture project · main at abc1234, 2026-10-06"},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			h := newHarness(t)
+			t.Setenv("GIT_AUTHOR_EMAIL", c.env)
+			var got []string
+			h.onRun = func(m tea.Model) { got = lines(drive(m, 100, 12)) }
+			code, _, errOut := runArgs(append([]string{"--fixture", fixtureDir(t)}, c.args...)...)
+			if code != 0 || errOut != "" || h.calls != 1 {
+				t.Fatalf("exit %d, stderr %q, calls %d", code, errOut, h.calls)
+			}
+			if got[0] != c.want {
+				t.Errorf("context line = %q, want %q", got[0], c.want)
+			}
+		})
+	}
+}
+
+func TestNobodyReadsAsAnObserverWithOneNotice(t *testing.T) {
+	h := newHarness(t)
+	t.Setenv("HOME", t.TempDir())
+	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
+	var got []string
+	h.onRun = func(m tea.Model) { got = lines(drive(m, 100, 12)) }
+	if code, _, errOut := runArgs("--fixture", fixtureDir(t)); code != 0 {
+		t.Fatalf("exit %d, stderr %q", code, errOut)
+	}
+	if want := "no Git identity: reading as an observer; pass --as <email>"; got[len(got)-2] != want {
+		t.Errorf("status = %q, want %q", got[len(got)-2], want)
+	}
+}
+
+// R reaches the role pane through the command's own wiring.
+func TestRSwitchesTheRole(t *testing.T) {
+	h := newHarness(t)
+	t.Setenv("HOME", t.TempDir())
+	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
+	dir := fixtureDir(t)
+	person := strings.Replace(tableau, `"window":1,`, `"person":"ada@example.org","window":1,`, 1)
+	for name, body := range map[string]string{
+		"viewers.json":        `{"ada@example.org":["owner","reviewer"]}`,
+		"tableau-person.json": person,
+	} {
+		if err := os.WriteFile(filepath.Join(dir, name), []byte(body), 0o600); err != nil {
+			t.Fatal(err)
+		}
+	}
+	var first, second []string
+	h.onRun = func(m tea.Model) {
+		m = drive(m, 100, 12)
+		first = lines(m)
+		second = lines(typed(m, tea.KeyPressMsg{Code: 'R', Text: "R"}))
+	}
+	if code, _, errOut := runArgs("--fixture", dir, "--as", "ada@example.org"); code != 0 {
+		t.Fatalf("exit %d, stderr %q", code, errOut)
+	}
+	if !strings.HasSuffix(first[0], "viewer ada@example.org, owner") {
+		t.Errorf("first context line = %q", first[0])
+	}
+	if !strings.HasSuffix(second[0], "viewer ada@example.org, reviewer") || second[len(second)-2] != "reading as reviewer, 2 of 2" {
+		t.Errorf("after R: %q, status %q", second[0], second[len(second)-2])
 	}
 }

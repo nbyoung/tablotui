@@ -34,12 +34,19 @@ const (
 )
 
 // Start is an arrival state. Open lists the unfolded parents; nil unfolds
-// depth 0 alone. Select names a row; "" selects the first.
+// depth 0 alone. Select names a row; "" selects the first. A Start that names
+// no view waits: the grid asks for nothing until a StartMsg arrives.
 type Start struct {
 	Request source.Request
 	Open    []string
 	Select  string
 	Level   Level
+	// Mine takes the folds from the data: it unfolds every parent above a row
+	// that is the person's, and selects the first such row unless Select
+	// names a row. A row is the person's when it carries no label in a
+	// contextual tableau, and when the person acts in one of its cells in a
+	// global one. With no such row, Open decides.
+	Mine bool
 }
 
 // GlanceStart is the arrival of an observer and of the owner: the global
@@ -145,6 +152,9 @@ func (g Grid) Init(c ui.Context) tea.Cmd {
 
 // load runs one request off the event loop.
 func (g Grid) load(c ui.Context, seq uint64, req source.Request) tea.Cmd {
+	if req.View == "" {
+		return nil // a start that names no view waits for a StartMsg
+	}
 	src := g.src
 	return c.Load(ID, seq, func(ctx context.Context) (any, error) {
 		if src == nil {
@@ -276,7 +286,13 @@ func (g Grid) loaded(msg ui.LoadedMsg) (Grid, tea.Cmd, bool) {
 func (g Grid) arrive(s Start) Grid {
 	rows := g.data.Rows
 	g.open = map[string]bool{}
-	if s.Open == nil {
+	mine := -1
+	if s.Mine {
+		mine = g.unfoldMine()
+	}
+	if mine >= 0 {
+		// the data decides the folds
+	} else if s.Open == nil {
 		for _, r := range rows {
 			if r.Parent && r.Depth == 0 {
 				g.open[r.ID] = true
@@ -289,12 +305,36 @@ func (g Grid) arrive(s Start) Grid {
 	}
 	g.sel = ""
 	if len(rows) > 0 {
-		g.sel = rows[0].ID
+		g.sel = rows[max(mine, 0)].ID
 	}
 	if s.Select != "" && slices.ContainsFunc(rows, func(r view.Row) bool { return r.ID == s.Select }) {
 		g.sel = s.Select
 	}
 	return g
+}
+
+// unfoldMine unfolds every parent above a row that is the person's and returns
+// the index of the first such row, or -1 when the data holds none.
+func (g Grid) unfoldMine() int {
+	first := -1
+	var above []string // the ancestors of the row at hand, by depth
+	for i, r := range g.data.Rows {
+		above = above[:min(r.Depth, len(above))]
+		own := r.Label == ""
+		if g.data.View != "context" {
+			own = slices.ContainsFunc(r.Cells, func(c view.Cell) bool { return c.Acts })
+		}
+		if own {
+			if first < 0 {
+				first = i
+			}
+			for _, id := range above {
+				g.open[id] = true
+			}
+		}
+		above = append(above, r.ID)
+	}
+	return first
 }
 
 // survivor keeps the selected id when the new rows hold it, and otherwise

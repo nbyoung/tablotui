@@ -11,11 +11,15 @@ import (
 )
 
 // ListRequest names one list-shaped view and the parameters that focus it.
-// It names no ref, no person and no role: the source holds them.
+// It names no ref and no person: the source holds them. It names the viewer
+// and the role, as Request does, so that a source resolves the level a view
+// opens at.
 type ListRequest struct {
-	View  string // "task", "queue", "blockage" or "history"
-	Task  string // the task in focus; "" on the queue
-	Level string // "detail" or "provenance"; "" is the level the viewer's role opens the view at
+	View   string // "task", "queue", "blockage" or "history"
+	Task   string // the task in focus; "" on the queue
+	Level  string // "detail" or "provenance"; "" is the level the viewer's role opens the view at
+	Viewer string // the email of the person at the keyboard; "" is nobody
+	Role   string // the role the viewer reads as; "" is the viewer's own
 }
 
 // Lists loads the list-shaped views. A call blocks; a pane runs it in a command.

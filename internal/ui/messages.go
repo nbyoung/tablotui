@@ -45,3 +45,8 @@ type FocusMsg struct{ Pane string }
 // names one. A detail pane sends it for the task its cursor line names; the
 // home pane answers with a SelectionMsg, or a notice when it lacks the task.
 type GotoMsg struct{ Task, Gate string }
+
+// ReadingMsg says whom the panes read for and as which role. The role pane
+// sends it at every arrival, the frame broadcasts it, and each pane that asks
+// for a list view states the two on its requests.
+type ReadingMsg struct{ Viewer, Role string }

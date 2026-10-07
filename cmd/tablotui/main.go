@@ -1,11 +1,12 @@
 // Command tablotui is the Tableaux terminal front end.
 //
-//	tablotui [-C <dir>] [--settings <file>] [--fixture <dir>] [--version] [--help]
+//	tablotui [-C <dir>] [--as <email>] [--settings <file>] [--fixture <dir>] [--version] [--help]
 //
-// It draws the global tableau as a full-screen grid, and beside it the panes
-// for the task, the work queue, the blockage tree and the history, which the
-// keys 1 to 4 open. This build draws from fixture files; the tablo source
-// joins at the integrate gate.
+// It draws the tableau as a full-screen grid, and beside it the panes for the
+// task, the work queue, the blockage tree and the history, which the keys 1 to
+// 4 open. It starts where the person at the keyboard works: --as names that
+// person, by default the email Git commits with, and R switches the role. This
+// build draws from fixture files; the tablo source joins at the integrate gate.
 package main
 
 import (
@@ -17,15 +18,18 @@ import (
 	"os"
 	"path/filepath"
 	"runtime/debug"
+	"slices"
 	"strings"
 
 	tea "charm.land/bubbletea/v2"
 
+	"github.com/nbyoung/tablotui/internal/identity"
 	"github.com/nbyoung/tablotui/internal/settings"
 	"github.com/nbyoung/tablotui/internal/source"
 	"github.com/nbyoung/tablotui/internal/ui"
 	"github.com/nbyoung/tablotui/internal/ui/detail"
 	"github.com/nbyoung/tablotui/internal/ui/grid"
+	"github.com/nbyoung/tablotui/internal/ui/role"
 )
 
 // version is the release version. GoReleaser sets it through
@@ -57,6 +61,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 	fs := flag.NewFlagSet("tablotui", flag.ContinueOnError)
 	fs.SetOutput(io.Discard)
 	dir := fs.String("C", ".", "the project directory")
+	as := fs.String("as", "", "the email of the person at the keyboard (default: the Git identity)")
 	settingsPath := fs.String("settings", "", "the settings file (default: tablotui/settings.json in the user configuration directory)")
 	fixtures := fs.String("fixture", "", "draw from the tableau and list files in this directory")
 	showVersion := fs.Bool("version", false, "print the version and exit")
@@ -88,6 +93,16 @@ func run(args []string, stdout, stderr io.Writer) int {
 		_, _ = fmt.Fprintf(stderr, "tablotui: -C %s: not a directory\n", *dir)
 		return exitUsage
 	}
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	// The viewer is read once, here: a change of the Git identity shows at the
+	// next start. A malformed --as is a usage error whatever else is missing,
+	// so the check stands before the one for a source.
+	email, err := identity.Email(ctx, *dir, *as)
+	if err != nil {
+		_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
+		return exitUsage
+	}
 	if *fixtures == "" {
 		_, _ = fmt.Fprintf(stderr, "tablotui: %s\n", noSourceText)
 		return exitFailure
@@ -100,17 +115,17 @@ func run(args []string, stdout, stderr io.Writer) int {
 		path = inDir(*dir, path)
 	}
 
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
 	// The one place the program's panes and commands come together: the grid is
-	// the home pane, the detail panes follow it, and each task that adds a pane
-	// or a command extends this list.
+	// the home pane, the detail panes follow it, the role pane that never opens
+	// comes last, and each task that adds a pane or a command extends this list.
+	// The grid has no start: the role pane starts it.
 	src := source.File{Dir: inDir(*dir, *fixtures)}
-	g := grid.New(grid.Options{Source: src, Settings: path, Start: grid.GlanceStart()})
+	g := grid.New(grid.Options{Source: src, Settings: path})
 	details := detail.New(detail.Options{Source: src})
+	who := role.New(role.Options{Source: src, Viewer: email})
 	opts := ui.Options{
-		Panes:    append([]ui.Pane{g}, details.Panes...),
-		Commands: details.Commands,
+		Panes:    append(append([]ui.Pane{g}, details.Panes...), who),
+		Commands: append(slices.Clone(details.Commands), role.Command()),
 		Layout:   details.Layout,
 		Styles:   ui.DefaultStyles(),
 		Context:  ctx,
@@ -164,7 +179,7 @@ func isBool(f *flag.Flag) bool {
 
 // usage prints each long option with its double hyphen.
 func usage(fs *flag.FlagSet, w io.Writer) {
-	_, _ = fmt.Fprintln(w, "usage: tablotui [-C <dir>] [--settings <file>] [--fixture <dir>] [--version] [--help]")
+	_, _ = fmt.Fprintln(w, "usage: tablotui [-C <dir>] [--as <email>] [--settings <file>] [--fixture <dir>] [--version] [--help]")
 	_, _ = fmt.Fprintln(w, "options:")
 	fs.VisitAll(func(f *flag.Flag) {
 		name := "--" + f.Name
