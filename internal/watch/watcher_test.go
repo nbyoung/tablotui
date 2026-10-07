@@ -433,6 +433,33 @@ func TestT11Poke(t *testing.T) {
 	h.none(c)
 }
 
+// A poke during a settle waits for it: the settle completes and delivers the
+// change, and the Next that follows returns at once, with no wait of either
+// kind (the owner's ruling of 2026-10-06 on the loop's steps 1, 3 and 5).
+func TestPokeDuringASettleWaitsForIt(t *testing.T) {
+	dir := watchtest.Repo(t)
+	h := live(t, dir)
+	prev := h.snap()
+	c := h.start(prev)
+	h.asked(h.w.Interval)
+	watchtest.Write(t, filepath.Join(dir, ".tableaux/tasks/b.yaml"), "title: b\n")
+	h.tick()
+	h.asked(h.w.Settle)
+	h.w.Poke()
+	h.none(c)
+	h.tick()
+	r := <-c
+	if r.err != nil || r.st == prev {
+		t.Fatalf("the settle delivered %+v, %v", r.st, r.err)
+	}
+	if r := <-h.start(r.st); r.err != nil {
+		t.Fatalf("Next after the settle returned %v", r.err)
+	}
+	if n := len(h.clk.Asked); n != 0 {
+		t.Fatalf("the poke left %d waits", n)
+	}
+}
+
 func TestT12BrokenRepositoryHeals(t *testing.T) {
 	dir := watchtest.Repo(t)
 	h := live(t, dir)
