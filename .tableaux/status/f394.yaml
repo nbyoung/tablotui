@@ -1,3 +1,3 @@
-gate: implementation
+gate: unit
 state: nominal
-note: --as with the Git identity, the role pane and R, the grid's Mine and waiting start, and the viewer on the source seam stand with T1 to T16, which the unit gate runs; the roles come from fixtures (viewers.json) and from tablo at integrate, which waits on 171b and on tablo's 4ed9 and 886d
+note: T1 to T17 pass with no skip under go test -count=1 and go test -race on this host, with git 2.47.3 on the path; the tablo adapter that implements source.Viewers, the weather-station proof, --ref and the wiring with the panes and the actions wait for integrate, which waits on 171b and on tablo 4ed9 and 886d; the terminal checks wait for validate
