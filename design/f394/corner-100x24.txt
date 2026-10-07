@@ -1,0 +1,24 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05 · viewer nbyoung@nbyoung.com, assignee
+Id   Task                                        ❔ ×0 📝  📌  🔧  📐    🧱   📏 🔗…🚀 ×0
+──── ─────────────────────────────────────────── ───── ── ──── ── ──── ────── ── ────────
+437e ▾ Tableaux tooling                                🟢 🤖👀 🤖 🤖👀   🤖   🤖
+bc63   ▾ Method                                        🟢 🤖👀 🤖 🤖👀   🤖   🤖
+c2ad       Roles · sibling                                               🟢   —
+2034     ▸ Views (0)                                   🟢 🤖👀 🤖 🤖👀   🤖   🤖
+e3cb       Schema files · sibling                                             🟢
+fcec       Conformance corpus · sibling                                  🟢   🤖
+ac33       Agent identity                                          🟢  [🤖👀] —
+9f3f       Subproject linkage                                      🟢  [🤖👀] —
+7861       Productivity evidence · sibling                               🟢   —
+7166       Language clarifications                                 🟢  [🤖👀] —
+77b2     tablo: backend library and plumbing           🟢  🪆  🪆  🪆    🪆   🪆
+6103     tabloio: command line, output and input       🟢  🪆  🪆  🪆    🪆   🪆
+c6e8     tablotui: terminal user interface             🟢  🪆  🪆  🪆    🪆   🪆
+595e     tableaud: local daemon and HTML               🟢  🪆  🪆  🪆    🪆   🪆
+────────────────────────────────────────────────────────────────────────────────────────────────────
+437e Tableaux tooling · 📝 defined 🟢 nominal · 2026-09-29
+Mockup waits for Abstract views (e9c6) at design
+
+rolled up from 99f0 Gate definition view in Markdown
+reading as assignee, 2 of 3
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  p provenance  x hide  ? help  q quit
