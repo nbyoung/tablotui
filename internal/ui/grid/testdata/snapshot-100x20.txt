@@ -1,0 +1,20 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                                              ❔ ×0 📝  📌  🔧  📐   🧱  📏 🔗  🌍  🚀
+──── ───────────────────────────────────────────────── ───── ── ──── ── ──── ──── ── ── ──── ──
+437e ▾ Tableaux tooling                                      🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+bc63   ▸ Method (31)                                         🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+77b2     tablo: backend library and plumbing                 🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+6103     tabloio: command line, output and input             🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+c6e8     tablotui: terminal user interface                   🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+────────────────────────────────────────────────────────────────────────────────────────────────────
+c6e8 tablotui: terminal user interface · 📝 defined 🟢 nominal · 2026-09-30
+prototype/679b renders the global tableau as a Bubble Tea grid with tree expand and collapse,
+scrolling, a folded gate window and hidden columns kept in a settings file; emoji lines align …
+snapshot of 40e8 tablotui at pin a2878b5, 🔧 function there
+provenance of c6e8 at 📝 defined
+  Status file: .tableaux/status/c6e8.yaml, which states the gate alone
+  Deciding commit: e66abe2 Record the defined gate for the subproject tasks
+  Snapshot: subprojects/tablotui at pin a2878b5
+  … 4 more
+c6e8 × 📝 defined · rows 1–5 of 6 · window 1 · historical off
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  p provenance  x hide  ? help  q quit

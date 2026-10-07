@@ -1,0 +1,20 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                                              ❔ ×0 📝  📌  🔧  📐   🧱  📏 🔗  🌍  🚀
+──── ───────────────────────────────────────────────── ───── ── ──── ── ──── ──── ── ── ──── ──
+437e ▾ Tableaux tooling                                      🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+bc63   ▸ Method (31)                                         🟢 🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀 🧑
+77b2     tablo: backend library and plumbing                 🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+6103     tabloio: command line, output and input             🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+c6e8     tablotui: terminal user interface                   🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆
+────────────────────────────────────────────────────────────────────────────────────────────────────
+437e Tableaux tooling · 📝 defined 🟢 nominal · 2026-09-29
+Mockup waits for Abstract views (e9c6) at design
+
+rolled up from 99f0 Gate definition view in Markdown
+provenance of 437e at 📝 defined
+  Status: derived, never stored
+  Rolls up from: bc63 Method, then 2034 Views, then bc86 Markdown views, then 99f0 Gate definition …
+  Why: the first in display order of 5 children that tie
+  … 2 more
+437e × 📝 defined · rows 1–5 of 6 · window 1 · historical off
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  p provenance  x hide  ? help  q quit

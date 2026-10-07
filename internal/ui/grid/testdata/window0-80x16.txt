@@ -1,0 +1,16 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                           ❔…📝 ×29  📌  🔧  📐   🧱  📏 🔗  🌍  🚀 ×0
+──── ────────────────────────────── ───────── ──── ── ──── ──── ── ── ──── ─────
+437e ▾ Tableaux tooling                       🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀
+bc63   ▾ Method                               🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀
+c2ad       Roles                                            🟢  —  —  🤖👀
+2034     ▸ Views (23)                         🤖👀 🤖 🤖👀  🤖  🤖 🤖 🤖👀
+e3cb       Schema files                                         🟢 —  🤖👀
+fcec       Conformance corpus                               🟢  🤖 🤖 🤖👀
+────────────────────────────────────────────────────────────────────────────────
+bc63 Method · 📝 defined 🟢 nominal · 2026-09-29
+Mockup waits for Abstract views (e9c6) at design
+
+folded: ❔ undefined 0 · 📝 defined 29
+bc63 × ❔…📝 ×29 · rows 1–6 of 14 · window 0 · historical off
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  ? help  q quit

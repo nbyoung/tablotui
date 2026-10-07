@@ -1,0 +1,16 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05
+Id   Task                              ❔ 📝  📌  🔧…📐 ×4  🧱  📏 🔗  🌍  🚀 ×0
+──── ───────────────────────────────── ── ── ──── ──────── ──── ── ── ──── ─────
+437e ▾ Tableaux tooling                   🟢 🤖👀           🤖  🤖 🤖 🤖👀
+bc63   ▾ Method                           🟢 🤖👀           🤖  🤖 🤖 🤖👀
+c2ad       Roles                                            🟢  —  —  🤖👀
+2034     ▸ Views (23)                     🟢 🤖👀           🤖  🤖 🤖 🤖👀
+e3cb       Schema files                                         🟢 —  🤖👀
+fcec       Conformance corpus                               🟢  🤖 🤖 🤖👀
+ac33       Agent identity                                  🤖👀 —  —  🤖👀
+9f3f       Subproject linkage                              🤖👀 —  —  🤖👀
+7861       Productivity evidence                            🟢  —  —  🤖👀
+7166       Language clarifications                         🤖👀 —  —  🤖👀
+77b2     tablo: backend library and p…    🟢  🪆            🪆  🪆 🪆  🪆
+bc63 × ❔ undefined · rows 1–11 of 14 · window 1, 4 changed · historical off
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  ? help  q quit

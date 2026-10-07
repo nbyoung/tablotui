@@ -29,6 +29,7 @@ never reads a task file itself.
 tablotui                          # the project at HEAD, as the Git identity
 tablotui --as ada@example.org     # as another participant
 tablotui --ref v1.0               # at a tag
+tablotui --settings <file>        # keep the column choices in another file
 ```
 
 ## Plan
@@ -43,7 +44,11 @@ proposes Go as the implementation language.
 
 ```
 cmd/tablotui/       # the command: main.go and its tests
-internal/ui/        # the Bubble Tea model, Bubbles components and Lip Gloss styles
+internal/view/      # the tableau as the grid reads it, and its decoder
+internal/source/    # the Tableaux interface and the fixture source
+internal/settings/  # the per-viewer column choices and their file
+internal/ui/        # the frame: the Bubble Tea root model, panes, modes, measure and styles
+internal/ui/grid/   # the tableau grid pane
 .github/workflows/  # ci.yml on push and pull request, release.yml on a tag
 .goreleaser.yaml    # the cross-compilation and release matrix
 .golangci.yml       # the lint configuration
@@ -53,6 +58,8 @@ internal/ui/        # the Bubble Tea model, Bubbles components and Lip Gloss sty
 The module is `github.com/nbyoung/tablotui`. The four subprojects share this
 shape: one command under `cmd/`, packages under `internal/`, and the same
 workflow, release and lint files.
+
+A prototype under `prototype/` is the function gate's demonstration. It goes when its task records `implementation`: the design's account of what it kept from the prototype and `git log -- prototype/<id>` keep what it showed, and the trunk builds what it ships.
 
 ## Build and test
 
@@ -89,14 +96,16 @@ may change the interface.
 | Module                                  | Path                                  | Major | Role                        |
 |-----------------------------------------|---------------------------------------|-------|-----------------------------|
 | [tablo](https://github.com/nbyoung/tablo) | `github.com/nbyoung/tablo`          | v0    | The view data this front end renders |
-| Bubble Tea                              | `github.com/charmbracelet/bubbletea`  | v1    | The program and its event loop |
-| Bubbles                                 | `github.com/charmbracelet/bubbles`    | v0    | The list, table and viewport components |
-| Lip Gloss                               | `github.com/charmbracelet/lipgloss`   | v1    | The styles                  |
+| Bubble Tea                              | `charm.land/bubbletea/v2`             | v2    | The program and its event loop |
+| Bubbles                                 | `charm.land/bubbles/v2`               | v2    | The key bindings; later the viewport and the text input |
+| Lip Gloss                               | `charm.land/lipgloss/v2`              | v2    | The styles                  |
+| x/ansi                                  | `github.com/charmbracelet/x/ansi`     | v0    | The two width methods, cutting and stripping |
+| colorprofile                            | `github.com/charmbracelet/colorprofile` | v0    | The colour profiles the tests fix; Bubble Tea requires it already |
 
-The bootstrap states these modules and leaves the `require` lines and `go.sum`
-to implementation, when a toolchain resolves them. The Charm v2 modules under
-`charm.land/` are the alternative; the owner confirms the major at design
-review.
+The Charm modules are the v2 line under `charm.land/`, which reports the
+terminal's grapheme mode to the model, so the grid measures a symbol as the
+terminal draws it. `go.mod` carries their `require` lines; the owner accepted
+the major at the review of the tableau grid design.
 
 **tablo.** This front end never reads a task file; it takes view data from
 tablo. tablo has no release yet, and its bootstrap runs alongside this one, so
