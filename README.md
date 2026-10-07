@@ -59,6 +59,8 @@ The module is `github.com/nbyoung/tablotui`. The four subprojects share this
 shape: one command under `cmd/`, packages under `internal/`, and the same
 workflow, release and lint files.
 
+A prototype under `prototype/` is the function gate's demonstration. It goes when its task records `implementation`: the design's account of what it kept from the prototype and `git log -- prototype/<id>` keep what it showed, and the trunk builds what it ships.
+
 ## Build and test
 
 Go is the only build dependency, and only a developer needs it; a user runs a
