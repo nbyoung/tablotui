@@ -1,0 +1,24 @@
+Tableaux tooling · main at 3cdae52, 2026-10-05 · viewer nbyoung@nbyoung.com, reviewer
+Id   Task                                           ❔ ×0 📝   📌   🔧  📐    🧱   📏 🔗   🌍    🚀
+──── ────────────────────────────────────────────── ───── ── ────── ── ──── ────── ── ── ────── ────
+437e ▾ Tableaux tooling                                   🟢  🤖👀  🤖 🤖👀   🤖   🤖 🤖  🤖👀   🧑
+bc63   ▾ Method                                           🟢  🤖👀  🤖 🤖👀   🤖   🤖 🤖  🤖👀   🧑
+c2ad       Roles                                                              🟢   —  —  [🤖👀] [🧑]
+2034     ▾ Views                                          🟢  🤖👀  🤖 🤖👀   🤖   🤖 🤖  🤖👀   🧑
+e9c6         Abstract views                                             🟢    🤖   —  —  [🤖👀] [🧑]
+bc86       ▾ Markdown views                               🟢  🤖👀  —   —     —    —  —    —     —
+99f0           Gate definition view in Markdown           🟢 [🤖👀] —   —     —    —  —    —     —
+05a9           Task definition view in Markdown           🟢 [🤖👀] —   —     —    —  —    —     —
+a9ce           Authority delegation view in Markdo…       🟢 [🤖👀] —   —     —    —  —    —     —
+bb7c           Task assignment view in Markdown           🟢 [🤖👀] —   —     —    —  —    —     —
+c74a           Contributor work queue view in Mark…       🟢 [🤖👀] —   —     —    —  —    —     —
+efff           Work-blockage tree view in Markdown        🟢 [🤖👀] —   —     —    —  —    —     —
+ab8e           Global tableau view in Markdown            🟢 [🤖👀] —   —     —    —  —    —     —
+c545           Contextual tableau view in Markdown        🟢 [🤖👀] —   —     —    —  —    —     —
+d615           History view in Markdown                   🟢 [🤖👀] —   —     —    —  —    —     —
+b14e           Audit view in Markdown                     🟢 [🤖👀] —   —     —    —  —    —     —
+5fe3       ▾ HTML views                                   🟢  🤖👀  —   —     —    —  —    —     —
+a6f7           Gate definition view in Html               🟢 [🤖👀] —   —     —    —  —    —     —
+7dff           Task definition view in Html               🟢 [🤖👀] —   —     —    —  —    —     —
+reading as reviewer, 3 of 3
+↑↓ row  ←→ column  enter fold  E all  C glance  d detail  p provenance  x hide  ? help  q quit
