@@ -177,8 +177,7 @@ func TestFoldLineCarriesTheMarkWhenItsIdsHoldTheSelection(t *testing.T) {
 	}
 }
 
-// T1, as far as the builders go: the lines of every view at every level. The
-// pane's own test draws the same documents through the pane.
+// decode reads a fixture of testdata into v.
 func decode(t *testing.T, name string, v any) {
 	t.Helper()
 	f, err := os.Open("testdata/" + name)
@@ -189,74 +188,4 @@ func decode(t *testing.T, name string, v any) {
 	if err := list.Decode(f, v); err != nil {
 		t.Fatal(err)
 	}
-}
-
-func document(title string, lines []Line, w int) string {
-	out := []string{title}
-	for _, r := range wrap(lines, w, ui.Measure{}) {
-		out = append(out, r.text)
-	}
-	return strings.Join(out, "\n") + "\n"
-}
-
-func compare(t *testing.T, name, got string) {
-	t.Helper()
-	b, err := os.ReadFile("testdata/" + name)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if string(b) != got {
-		t.Errorf("%s differs:\n%s\nwant:\n%s", name, got, b)
-	}
-}
-
-func TestBuildersAgainstTheGoldenDocuments(t *testing.T) {
-	taskDoc := func(json, golden string, lvl list.Level, w int) {
-		var d list.Task
-		decode(t, json, &d)
-		s, c, l := taskLines(d, lvl, false)
-		compare(t, golden, document(join(" · ", "1 Task "+s, c, lvl.String()), l, w))
-	}
-	taskDoc("task-e9c6.json", "task-e9c6.glance.txt", list.Glance, 78)
-	taskDoc("task-e9c6.json", "task-e9c6.detail.txt", list.Detail, 78)
-	taskDoc("task-e9c6.json", "task-e9c6.detail.38.txt", list.Detail, 38)
-	taskDoc("task-e9c6-provenance.json", "task-e9c6.provenance.txt", list.Provenance, 78)
-	taskDoc("task-5fe3-provenance.json", "task-5fe3.provenance.txt", list.Provenance, 78)
-	taskDoc("task-595e-provenance.json", "task-595e.provenance.txt", list.Provenance, 78)
-
-	queueDoc := func(json, golden string, lvl list.Level, sel string, unfold bool) {
-		var d list.Queue
-		decode(t, json, &d)
-		s, c, l := queueLines(d, lvl, unfold, sel)
-		compare(t, golden, document(join(" · ", "2 Queue "+s, c, lvl.String()), l, 78))
-	}
-	queueDoc("queue.json", "queue.glance.txt", list.Glance, "e9c6", false)
-	queueDoc("queue.json", "queue.detail.txt", list.Detail, "bb7c", false)
-	queueDoc("queue.json", "queue.unfolded.txt", list.Glance, "", true)
-	queueDoc("kinds/queue.json", "queue-kinds.detail.txt", list.Detail, "", false)
-	queueDoc("empty/queue.json", "queue-empty.txt", list.Glance, "", false)
-
-	blockageDoc := func(json, golden string, lvl list.Level) {
-		var d list.Blockage
-		decode(t, json, &d)
-		s, c, l := blockageLines(d, lvl)
-		compare(t, golden, document(join(" · ", "3 Blockage "+s, c, lvl.String()), l, 78))
-	}
-	blockageDoc("blockage-437e.json", "blockage-437e.glance.txt", list.Glance)
-	blockageDoc("blockage-437e.json", "blockage-437e.detail.txt", list.Detail)
-	blockageDoc("blockage-437e-provenance.json", "blockage-437e.provenance.txt", list.Provenance)
-	blockageDoc("blockage-e9c6.json", "blockage-e9c6.detail.txt", list.Detail)
-
-	historyDoc := func(json, golden string, lvl list.Level, w int) {
-		var d list.History
-		decode(t, json, &d)
-		s, c, l := historyLines(d, lvl)
-		compare(t, golden, document(join(" · ", "4 History "+s, c, lvl.String()), l, w))
-	}
-	historyDoc("history-e9c6.json", "history-e9c6.glance.txt", list.Glance, 78)
-	historyDoc("history-e9c6.json", "history-e9c6.detail.txt", list.Detail, 78)
-	historyDoc("history-e9c6-provenance.json", "history-e9c6.provenance.txt", list.Provenance, 78)
-	historyDoc("history-e9c6-provenance.json", "history-e9c6.provenance.38.txt", list.Provenance, 38)
-	historyDoc("history-595e.json", "history-595e.detail.txt", list.Detail, 78)
-	historyDoc("history-5fe3.json", "history-5fe3.txt", list.Glance, 78)
 }
