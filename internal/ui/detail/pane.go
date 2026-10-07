@@ -72,6 +72,8 @@ type Pane struct {
 	errText   string             // why it failed
 	failedFor *source.ListRequest
 
+	viewer, role string // whom the pane reads for and as which role; the role pane sets them
+
 	level  *list.Level // the level the viewer chose; nil draws the level the data states
 	prov   bool        // the viewer has opened provenance
 	unfold bool
@@ -105,7 +107,7 @@ func (p Pane) hasRow() bool { return !p.k.follows || p.sel.Task != "" }
 
 // request derives what the pane asks for from the selection and the level.
 func (p Pane) request() (source.ListRequest, bool) {
-	r := source.ListRequest{View: p.k.id}
+	r := source.ListRequest{View: p.k.id, Viewer: p.viewer, Role: p.role}
 	if p.level != nil {
 		r.Level = "detail"
 		if p.prov {
@@ -422,6 +424,8 @@ func (p Pane) Update(msg tea.Msg, c ui.Context) (ui.Pane, tea.Cmd) {
 		} else {
 			p.stale = true
 		}
+	case source.Reading:
+		p, cmd = p.reading(msg, c)
 	case ui.LoadedMsg:
 		if msg.Pane != p.k.id {
 			return p, nil
@@ -433,6 +437,21 @@ func (p Pane) Update(msg tea.Msg, c ui.Context) (ui.Pane, tea.Cmd) {
 		return p, nil
 	}
 	return p.settled(c), cmd
+}
+
+// reading takes the viewer and the role the role pane names. An open pane asks
+// again when either changed, since the role decides the level a view opens at;
+// a closed pane asks when it opens.
+func (p Pane) reading(msg source.Reading, c ui.Context) (Pane, tea.Cmd) {
+	if msg.Viewer == p.viewer && msg.Role == p.role {
+		return p, nil
+	}
+	p.viewer, p.role = msg.Viewer, msg.Role
+	if p.open {
+		return p.sync(c, true)
+	}
+	p.stale = true
+	return p, nil
 }
 
 // toggle answers a digit command: a closed pane opens with the focus, an open
