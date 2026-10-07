@@ -218,6 +218,85 @@ func TestFixtureDrawsTheGrid(t *testing.T) {
 	}
 }
 
+// typed sends keys and runs the commands they start, as the program does.
+func typed(m tea.Model, keys ...tea.KeyPressMsg) tea.Model {
+	var run func(cmd tea.Cmd)
+	run = func(cmd tea.Cmd) {
+		if cmd == nil {
+			return
+		}
+		switch msg := cmd().(type) {
+		case nil:
+		case tea.BatchMsg:
+			for _, c := range msg {
+				run(c)
+			}
+		default:
+			var next tea.Cmd
+			m, next = m.Update(msg)
+			run(next)
+		}
+	}
+	for _, k := range keys {
+		var cmd tea.Cmd
+		m, cmd = m.Update(k)
+		run(cmd)
+	}
+	return m
+}
+
+// T18: the command hands the grid, the four panes, their five commands and
+// their layout to the frame, and no key clashes.
+func TestFixtureHandsTheFrameFivePanesAndFiveCommands(t *testing.T) {
+	h := newHarness(t)
+	t.Setenv("HOME", t.TempDir())
+	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
+	key := func(r rune) tea.KeyPressMsg { return tea.KeyPressMsg{Code: r, Text: string(r)} }
+	var arrival, opened, zoomed, again []string
+	h.onRun = func(m tea.Model) {
+		m = drive(m, 100, 30)
+		arrival = lines(m)
+		m = typed(m, key('1'), key('2'), key('3'), key('4'))
+		opened = lines(m)
+		m = typed(m, key('z'))
+		zoomed = lines(m)
+		again = lines(typed(m, key('z')))
+	}
+	dir := fixtureDir(t)
+	for name, body := range map[string]string{
+		"task-aaaa.json":     `{"level":"detail","task":{"id":"aaaa","title":"Only task"},"assignee":"ada@example.org"}`,
+		"queue.json":         `{"level":"detail","params":{"person":"ada@example.org"}}`,
+		"blockage-aaaa.json": `{"level":"detail","params":{"task":"aaaa"}}`,
+		"history-aaaa.json":  `{"level":"detail","params":{"task":"aaaa"}}`,
+	} {
+		if err := os.WriteFile(filepath.Join(dir, name), []byte(body), 0o600); err != nil {
+			t.Fatal(err)
+		}
+	}
+	code, _, errOut := runArgs("--fixture", dir)
+	if code != 0 || errOut != "" {
+		t.Fatalf("exit %d, stderr %q: CheckKeys refused the keys", code, errOut)
+	}
+	if strings.Contains(strings.Join(arrival, "\n"), "┌─") {
+		t.Error("a pane stands open on arrival")
+	}
+	// With four panes open at 100x30 the region beneath the grid shows them
+	// in two rows of two.
+	screen := strings.Join(opened, "\n")
+	for _, want := range []string{"1 Task aaaa · detail", "2 Queue ada@example.org · 0 items", "3 Blockage aaaa · 0 causes", "4 History aaaa · 0 events"} {
+		if !strings.Contains(screen, want) {
+			t.Errorf("%q is not on the screen:\n%s", want, screen)
+		}
+	}
+	// z gives the focused pane, the history, the whole body; z again returns.
+	if z := strings.Join(zoomed, "\n"); strings.Contains(z, "Only task") || !strings.Contains(zoomed[1], "┌─ 4 History aaaa") {
+		t.Errorf("zoom:\n%s", z)
+	}
+	if a := strings.Join(again, "\n"); !strings.Contains(a, "Only task") || !strings.Contains(a, "┌─ 3 Blockage") {
+		t.Errorf("zoom off:\n%s", a)
+	}
+}
+
 func TestCDirResolvesRelativePaths(t *testing.T) {
 	h := newHarness(t)
 	project := t.TempDir()
