@@ -1,3 +1,3 @@
-gate: implementation
+gate: unit
 state: nominal
-note: internal/watch and internal/refresh exist with T1 to T22 passing under go test -race; the Loader is a parameter, so the unit gate runs the tests as they stand; integrate waits for the grid (679b) and for tablo's Loader, which also calls SetSubmodules with the checkouts it read on disk
+note: T1 to T22 pass with no skip under go test -count=1 and go test -race on this host, the reftable case included, and T23 is that race run; integrate needs the frame to embed the component, --ref in main.go and tablo's Loader with its SetSubmodules call, so it waits on 679b and on tablo; the owner's edit beside a running program waits for validate
