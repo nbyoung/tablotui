@@ -12,7 +12,6 @@ requires:
   - { id: "0afa", from: implementation, to: integrate, text: The panes the actions act from }
   - { id: "171b", from: integrate, to: integrate, text: The ref the actions refuse at and the poke after a commit }
   - { id: "f394", from: implementation, to: integrate, text: The viewer the confirmation names }
-  - { id: "b618", from: implementation, to: implementation, text: The action package the commands plan and apply through }
 junctions:
   mockup:         { applies: false }
 parent: { id: "40e8", order: 6 }
