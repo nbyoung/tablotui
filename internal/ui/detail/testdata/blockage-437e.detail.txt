@@ -2,7 +2,7 @@
 5471 Work-blockage tree view in Html awaits review at 📌 mockup · 👀
   nbyoung@nbyoung.com reviews · holds 4
   Action: nbyoung@nbyoung.com accepts the mockup with a commit that carries
-    `Reviewed: 5471 mockup`.
+    Reviewed: 5471 mockup.
   5471 Work-blockage tree view in Html at 📌 mockup: the cause holds the task
     itself.
     5fe3 HTML views at 📌 mockup: the parent of 5471.
@@ -14,8 +14,7 @@
 
 efff Work-blockage tree view in Markdown has not passed 📌 mockup · 🤖
   noreply@anthropic.com contributes · holds 3
-  Action: noreply@anthropic.com draws the mockup and hands it off with the
-    reason `review`.
+  Action: noreply@anthropic.com takes efff through mockup.
   bc86 Markdown views at 📌 mockup: the parent of efff.
     6103 tabloio: command line, output and input at 📐 design: requires bc86
       at 📌 mockup, The Markdown mockups it reproduces.

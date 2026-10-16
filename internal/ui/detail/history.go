@@ -80,7 +80,7 @@ func historySubject(d list.History) string {
 	case d.Params.Task != "":
 		return d.Params.Task
 	}
-	return d.Project.ID
+	return d.Project.Root
 }
 
 // historyLines builds the history at a level.

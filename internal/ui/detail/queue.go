@@ -3,6 +3,7 @@ package detail
 import (
 	"fmt"
 	"slices"
+	"strings"
 
 	"github.com/nbyoung/tablotui/internal/view/list"
 )
@@ -81,11 +82,60 @@ func (w words) queueEntry(it list.QueueItem, i int) entry {
 		date = join(", ", it.Since, count(it.Age, "day", "days"))
 	}
 	e := entry{task: it.Task, item: i, gate: it.Gate}
-	if it.Cause != "" {
-		e.text = task(it.Task) + "; " + it.Cause
+	if c := w.queueCause(it); c != "" {
+		e.text = task(it.Task) + "; " + c
 	}
 	e.rest = cells(w.gate(it.Gate), it.Model, date)
 	return e
+}
+
+// authorisationOwed words why an authorisation is owed, by the reason no
+// commit decides the task; "" for a deciding commit by no authority, as
+// tabloio has it.
+var authorisationOwed = map[string]string{
+	"":           "proposed; the deciding commit is not by an authority",
+	"no_history": "proposed; the source has no history",
+	"no_trunk":   "proposed; the trunk is undetermined",
+	"off_trunk":  "proposed; the ref stands off the trunk",
+	"no_commit":  "proposed; no commit on the trunk decides it",
+}
+
+// queueCause words why an item waits, or why an authorisation is owed, in
+// tabloio's words: each cause of a waiting item, joined by "; ", a reason
+// with the note of the item's own status; for an authorisation, why its
+// task stands proposed. It reads nothing for an item with neither, and an
+// item's facts alone: at glance tablo gives no note and no authorisation.
+func (w words) queueCause(it list.QueueItem) string {
+	if it.Kind == "authorisation" {
+		if a := it.Authorisation; a != nil {
+			return authorisationOwed[a.Why]
+		}
+		return ""
+	}
+	var runs []string
+	for _, c := range it.Causes {
+		switch c.Kind {
+		case "requirement":
+			if r := c.Requires; r != nil {
+				x := "waits for " + task(r.Task)
+				if r.Subproject != "" {
+					x += " in " + r.Subproject
+				}
+				runs = append(runs, x+" at "+r.From)
+			}
+		case "reason":
+			x := c.Reason
+			if st := it.Status; st != nil && st.Note != "" {
+				x += ": " + st.Note
+			}
+			runs = append(runs, x)
+		case "authorisation":
+			runs = append(runs, join("", "proposed; waits for its authorisation by ", c.By))
+		case "review":
+			runs = append(runs, join("", "handed off; waits for the review by ", c.By))
+		}
+	}
+	return strings.Join(runs, "; ")
 }
 
 // sourceOf returns who supplies a field of the item's gate: an id, or "default".
@@ -98,21 +148,14 @@ func sourceOf(it list.QueueItem, field string) string {
 	return ""
 }
 
-// from reads where a junction field comes from.
-func from(by string) string {
-	switch by {
-	case "":
-		return ""
-	case "default":
-		return "by default"
-	}
-	return "from " + by
-}
-
-// edgeText reads an entry of a queue item: the task, the edge, the text and
-// the condition.
+// edgeText reads an entry of a queue item: the task, in its project for a
+// cross-project entry, the edge, the text and the condition.
 func (w words) edgeText(r list.Requirement) string {
-	return join(", ", task(r.Task), w.edge(r), r.Text) + ": " + condition(r)
+	t := task(r.Task)
+	if r.Subproject != "" {
+		t += " in " + r.Subproject
+	}
+	return join(", ", t, w.edge(r), r.Text) + ": " + condition(r)
 }
 
 // queueDetail draws what lies beneath an entry at the detail level.
@@ -135,27 +178,26 @@ func (w words) queueDetail(it list.QueueItem, item int) []Line {
 		add(4, "Gate: "+g)
 	}
 	if j := it.Junction; j != nil {
-		if j.Contributor != "" {
-			sym := ""
-			if len(j.Marks) > 0 {
-				sym = w.symbol(j.Marks[0])
+		if j.Contributor != "" || j.Model != "" {
+			var sym string
+			for _, m := range j.Marks {
+				if m == "person" || m == "agent" {
+					sym = w.symbol(m)
+					break
+				}
 			}
 			text := join(" ", sym, j.Contributor)
 			if j.Model != "" {
-				text += ", model " + j.Model
+				text = join(", ", text, "model "+j.Model)
 			}
-			if f := from(sourceOf(it, "contributor")); f != "" {
-				text += ", " + f
-			}
-			add(4, "Contributor: "+text)
+			add(4, "Contributor: "+text+markFrom(sourceOf(it, "contributor")))
 		}
-		switch {
-		case j.Reviewer != "" && j.ByDefault:
-			add(4, "Reviewer: the assignee, "+j.Reviewer)
-		case j.Reviewer != "":
+		if j.Reviewer != "" {
 			text := join(" ", w.symbol("reviewer"), j.Reviewer)
-			if f := from(sourceOf(it, "reviewer")); f != "" {
-				text += ", " + f
+			if j.ByDefault {
+				text += ", the assignee"
+			} else {
+				text += markFrom(sourceOf(it, "reviewer"))
 			}
 			add(4, "Reviewer: "+text)
 		}
@@ -191,7 +233,7 @@ func (w words) queueDetail(it list.QueueItem, item int) []Line {
 		out = append(out, Line{Text: "Its parent unblocks:", Indent: 4, Item: item, Task: id, Gate: gate})
 		for _, pe := range it.ParentUnblocks {
 			out = append(out, Line{
-				Text:   task(pe.Parent) + " at " + w.gate(pe.Gate) + " · " + w.edgeText(pe.Requires),
+				Text:   task(pe.Parent) + " at " + w.gate(pe.Requires.From) + " is required by " + w.edgeText(pe.Requires),
 				Indent: 6, Hang: 2, Item: item, Task: pe.Requires.Task.ID, Gate: pe.Requires.To,
 			})
 		}
@@ -201,7 +243,7 @@ func (w words) queueDetail(it list.QueueItem, item int) []Line {
 		if it.StatusCommit != nil {
 			hash = short(it.StatusCommit.Hash)
 		}
-		text := join(": ", join(", ", w.status(*s), s.Date, s.Recorder, hash), s.Note)
+		text := join(": ", join(", ", w.phrase(*s), s.Date, s.Recorder, hash), s.Note)
 		add(4, "Status: "+text)
 	}
 	if it.Kind == "waiting" {

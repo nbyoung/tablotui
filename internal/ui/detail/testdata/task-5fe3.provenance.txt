@@ -7,6 +7,12 @@ status       📝 defined 🟢 nominal, rolled up from a6f7 Gate definition view
 note         Mockup waits for Abstract views (e9c6) at design
 recorded     2026-09-29, the oldest among its children
 
+Status commit
+  commit            1a17bfc Record the defined gate for the views and mockups
+  date              2026-09-29
+  author            Claude Fable 5.1, noreply@anthropic.com
+  committer         Norman Young, nbyoung@nbyoung.com
+
 Description
 
 
@@ -59,14 +65,11 @@ Junctions
   🚀 release · — · does not apply
 
 Roll-up
-  Children considered: All ten; each is nominal, which has severity 1
-  Gate: 📝 defined, the earliest among them
-  State and note: Those of `a6f7`: the ten tie at nominal, and `a6f7` is the
-    first in display order, order 1
-  Date: 2026-09-29, the oldest among them
-  Commit behind `a6f7`: `1a17bfc` Record the defined gate for the views and
-    mockups, 2026-09-29, author Claude Fable 5.1, noreply@anthropic.com,
-    committer Norman Young, nbyoung@nbyoung.com
+  Children considered: a6f7 7dff b1b7 ea51 7783 5471 32e7 69eb 3194 a8b4
+  5fe3 HTML views: 📝 defined 🟢 nominal, rolled up from a6f7 Gate definition
+    view in Html; 2026-09-29, the oldest among its children
+  a6f7 Gate definition view in Html: 📝 defined 🟢 nominal; 2026-09-29 by
+    noreply@anthropic.com
 
 Where each junction field comes from
   📝 defined · contributor · noreply@anthropic.com · 437e

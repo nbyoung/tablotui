@@ -46,8 +46,9 @@ func (f File) ListName(r ListRequest) string {
 	return name + ".json"
 }
 
-// decodeList reads the file that serves r into v, which View names.
-func (f File) decodeList(ctx context.Context, r ListRequest, view string, v any) error {
+// decodeList reads the file that serves r, tablo's envelope of the view,
+// into v, which view names.
+func (f File) decodeList(ctx context.Context, r ListRequest, view string, v list.View) error {
 	if err := ctx.Err(); err != nil {
 		return err
 	}

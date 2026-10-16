@@ -40,13 +40,13 @@ func TestFileLists(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	write("task-aaaa.json", `{"level":"detail","task":{"id":"aaaa","title":"A"}}`)
-	write("task-aaaa-provenance.json", `{"level":"provenance","task":{"id":"aaaa","title":"A"}}`)
-	write("queue.json", `{"level":"glance","params":{"person":"ada@example.org"}}`)
-	write("blockage-aaaa.json", `{"level":"detail","causes":[{"kind":"status","task":{"id":"aaaa"}}]}`)
-	write("history-aaaa.json", `{"level":"detail","events":2}`)
+	write("task-aaaa.json", `{"command":"task","params":{"level":"detail"},"data":{"task":{"id":"aaaa","title":"A"}}}`)
+	write("task-aaaa-provenance.json", `{"command":"task","params":{"level":"provenance"},"data":{"task":{"id":"aaaa","title":"A"}}}`)
+	write("queue.json", `{"command":"queue","params":{"person":"ada@example.org","level":"glance"},"data":{"items":[]}}`)
+	write("blockage-aaaa.json", `{"command":"blockage","params":{"level":"detail"},"data":{"causes":[{"kind":"status","task":{"id":"aaaa"}}]}}`)
+	write("history-aaaa.json", `{"command":"history","params":{"level":"detail"},"data":{"events":2}}`)
 	write("history-bbbb.json", `{`)
-	write("queue-provenance.json", `{"level":"nonsense"}`)
+	write("queue-provenance.json", `{"command":"queue","params":{"level":"nonsense"},"data":{}}`)
 
 	var l Lists = File{Dir: dir}
 	ctx := context.Background()

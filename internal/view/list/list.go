@@ -1,12 +1,16 @@
 // Package list holds the data of the four list-shaped views the detail panes
 // draw: the task definition, the work queue, the work-blockage tree and the
-// history. The types mirror the data object tablo emits for each view, tag
-// for tag as tabloio's renderers read it (tabloio designs e3ed, a3cc, 9167).
-// Decoding ignores unknown fields and leaves absent ones zero.
+// history. The types mirror tablo's envelope of each view (tablo's Envelope
+// and its view package), tag for tag where they carry the fact, as tabloio's
+// renderers read it after its reconcile (tabloio designs e3ed, a3cc, 9167):
+// an embedded detail or provenance of tablo's flattens into the view's own
+// struct. Decoding ignores unknown fields and leaves absent ones zero.
 package list
 
 import (
+	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 )
@@ -42,39 +46,103 @@ func (l *Level) UnmarshalText(b []byte) error {
 	return fmt.Errorf("list: unknown level %q", b)
 }
 
-// Decode reads the data object of one view into v, a pointer to Task, Queue,
-// Blockage or History.
-func Decode(r io.Reader, v any) error {
-	return json.NewDecoder(r).Decode(v)
+// View is the data of one view: a pointer to Task, Queue, Blockage or
+// History. Each embeds Head, which supplies the method.
+type View interface{ header() *Head }
+
+// header returns the head itself.
+func (h *Head) header() *Head { return h }
+
+// command returns the name of the command whose envelope holds v.
+func command(v View) string {
+	switch v.(type) {
+	case *Task:
+		return "task"
+	case *Queue:
+		return "queue"
+	case *Blockage:
+		return "blockage"
+	case *History:
+		return "history"
+	}
+	return ""
 }
 
-// Head is what every view's data carries; each view struct embeds it.
+// Decode reads tablo's envelope of one view into v: the source, the project
+// and the parameters into the head, the level from the parameters, and the
+// data into the rest, the legend among it (tabloio e3ed decision 17). It
+// refuses an envelope of another command and one with no data.
+func Decode(r io.Reader, v View) error {
+	var env envelope
+	if err := json.NewDecoder(r).Decode(&env); err != nil {
+		return err
+	}
+	if want := command(v); env.Command != want {
+		return fmt.Errorf("the envelope is of the command %q, not %q", env.Command, want)
+	}
+	data := bytes.TrimSpace(env.Data)
+	if len(data) == 0 || string(data) == "null" {
+		return errors.New("the envelope holds no data")
+	}
+	if err := json.Unmarshal(data, v); err != nil {
+		return err
+	}
+	h := v.header()
+	h.Level, h.Params = env.Params.Level, env.Params.Params
+	if env.Source != nil {
+		h.Source = *env.Source
+	}
+	if env.Project != nil {
+		h.Project = *env.Project
+	}
+	return nil
+}
+
+// envelope is what Decode reads of tablo's envelope. The viewer and the
+// diagnostics are not a pane's to draw.
+type envelope struct {
+	Command string          `json:"command"`
+	Source  *Source         `json:"source"`  // null for no view
+	Project *Project        `json:"project"` // null when the files give no root task
+	Params  envelopeParams  `json:"params"`
+	Data    json.RawMessage `json:"data"`
+}
+
+// envelopeParams is the envelope's params: the parameters in force and the
+// level.
+type envelopeParams struct {
+	Params
+	Level Level `json:"level"`
+}
+
+// Head is what every view carries beside its own data. Decode fills all but
+// the legend from the envelope; the legend is the data's.
 type Head struct {
-	Level   Level   `json:"level"`   // the deepest level the data holds
-	Project TaskRef `json:"project"` // the root task
-	Ref     Ref     `json:"ref"`
-	Params  Params  `json:"params"` // the parameters in force, as tablo resolves them
-	Legend  Legend  `json:"legend"`
+	Level   Level   `json:"-"`      // the level tablo derives the data at: the envelope's params.level
+	Project Project `json:"-"`      // the envelope's project; zero when it is null
+	Source  Source  `json:"-"`      // the envelope's source
+	Params  Params  `json:"-"`      // the envelope's params, as tablo resolves them
+	Legend  Legend  `json:"legend"` // the data's legend, whole at every level
 }
 
-// Ref is the commit in view.
-type Ref struct {
-	Name    string `json:"name"`   // as given, "HEAD" by default
-	From    string `json:"from"`   // the start of a range; history only
-	Commit  string `json:"commit"` // the full hash
-	Date    string `json:"date"`   // its author date, YYYY-MM-DD
-	OnTrunk bool   `json:"on_trunk"`
+// Project names the project: the envelope's project.
+type Project struct {
+	Root  string `json:"root"`  // the root task's id
+	Title string `json:"title"` // the root task's title
 }
 
-// Params echoes the focusing parameters; a zero field is not in force.
+// Source is what the view reads: the envelope's source.
+type Source struct {
+	Ref    string `json:"ref"`    // the name given; for the working tree, the branch HEAD names
+	Commit string `json:"commit"` // in full; "" where it is null
+	Date   string `json:"date"`   // its author date, YYYY-MM-DD; "" where it is null
+}
+
+// Params echoes the parameters the four views take; a zero field is not in
+// force, and null reads as zero.
 type Params struct {
-	Task       string   `json:"task"` // empty when the view covers the root
-	Person     string   `json:"person"`
-	Window     *int     `json:"window"`
-	Columns    []string `json:"columns"`
-	Historical bool     `json:"historical"`
-	Proposed   bool     `json:"proposed"`
-	Stale      int      `json:"stale"`
+	Task   string `json:"task"` // the task in focus; the root where tablo resolves it so
+	Person string `json:"person"`
 }
 
 // Legend is gates.yaml and the method's marks, in file order.

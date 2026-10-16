@@ -295,10 +295,10 @@ func TestFixtureHandsTheFrameFivePanesAndFiveCommands(t *testing.T) {
 	}
 	dir := fixtureDir(t)
 	for name, body := range map[string]string{
-		"task-aaaa.json":     `{"level":"detail","task":{"id":"aaaa","title":"Only task"},"assignee":"ada@example.org"}`,
-		"queue.json":         `{"level":"detail","params":{"person":"ada@example.org"}}`,
-		"blockage-aaaa.json": `{"level":"detail","params":{"task":"aaaa"}}`,
-		"history-aaaa.json":  `{"level":"detail","params":{"task":"aaaa"}}`,
+		"task-aaaa.json":     `{"command":"task","params":{"level":"detail"},"data":{"task":{"id":"aaaa","title":"Only task"},"assignee":"ada@example.org"}}`,
+		"queue.json":         `{"command":"queue","params":{"person":"ada@example.org","level":"detail"},"data":{"items":[]}}`,
+		"blockage-aaaa.json": `{"command":"blockage","params":{"task":"aaaa","level":"detail"},"data":{"causes":[]}}`,
+		"history-aaaa.json":  `{"command":"history","params":{"task":"aaaa","level":"detail"},"data":{"lines":[]}}`,
 	} {
 		if err := os.WriteFile(filepath.Join(dir, name), []byte(body), 0o600); err != nil {
 			t.Fatal(err)

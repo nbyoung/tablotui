@@ -178,7 +178,7 @@ func TestFoldLineCarriesTheMarkWhenItsIdsHoldTheSelection(t *testing.T) {
 }
 
 // decode reads a fixture of testdata into v.
-func decode(t *testing.T, name string, v any) {
+func decode(t *testing.T, name string, v list.View) {
 	t.Helper()
 	f, err := os.Open("testdata/" + name)
 	if err != nil {

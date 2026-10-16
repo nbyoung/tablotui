@@ -30,15 +30,16 @@ Reaffirmations: 1
       exist
 
 Work waiting: 1
-  99f0 Gate definition view in Markdown; waits for `e9c6` at design · 📌
-    mockup · claude-opus · 2026-09-29
+  99f0 Gate definition view in Markdown; waits for e9c6 Abstract views at
+    design · 📌 mockup · claude-opus · 2026-09-29
     Gate: 📌 mockup, Mockup: A non-technical mockup of the outcome exists
     Requires:
       e9c6 Abstract views, design → mockup, The abstract definition of the
         view: unmet
     Its parent unblocks:
-      bc86 Markdown views at 📌 mockup · 6103 tabloio: command line, output
-        and input, mockup → design, The Markdown mockups it reproduces: unmet
+      bc86 Markdown views at 📌 mockup is required by 6103 tabloio: command
+        line, output and input, mockup → design, The Markdown mockups it
+        reproduces: unmet
     Status: 📝 defined 🟢 nominal, 2026-09-29, noreply@anthropic.com: Mockup
       waits for Abstract views (e9c6) at design
     Do not start: the cause stands.
