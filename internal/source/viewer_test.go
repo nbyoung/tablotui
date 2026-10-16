@@ -19,12 +19,12 @@ func TestFileTableauEchoes(t *testing.T) {
 	f := File{Dir: dir}
 	ctx := context.Background()
 	tb, err := f.Tableau(ctx, Request{View: "tableau", Window: 1, Viewer: "ada@example.org", Role: "owner"})
-	if err != nil || tb.Viewer != "ada@example.org" || tb.Role != "owner" {
-		t.Errorf("echo = %q, %q, %v", tb.Viewer, tb.Role, err)
+	if err != nil || tb.Viewer.Email != "ada@example.org" || tb.Params.Role != "owner" {
+		t.Errorf("echo = %q, %q, %v", tb.Viewer.Email, tb.Params.Role, err)
 	}
 	tb, err = f.Tableau(ctx, Request{View: "tableau", Window: 1})
-	if err != nil || tb.Viewer != "" || tb.Role != "" {
-		t.Errorf("no echo = %q, %q, %v", tb.Viewer, tb.Role, err)
+	if err != nil || tb.Viewer.Email != "" || tb.Params.Role != "" {
+		t.Errorf("no echo = %q, %q, %v", tb.Viewer.Email, tb.Params.Role, err)
 	}
 	a := f.Name(Request{View: "tableau", Window: 1})
 	b := f.Name(Request{View: "tableau", Window: 1, Viewer: "ada@example.org", Role: "owner"})

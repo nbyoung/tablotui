@@ -94,18 +94,18 @@ Where each junction field comes from
   🚀 release · contributor · nbyoung@nbyoung.com · 437e
 
 Reviews: 2
-  📝 defined · noreply@anthropic.com · the authorisation stands as the review
+  📝 defined · noreply@anthropic.com · The authorisation stands as the review
   📐 design · nbyoung@nbyoung.com · 0704a09 Accept the abstract views design ·
-    the reviewer accepts
+    The reviewer accepts
 
 Models: 4
-  1a17bfc · 📝 defined · states claude-haiku · exempt
+  1a17bfc · 📝 defined · states claude-haiku · Exempt
   0fed913 · 📐 design · states claude-fable · trailer claude-fable-5-1 ·
-    agrees
+    Agrees
   26defc7 · 📐 design · states claude-fable · trailer claude-fable-5-1 ·
-    agrees
+    Agrees
   879b447 · 📐 design · states claude-fable · trailer claude-fable-5-1 ·
-    agrees
+    Agrees
 
 Newest events
   7 events; the newest 5, newest first.

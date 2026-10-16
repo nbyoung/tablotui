@@ -102,7 +102,7 @@ func (g Grid) rowLine(i int, geo geometry, cols []column, c ui.Context) string {
 		s.text = m.Centre("", col.w)
 		if !col.folded {
 			cell := r.Cells[col.gates[0]]
-			s.text = m.Centre(cellText(cell, m), col.w)
+			s.text = m.Centre(g.m.cellText(cell, m), col.w)
 			if cell.Acts {
 				s.style = &st.Acts
 			}
@@ -146,7 +146,7 @@ func (g Grid) Status(c ui.Context) string {
 		case col.folded:
 			id += " × " + col.header
 		default:
-			gt := g.data.Gates[col.gates[0]]
+			gt := g.data.Legend.Gates[col.gates[0]]
 			id += " × " + c.Measure.Clean(gt.Symbol) + " " + gt.Key
 		}
 		parts = append(parts, id)
@@ -154,12 +154,16 @@ func (g Grid) Status(c ui.Context) string {
 	if geo.scrolled {
 		parts = append(parts, fmt.Sprintf("columns %d–%d of %d", geo.first+1, geo.first+geo.n, len(g.m.cols)))
 	}
-	window := fmt.Sprintf("window %d", g.data.Window)
+	n := g.goodReq.Window
+	if w := g.data.Params.Window; w != nil {
+		n = *w
+	}
+	window := fmt.Sprintf("window %d", n)
 	if k := g.changedCount(); k > 0 {
 		window += fmt.Sprintf(", %d changed", k)
 	}
 	historical := "historical off"
-	if g.data.Historical {
+	if g.data.Params.Historical {
 		historical = "historical on"
 	}
 	parts = append(parts, rows, window, historical)

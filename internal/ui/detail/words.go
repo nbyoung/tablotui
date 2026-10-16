@@ -67,20 +67,18 @@ func symbolKey(symbol, key string) string {
 	return symbol + " " + key
 }
 
-// status reads a status: its gate, then the state and the reason where it
-// holds them, then where a derived status comes from.
+// phrase reads a status as its gate, then its state and its reason; a
+// status with no state reads as its gate alone (tabloio R3).
+func (w words) phrase(s list.Status) string {
+	if s.State == "" {
+		return w.gate(s.Gate)
+	}
+	return join(" ", w.gate(s.Gate), w.state(s.State), w.reason(s.Reason))
+}
+
+// status reads a status: its phrase, then where a derived status comes from.
 func (w words) status(s list.Status) string {
-	var parts []string
-	if s.Gate != "" {
-		parts = append(parts, w.gate(s.Gate))
-	}
-	if s.State != "" {
-		parts = append(parts, w.state(s.State))
-	}
-	if s.Reason != "" {
-		parts = append(parts, w.reason(s.Reason))
-	}
-	out := strings.Join(parts, " ")
+	out := w.phrase(s)
 	if o := s.From; o != nil {
 		switch o.Kind {
 		case "rollup":
@@ -88,6 +86,69 @@ func (w words) status(s list.Status) string {
 		case "snapshot":
 			out += ", " + join(" ", w.symbol("subproject"), "from the subproject", o.URL)
 		}
+	}
+	return out
+}
+
+// recorded reads when a status was recorded: the date and the recorder; for
+// a roll-up the date, the oldest among its children; for a snapshot the
+// date, from the subproject.
+func recorded(s list.Status) string {
+	if s.Date == "" {
+		return ""
+	}
+	if s.From != nil {
+		switch s.From.Kind {
+		case "rollup":
+			return s.Date + ", the oldest among its children"
+		case "snapshot":
+			return s.Date + ", from the subproject"
+		}
+	}
+	return join(" by ", s.Date, s.Recorder)
+}
+
+// plain drops the backticks with which tabloio marks code in a phrase, as
+// its text renderer does.
+func plain(s string) string { return strings.ReplaceAll(s, "`", "") }
+
+// statedBy words the sources of a junction field that are no task.
+var statedBy = map[string]string{
+	"default":  "the plain default",
+	"own":      "each task's own file",
+	"assignee": "the assignee",
+}
+
+// markFrom words where a field comes from, after its value: ", from <id>",
+// ", by default", or ", from " and the phrase of statedBy.
+func markFrom(src string) string {
+	switch src {
+	case "":
+		return ""
+	case "default":
+		return ", by default"
+	}
+	if w, ok := statedBy[src]; ok {
+		return ", from " + w
+	}
+	return ", from " + src
+}
+
+// commitLine reads a commit on one line: the short hash, the subject, the
+// date, and the author and the committer, as one person when they agree.
+func commitLine(c list.Commit) string {
+	out := join(", ", join(" ", short(c.Hash), c.Subject), c.Date)
+	if c.Author == c.Committer {
+		if a := person(c.Author); a != "" {
+			out += ", author and committer " + a
+		}
+		return out
+	}
+	if a := person(c.Author); a != "" {
+		out += ", author " + a
+	}
+	if a := person(c.Committer); a != "" {
+		out += ", committer " + a
 	}
 	return out
 }

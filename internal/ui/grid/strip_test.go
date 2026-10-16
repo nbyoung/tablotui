@@ -132,25 +132,46 @@ func TestLongNoteEndsWithAnEllipsis(t *testing.T) {
 }
 
 func TestProvenanceFacts(t *testing.T) {
-	// Five facts draw three and "… 2 more".
+	// A roll-up's cell gives what it shows, the child it rolls up from and its date.
 	r := newRig(t, fixtures(), "", GlanceStart(), 100, 40).keys("p right right")
 	at := ruleAt(r)
 	want := []string{
 		"provenance of 437e at 📝 defined",
-		"  Status: derived, never stored",
-		"  Rolls up from: bc63 Method, then 2034 Views, then bc86 Markdown views, then 99f0 Gate definition …",
-		"  Why: the first in display order of 5 children that tie",
-		"  … 2 more",
+		"  Shows: 📝 defined 🟢 nominal",
+		"  Rolls up from: bc63 Method",
+		"  Date: 2026-09-29",
+		"",
 	}
 	for i, w := range want {
 		if got := r.line(at + 5 + i); got != w {
 			t.Errorf("provenance line %d = %q, want %q", i, got, w)
 		}
 	}
+	// Six facts draw three and "… 3 more".
+	r = newRig(t, fixtures(), "", GlanceStart(), 100, 40).keys("down down down down p right right")
+	at = ruleAt(r)
+	if got := r.line(at + 6); got != "  Deciding commit: e66abe2 Record the defined gate for the subproject tasks" {
+		t.Errorf("first fact = %q", got)
+	}
+	if got := r.line(at + 9); got != "  … 3 more" {
+		t.Errorf("last line = %q", got)
+	}
+	// A cell of marks gives its junction and the tasks that supply it.
+	r = newRig(t, fixtures(), "", GlanceStart(), 100, 40).keys("E p down down" + strings.Repeat(" right", 9))
+	at = ruleAt(r)
+	for i, w := range []string{
+		"provenance of c2ad at 🌍 validate",
+		"  Contributor and model: noreply@anthropic.com, claude-opus, from bc63",
+		"  Reviewer: nbyoung@nbyoung.com, from 437e",
+	} {
+		if got := r.line(at + 5 + i); got != w {
+			t.Errorf("marks line %d = %q, want %q", i, got, w)
+		}
+	}
 	// Four facts draw all four.
 	r = newRig(t, fixtures(), "", GlanceStart(), 100, 40).keys("E p down down right right right right right right")
 	at = ruleAt(r)
-	if got := r.line(at + 9); !strings.HasPrefix(got, "  Command: git log") {
+	if got := r.line(at + 9); got != "  Committer: noreply@anthropic.com" {
 		t.Errorf("fourth fact = %q", got)
 	}
 	// A cell with no fact, and a cursor off the gate cells.

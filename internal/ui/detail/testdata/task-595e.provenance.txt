@@ -9,13 +9,6 @@ note         prototype/49ce serves the ten views with a stdlib HEAD and
              interface and a loopback Host check
 recorded     2026-09-30, from the subproject
 
-Status commit
-  commit            e66abe2 Record the defined gate for the subproject tasks
-  date              2026-09-30
-  author            Claude Haiku 4.5, noreply@anthropic.com
-  committer         Claude Haiku 4.5, noreply@anthropic.com
-  trailers          Model: claude-haiku-4-5-20251001
-
 Description
 
 
@@ -70,26 +63,19 @@ note         prototype/49ce serves the ten views with a stdlib HEAD and
   5a2f Accessibility and theming · 🔧 function 🟢 nominal
 
 Linkages
-  📌 mockup
-    url: `subprojects/tableaud`, stated in `.tableaux/tasks/595e.yaml` at each
-      of the eight junctions
+  📌 mockup and 7 more
+    url: subprojects/tableaud, stated in .tableaux/tasks/595e.yaml
     Form of the url: A path that is a Git submodule, so the submodule's pin
       fixes the commit
-    Pin: `e6ec4ec`, in full `e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e`
+    Pin: e6ec4ec, in full e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e
     commit field: Not stated; nothing restates the pin in the task file
-    The pinned commit: `e6ec4ec` Accept the accessibility and theming function
+    The pinned commit: e6ec4ec Accept the accessibility and theming function
       prototype, 2026-10-05, author and committer Norman Young,
-      nbyoung@nbyoung.com, on the subproject's trunk `main`
-    id: Not stated; the junction reads the subproject's root, `8608`
-    Pin set by: `3cdae52` Advance tableaud to the eight function prototypes,
-      2026-10-05, author and committer Norman Young, nbyoung@nbyoung.com: the
-      pin moves from `cffbfa6` to `e6ec4ec`
-    Gate recorded by: `e66abe2` Record the defined gate for the subproject
-      tasks, 2026-09-30, author and committer Claude Haiku 4.5,
-      noreply@anthropic.com, `Model: claude-haiku-4-5-20251001`, which agrees
-      with `claude-haiku`
-    Authorisation: `6b6c99a` Plan the Tableaux tooling, 2026-09-29, author and
-      committer Norman Young, nbyoung@nbyoung.com
+      nbyoung@nbyoung.com
+    id: Not stated; the junction reads the subproject's root, 8608
+    The subproject's trunk: main; the pin is on the trunk
+    Pin set by: 3cdae52 Advance tableaud to the eight function prototypes,
+      2026-10-05, author and committer Norman Young, nbyoung@nbyoung.com
 
 Where each junction field comes from
 

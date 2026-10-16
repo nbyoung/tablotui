@@ -74,10 +74,34 @@ func asFixture(t *testing.T) *recorder {
 	base := load(t, "tableau.json")
 	return &recorder{fn: func(r source.Request) (view.Tableau, error) {
 		tb := base
-		tb.Window = r.Window
-		tb.Historical = r.Historical
+		w := r.Window
+		tb.Params.Window = &w
+		tb.Params.Historical = r.Historical
 		return tb, nil
 	}}
+}
+
+// windowed returns tb with the columns tablo would state for a window that
+// shows the gates window marks, each gate with its count: one column per gate
+// shown, and one folded column per run of gates not shown.
+func windowed(tb view.Tableau, window []bool, counts []int) view.Tableau {
+	gates := tb.Legend.Gates
+	tb.Columns = nil
+	for i := 0; i < len(gates); {
+		j := i + 1
+		for !window[i] && j < len(gates) && !window[j] {
+			j++
+		}
+		c := view.Column{Folded: !window[i]}
+		for k := i; k < j; k++ {
+			c.Gates = append(c.Gates, gates[k].Key)
+			c.ByGate = append(c.ByGate, counts[k])
+			c.Count += counts[k]
+		}
+		tb.Columns = append(tb.Columns, c)
+		i = j
+	}
+	return tb
 }
 
 var errBoom = errors.New("the source failed")

@@ -140,16 +140,21 @@ func TestEveryLineFitsWhenTheKeysComeAtTheSize(t *testing.T) {
 // gearTableau is a tableau whose first gate has the symbol "⚙️", which
 // carries U+FE0F after a base one cell wide under code-point counting.
 func gearTableau() view.Tableau {
-	cell := func(s string) view.Cell { return view.Cell{Kind: "marks", Symbols: s} }
+	marks := func(keys ...string) view.Cell { return view.Cell{Kind: "marks", Marks: keys} }
+	window := 1
 	return view.Tableau{
-		View: "tableau", Project: "Gear", Ref: "main", Commit: "abc1234", Date: "2026-10-06", Window: 1,
-		Gates: []view.Gate{
-			{Key: "build", Symbol: "⚙️", Name: "Build", Window: true, Count: 1},
-			{Key: "ship", Symbol: "🚀", Name: "Ship", Window: true},
+		Command: "tableau",
+		Source:  view.Source{Ref: "main", Commit: "abc1234", Date: "2026-10-06"},
+		Project: view.Project{Title: "Gear"},
+		Params:  view.Params{Window: &window},
+		Legend: view.Legend{
+			Gates: []view.Gate{{Key: "build", Symbol: "⚙️", Name: "Build"}, {Key: "ship", Symbol: "🚀", Name: "Ship"}},
+			Marks: []view.Mark{{Key: "agent", Symbol: "🤖"}, {Key: "person", Symbol: "🧑"}, {Key: "gear", Symbol: "⚙️"}, {Key: "exempt", Symbol: "—"}},
 		},
+		Columns: []view.Column{{Gates: []string{"build"}, Count: 1, ByGate: []int{1}}, {Gates: []string{"ship"}, ByGate: []int{0}}},
 		Rows: []view.Row{
-			{ID: "aaaa", Title: "Engine", Cells: []view.Cell{cell("🤖"), cell("🧑")}},
-			{ID: "bbbb", Title: "Frame", Cells: []view.Cell{cell("⚙️"), cell("—")}},
+			{TaskRef: view.TaskRef{ID: "aaaa", Title: "Engine"}, Cells: []view.Cell{marks("agent"), marks("person")}},
+			{TaskRef: view.TaskRef{ID: "bbbb", Title: "Frame"}, Cells: []view.Cell{marks("gear"), {Kind: "exempt"}}},
 		},
 	}
 }

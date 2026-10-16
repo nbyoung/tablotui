@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-const minimal = `{"view":"tableau","project":"P","window":1,"gates":[],"rows":[]}`
+const minimal = `{"schema":"tablo/1","command":"tableau","project":{"root":"r","title":"P"},"params":{"window":1},"data":{"legend":{"gates":[]},"columns":[],"rows":[]}}`
 
 func TestFileName(t *testing.T) {
 	f := File{Dir: "x"}
@@ -42,7 +42,7 @@ func TestFileTableau(t *testing.T) {
 	}
 	f := File{Dir: dir}
 	tb, err := f.Tableau(context.Background(), Request{View: "tableau", Window: 1})
-	if err != nil || tb.Project != "P" {
+	if err != nil || tb.Project.Title != "P" {
 		t.Errorf("Tableau = %+v, %v", tb, err)
 	}
 	if _, err := f.Tableau(context.Background(), Request{View: "tableau", Window: 5}); !errors.Is(err, fs.ErrNotExist) {

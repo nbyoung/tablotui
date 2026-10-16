@@ -68,11 +68,14 @@ func TestBanner(t *testing.T) {
 	}
 }
 
-const tableau = `{"view":"tableau","project":"Fixture project","ref":"main","commit":"abc1234","date":"2026-10-06",
-"window":1,"gates":[{"key":"defined","symbol":"📝","name":"Defined","window":true,"count":1},
-{"key":"design","symbol":"📐","name":"Design","window":true,"count":0}],
-"rows":[{"id":"aaaa","title":"Only task","depth":0,"parent":false,"status":{"gate":"defined","state":"nominal"},
-"cells":[{"kind":"status","symbols":"🟢"},{"kind":"marks","symbols":"🤖"}]}]}`
+const tableau = `{"schema":"tablo/1","command":"tableau",
+"source":{"ref":"main","commit":"abc1234","date":"2026-10-06"},"project":{"root":"aaaa","title":"Fixture project"},
+"viewer":{"email":null,"roles":["observer"]},"params":{"window":1,"level":"detail"},
+"data":{"legend":{"gates":[{"key":"defined","symbol":"📝","name":"Defined"},{"key":"design","symbol":"📐","name":"Design"}],
+"states":[{"key":"nominal","symbol":"🟢"}],"marks":[{"key":"agent","symbol":"🤖"}]},
+"columns":[{"gates":["defined"],"folded":false,"count":1,"by_gate":[1]},{"gates":["design"],"folded":false,"count":0,"by_gate":[0]}],
+"rows":[{"id":"aaaa","title":"Only task","depth":0,"parent":false,"status":{"kind":"recorded","gate":"defined","state":"nominal"},
+"cells":[{"kind":"status","state":"nominal"},{"kind":"marks","marks":["agent"]}]}]}}`
 
 // harness replaces the program with one that hands the model to onRun while
 // the program would run, as the context is live only then.
@@ -292,10 +295,10 @@ func TestFixtureHandsTheFrameFivePanesAndFiveCommands(t *testing.T) {
 	}
 	dir := fixtureDir(t)
 	for name, body := range map[string]string{
-		"task-aaaa.json":     `{"level":"detail","task":{"id":"aaaa","title":"Only task"},"assignee":"ada@example.org"}`,
-		"queue.json":         `{"level":"detail","params":{"person":"ada@example.org"}}`,
-		"blockage-aaaa.json": `{"level":"detail","params":{"task":"aaaa"}}`,
-		"history-aaaa.json":  `{"level":"detail","params":{"task":"aaaa"}}`,
+		"task-aaaa.json":     `{"command":"task","params":{"level":"detail"},"data":{"task":{"id":"aaaa","title":"Only task"},"assignee":"ada@example.org"}}`,
+		"queue.json":         `{"command":"queue","params":{"person":"ada@example.org","level":"detail"},"data":{"items":[]}}`,
+		"blockage-aaaa.json": `{"command":"blockage","params":{"task":"aaaa","level":"detail"},"data":{"causes":[]}}`,
+		"history-aaaa.json":  `{"command":"history","params":{"task":"aaaa","level":"detail"},"data":{"lines":[]}}`,
 	} {
 		if err := os.WriteFile(filepath.Join(dir, name), []byte(body), 0o600); err != nil {
 			t.Fatal(err)

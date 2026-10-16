@@ -11,7 +11,7 @@ Work ready: 28
     Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
       integration and validation tests
     Contributor: 🤖 noreply@anthropic.com, model claude-sonnet, from 437e
-    Reviewer: the assignee, noreply@anthropic.com
+    Reviewer: 👀 noreply@anthropic.com, the assignee
     References:
       Proposed views, PLAN.md#views
     Unblocks:

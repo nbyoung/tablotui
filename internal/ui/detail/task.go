@@ -94,23 +94,17 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 
 	add(Line{Text: task(d.Task), Head: true, Item: 0})
 	field(0, "assignee", d.Assignee, "", "")
-	if d.Parent == nil {
+	switch {
+	case d.Parent == nil:
 		field(0, "parent", "none", "", "")
-	} else {
-		field(0, "parent", fmt.Sprintf("%s, order %d", task(d.Parent.TaskRef), d.Parent.Order), d.Parent.ID, "")
+	case d.Parent.Order == nil:
+		field(0, "parent", task(d.Parent.TaskRef), d.Parent.ID, "")
+	default:
+		field(0, "parent", fmt.Sprintf("%s, order %d", task(d.Parent.TaskRef), *d.Parent.Order), d.Parent.ID, "")
 	}
 	field(0, "status", w.status(d.Status), "", "")
 	field(0, "note", d.Status.Note, "", "")
-	if d.Status.Date != "" {
-		recorded := join(" by ", d.Status.Date, d.Status.Recorder)
-		switch {
-		case d.Status.From != nil && d.Status.From.Kind == "rollup":
-			recorded = d.Status.Date + ", the oldest among its children"
-		case d.Status.From != nil && d.Status.From.Kind == "snapshot":
-			recorded = d.Status.Date + ", from the subproject"
-		}
-		field(0, "recorded", recorded, "", "")
-	}
+	field(0, "recorded", recorded(d.Status), "", "")
 	if lvl >= list.Provenance && d.StatusCommit != nil {
 		section(0, "Status commit")
 		lines = append(lines, commitLines(d.StatusCommit, 0, "")...)
@@ -134,8 +128,12 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 		path = append(path, task(t))
 	}
 	field(2, "path", strings.Join(path, " › "), "", "")
-	if d.Parent != nil {
-		field(2, "order", fmt.Sprintf("%d of %d under %s", d.Parent.Order, d.Siblings, d.Parent.ID), d.Parent.ID, "")
+	if p := d.Parent; p != nil {
+		order := fmt.Sprintf("no order, among %d under %s", d.Siblings, p.ID)
+		if p.Order != nil {
+			order = fmt.Sprintf("%d of %d under %s", *p.Order, d.Siblings, p.ID)
+		}
+		field(2, "order", order, p.ID, "")
 	}
 	if len(d.Children) == 0 {
 		field(2, "children", "none", "", "")
@@ -151,12 +149,10 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 	} else {
 		field(2, "authorised", "no, proposed", "", "")
 	}
-	if a := d.Authorisation; lvl >= list.Provenance && a != nil {
+	if a := d.Authorisation; lvl >= list.Provenance && a != nil && a.Commit != nil {
 		section(2, "Authorisation commit")
-		lines = append(lines, commitLines(&a.Commit, 2, "")...)
-		way := map[string]string{"change": "a change on the trunk", "merge": "a merge", "trailer": "an Authorised: trailer"}[a.Way]
-		by := map[string]string{"author": "the author", "committer": "the committer", "both": "the author and the committer"}[a.By]
-		for _, f := range [][2]string{{"accepts by", way}, {"the authority is", by}} {
+		lines = append(lines, commitLines(a.Commit, 2, "")...)
+		for _, f := range [][2]string{{"accepts by", plain(acceptsBy[a.Way])}, {"the authority is", authorityIs[a.By]}} {
 			if f[1] != "" {
 				add(Line{Label: f[0], Text: f[1], Indent: 2, Hang: commitHang, Item: 2})
 			}
@@ -202,8 +198,10 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 		section(6, "Subproject snapshot")
 		field(6, "task", join(" ", s.URL, task(s.Task)), "", "")
 		field(6, "assignee", s.Assignee, "", "")
-		field(6, "status", w.status(s.Status), "", "")
-		field(6, "note", s.Status.Note, "", "")
+		if st := s.Status; st != nil {
+			field(6, "status", w.status(*st), "", "")
+			field(6, "note", st.Note, "", "")
+		}
 		for _, c := range s.Children {
 			add(Line{Text: cells(task(c.TaskRef), w.status(c.Status)), Indent: 2, Hang: 2, Item: 6})
 		}
@@ -212,26 +210,38 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 		return id, "", lines
 	}
 
-	if len(d.Rollup) > 0 {
+	if len(d.Considered) > 0 {
 		section(7, "Roll-up")
-		for _, f := range d.Rollup {
-			add(Line{Text: f.Name + ": " + f.Value, Indent: 2, Hang: 2, Item: 7})
+		add(Line{Text: "Children considered: " + strings.Join(d.Considered, " "), Indent: 2, Hang: 2, Item: 7})
+		for _, st := range d.Chain {
+			name := task(st.Task)
+			if st.URL != "" {
+				name += " in " + st.URL
+			}
+			add(Line{Text: name + ": " + join("; ", w.status(st.Status), recorded(st.Status)), Indent: 2, Hang: 2, Item: 7, Task: st.Task.ID})
 		}
 	}
 	if len(d.Linkages) > 0 {
 		section(8, "Linkages")
 		for _, l := range d.Linkages {
-			add(Line{Text: w.gate(l.Gate), Indent: 2, Item: 8, Task: id, Gate: l.Gate})
-			for _, f := range l.Facts {
-				add(Line{Text: f.Name + ": " + f.Value, Indent: 4, Hang: 2, Item: 8})
+			var gate string
+			if len(l.Gates) > 0 {
+				gate = w.gate(l.Gates[0])
+				if n := len(l.Gates) - 1; n > 0 {
+					gate += " and " + count(n, "more", "more")
+				}
+				add(Line{Text: gate, Indent: 2, Item: 8, Task: id, Gate: l.Gates[0]})
+			}
+			for _, f := range linkageFacts(l) {
+				add(Line{Text: f[0] + ": " + f[1], Indent: 4, Hang: 2, Item: 8})
 			}
 		}
 	}
 	section(9, "Where each junction field comes from")
 	for _, s := range d.Sources {
 		by := s.By
-		if by == "default" {
-			by = "the plain default"
+		if w, ok := statedBy[by]; ok {
+			by = w
 		}
 		add(Line{Text: cells(w.gate(s.Gate), s.Field, s.Value, by), Indent: 2, Hang: 2, Item: 9, Task: id, Gate: s.Gate})
 	}
@@ -241,10 +251,7 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 		if r.Commit != nil {
 			commit = join(" ", short(r.Commit.Hash), r.Commit.Subject)
 		}
-		effect := map[string]string{
-			"accepts": "the reviewer accepts", "authorisation": "the authorisation stands as the review", "none": "none",
-		}[r.Effect]
-		add(Line{Text: cells(w.gate(r.Gate), r.Reviewer, commit, effect), Indent: 2, Hang: 2, Item: 10, Task: id, Gate: r.Gate})
+		add(Line{Text: cells(w.gate(r.Gate), r.Reviewer, commit, phraseOf(reviewEffects, r.Effect)), Indent: 2, Hang: 2, Item: 10, Task: id, Gate: r.Gate})
 	}
 	section(11, counted("Models", len(d.Models)))
 	for _, m := range d.Models {
@@ -255,8 +262,7 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 		if m.Trailer != "" {
 			trailer = "trailer " + m.Trailer
 		}
-		reading := map[string]string{"agrees": "agrees", "differs": "differs", "missing": "no trailer", "exempt": "exempt"}[m.Reading]
-		add(Line{Text: cells(short(m.Commit), w.gate(m.Gate), stated, trailer, reading), Indent: 2, Hang: 2, Item: 11, Task: id, Gate: m.Gate})
+		add(Line{Text: cells(short(m.Commit), w.gate(m.Gate), stated, trailer, phraseOf(modelReadings, m.Reading)), Indent: 2, Hang: 2, Item: 11, Task: id, Gate: m.Gate})
 	}
 	section(12, "Newest events")
 	add(Line{
@@ -264,17 +270,8 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 		Indent: 2, Item: 12,
 	})
 	for _, e := range d.Events {
-		var what string
-		switch {
-		case e.Status != nil:
-			what = join(": ", w.status(*e.Status), e.Status.Note)
-		case e.Gate != "":
-			what = w.gate(e.Gate)
-		case e.Pin != nil:
-			what = pin(e.Pin)
-		}
 		add(Line{
-			Text:   cells(e.Date, short(e.Commit), e.By, strings.Join(e.Kinds, ", "), what),
+			Text:   cells(e.Date, short(e.Commit), e.By, e.Kind, w.eventRecords(e)),
 			Indent: 2, Hang: 2, Item: 12,
 		})
 	}
@@ -286,6 +283,152 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 		lines = append(lines, commandLines(d.Commands, 2, 2, 13, "", "")...)
 	}
 	return id, "", lines
+}
+
+// acceptsBy words how a deciding commit accepts, as tabloio does.
+var acceptsBy = map[string]string{
+	"change":  "a change on the trunk",
+	"merge":   "a merge",
+	"trailer": "an `Authorised:` trailer",
+}
+
+// authorityIs words which of a commit's actors is an authority, as tabloio
+// does.
+var authorityIs = map[string]string{
+	"author":    "the author",
+	"committer": "the committer",
+	"both":      "the author and the committer",
+}
+
+// reviewEffects words a review's effect, as tabloio does.
+var reviewEffects = map[string]string{
+	"accepts":       "The reviewer accepts",
+	"authorisation": "The authorisation stands as the review",
+	"none":          "None",
+}
+
+// modelReadings words a model check's reading, as tabloio does.
+var modelReadings = map[string]string{
+	"agrees":   "Agrees",
+	"differs":  "Differs",
+	"missing":  "No trailer",
+	"exempt":   "Exempt",
+	"unstated": "No model stated",
+}
+
+// phraseOf returns the phrase of a key, or the key where the table has none.
+func phraseOf(table map[string]string, key string) string {
+	if p, ok := table[key]; ok {
+		return p
+	}
+	return key
+}
+
+// eventRecords reads what an event records: a status phrase with its note
+// after a colon, a gate for a review, or "<url> <old> → <new>" for a pin;
+// then, for an event taken from a subproject, the subproject and its task.
+func (w words) eventRecords(e list.Event) string {
+	var x string
+	switch {
+	case e.Kind == "status" && e.Recorded != nil:
+		r := e.Recorded
+		x = join(": ", w.phrase(list.Status{Gate: r.Gate, State: r.State, Reason: r.Reason}), r.Note)
+	case e.Kind == "reviewed" && e.Gate != "":
+		x = w.gate(e.Gate)
+	case e.Kind == "pin" && e.Pin != nil:
+		x = join(" ", e.Pin.URL, short(e.Pin.Old), "→", short(e.Pin.New))
+	}
+	if s := e.Subproject; s != nil {
+		x = join("; ", x, "in the subproject "+s.URL+", task "+s.Task)
+	}
+	return x
+}
+
+// The words of a linkage's keys, as tabloio has them: one phrase per form,
+// reason, trunk reading and pin reading.
+var (
+	linkForms = map[string]string{
+		"submodule": "A path that is a Git submodule, so the submodule's pin fixes the commit",
+		"directory": "A directory of the same repository, read at the commit in view",
+		"url":       "A repository URL, so the entry's `commit` field fixes the commit",
+		"none":      "No link",
+	}
+	linkWhy = map[string]string{
+		"no_link": "Not read: no link reaches the subproject",
+		"no_task": "Not read: the subproject has no such task",
+	}
+	linkOnTrunk = map[string]string{
+		"yes":     "the pin is on the trunk",
+		"no":      "the pin is off the trunk",
+		"unknown": "whether the pin is on the trunk is unknown",
+	}
+	linkBehind = map[string]string{
+		"yes": "behind its tip",
+		"no":  "at its tip",
+	}
+)
+
+// linkageFacts reads a linkage as name and value pairs, in tabloio's order,
+// each where the linkage holds it.
+func linkageFacts(l list.Linkage) [][2]string {
+	var out [][2]string
+	add := func(name, value string) {
+		if value != "" {
+			out = append(out, [2]string{name, plain(value)})
+		}
+	}
+	url := l.URL
+	if l.File != "" {
+		url += ", stated in " + l.File
+		if l.Line > 0 {
+			url += fmt.Sprintf(", line %d", l.Line)
+		}
+	}
+	add("url", url)
+	add("Form of the url", linkForms[l.Form])
+	if l.Commit != "" {
+		add("Pin", short(l.Commit)+", in full "+l.Commit)
+	}
+	if l.Form == "submodule" || l.Form == "url" {
+		field := "Not stated"
+		if l.StatedCommit != "" {
+			field = l.StatedCommit
+		} else if l.Form == "submodule" {
+			field = "Not stated; nothing restates the pin in the task file"
+		}
+		add("commit field", field)
+	}
+	if l.Moved {
+		add("Checkout", "Stands elsewhere than the recorded pin "+short(l.Recorded))
+	}
+	if l.Pinned != nil {
+		add("The pinned commit", commitLine(*l.Pinned))
+	}
+	id := l.ID
+	if l.ID == "" && l.Task.ID != "" {
+		id = "Not stated; the junction reads the subproject's root, " + l.Task.ID
+	}
+	add("id", id)
+	if l.Why != "" {
+		add("Task read", linkWhy[l.Why])
+	}
+	if l.Trunk != "" {
+		trunk := l.Trunk
+		if l.Tip != "" {
+			trunk += ", tip " + short(l.Tip)
+		}
+		if on := linkOnTrunk[l.OnTrunk]; on != "" {
+			trunk += "; " + on
+			if b := linkBehind[l.Behind]; b != "" {
+				trunk += ", " + b
+			}
+		}
+		add("The subproject's trunk", trunk)
+	}
+	if l.SetBy != nil {
+		add("Pin set by", commitLine(*l.SetBy))
+	}
+	return out
 }
 
 // authorities reads the assignees whose authority covers the task: the
