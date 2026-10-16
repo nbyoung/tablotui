@@ -131,12 +131,14 @@
         {
           "key": "overloaded",
           "symbol": "🪫",
-          "synopsis": "The assigned resource is overloaded"
+          "synopsis": "The assigned resource is overloaded",
+          "reserved": false
         },
         {
           "key": "blocked",
           "symbol": "⛔",
-          "synopsis": "An external resource is unavailable"
+          "synopsis": "An external resource is unavailable",
+          "reserved": false
         },
         {
           "key": "review",
@@ -150,31 +152,31 @@
           "key": "person",
           "symbol": "🧑",
           "meaning": "A person contributes",
-          "junction": "Plain; the contributor is a person"
+          "junction": "plain"
         },
         {
           "key": "agent",
           "symbol": "🤖",
           "meaning": "An agent contributes",
-          "junction": "Plain; the junction states a `model`"
+          "junction": "plain"
         },
         {
           "key": "reviewer",
           "symbol": "👀",
           "meaning": "A reviewer accepts",
-          "junction": "Plain; the reviewer accepts the work at the gate"
+          "junction": "plain"
         },
         {
           "key": "subproject",
           "symbol": "🪆",
           "meaning": "A subproject does the work",
-          "junction": "Recursive; another Tableaux project does the work"
+          "junction": "recursive"
         },
         {
           "key": "exempt",
           "symbol": "—",
           "meaning": "The gate does not apply",
-          "junction": "Not applicable; the entry exempts the task from the gate"
+          "junction": "not_applicable"
         }
       ]
     },
@@ -182,10 +184,36 @@
       "id": "5fe3",
       "title": "HTML views"
     },
-    "lines": [],
     "events": 0,
     "commits": 0,
-    "kinds": []
+    "kinds": [
+      {
+        "kind": "task",
+        "count": 0
+      },
+      {
+        "kind": "authorised",
+        "count": 0
+      },
+      {
+        "kind": "status",
+        "count": 0
+      },
+      {
+        "kind": "reaffirmed",
+        "count": 0
+      },
+      {
+        "kind": "reviewed",
+        "count": 0
+      },
+      {
+        "kind": "pin",
+        "count": 0
+      }
+    ],
+    "days": [],
+    "lines": []
   },
   "diagnostics": []
 }

@@ -220,15 +220,14 @@ type Origin struct {
 
 // Commit is a Git fact.
 type Commit struct {
-	Hash          string   `json:"hash"`
-	Subject       string   `json:"subject"`
-	Date          string   `json:"date"` // author date
-	Author        Person   `json:"author"`
-	Committer     Person   `json:"committer"`
-	AuthorTime    string   `json:"author_time"` // RFC 3339 with offset
-	CommitterTime string   `json:"committer_time"`
-	Trailers      []string `json:"trailers"`
-	Files         []File   `json:"files"`
+	Hash       string   `json:"hash"`
+	Subject    string   `json:"subject"`
+	Date       string   `json:"date"` // author date
+	Author     Person   `json:"author"`
+	Committer  Person   `json:"committer"`
+	AuthorTime string   `json:"author_time"` // RFC 3339 with the author's offset
+	Trailers   []string `json:"trailers"`
+	Files      []File   `json:"files"`
 }
 
 // File is a path a commit changes; Change is added, changed, removed or pin.

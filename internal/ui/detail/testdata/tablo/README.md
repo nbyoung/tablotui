@@ -14,6 +14,12 @@ envelope: the view of the corpus entry `weather-station` at `main`.
 | `queue-ada.glance.json` | `queue` | task `a1c0`, person ada@example.org |
 | `queue-dan.glance.json` | `queue` | task `a1c0`, person dan@example.org |
 | `blockage.detail.json` | `blockage` | task `a1c0` |
+| `history.glance.json` | `history` | none: the root |
+| `history-4e2b.detail.json` | `history` | task `4e2b` |
+| `history-c07d.provenance.json` | `history` | task `c07d` |
+
+The three history files are also the golden files of tablo's design
+`8ed1`, under `design/8ed1/golden/`, byte for byte.
 
 `TestTabloGoldens` in `tablo_test.go` wraps each file in the envelope that
 tablo's own schema test builds around its golden data (the source `main`

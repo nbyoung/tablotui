@@ -131,12 +131,14 @@
         {
           "key": "overloaded",
           "symbol": "🪫",
-          "synopsis": "The assigned resource is overloaded"
+          "synopsis": "The assigned resource is overloaded",
+          "reserved": false
         },
         {
           "key": "blocked",
           "symbol": "⛔",
-          "synopsis": "An external resource is unavailable"
+          "synopsis": "An external resource is unavailable",
+          "reserved": false
         },
         {
           "key": "review",
@@ -150,31 +152,31 @@
           "key": "person",
           "symbol": "🧑",
           "meaning": "A person contributes",
-          "junction": "Plain; the contributor is a person"
+          "junction": "plain"
         },
         {
           "key": "agent",
           "symbol": "🤖",
           "meaning": "An agent contributes",
-          "junction": "Plain; the junction states a `model`"
+          "junction": "plain"
         },
         {
           "key": "reviewer",
           "symbol": "👀",
           "meaning": "A reviewer accepts",
-          "junction": "Plain; the reviewer accepts the work at the gate"
+          "junction": "plain"
         },
         {
           "key": "subproject",
           "symbol": "🪆",
           "meaning": "A subproject does the work",
-          "junction": "Recursive; another Tableaux project does the work"
+          "junction": "recursive"
         },
         {
           "key": "exempt",
           "symbol": "—",
           "meaning": "The gate does not apply",
-          "junction": "Not applicable; the entry exempts the task from the gate"
+          "junction": "not_applicable"
         }
       ]
     },
@@ -182,179 +184,6 @@
       "id": "e9c6",
       "title": "Abstract views"
     },
-    "lines": [
-      {
-        "date": "2026-09-29",
-        "by": "nbyoung@nbyoung.com",
-        "kinds": [
-          "task",
-          "authorised"
-        ],
-        "task": {
-          "id": "e9c6",
-          "title": "Abstract views"
-        },
-        "after": {
-          "gate": "undefined",
-          "state": "undefined",
-          "reason": "",
-          "note": ""
-        },
-        "effect": "authorised-commit",
-        "reading": "exempt"
-      },
-      {
-        "date": "2026-09-29",
-        "by": "noreply@anthropic.com",
-        "kinds": [
-          "status"
-        ],
-        "task": {
-          "id": "e9c6",
-          "title": "Abstract views"
-        },
-        "status": {
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "",
-          "note": "Design waits for Roles (c2ad) at design"
-        },
-        "after": {
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "",
-          "note": ""
-        },
-        "reading": "exempt",
-        "committer": "nbyoung@nbyoung.com"
-      },
-      {
-        "date": "2026-09-29",
-        "by": "noreply@anthropic.com",
-        "kinds": [
-          "reviewed"
-        ],
-        "task": {
-          "id": "e9c6",
-          "title": "Abstract views"
-        },
-        "gate": "defined",
-        "after": {
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "",
-          "note": ""
-        },
-        "unchanged": true,
-        "effect": "stands",
-        "reading": "exempt",
-        "committer": "nbyoung@nbyoung.com"
-      },
-      {
-        "date": "2026-09-30",
-        "by": "noreply@anthropic.com",
-        "kinds": [
-          "status"
-        ],
-        "task": {
-          "id": "e9c6",
-          "title": "Abstract views"
-        },
-        "status": {
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "review",
-          "note": "The VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd awaits the owner's review at the design gate"
-        },
-        "after": {
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "review",
-          "note": ""
-        },
-        "effect": "handoff",
-        "model": "claude-fable-5-1",
-        "stated": "claude-fable",
-        "stated_gate": "design",
-        "reading": "agrees"
-      },
-      {
-        "date": "2026-09-30",
-        "by": "noreply@anthropic.com",
-        "kinds": [
-          "status"
-        ],
-        "task": {
-          "id": "e9c6",
-          "title": "Abstract views"
-        },
-        "status": {
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "review",
-          "note": "The revised VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd awaits the owner's acceptance at the design gate"
-        },
-        "after": {
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "review",
-          "note": ""
-        },
-        "effect": "handoff",
-        "model": "claude-fable-5-1",
-        "stated": "claude-fable",
-        "stated_gate": "design",
-        "reading": "agrees"
-      },
-      {
-        "date": "2026-09-30",
-        "by": "nbyoung@nbyoung.com",
-        "kinds": [
-          "reviewed"
-        ],
-        "task": {
-          "id": "e9c6",
-          "title": "Abstract views"
-        },
-        "gate": "design",
-        "after": {
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "review",
-          "note": ""
-        },
-        "unchanged": true,
-        "effect": "accepts",
-        "model": "claude-opus-5-5"
-      },
-      {
-        "date": "2026-09-30",
-        "by": "noreply@anthropic.com",
-        "kinds": [
-          "status"
-        ],
-        "task": {
-          "id": "e9c6",
-          "title": "Abstract views"
-        },
-        "status": {
-          "gate": "design",
-          "state": "nominal",
-          "reason": "",
-          "note": "VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may start, and implementation puts the text in place"
-        },
-        "after": {
-          "gate": "design",
-          "state": "nominal",
-          "reason": "",
-          "note": ""
-        },
-        "model": "claude-fable-5-1",
-        "stated": "claude-fable",
-        "stated_gate": "design",
-        "reading": "agrees"
-      }
-    ],
     "events": 8,
     "commits": 7,
     "kinds": [
@@ -381,6 +210,380 @@
       {
         "kind": "pin",
         "count": 0
+      }
+    ],
+    "days": [
+      {
+        "date": "2026-09-29",
+        "events": 4,
+        "commits": 3,
+        "kinds": [
+          {
+            "kind": "task",
+            "count": 1
+          },
+          {
+            "kind": "authorised",
+            "count": 1
+          },
+          {
+            "kind": "status",
+            "count": 1
+          },
+          {
+            "kind": "reviewed",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "date": "2026-09-30",
+        "events": 4,
+        "commits": 4,
+        "kinds": [
+          {
+            "kind": "status",
+            "count": 3
+          },
+          {
+            "kind": "reviewed",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "lines": [
+      {
+        "task": {
+          "id": "e9c6",
+          "title": "Abstract views"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": null
+          },
+          {
+            "date": "2026-09-29",
+            "commit": "",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "authorised",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": {
+          "commit": "",
+          "gate": "",
+          "stated": "",
+          "trailer": "",
+          "reading": "exempt"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "e9c6",
+          "title": "Abstract views"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "Design waits for Roles (c2ad) at design"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "",
+        "check": {
+          "commit": "",
+          "gate": "",
+          "stated": "",
+          "trailer": "",
+          "reading": "exempt"
+        },
+        "committer": "nbyoung@nbyoung.com"
+      },
+      {
+        "task": {
+          "id": "e9c6",
+          "title": "Abstract views"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "defined",
+            "pin": null,
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "stands",
+        "model": "",
+        "check": {
+          "commit": "",
+          "gate": "",
+          "stated": "",
+          "trailer": "",
+          "reading": "exempt"
+        },
+        "committer": "nbyoung@nbyoung.com"
+      },
+      {
+        "task": {
+          "id": "e9c6",
+          "title": "Abstract views"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "review",
+              "note": "The VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd awaits the owner's review at the design gate"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "review",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "handoff",
+        "model": "claude-fable-5-1",
+        "check": {
+          "commit": "",
+          "gate": "design",
+          "stated": "claude-fable",
+          "trailer": "claude-fable-5-1",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "e9c6",
+          "title": "Abstract views"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "review",
+              "note": "The revised VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd awaits the owner's acceptance at the design gate"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "review",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "handoff",
+        "model": "claude-fable-5-1",
+        "check": {
+          "commit": "",
+          "gate": "design",
+          "stated": "claude-fable",
+          "trailer": "claude-fable-5-1",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "e9c6",
+          "title": "Abstract views"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "design",
+            "pin": null,
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "review",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "claude-opus-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "e9c6",
+          "title": "Abstract views"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "design",
+              "state": "nominal",
+              "reason": "",
+              "note": "VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may start, and implementation puts the text in place"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "design",
+          "state": "nominal",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-fable-5-1",
+        "check": {
+          "commit": "",
+          "gate": "design",
+          "stated": "claude-fable",
+          "trailer": "claude-fable-5-1",
+          "reading": "agrees"
+        },
+        "committer": ""
       }
     ]
   },

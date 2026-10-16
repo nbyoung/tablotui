@@ -131,12 +131,14 @@
         {
           "key": "overloaded",
           "symbol": "🪫",
-          "synopsis": "The assigned resource is overloaded"
+          "synopsis": "The assigned resource is overloaded",
+          "reserved": false
         },
         {
           "key": "blocked",
           "symbol": "⛔",
-          "synopsis": "An external resource is unavailable"
+          "synopsis": "An external resource is unavailable",
+          "reserved": false
         },
         {
           "key": "review",
@@ -150,31 +152,31 @@
           "key": "person",
           "symbol": "🧑",
           "meaning": "A person contributes",
-          "junction": "Plain; the contributor is a person"
+          "junction": "plain"
         },
         {
           "key": "agent",
           "symbol": "🤖",
           "meaning": "An agent contributes",
-          "junction": "Plain; the junction states a `model`"
+          "junction": "plain"
         },
         {
           "key": "reviewer",
           "symbol": "👀",
           "meaning": "A reviewer accepts",
-          "junction": "Plain; the reviewer accepts the work at the gate"
+          "junction": "plain"
         },
         {
           "key": "subproject",
           "symbol": "🪆",
           "meaning": "A subproject does the work",
-          "junction": "Recursive; another Tableaux project does the work"
+          "junction": "recursive"
         },
         {
           "key": "exempt",
           "symbol": "—",
           "meaning": "The gate does not apply",
-          "junction": "Not applicable; the entry exempts the task from the gate"
+          "junction": "not_applicable"
         }
       ]
     },
@@ -210,136 +212,307 @@
         "count": 3
       }
     ],
-    "lines": [
+    "days": [
       {
         "date": "2026-09-29",
-        "by": "nbyoung@nbyoung.com",
+        "events": 1,
+        "commits": 1,
         "kinds": [
-          "pin"
-        ],
-        "task": {
-          "id": "595e",
-          "title": "tableaud: local daemon and HTML"
-        },
-        "pin": {
-          "url": "subprojects/tableaud",
-          "old": "",
-          "new": "2061a7f0"
-        },
-        "after": {
-          "gate": "undefined",
-          "state": "undefined"
-        }
+          {
+            "kind": "pin",
+            "count": 1
+          }
+        ]
       },
       {
         "date": "2026-09-30",
-        "by": "noreply@anthropic.com",
+        "events": 1,
+        "commits": 1,
         "kinds": [
-          "status"
-        ],
-        "task": {
-          "id": "595e",
-          "title": "tableaud: local daemon and HTML"
-        },
-        "status": {
-          "gate": "defined",
-          "state": "",
-          "reason": "",
-          "note": ""
-        },
-        "after": {
-          "gate": "defined",
-          "state": ""
-        },
-        "model": "claude-haiku-4-5-20251001",
-        "stated": "claude-haiku",
-        "stated_gate": "defined",
-        "reading": "agrees"
+          {
+            "kind": "status",
+            "count": 1
+          }
+        ]
       },
       {
         "date": "2026-10-02",
-        "by": "nbyoung@nbyoung.com",
+        "events": 1,
+        "commits": 1,
         "kinds": [
-          "pin"
-        ],
+          {
+            "kind": "pin",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "events": 1,
+        "commits": 1,
+        "kinds": [
+          {
+            "kind": "pin",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "lines": [
+      {
         "task": {
           "id": "595e",
           "title": "tableaud: local daemon and HTML"
         },
-        "pin": {
-          "url": "subprojects/tableaud",
-          "old": "2061a7f0",
-          "new": "b06cad01"
-        },
-        "after": {
-          "gate": "defined",
-          "state": "nominal"
-        },
-        "subject_after": {
-          "gate": "defined",
-          "state": "nominal"
-        },
-        "subproject": {
-          "url": "subprojects/tableaud",
-          "events": 2,
-          "commits": 2,
-          "lines": [
-            {
-              "date": "2026-10-01",
-              "by": "noreply@anthropic.com",
-              "kinds": [
-                "status"
-              ],
-              "task": {
-                "id": "5a2f",
-                "title": "Bootstrap"
-              },
-              "status": {
-                "gate": "function",
-                "state": "nominal"
-              },
-              "model": "claude-sonnet-5-5"
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "",
+              "new": "2061a7f0"
             },
-            {
-              "date": "2026-10-02",
-              "by": "noreply@anthropic.com",
-              "kinds": [
-                "status"
-              ],
-              "task": {
-                "id": "49ce",
-                "title": "Server"
-              },
-              "status": {
-                "gate": "function",
-                "state": "nominal"
-              },
-              "model": "claude-sonnet-5-5"
-            }
-          ]
-        }
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "",
+        "check": null,
+        "committer": ""
       },
       {
-        "date": "2026-10-05",
-        "by": "nbyoung@nbyoung.com",
-        "kinds": [
-          "pin"
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "",
+              "reason": "",
+              "note": ""
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": null
+          }
         ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-haiku-4-5-20251001",
+        "check": {
+          "commit": "",
+          "gate": "defined",
+          "stated": "claude-haiku",
+          "trailer": "claude-haiku-4-5-20251001",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-01",
+            "commit": "",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "function",
+              "state": "nominal",
+              "reason": "",
+              "note": ""
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "5a2f"
+            }
+          }
+        ],
+        "after": null,
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-02",
+            "commit": "",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "function",
+              "state": "nominal",
+              "reason": "",
+              "note": ""
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "49ce"
+            }
+          }
+        ],
+        "after": null,
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-02",
+            "commit": "",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "2061a7f0",
+              "new": "b06cad01"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "effect": "",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
         "task": {
           "id": "595e",
           "title": "tableaud: local daemon and HTML"
         },
         "proposal": true,
-        "pin": {
-          "url": "subprojects/tableaud",
-          "old": "cffbfa6a",
-          "new": "e6ec4ecc"
-        },
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "cffbfa6a",
+              "new": "e6ec4ecc"
+            },
+            "subproject": null
+          }
+        ],
         "after": {
+          "kind": "recorded",
           "gate": "defined",
-          "state": "nominal"
+          "state": "nominal",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
         },
-        "effect": "moved"
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "moved",
+        "model": "",
+        "check": null,
+        "committer": ""
       }
     ]
   },

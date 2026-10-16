@@ -31,6 +31,9 @@ var tabloGoldens = []tabloGolden{
 	{"queue", "queue-ada.glance.json", map[string]any{"task": "a1c0", "person": "ada@example.org", "brief": nil}},
 	{"queue", "queue-dan.glance.json", map[string]any{"task": "a1c0", "person": "dan@example.org", "brief": nil}},
 	{"blockage", "blockage.detail.json", map[string]any{"task": "a1c0", "person": nil}},
+	{"history", "history.glance.json", map[string]any{"task": nil, "person": nil}},
+	{"history", "history-4e2b.detail.json", map[string]any{"task": "4e2b", "person": nil}},
+	{"history", "history-c07d.provenance.json", map[string]any{"task": "c07d", "person": nil}},
 }
 
 // level is the level the file's name ends in.
@@ -133,7 +136,11 @@ func (s goldenSource) mentions(t *testing.T) []string {
 			t.Fatal(err)
 		}
 		for _, l := range v.Lines {
-			ids = append(ids, l.Task.ID)
+			if s := l.Taken(); s != nil {
+				ids = append(ids, s.Task)
+			} else if l.Task.ID != v.Subject.ID {
+				ids = append(ids, l.Task.ID)
+			}
 		}
 	}
 	return ids

@@ -38,12 +38,10 @@
   Commit: 879b4471c0ffee00d15ea5e0fabc0de0feedbeef
   Subject: Advance the abstract views task to its design gate
   Author: Claude Fable 5.1 <noreply@anthropic.com>, 2026-09-30T16:02:11-04:00
-  Committer: Claude Fable 5.1 <noreply@anthropic.com>,
-    2026-09-30T16:02:11-04:00
+  Committer: Claude Fable 5.1 <noreply@anthropic.com>
   Trailers: Model: claude-fable-5-1, Co-Authored-By: Claude Fable 5.1
     <noreply@anthropic.com>
   Files: .tableaux/status/e9c6.yaml (changed)
-    git show --stat 879b447 # the commit
 
 Commands
   git log --format='%h %as %ae %s' 3cdae52 -- .tableaux/tasks/e9c6.yaml
