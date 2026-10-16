@@ -68,11 +68,14 @@ func TestBanner(t *testing.T) {
 	}
 }
 
-const tableau = `{"view":"tableau","project":"Fixture project","ref":"main","commit":"abc1234","date":"2026-10-06",
-"window":1,"gates":[{"key":"defined","symbol":"📝","name":"Defined","window":true,"count":1},
-{"key":"design","symbol":"📐","name":"Design","window":true,"count":0}],
-"rows":[{"id":"aaaa","title":"Only task","depth":0,"parent":false,"status":{"gate":"defined","state":"nominal"},
-"cells":[{"kind":"status","symbols":"🟢"},{"kind":"marks","symbols":"🤖"}]}]}`
+const tableau = `{"schema":"tablo/1","command":"tableau",
+"source":{"ref":"main","commit":"abc1234","date":"2026-10-06"},"project":{"root":"aaaa","title":"Fixture project"},
+"viewer":{"email":null,"roles":["observer"]},"params":{"window":1,"level":"detail"},
+"data":{"legend":{"gates":[{"key":"defined","symbol":"📝","name":"Defined"},{"key":"design","symbol":"📐","name":"Design"}],
+"states":[{"key":"nominal","symbol":"🟢"}],"marks":[{"key":"agent","symbol":"🤖"}]},
+"columns":[{"gates":["defined"],"folded":false,"count":1,"by_gate":[1]},{"gates":["design"],"folded":false,"count":0,"by_gate":[0]}],
+"rows":[{"id":"aaaa","title":"Only task","depth":0,"parent":false,"status":{"kind":"recorded","gate":"defined","state":"nominal"},
+"cells":[{"kind":"status","state":"nominal"},{"kind":"marks","marks":["agent"]}]}]}}`
 
 // harness replaces the program with one that hands the model to onRun while
 // the program would run, as the context is live only then.

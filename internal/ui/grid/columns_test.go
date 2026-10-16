@@ -18,9 +18,6 @@ import (
 func TestColumns(t *testing.T) {
 	base := load(t, "tableau.json")
 	counts := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	for i := range base.Gates {
-		base.Gates[i].Count = counts[i]
-	}
 	window := func(on ...int) []bool {
 		w := make([]bool, 10)
 		for _, i := range on {
@@ -60,11 +57,7 @@ func TestColumns(t *testing.T) {
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			tb := base
-			tb.Gates = append([]view.Gate(nil), base.Gates...)
-			for i := range tb.Gates {
-				tb.Gates[i].Window = c.window[i]
-			}
+			tb := windowed(base, c.window, counts)
 			mt := buildMetrics(&tb, c.choices, ui.Measure{})
 			if len(mt.cols) != len(c.want) {
 				t.Fatalf("%d columns, want %d: %+v", len(mt.cols), len(c.want), mt.cols)
@@ -111,11 +104,11 @@ func TestLabel(t *testing.T) {
 		below  int
 		want   string
 	}{
-		{view.Row{Title: "Leaf", Depth: 2}, false, 0, "      Leaf"},
-		{view.Row{Title: "Open", Depth: 1, Parent: true}, false, 4, "  ▾ Open"},
-		{view.Row{Title: "Shut", Depth: 1, Parent: true}, true, 31, "  ▸ Shut (31)"},
-		{view.Row{Title: "Spine", Depth: 0, Parent: true, Label: "spine"}, true, 2, "▸ Spine · spine (2)"},
-		{view.Row{Title: "Kin", Depth: 1, Label: "sibling"}, false, 0, "    Kin · sibling"},
+		{view.Row{TaskRef: view.TaskRef{Title: "Leaf"}, Depth: 2}, false, 0, "      Leaf"},
+		{view.Row{TaskRef: view.TaskRef{Title: "Open"}, Depth: 1, Parent: true}, false, 4, "  ▾ Open"},
+		{view.Row{TaskRef: view.TaskRef{Title: "Shut"}, Depth: 1, Parent: true}, true, 31, "  ▸ Shut (31)"},
+		{view.Row{TaskRef: view.TaskRef{Title: "Spine"}, Depth: 0, Parent: true, Label: "spine"}, true, 2, "▸ Spine · spine (2)"},
+		{view.Row{TaskRef: view.TaskRef{Title: "Kin"}, Depth: 1, Label: "sibling"}, false, 0, "    Kin · sibling"},
 	}
 	for _, c := range cases {
 		if got := label(c.row, c.folded, c.below); got != c.want {

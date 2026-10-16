@@ -54,11 +54,11 @@ func TestWindowLimits(t *testing.T) {
 	base := all.fn
 	all.fn = func(q source.Request) (view.Tableau, error) {
 		tb, _ := base(q)
-		tb.Gates = append([]view.Gate(nil), tb.Gates...)
-		for i := range tb.Gates {
-			tb.Gates[i].Window = true
+		all := make([]bool, len(tb.Legend.Gates))
+		for i := range all {
+			all[i] = true
 		}
-		return tb, nil
+		return windowed(tb, all, make([]int, len(all))), nil
 	}
 	r = newRig(t, all, "", GlanceStart(), 100, 20).keys("w")
 	if len(all.reqs) != 1 || !strings.Contains(r.status(), "every gate") {
@@ -71,7 +71,7 @@ func TestAnOlderSequenceChangesNothing(t *testing.T) {
 	r := newRig(t, src, "", GlanceStart(), 100, 20).keys("w")
 	before := r.screen()
 	other := load(t, "tableau-historical.json")
-	other.Project = "Other"
+	other.Project.Title = "Other"
 	r.send(ui.LoadedMsg{Pane: ID, Seq: 1, Value: other})
 	if r.screen() != before {
 		t.Error("a LoadedMsg of an older Seq changed the screen")

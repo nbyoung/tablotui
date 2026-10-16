@@ -23,8 +23,8 @@ func TestDecodeFixtures(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			if tb.Project != "Tableaux tooling" || len(tb.Gates) != 10 {
-				t.Errorf("project %q, %d gates", tb.Project, len(tb.Gates))
+			if tb.Project.Title != "Tableaux tooling" || len(tb.Legend.Gates) != 10 || tb.Source.Ref != "main" {
+				t.Errorf("project %q, %d gates, ref %q", tb.Project.Title, len(tb.Legend.Gates), tb.Source.Ref)
 			}
 		})
 	}
@@ -40,21 +40,32 @@ func TestDecodeFixtureContent(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(tb.Rows) != 37 || tb.Rows[0].ID != "437e" || tb.Rows[0].Status.From.Kind != "rollup" {
+	if tb.Command != "tableau" || tb.Params.Level != "provenance" || tb.Params.Window == nil || *tb.Params.Window != 1 {
+		t.Errorf("head = %q, %+v", tb.Command, tb.Params)
+	}
+	if len(tb.Rows) != 37 || tb.Rows[0].ID != "437e" || tb.Rows[0].Status.From.Kind != "rollup" || tb.Rows[0].Leaf.Task.ID != "99f0" {
 		t.Errorf("rows = %d, first %+v", len(tb.Rows), tb.Rows[0])
 	}
-	if c := tb.Rows[2].Cells[5]; c.Kind != "status" || c.Symbols != "🟢" || len(c.Facts) != 4 {
+	if c := tb.Rows[2].Cells[5]; c.Kind != "status" || c.State != "nominal" || tb.Rows[2].StatusCommit == nil {
 		t.Errorf("cell = %+v", c)
+	}
+	if c := tb.Columns[0]; !c.Folded || len(c.Gates) != 1 || c.Gates[0] != "undefined" {
+		t.Errorf("first column = %+v", c)
 	}
 }
 
-const gates = `"gates": [{"key":"a","symbol":"A","name":"A","window":true,"count":0},{"key":"b","symbol":"B","name":"B","window":true,"count":0}]`
+// wrap wraps data in an envelope of the tableau.
+func wrap(data string) string {
+	return `{"schema":"tablo/1","command":"tableau","params":{"window":1},"data":` + data + `}`
+}
+
+const legend = `"legend":{"gates":[{"key":"a","symbol":"A"},{"key":"b","symbol":"B"}]},"columns":[{"gates":["a"],"by_gate":[0]},{"gates":["b"],"by_gate":[0]}]`
 
 func row(id string, depth int, cells string) string {
 	return `{"id":"` + id + `","title":"t","depth":` + string(rune('0'+depth)) + `,"parent":false,"label":"","status":{},"cells":[` + cells + `]}`
 }
 
-const okCells = `{"kind":"status","symbols":"x"},{"kind":"marks","symbols":"y"}`
+const okCells = `{"kind":"status","state":"x"},{"kind":"marks","marks":["y"]}`
 
 func TestDecodeRefusals(t *testing.T) {
 	cases := []struct {
@@ -62,11 +73,17 @@ func TestDecodeRefusals(t *testing.T) {
 	}{
 		{"malformed", `{`, "tableau"},
 		{"trailing data", `{} {}`, "after"},
-		{"too few cells", `{` + gates + `,"rows":[` + row("r1", 0, `{"kind":"status","symbols":"x"}`) + `]}`, "1 cells for 2 gates"},
-		{"too many cells", `{` + gates + `,"rows":[` + row("r1", 0, okCells+`,{"kind":"exempt"}`) + `]}`, "3 cells for 2 gates"},
-		{"depth rises by two", `{` + gates + `,"rows":[` + row("r1", 0, okCells) + `,` + row("r2", 2, okCells) + `]}`, "rises from depth 0 to 2"},
-		{"negative depth", `{` + gates + `,"rows":[{"id":"r1","depth":-1,"cells":[` + okCells + `]}]}`, "depth -1"},
-		{"unknown kind", `{` + gates + `,"rows":[` + row("r1", 0, `{"kind":"status","symbols":"x"},{"kind":"blank"}`) + `]}`, `unknown kind "blank"`},
+		{"another command", `{"command":"queue","data":{}}`, `the command "queue"`},
+		{"no data", `{"command":"context","data":null}`, "no data"},
+		{"absent data", `{"command":"context"}`, "no data"},
+		{"too few cells", wrap(`{` + legend + `,"rows":[` + row("r1", 0, `{"kind":"status"}`) + `]}`), "1 cells for 2 gates"},
+		{"too many cells", wrap(`{` + legend + `,"rows":[` + row("r1", 0, okCells+`,{"kind":"exempt"}`) + `]}`), "3 cells for 2 gates"},
+		{"depth rises by two", wrap(`{` + legend + `,"rows":[` + row("r1", 0, okCells) + `,` + row("r2", 2, okCells) + `]}`), "rises from depth 0 to 2"},
+		{"negative depth", wrap(`{` + legend + `,"rows":[{"id":"r1","depth":-1,"cells":[` + okCells + `]}]}`), "depth -1"},
+		{"unknown kind", wrap(`{` + legend + `,"rows":[` + row("r1", 0, `{"kind":"status"},{"kind":"historical"}`) + `]}`), `unknown kind "historical"`},
+		{"a column out of order", wrap(`{"legend":{"gates":[{"key":"a"},{"key":"b"}]},"columns":[{"gates":["b"]},{"gates":["a"]}],"rows":[]}`), `gate "b" out of the legend's order`},
+		{"a gate no column names", wrap(`{"legend":{"gates":[{"key":"a"},{"key":"b"}]},"columns":[{"gates":["a"]}],"rows":[]}`), "1 of 2 gates"},
+		{"an empty column", wrap(`{"legend":{"gates":[{"key":"a"}]},"columns":[{"gates":[]}],"rows":[]}`), "names no gate"},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
@@ -79,7 +96,7 @@ func TestDecodeRefusals(t *testing.T) {
 }
 
 func TestDecodeAcceptsDepthFallsAndRisesByOne(t *testing.T) {
-	in := `{` + gates + `,"rows":[` + row("r1", 0, okCells) + `,` + row("r2", 1, okCells) + `,` + row("r3", 2, okCells) + `,` + row("r4", 0, okCells) + `]}`
+	in := wrap(`{` + legend + `,"rows":[` + row("r1", 0, okCells) + `,` + row("r2", 1, okCells) + `,` + row("r3", 2, okCells) + `,` + row("r4", 0, okCells) + `]}`)
 	tb, err := Decode(strings.NewReader(in))
 	if err != nil || len(tb.Rows) != 4 {
 		t.Errorf("Decode = %d rows, %v", len(tb.Rows), err)

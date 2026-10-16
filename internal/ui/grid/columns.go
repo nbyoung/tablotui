@@ -29,26 +29,67 @@ type column struct {
 	count  int // the sum of the run's counts, for a folded column
 }
 
-// metrics holds what the grid derives from the data, the choices and the
+// metrics holds what the grid reads from the data, the choices and the
 // measure, and so recomputes only when one of them changes.
 type metrics struct {
 	measure ui.Measure
 	cols    []column
 	idW     int
-	natural int   // the widest label any row can have, with its count
-	below   []int // the rows folded beneath each row
+	natural int    // the widest label any row can have, with its count
+	below   []int  // the rows folded beneath each row
+	window  []bool // per gate of the legend: the window shows it, as tablo's columns state
+	count   []int  // per gate of the legend: its count, as tablo's columns state
+	symbols symbols
 }
 
-// shows reports whether the column of gate g draws: the viewer's choice
+// symbols maps the keys of the legend to their symbols.
+type symbols struct{ states, reasons, marks map[string]string }
+
+func newSymbols(l view.Legend) symbols {
+	s := symbols{states: map[string]string{}, reasons: map[string]string{}, marks: map[string]string{}}
+	for _, x := range l.States {
+		s.states[x.Key] = x.Symbol
+	}
+	for _, x := range l.Reasons {
+		s.reasons[x.Key] = x.Symbol
+	}
+	for _, x := range l.Marks {
+		s.marks[x.Key] = x.Symbol
+	}
+	return s
+}
+
+// windowOf reads, per gate of the legend, whether the window shows it and
+// its count: a gate shows when its column is not folded.
+func windowOf(t *view.Tableau) (window []bool, count []int) {
+	window = make([]bool, len(t.Legend.Gates))
+	count = make([]int, len(t.Legend.Gates))
+	k := 0
+	for _, c := range t.Columns {
+		for i := range c.Gates {
+			if k >= len(window) {
+				return window, count
+			}
+			window[k] = !c.Folded
+			if i < len(c.ByGate) {
+				count[k] = c.ByGate[i]
+			}
+			k++
+		}
+	}
+	return window, count
+}
+
+// shows reports whether the column of a gate draws: the viewer's choice
 // decides, and a gate with no choice follows the window.
-func shows(choices map[string]settings.Choice, g view.Gate) bool {
-	switch choices[g.Key] {
+func shows(choices map[string]settings.Choice, key string, window bool) bool {
+	switch choices[key] {
 	case settings.Show:
 		return true
 	case settings.Hide:
 		return false
 	}
-	return g.Window
+	return window
 }
 
 // descendants counts, for each row, the rows beneath it.
@@ -86,17 +127,20 @@ func label(r view.Row, folded bool, below int) string {
 }
 
 func buildMetrics(t *view.Tableau, choices map[string]settings.Choice, m ui.Measure) *metrics {
-	mt := &metrics{measure: m, idW: 2, natural: minTask, below: descendants(t.Rows)}
+	mt := &metrics{measure: m, idW: 2, natural: minTask, below: descendants(t.Rows), symbols: newSymbols(t.Legend)}
+	mt.window, mt.count = windowOf(t)
 	for i, r := range t.Rows {
 		mt.idW = max(mt.idW, m.Width(r.ID))
 		mt.natural = max(mt.natural, m.Width(label(r, r.Parent, mt.below[i])))
 	}
-	for i := 0; i < len(t.Gates); {
-		if shows(choices, t.Gates[i]) {
-			c := column{gates: []int{i}, header: m.Clean(t.Gates[i].Symbol)}
+	gates := t.Legend.Gates
+	show := func(i int) bool { return shows(choices, gates[i].Key, mt.window[i]) }
+	for i := 0; i < len(gates); {
+		if show(i) {
+			c := column{gates: []int{i}, header: m.Clean(gates[i].Symbol)}
 			c.w = max(2, m.Width(c.header))
 			for _, r := range t.Rows {
-				c.w = max(c.w, cellWidth(r.Cells[i], m))
+				c.w = max(c.w, m.Width(mt.cellText(r.Cells[i], m)))
 			}
 			mt.cols = append(mt.cols, c)
 			i++
@@ -104,15 +148,15 @@ func buildMetrics(t *view.Tableau, choices map[string]settings.Choice, m ui.Meas
 		}
 		j := i
 		count := 0
-		for j < len(t.Gates) && !shows(choices, t.Gates[j]) {
-			count += t.Gates[j].Count
+		for j < len(gates) && !show(j) {
+			count += mt.count[j]
 			j++
 		}
 		c := column{folded: true, count: count}
 		for k := i; k < j; k++ {
 			c.gates = append(c.gates, k)
 		}
-		first, last := m.Clean(t.Gates[i].Symbol), m.Clean(t.Gates[j-1].Symbol)
+		first, last := m.Clean(gates[i].Symbol), m.Clean(gates[j-1].Symbol)
 		if j-i == 1 {
 			c.header = fmt.Sprintf("%s ×%d", first, count)
 		} else {
@@ -125,17 +169,42 @@ func buildMetrics(t *view.Tableau, choices map[string]settings.Choice, m ui.Meas
 	return mt
 }
 
-// cellText is the text one gate cell draws: its symbols, in brackets where the
-// person acts.
-func cellText(c view.Cell, m ui.Measure) string {
-	s := m.Clean(c.Symbols)
+// cellText is the text one gate cell draws, by its kind: nothing for empty;
+// the state's symbol and the reason's for a status; the marks' symbols side
+// by side; the exempt mark. A key the legend gives no symbol draws as the
+// key. Brackets enclose a cell where the person acts.
+func (mt *metrics) cellText(c view.Cell, m ui.Measure) string {
+	sym := func(table map[string]string, key string) string {
+		if s := table[key]; s != "" {
+			return s
+		}
+		return key
+	}
+	var s string
+	switch c.Kind {
+	case "status":
+		if c.State != "" {
+			s += sym(mt.symbols.states, c.State)
+		}
+		if c.Reason != "" {
+			s += sym(mt.symbols.reasons, c.Reason)
+		}
+	case "marks":
+		for _, k := range c.Marks {
+			s += sym(mt.symbols.marks, k)
+		}
+	case "exempt":
+		s = mt.symbols.marks["exempt"]
+		if s == "" {
+			s = "—"
+		}
+	}
+	s = m.Clean(s)
 	if c.Acts && s != "" {
 		return "[" + s + "]"
 	}
 	return s
 }
-
-func cellWidth(c view.Cell, m ui.Measure) int { return m.Width(cellText(c, m)) }
 
 // geometry is how the pane places its parts at one size.
 type geometry struct {
@@ -266,11 +335,11 @@ func (g Grid) hide() (Grid, tea.Cmd) {
 	if c == nil || c.folded {
 		return g, notice("the cursor is not on a gate column", false)
 	}
-	gt := g.data.Gates[c.gates[0]]
-	if gt.Window {
-		return g.choose(gt.Key, settings.Hide)
+	i := c.gates[0]
+	if g.m.window[i] {
+		return g.choose(g.data.Legend.Gates[i].Key, settings.Hide)
 	}
-	return g.choose(gt.Key, "")
+	return g.choose(g.data.Legend.Gates[i].Key, "")
 }
 
 // show shows a gate of the folded column at the cursor. It takes the last gate
@@ -286,18 +355,18 @@ func (g Grid) show() (Grid, tea.Cmd) {
 	if g.col == 1 {
 		i = c.gates[len(c.gates)-1]
 	}
-	gt := g.data.Gates[i]
-	if gt.Window {
-		return g.choose(gt.Key, "")
+	key := g.data.Legend.Gates[i].Key
+	if g.m.window[i] {
+		return g.choose(key, "")
 	}
-	return g.choose(gt.Key, settings.Show)
+	return g.choose(key, settings.Show)
 }
 
 // forget returns to the window: it forgets the choice for every gate of the
 // project and keeps the keys of any other project.
 func (g Grid) forget() (Grid, tea.Cmd) {
 	g.choices = maps.Clone(g.choices)
-	for _, gt := range g.data.Gates {
+	for _, gt := range g.data.Legend.Gates {
 		delete(g.choices, gt.Key)
 	}
 	return g.changed()
@@ -306,7 +375,7 @@ func (g Grid) forget() (Grid, tea.Cmd) {
 // changedCount counts the gates of the project that carry a choice.
 func (g Grid) changedCount() int {
 	n := 0
-	for _, gt := range g.data.Gates {
+	for _, gt := range g.data.Legend.Gates {
 		if _, ok := g.choices[gt.Key]; ok {
 			n++
 		}

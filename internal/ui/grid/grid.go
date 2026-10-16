@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"maps"
 	"slices"
+	"strings"
 
 	"charm.land/bubbles/v2/key"
 	tea "charm.land/bubbletea/v2"
@@ -237,7 +238,7 @@ func (g Grid) goTo(msg ui.GotoMsg, c ui.Context) (Grid, tea.Cmd) {
 	}
 	g.sel = msg.Task
 	g = g.settled(c.Width, c.Height, c.Measure)
-	if i := slices.IndexFunc(g.data.Gates, func(gt view.Gate) bool { return gt.Key == msg.Gate }); i >= 0 {
+	if i := slices.IndexFunc(g.data.Legend.Gates, func(gt view.Gate) bool { return gt.Key == msg.Gate }); i >= 0 {
 		for k, col := range g.m.cols {
 			if !col.folded && col.gates[0] == i {
 				g.col = k + 1
@@ -321,7 +322,7 @@ func (g Grid) unfoldMine() int {
 	for i, r := range g.data.Rows {
 		above = above[:min(r.Depth, len(above))]
 		own := r.Label == ""
-		if g.data.View != "context" {
+		if g.data.Command != "context" {
 			own = slices.ContainsFunc(r.Cells, func(c view.Cell) bool { return c.Acts })
 		}
 		if own {
@@ -360,7 +361,7 @@ func survivor(old, rows []view.Row, sel string) string {
 func (g Grid) selection() ui.SelectionMsg {
 	s := ui.SelectionMsg{Task: g.sel}
 	if g.data != nil && g.col >= 1 && g.col <= len(g.m.cols) && !g.m.cols[g.col-1].folded {
-		s.Gate = g.data.Gates[g.m.cols[g.col-1].gates[0]].Key
+		s.Gate = g.data.Legend.Gates[g.m.cols[g.col-1].gates[0]].Key
 	}
 	return s
 }
@@ -496,7 +497,7 @@ func (g Grid) key(k tea.KeyPressMsg, c ui.Context) (Grid, tea.Cmd) {
 	case key.Matches(k, km.Window):
 		return g.forget()
 	case key.Matches(k, km.Wider):
-		if g.data != nil && !slices.ContainsFunc(g.data.Gates, func(gt view.Gate) bool { return !gt.Window }) {
+		if !slices.Contains(g.m.window, false) {
 			return g, notice("the window already shows every gate", false)
 		}
 		g.req.Window++
@@ -543,18 +544,34 @@ func (g Grid) toggle() Grid {
 	return g
 }
 
+// short is the first seven characters of a commit hash.
+func short(hash string) string {
+	if len(hash) > 7 {
+		return hash[:7]
+	}
+	return hash
+}
+
 // Headline implements ui.Headliner: the context line.
 func (g Grid) Headline(c ui.Context) string {
 	t := g.data
 	if t == nil {
 		return ""
 	}
-	s := fmt.Sprintf("%s · %s at %s, %s", t.Project, t.Ref, t.Commit, t.Date)
-	switch {
-	case t.Viewer != "" && t.Role != "":
-		s += fmt.Sprintf(" · viewer %s, %s", t.Viewer, t.Role)
-	case t.Viewer != "":
-		s += " · viewer " + t.Viewer
+	// A bare tree has no commit and no date, and a broken tree no project.
+	ref := t.Source.Ref
+	if c := short(t.Source.Commit); c != "" {
+		ref += " at " + c
+	}
+	if t.Source.Date != "" {
+		ref += ", " + t.Source.Date
+	}
+	s := strings.Join(nonEmpty(t.Project.Title, ref), " · ")
+	switch v, role := t.Viewer.Email, t.Params.Role; {
+	case v != "" && role != "":
+		s += fmt.Sprintf(" · viewer %s, %s", v, role)
+	case v != "":
+		s += " · viewer " + v
 	}
 	return s
 }
