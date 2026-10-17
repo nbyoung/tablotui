@@ -128,15 +128,8 @@ func (t *Tablo) view(ctx context.Context, v tablo.View, p tablo.Params) ([]byte,
 // error diagnostic of the project comes beside the view as a
 // *DiagnosticError.
 func (t *Tablo) Tableau(ctx context.Context, r Request) (view.Tableau, error) {
-	v := tablo.Tableau
-	if r.View != "" {
-		v = tablo.View(r.View)
-	}
-	window := r.Window
-	b, ds, err := t.view(ctx, v, tablo.Params{
-		Viewer: r.Viewer, Role: tablo.Role(r.Role), Level: tablo.Level(r.Level),
-		Person: r.Person, Task: r.Task, Window: &window, Historical: r.Historical,
-	})
+	v, p := tableauOf(r)
+	b, ds, err := t.view(ctx, v, p)
 	if err != nil {
 		return view.Tableau{}, err
 	}
@@ -148,6 +141,19 @@ func (t *Tablo) Tableau(ctx context.Context, r Request) (view.Tableau, error) {
 		return tb, e
 	}
 	return tb, nil
+}
+
+// tableauOf maps a request to the view and tablo's parameters.
+func tableauOf(r Request) (tablo.View, tablo.Params) {
+	v := tablo.Tableau
+	if r.View != "" {
+		v = tablo.View(r.View)
+	}
+	window := r.Window
+	return v, tablo.Params{
+		Viewer: r.Viewer, Role: tablo.Role(r.Role), Level: tablo.Level(r.Level),
+		Person: r.Person, Task: r.Task, Window: &window, Historical: r.Historical,
+	}
 }
 
 // list derives one list view into v. ListRequest maps to tablo's parameters
