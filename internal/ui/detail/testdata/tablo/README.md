@@ -2,8 +2,8 @@
 
 The JSON files here are tablo's golden data of the views the detail panes
 draw, copied unchanged from `github.com/nbyoung/tablo` at commit
-`0a38365e4e38d25774c00848829cbdcdaf938ad6`, the module version
-`v0.0.0-20261016180757-0a38365e4e38`, from
+`620473c299bd693af258804146c44d28bd3d737b`, the module version
+`v0.0.0-20261017000822-620473c299bd`, from
 `internal/views/testdata/weather-station/`. Each holds the `data` of one
 envelope: the view of the corpus entry `weather-station` at `main`.
 
@@ -19,7 +19,8 @@ envelope: the view of the corpus entry `weather-station` at `main`.
 | `history-c07d.provenance.json` | `history` | task `c07d` |
 
 The three history files are also the golden files of tablo's design
-`8ed1`, under `design/8ed1/golden/`, byte for byte.
+`8ed1`, under `design/8ed1/golden/`; there the two that hold a line taken
+from a subproject still lack its task's title, which 8ed1 decision 8 adds.
 
 `TestTabloGoldens` in `tablo_test.go` wraps each file in the envelope that
 tablo's own schema test builds around its golden data (the source `main`
