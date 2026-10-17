@@ -18,7 +18,8 @@ import (
 type Poller interface{ SetSubmodules(dirs []string) }
 
 // Tablo is the source over tablo's library, the one file of the program that
-// imports it. It holds one tablo.Repository, opened once. Load is the Loader
+// imports it for view data; internal/identity imports it for the viewer's
+// rule alone. It holds one tablo.Repository, opened once. Load is the Loader
 // of the live refresh (171b): it reads one snapshot per settled change. The
 // frame hands each good snapshot to Store, and every view derives from the
 // stored snapshot in process, so a request names no ref. A call made before

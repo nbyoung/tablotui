@@ -1,5 +1,5 @@
 // Package identity names the person at the keyboard: the email Git would
-// commit with, unless the command line names another.
+// commit with, by tablo's rule, unless the command line names another.
 package identity
 
 import (
@@ -7,18 +7,21 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"os/exec"
 	"strings"
+
+	"github.com/nbyoung/tablo"
 )
 
 // ErrUsage marks an error that the command reports with exit status 2.
 var ErrUsage = errors.New("usage")
 
-// Email returns the viewer's email: as, when it is not empty; else the
-// environment's GIT_AUTHOR_EMAIL; else what "git -C dir config --get
-// user.email" prints; else "", which is nobody. It refuses an as that is no
-// email, one "@" with text on both sides and no space, with an error that
-// wraps ErrUsage. A git that is missing, fails or states no email gives "".
+// Email returns the viewer's email: as, when it is not empty; else what
+// tablo.DefaultViewer gives for dir and the environment's GIT_AUTHOR_EMAIL,
+// the one rule of tablo and the three front ends: that variable when it is
+// set, else the user.email of Git's configuration in dir, else "", which is
+// nobody, and a value that is no email is nobody too. It refuses an as that
+// is no email, one "@" with text on both sides and no space, with an error
+// that wraps ErrUsage.
 func Email(ctx context.Context, dir, as string) (string, error) {
 	if as != "" {
 		name, host, ok := strings.Cut(as, "@")
@@ -27,14 +30,5 @@ func Email(ctx context.Context, dir, as string) (string, error) {
 		}
 		return as, nil
 	}
-	if e := strings.TrimSpace(os.Getenv("GIT_AUTHOR_EMAIL")); e != "" {
-		return e, nil
-	}
-	cmd := exec.CommandContext(ctx, "git", "-C", dir, "config", "--get", "user.email")
-	cmd.Env = append(os.Environ(), "GIT_OPTIONAL_LOCKS=0", "GIT_TERMINAL_PROMPT=0", "LC_ALL=C")
-	out, err := cmd.Output()
-	if err != nil {
-		return "", nil
-	}
-	return strings.TrimSpace(string(out)), nil
+	return tablo.DefaultViewer(ctx, dir, os.Getenv("GIT_AUTHOR_EMAIL")), nil
 }

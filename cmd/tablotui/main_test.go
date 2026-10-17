@@ -536,6 +536,7 @@ func TestTheViewerReachesTheContextLine(t *testing.T) {
 		{"the author variable", "ben@example.org", nil, "Fixture project · main at abc1234, 2026-10-06 · viewer ben@example.org, observer"},
 		{"--as before the variable", "ben@example.org", []string{"--as", "ada@example.org"}, "Fixture project · main at abc1234, 2026-10-06 · viewer ada@example.org, observer"},
 		{"nobody", "", nil, "Fixture project · main at abc1234, 2026-10-06"},
+		{"an author variable that is no email", "ben", nil, "Fixture project · main at abc1234, 2026-10-06"},
 	}
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {

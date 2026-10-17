@@ -67,9 +67,33 @@ func TestTheAuthorVariableComesBeforeTheRepository(t *testing.T) {
 	needGit(t)
 	dir := isolate(t)
 	repo(t, dir, "ada@example.org")
-	t.Setenv("GIT_AUTHOR_EMAIL", "  ben@example.org\n")
+	t.Setenv("GIT_AUTHOR_EMAIL", "ben@example.org")
 	if got := email(t, dir, ""); got != "ben@example.org" {
 		t.Errorf("Email = %q", got)
+	}
+}
+
+// An author variable that is no email is nobody, as tablo's rule has it,
+// and the repository's email does not stand in for it.
+func TestAnAuthorVariableThatIsNoEmailIsNobody(t *testing.T) {
+	needGit(t)
+	dir := isolate(t)
+	repo(t, dir, "ada@example.org")
+	for _, author := range []string{"ben", "not an email", "  ben@example.org\n", "ben@example@org"} {
+		t.Setenv("GIT_AUTHOR_EMAIL", author)
+		if got := email(t, dir, ""); got != "" {
+			t.Errorf("GIT_AUTHOR_EMAIL %q: Email = %q, want nobody", author, got)
+		}
+	}
+}
+
+// A repository whose user.email is no email is nobody.
+func TestARepositoryEmailThatIsNoEmailIsNobody(t *testing.T) {
+	needGit(t)
+	dir := isolate(t)
+	repo(t, dir, "ada")
+	if got := email(t, dir, ""); got != "" {
+		t.Errorf("Email = %q, want nobody", got)
 	}
 }
 
