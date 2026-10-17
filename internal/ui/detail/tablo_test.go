@@ -217,3 +217,89 @@ func TestTabloGoldens(t *testing.T) {
 		}
 	}
 }
+
+// tabloDoc draws the document of one of tablo's golden files at width w.
+func tabloDoc(t *testing.T, file string, w int) string {
+	t.Helper()
+	for _, g := range tabloGoldens {
+		if g.file == file {
+			sel, _ := g.params["task"].(string)
+			x := pane(t, g.command, "testdata", w+2, 30).withSource(goldenSource{t, g}).open().sel(sel, "")
+			return x.doc(w)
+		}
+	}
+	t.Fatalf("no golden %s", file)
+	return ""
+}
+
+// TestTabloSubEventTitle: a line taken from a subproject, beneath its pin or
+// in its own place, and an event of the task pane name the subproject's task
+// by id and title, as tablo's golden data gives the title (8ed1 decision 8).
+func TestTabloSubEventTitle(t *testing.T) {
+	for file, want := range map[string]string{
+		"history-4e2b.detail.json":     "f1a0 Weather node image",
+		"history-c07d.provenance.json": "f1a0 Weather node image",
+		"task-c07d.provenance.json":    "in the subproject firmware, task f1a0 Weather node image",
+	} {
+		if doc := tabloDoc(t, file, 400); !strings.Contains(doc, want) {
+			t.Errorf("%s lacks %q:\n%s", file, want, doc)
+		}
+	}
+}
+
+// TestTabloQueueCauses: the queue at glance words a reason from its wait's
+// note and an authorisation from its why, as tablo's glance gives them
+// (886d decision 15).
+func TestTabloQueueCauses(t *testing.T) {
+	doc := tabloDoc(t, "queue-ada.glance.json", 400)
+	for _, want := range []string{
+		"9f31 Sensor board; blocked: Barometer ICs on 14-week backorder ·",
+		"3c5d Dashboard; proposed; the deciding commit is not by an authority ·",
+	} {
+		if !strings.Contains(doc, want) {
+			t.Errorf("the glance lacks %q:\n%s", want, doc)
+		}
+	}
+}
+
+// TestQueueCauseReadsTheItemAlone: a reason reads its wait's note and never
+// the item's status, and an authorisation reads its why and never its
+// authorisation.
+func TestQueueCauseReadsTheItemAlone(t *testing.T) {
+	w := words{}
+	waiting := list.QueueItem{
+		Kind:   "waiting",
+		Causes: []list.Wait{{Kind: "reason", Reason: "blocked", Note: "the wait's note"}},
+		Status: &list.Status{Note: "the status's note"},
+	}
+	if got, want := w.queueCause(waiting), "blocked: the wait's note"; got != want {
+		t.Errorf("reason = %q, want %q", got, want)
+	}
+	waiting.Causes[0].Note = ""
+	if got, want := w.queueCause(waiting), "blocked"; got != want {
+		t.Errorf("reason with no note = %q, want %q", got, want)
+	}
+	owed := list.QueueItem{Kind: "authorisation", Why: "no_commit", Authorisation: &list.Authorisation{Why: "off_trunk"}}
+	if got, want := w.queueCause(owed), "proposed; no commit on the trunk decides it"; got != want {
+		t.Errorf("authorisation = %q, want %q", got, want)
+	}
+}
+
+// TestTabloOwnCommit: the task pane at provenance draws, in the section
+// "Status commit", the status commit and then the commit that decides a
+// snapshot task's own file under "deciding commit", as tabloio's task view
+// does (e3ed decision 18). A task with no own commit draws the status commit
+// alone.
+func TestTabloOwnCommit(t *testing.T) {
+	doc := tabloDoc(t, "task-c07d.provenance.json", 78)
+	want := "\nStatus commit\n  commit            cf5b169 Record the node image design\n"
+	own := "\n  deciding commit   97e4231 Pin the firmware at its design\n  date              2026-09-26\n"
+	i, j := strings.Index(doc, want), strings.Index(doc, own)
+	if i < 0 || j < i || strings.Contains(doc[i+1:j], "\n\n") {
+		t.Errorf("the section lacks the status commit, then the own commit:\n%s", doc)
+	}
+	x := pane(t, "task", "testdata", 80, 30).open().sel("e9c6", "").keys("p")
+	if doc := x.doc(78); !strings.Contains(doc, "\nStatus commit\n") || strings.Contains(doc, "deciding commit") {
+		t.Errorf("a task with no own commit draws one, or no status commit:\n%s", doc)
+	}
+}

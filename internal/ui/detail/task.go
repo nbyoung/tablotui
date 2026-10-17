@@ -16,8 +16,9 @@ const commitHang = 18
 // person reads an actor: the name and the email, or the email alone.
 func person(p list.Person) string { return join(", ", p.Name, p.Email) }
 
-// commitLines draws the fields of a commit at the indent of a section.
-func commitLines(c *list.Commit, item int, task string) []Line {
+// commitLines draws the fields of a commit at the indent of a section, the
+// first under the label given.
+func commitLines(label string, c *list.Commit, item int, task string) []Line {
 	if c == nil {
 		return nil
 	}
@@ -27,7 +28,7 @@ func commitLines(c *list.Commit, item int, task string) []Line {
 			out = append(out, Line{Label: label, Text: text, Indent: 2, Hang: commitHang, Item: item, Task: task})
 		}
 	}
-	add("commit", join(" ", short(c.Hash), c.Subject))
+	add(label, join(" ", short(c.Hash), c.Subject))
 	add("date", c.Date)
 	add("author", person(c.Author))
 	add("committer", person(c.Committer))
@@ -105,9 +106,13 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 	field(0, "status", w.status(d.Status), "", "")
 	field(0, "note", d.Status.Note, "", "")
 	field(0, "recorded", recorded(d.Status), "", "")
-	if lvl >= list.Provenance && d.StatusCommit != nil {
+	if lvl >= list.Provenance && (d.StatusCommit != nil || d.OwnCommit != nil) {
+		// The deciding commit of the last status of the chain, then, for a
+		// snapshot, the commit that decides the task's own file, as
+		// tabloio's task view lays them out (e3ed decision 18).
 		section(0, "Status commit")
-		lines = append(lines, commitLines(d.StatusCommit, 0, "")...)
+		lines = append(lines, commitLines("commit", d.StatusCommit, 0, "")...)
+		lines = append(lines, commitLines("deciding commit", d.OwnCommit, 0, "")...)
 	}
 	if lvl < list.Detail {
 		return id, "", lines
@@ -151,7 +156,7 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 	}
 	if a := d.Authorisation; lvl >= list.Provenance && a != nil && a.Commit != nil {
 		section(2, "Authorisation commit")
-		lines = append(lines, commitLines(a.Commit, 2, "")...)
+		lines = append(lines, commitLines("commit", a.Commit, 2, "")...)
 		for _, f := range [][2]string{{"accepts by", plain(acceptsBy[a.Way])}, {"the authority is", authorityIs[a.By]}} {
 			if f[1] != "" {
 				add(Line{Label: f[0], Text: f[1], Indent: 2, Hang: commitHang, Item: 2})
@@ -339,7 +344,7 @@ func (w words) eventRecords(e list.Event) string {
 		x = join(" ", e.Pin.URL, short(e.Pin.Old), "→", short(e.Pin.New))
 	}
 	if s := e.Subproject; s != nil {
-		x = join("; ", x, "in the subproject "+s.URL+", task "+s.Task)
+		x = join("; ", x, "in the subproject "+s.URL+", task "+subTask(*s))
 	}
 	return x
 }
