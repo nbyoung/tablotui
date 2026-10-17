@@ -12,9 +12,18 @@ Status commit
   date              2026-09-29
   author            Claude Fable 5.1, noreply@anthropic.com
   committer         Norman Young, nbyoung@nbyoung.com
+  trailers          Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
 
 Description
-
+Hand-made HTML mockups of every view, one self-contained file each under
+docs/mockups/, depicting this project. HTML is the interactive medium: a page
+that a local daemon serves from the checked-out repository, with progressive
+disclosure per role. A mockup shows its disclosure levels, for example with
+details elements, and needs no server. The defined gate agrees what the view
+shows in HTML; the mockup gate delivers the file; later gates belong to the
+tableaud subproject.
+References:
+  The mockups, docs/mockups/
 
 Place in the tree
 path         437e Tableaux tooling › bc63 Method › 2034 Views › 5fe3 HTML
@@ -22,15 +31,15 @@ path         437e Tableaux tooling › bc63 Method › 2034 Views › 5fe3 HTML
 order        3 of 3 under 2034
 children     10
   a6f7 Gate definition view in Html · 📝 defined 🟢 nominal
-  7dff · 📝 defined 🟢 nominal
-  b1b7 · 📝 defined 🟢 nominal
-  ea51 · 📝 defined 🟢 nominal
-  7783 · 📝 defined 🟢 nominal
-  5471 · 📝 defined 🟢 nominal
-  32e7 · 📝 defined 🟢 nominal
-  69eb · 📝 defined 🟢 nominal
-  3194 · 📝 defined 🟢 nominal
-  a8b4 · 📝 defined 🟢 nominal
+  7dff Task definition view in Html · 📝 defined 🟢 nominal
+  b1b7 Authority delegation view in Html · 📝 defined 🟢 nominal
+  ea51 Task assignment view in Html · 📝 defined 🟢 nominal
+  7783 Contributor work queue view in Html · 📝 defined 🟢 nominal
+  5471 Work-blockage tree view in Html · 📝 defined 🟢 nominal
+  32e7 Global tableau view in Html · 📝 defined 🟢 nominal
+  69eb Contextual tableau view in Html · 📝 defined 🟢 nominal
+  3194 History view in Html · 📝 defined 🟢 nominal
+  a8b4 Audit view in Html · 📝 defined 🟢 nominal
 authorities  nbyoung@nbyoung.com (2034, bc63, 437e)
 authorised   yes
 
@@ -39,6 +48,7 @@ Authorisation commit
   date              2026-09-29
   author            Norman Young, nbyoung@nbyoung.com
   committer         Norman Young, nbyoung@nbyoung.com
+  trailers          Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
   accepts by        a change on the trunk
   the authority is  the author and the committer
 
@@ -51,18 +61,17 @@ Dependents: 2
     reproduces · unmet, not yet due
 
 Junctions
-  ❔ undefined · passed
   📝 defined · 🤖 · noreply@anthropic.com · claude-haiku · reviewer the
-    assignee, noreply@anthropic.com · passed; the status stands here
+    assignee, noreply@anthropic.com · , reviewed
   📌 mockup · 🤖👀 · noreply@anthropic.com · claude-opus · reviewer
-    nbyoung@nbyoung.com · next
-  🔧 function · — · does not apply
-  📐 design · — · does not apply
-  🧱 implementation · — · does not apply
-  📏 unit · — · does not apply
-  🔗 integrate · — · does not apply
-  🌍 validate · — · does not apply
-  🚀 release · — · does not apply
+    nbyoung@nbyoung.com
+  🔧 function · —
+  📐 design · —
+  🧱 implementation · —
+  📏 unit · —
+  🔗 integrate · —
+  🌍 validate · —
+  🚀 release · —
 
 Roll-up
   Children considered: a6f7 7dff b1b7 ea51 7783 5471 32e7 69eb 3194 a8b4
@@ -74,7 +83,7 @@ Roll-up
 Where each junction field comes from
   📝 defined · contributor · noreply@anthropic.com · 437e
   📝 defined · model · claude-haiku · 437e
-  📝 defined · reviewer · noreply@anthropic.com · the plain default
+  📝 defined · reviewer · noreply@anthropic.com · the assignee
   📌 mockup · contributor · noreply@anthropic.com · 437e
   📌 mockup · model · claude-opus · 437e
   📌 mockup · reviewer · nbyoung@nbyoung.com · 437e
@@ -91,4 +100,9 @@ Reviews: none
 Models: none
 
 Newest events
-  0 events; the newest 0, newest first.
+  1 event; the newest 1, newest first.
+  2026-09-29 · 6b6c99a · nbyoung@nbyoung.com · task
+
+Commands
+  git log --format='%H %as %ae %s' 3cdae527d47d37fdff55bc302c76c017cf91c606 --
+    .tableaux/tasks/5fe3.yaml .tableaux/status/5fe3.yaml

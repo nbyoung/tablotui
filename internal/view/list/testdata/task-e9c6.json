@@ -3,18 +3,19 @@
   "command": "task",
   "source": {
     "ref": "main",
+    "dir": ".",
     "worktree": false,
     "commit": "3cdae527d47d37fdff55bc302c76c017cf91c606",
     "date": "2026-10-05",
     "from": null,
     "trunk": {
-      "name": null,
-      "resolved": "undetermined"
+      "name": "main",
+      "resolved": "stated"
     },
     "on_trunk": true
   },
   "project": {
-    "tableaux": "",
+    "tableaux": "0.3.1",
     "root": "437e",
     "title": "Tableaux tooling",
     "owner": "nbyoung@nbyoung.com"
@@ -204,7 +205,7 @@
       "from": null
     },
     "authorised": true,
-    "description": "VIEWS.md defines each view independently of any format: its question, the roles it serves, the data it draws from the project and the history, the parameters that focus it (a task, a person, a gate window or a list of columns, a ref) and its progressive-disclosure levels. The views are the gate definition, the task definition, authority delegation, task assignment, the contributor work queue, the work-blockage tree, the global tableau, the contextual tableau, the history and the audit.",
+    "description": "VIEWS.md defines each view independently of any format: its question, the roles it serves, the data it draws from the project and the history, the parameters that focus it (a task, a person, a gate window or a list of columns, a ref) and its progressive-disclosure levels. The views are the gate definition, the task definition, authority delegation, task assignment, the contributor work queue, the work-blockage tree, the global tableau, the contextual tableau, the history and the audit.\n",
     "references": [
       {
         "text": "Proposed views",
@@ -263,9 +264,9 @@
           "gate": "implementation",
           "state": "nominal",
           "reason": "",
-          "note": "",
-          "date": "",
-          "recorder": "",
+          "note": "The Roles text is on the trunk and covers all seven roles; the validate gate awaits the owner",
+          "date": "2026-09-30",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -331,7 +332,7 @@
       {
         "task": {
           "id": "bb7c",
-          "title": ""
+          "title": "Task assignment view in Markdown"
         },
         "from": "design",
         "to": "mockup",
@@ -348,7 +349,7 @@
       {
         "task": {
           "id": "c74a",
-          "title": ""
+          "title": "Contributor work queue view in Markdown"
         },
         "from": "design",
         "to": "mockup",
@@ -365,7 +366,7 @@
       {
         "task": {
           "id": "efff",
-          "title": ""
+          "title": "Work-blockage tree view in Markdown"
         },
         "from": "design",
         "to": "mockup",
@@ -382,7 +383,7 @@
       {
         "task": {
           "id": "ab8e",
-          "title": ""
+          "title": "Global tableau view in Markdown"
         },
         "from": "design",
         "to": "mockup",
@@ -399,7 +400,7 @@
       {
         "task": {
           "id": "c545",
-          "title": ""
+          "title": "Contextual tableau view in Markdown"
         },
         "from": "design",
         "to": "mockup",
@@ -416,7 +417,7 @@
       {
         "task": {
           "id": "d615",
-          "title": ""
+          "title": "History view in Markdown"
         },
         "from": "design",
         "to": "mockup",
@@ -433,7 +434,7 @@
       {
         "task": {
           "id": "b14e",
-          "title": ""
+          "title": "Audit view in Markdown"
         },
         "from": "design",
         "to": "mockup",
@@ -450,7 +451,7 @@
       {
         "task": {
           "id": "a6f7",
-          "title": ""
+          "title": "Gate definition view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -467,7 +468,7 @@
       {
         "task": {
           "id": "7dff",
-          "title": ""
+          "title": "Task definition view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -484,7 +485,7 @@
       {
         "task": {
           "id": "b1b7",
-          "title": ""
+          "title": "Authority delegation view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -501,7 +502,7 @@
       {
         "task": {
           "id": "ea51",
-          "title": ""
+          "title": "Task assignment view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -518,7 +519,7 @@
       {
         "task": {
           "id": "7783",
-          "title": ""
+          "title": "Contributor work queue view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -535,7 +536,7 @@
       {
         "task": {
           "id": "5471",
-          "title": ""
+          "title": "Work-blockage tree view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -552,7 +553,7 @@
       {
         "task": {
           "id": "32e7",
-          "title": ""
+          "title": "Global tableau view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -569,7 +570,7 @@
       {
         "task": {
           "id": "69eb",
-          "title": ""
+          "title": "Contextual tableau view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -586,7 +587,7 @@
       {
         "task": {
           "id": "3194",
-          "title": ""
+          "title": "History view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -603,7 +604,7 @@
       {
         "task": {
           "id": "a8b4",
-          "title": ""
+          "title": "Audit view in Html"
         },
         "from": "design",
         "to": "mockup",
@@ -637,20 +638,6 @@
     ],
     "junctions": [
       {
-        "gate": "undefined",
-        "kind": "plain",
-        "marks": [],
-        "acts": false,
-        "contributor": "",
-        "model": "",
-        "reviewer": "",
-        "reviewer_by_default": false,
-        "subproject": null,
-        "references": [],
-        "stands": "passed",
-        "reviewed": false
-      },
-      {
         "gate": "defined",
         "kind": "plain",
         "marks": [
@@ -664,7 +651,7 @@
         "subproject": null,
         "references": [],
         "stands": "passed",
-        "reviewed": false
+        "reviewed": true
       },
       {
         "gate": "mockup",
@@ -705,7 +692,7 @@
           "agent",
           "reviewer"
         ],
-        "acts": true,
+        "acts": false,
         "contributor": "noreply@anthropic.com",
         "model": "claude-fable",
         "reviewer": "nbyoung@nbyoung.com",
@@ -770,7 +757,7 @@
           "agent",
           "reviewer"
         ],
-        "acts": true,
+        "acts": false,
         "contributor": "noreply@anthropic.com",
         "model": "claude-opus",
         "reviewer": "nbyoung@nbyoung.com",
@@ -786,7 +773,7 @@
         "marks": [
           "person"
         ],
-        "acts": true,
+        "acts": false,
         "contributor": "nbyoung@nbyoung.com",
         "model": "",
         "reviewer": "",
@@ -799,5 +786,268 @@
     ],
     "snapshot": null
   },
-  "diagnostics": []
+  "diagnostics": [
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/05a9.yaml",
+      "task": "05a9",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/3194.yaml",
+      "task": "3194",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/32e7.yaml",
+      "task": "32e7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/5471.yaml",
+      "task": "5471",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/69eb.yaml",
+      "task": "69eb",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7166.yaml",
+      "task": "7166",
+      "gate": "implementation",
+      "commit": "d9396b4bb05123ca8027cd5e73950c67cfb12cdc",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7783.yaml",
+      "task": "7783",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7861.yaml",
+      "task": "7861",
+      "gate": "validate",
+      "commit": "c6f2655f1bda4469a6171b77cc21e326f0c99f87",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7dff.yaml",
+      "task": "7dff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/99f0.yaml",
+      "task": "99f0",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/9f3f.yaml",
+      "task": "9f3f",
+      "gate": "implementation",
+      "commit": "43d68e4f7d2b856c4d581983f34355d5b5f4f3b4",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a6f7.yaml",
+      "task": "a6f7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a8b4.yaml",
+      "task": "a8b4",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a9ce.yaml",
+      "task": "a9ce",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ab8e.yaml",
+      "task": "ab8e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ac33.yaml",
+      "task": "ac33",
+      "gate": "implementation",
+      "commit": "6762222ddffef76008daad27ebe26069ac67cc5d",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b14e.yaml",
+      "task": "b14e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b1b7.yaml",
+      "task": "b1b7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/bb7c.yaml",
+      "task": "bb7c",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c2ad.yaml",
+      "task": "c2ad",
+      "gate": "validate",
+      "commit": "3d8ce0eee1e869c75453abba91cae03dec6587ce",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c545.yaml",
+      "task": "c545",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c74a.yaml",
+      "task": "c74a",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/d615.yaml",
+      "task": "d615",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e3cb.yaml",
+      "task": "e3cb",
+      "gate": "validate",
+      "commit": "5cbec7cce7c3cb3bf99f2145713d13ccb0b23d0f",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "error",
+      "code": "S11",
+      "path": ".tableaux/status/e3cb.yaml",
+      "line": 1,
+      "col": 7,
+      "task": "e3cb",
+      "gate": "implementation",
+      "message": "the status passes implementation, whose reviewer is noreply@anthropic.com, and no commit by the reviewer carries Reviewed: e3cb implementation"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e9c6.yaml",
+      "task": "e9c6",
+      "gate": "implementation",
+      "commit": "879b447a920aad55e698906812350ea7d3785b4c",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ea51.yaml",
+      "task": "ea51",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/efff.yaml",
+      "task": "efff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/fcec.yaml",
+      "task": "fcec",
+      "gate": "unit",
+      "commit": "60495c26d886016b40069041386a811b24469312",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have unit to review"
+    }
+  ]
 }

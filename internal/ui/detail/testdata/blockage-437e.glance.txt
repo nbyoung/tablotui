@@ -1,7 +1,9 @@
-3 Blockage 437e · 2 causes · glance
-5471 Work-blockage tree view in Html awaits review at 📌 mockup · 👀
-  nbyoung@nbyoung.com reviews · holds 4
-efff Work-blockage tree view in Markdown has not passed 📌 mockup · 🤖
-  noreply@anthropic.com contributes · holds 3
+3 Blockage 437e · 3 causes · glance
+6103 tabloio: command line, output and input waits on subprojects/tabloio at
+  4593882 · 🪆 nbyoung@nbyoung.com advances · holds 1
+c6e8 tablotui: terminal user interface waits on subprojects/tablotui at
+  a2878b5 · 🪆 nbyoung@nbyoung.com advances · holds 1
+595e tableaud: local daemon and HTML waits on subprojects/tableaud at e6ec4ec
+  · 🪆 nbyoung@nbyoung.com advances · holds 1
 
-Next: 1 requirement not yet due, 0 unmet.
+Next: 10 requirements not yet due, 8 unmet.

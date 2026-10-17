@@ -44,9 +44,8 @@ Dependents: 21
     abstract views it derives · unmet, not yet due
 
 Junctions
-  ❔ undefined · passed
   📝 defined · 🤖 · noreply@anthropic.com · claude-haiku · reviewer the
-    assignee, noreply@anthropic.com · passed
+    assignee, noreply@anthropic.com · passed, reviewed
   📌 mockup · — · does not apply
   🔧 function · — · does not apply
   📐 design · 🤖👀 · noreply@anthropic.com · claude-fable · reviewer

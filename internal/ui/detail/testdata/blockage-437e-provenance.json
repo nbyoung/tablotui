@@ -3,18 +3,19 @@
   "command": "blockage",
   "source": {
     "ref": "main",
+    "dir": ".",
     "worktree": false,
     "commit": "3cdae527d47d37fdff55bc302c76c017cf91c606",
     "date": "2026-10-05",
     "from": null,
     "trunk": {
-      "name": null,
-      "resolved": "undetermined"
+      "name": "main",
+      "resolved": "stated"
     },
     "on_trunk": true
   },
   "project": {
-    "tableaux": "",
+    "tableaux": "0.3.1",
     "root": "437e",
     "title": "Tableaux tooling",
     "owner": "nbyoung@nbyoung.com"
@@ -26,7 +27,7 @@
     ]
   },
   "params": {
-    "task": null,
+    "task": "437e",
     "person": null,
     "role": null,
     "level": "provenance"
@@ -182,272 +183,622 @@
     },
     "causes": [
       {
-        "kind": "review",
+        "kind": "snapshot",
         "task": {
-          "id": "5471",
-          "title": "Work-blockage tree view in Html"
+          "id": "6103",
+          "title": "tabloio: command line, output and input"
         },
-        "url": "",
-        "gate": "mockup",
+        "url": "subprojects/tabloio",
+        "gate": "defined",
         "status": {
-          "kind": "recorded",
-          "gate": "mockup",
-          "state": "",
-          "reason": "review",
-          "note": "",
-          "date": "2026-10-04",
-          "recorder": "noreply@anthropic.com",
-          "derived": false,
-          "why": "",
-          "uncommitted": false,
-          "from": null
-        },
-        "pin": "",
-        "tip": "",
-        "resolver": "nbyoung@nbyoung.com",
-        "mark": "reviewer",
-        "act": "reviews",
-        "advance": "",
-        "holds": 4,
-        "held": [
-          {
-            "task": {
-              "id": "5471",
-              "title": "Work-blockage tree view in Html"
-            },
-            "gate": "mockup",
-            "parent": false,
-            "via": "self",
-            "child": "",
-            "requires": null,
-            "contributor": "",
-            "also": [],
-            "held": [
-              {
-                "task": {
-                  "id": "5fe3",
-                  "title": "HTML views"
-                },
-                "gate": "mockup",
-                "parent": true,
-                "via": "parent",
-                "child": "5471",
-                "requires": null,
-                "contributor": "",
-                "also": [],
-                "held": [
-                  {
-                    "task": {
-                      "id": "c6e8",
-                      "title": "tablotui: terminal user interface"
-                    },
-                    "gate": "design",
-                    "parent": false,
-                    "via": "requirement",
-                    "child": "",
-                    "requires": {
-                      "task": {
-                        "id": "5fe3",
-                        "title": "HTML views"
-                      },
-                      "from": "mockup",
-                      "to": "design",
-                      "text": "The HTML mockups that fix the disclosure levels",
-                      "met": false,
-                      "due": true,
-                      "condition": "unmet",
-                      "why": "",
-                      "status": null,
-                      "subproject": "",
-                      "commit": "",
-                      "at_trunk": "unknown"
-                    },
-                    "contributor": "",
-                    "also": [
-                      2
-                    ],
-                    "held": []
-                  },
-                  {
-                    "task": {
-                      "id": "595e",
-                      "title": "tableaud: local daemon and HTML"
-                    },
-                    "gate": "design",
-                    "parent": false,
-                    "via": "requirement",
-                    "child": "",
-                    "requires": {
-                      "task": {
-                        "id": "5fe3",
-                        "title": "HTML views"
-                      },
-                      "from": "mockup",
-                      "to": "design",
-                      "text": "The HTML mockups it reproduces",
-                      "met": false,
-                      "due": true,
-                      "condition": "unmet",
-                      "why": "",
-                      "status": null,
-                      "subproject": "",
-                      "commit": "",
-                      "at_trunk": "unknown"
-                    },
-                    "contributor": "",
-                    "also": [],
-                    "held": []
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "status_commit": null,
-        "junction": {
-          "gate": "mockup",
-          "kind": "plain",
-          "marks": [],
-          "acts": false,
-          "contributor": "",
-          "model": "",
-          "reviewer": "nbyoung@nbyoung.com",
-          "reviewer_by_default": false,
-          "subproject": null,
-          "references": [],
-          "stands": "next",
-          "reviewed": false,
-          "from": [
-            "437e"
-          ]
-        },
-        "authorisation": null,
-        "linkage": null,
-        "resolve": [
-          {
-            "text": "tabloio review 5471 mockup",
-            "comment": "accepts the mockup"
-          }
-        ]
-      },
-      {
-        "kind": "requirement",
-        "task": {
-          "id": "efff",
-          "title": "Work-blockage tree view in Markdown"
-        },
-        "url": "",
-        "gate": "mockup",
-        "status": {
-          "kind": "",
-          "gate": "",
-          "state": "",
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
           "reason": "",
-          "note": "",
-          "date": "",
+          "note": "prototype/e3ed renders the gate and task definition views as Markdown at three levels from tablo view data",
+          "date": "2026-09-30",
           "recorder": "",
-          "derived": false,
+          "derived": true,
           "why": "",
           "uncommitted": false,
-          "from": null
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "07e0",
+              "title": "tabloio"
+            },
+            "url": "subprojects/tabloio",
+            "pin": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
+            "gate": "function"
+          }
         },
-        "pin": "",
-        "tip": "",
-        "resolver": "noreply@anthropic.com",
-        "mark": "agent",
-        "act": "contributes",
-        "advance": "",
-        "holds": 3,
+        "pin": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
+        "tip": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
+        "resolver": "nbyoung@nbyoung.com",
+        "mark": "subproject",
+        "act": "advances",
+        "advance": "gate",
+        "holds": 1,
         "held": [
           {
             "task": {
-              "id": "bc86",
-              "title": "Markdown views"
+              "id": "437e",
+              "title": "Tableaux tooling"
             },
             "gate": "mockup",
             "parent": true,
             "via": "parent",
-            "child": "efff",
+            "child": "6103",
             "requires": null,
             "contributor": "",
-            "also": [],
-            "held": [
+            "also": [
+              2,
+              3
+            ],
+            "held": []
+          }
+        ],
+        "status_commit": {
+          "hash": "90e66fc4f1f975f48c089027cf5099046e250240",
+          "subject": "Record the function gate for e3ed",
+          "date": "2026-09-30",
+          "author_time": "2026-09-30T15:39:39-04:00",
+          "author": {
+            "name": "Claude Sonnet 5.5",
+            "email": "noreply@anthropic.com"
+          },
+          "committer": {
+            "name": "Claude Sonnet 5.5",
+            "email": "noreply@anthropic.com"
+          },
+          "parents": [
+            "dd5fc67aec0d571c0a4e1d1ae9baac569fb926ef"
+          ],
+          "trailers": [
+            "Reviewed: e3ed function",
+            "Model: claude-sonnet-5-5",
+            "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
+          ],
+          "files": [
+            {
+              "path": ".tableaux/status/e3ed.yaml",
+              "change": "changed"
+            }
+          ]
+        },
+        "junction": {
+          "gate": "mockup",
+          "kind": "recursive",
+          "marks": [
+            "subproject"
+          ],
+          "acts": false,
+          "contributor": "",
+          "model": "",
+          "reviewer": "",
+          "reviewer_by_default": false,
+          "subproject": {
+            "url": "subprojects/tabloio",
+            "id": "",
+            "task": {
+              "id": "07e0",
+              "title": "tabloio"
+            },
+            "form": "submodule",
+            "commit": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
+            "why": ""
+          },
+          "references": [],
+          "stands": "next",
+          "reviewed": false,
+          "from": [
+            "6103"
+          ]
+        },
+        "authorisation": null,
+        "linkage": {
+          "gates": [
+            "mockup",
+            "function",
+            "design",
+            "implementation",
+            "unit",
+            "integrate",
+            "validate",
+            "release"
+          ],
+          "url": "subprojects/tabloio",
+          "id": "",
+          "task": {
+            "id": "07e0",
+            "title": "tabloio"
+          },
+          "form": "submodule",
+          "commit": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
+          "why": "",
+          "by": "6103",
+          "key": "junctions.mockup.subproject.url",
+          "file": ".tableaux/tasks/6103.yaml",
+          "line": 16,
+          "col": 40,
+          "stated_commit": "",
+          "recorded": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
+          "moved": false,
+          "trunk": "main",
+          "tip": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
+          "on_trunk": "yes",
+          "behind": "no",
+          "pinned": {
+            "hash": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
+            "subject": "Advance the snapshot workflow to its design gate",
+            "date": "2026-10-02",
+            "author_time": "2026-10-02T13:46:53-04:00",
+            "author": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "committer": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "parents": [
+              "2b58033993a06140eebd075d21a04b90ef28a7d1",
+              "2b911fd5b13a3528973453963a44f9443ddc0c5b"
+            ],
+            "trailers": [
+              "Model: claude-opus-5-5",
+              "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+            ],
+            "files": [
               {
-                "task": {
-                  "id": "6103",
-                  "title": "tabloio: command line, output and input"
-                },
-                "gate": "design",
-                "parent": false,
-                "via": "requirement",
-                "child": "",
-                "requires": {
-                  "task": {
-                    "id": "bc86",
-                    "title": "Markdown views"
-                  },
-                  "from": "mockup",
-                  "to": "design",
-                  "text": "The Markdown mockups it reproduces",
-                  "met": false,
-                  "due": true,
-                  "condition": "unmet",
-                  "why": "",
-                  "status": null,
-                  "subproject": "",
-                  "commit": "",
-                  "at_trunk": "unknown"
-                },
-                "contributor": "",
-                "also": [],
-                "held": []
-              },
+                "path": ".tableaux/status/1422.yaml",
+                "change": "changed"
+              }
+            ]
+          },
+          "set_by": {
+            "hash": "1c0f04daa18af8b4140e8eab2948466981b65010",
+            "subject": "Advance tabloio to its snapshot workflow design",
+            "date": "2026-10-02",
+            "author_time": "2026-10-02T13:48:21-04:00",
+            "author": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "committer": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "parents": [
+              "552d38fd8adf40e41b39f65d5904e6fc6a88b265"
+            ],
+            "trailers": [
+              "Model: claude-opus-5-5",
+              "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+            ],
+            "files": [
               {
-                "task": {
-                  "id": "c6e8",
-                  "title": "tablotui: terminal user interface"
-                },
-                "gate": "design",
-                "parent": false,
-                "via": "requirement",
-                "child": "",
-                "requires": {
-                  "task": {
-                    "id": "bc86",
-                    "title": "Markdown views"
-                  },
-                  "from": "mockup",
-                  "to": "design",
-                  "text": "The Markdown mockups that fix the textual layout",
-                  "met": false,
-                  "due": true,
-                  "condition": "unmet",
-                  "why": "",
-                  "status": null,
-                  "subproject": "",
-                  "commit": "",
-                  "at_trunk": "unknown"
-                },
-                "contributor": "",
-                "also": [
-                  1
-                ],
-                "held": []
+                "path": "subprojects/tabloio",
+                "change": "pin"
               }
             ]
           }
+        },
+        "resolve": []
+      },
+      {
+        "kind": "snapshot",
+        "task": {
+          "id": "c6e8",
+          "title": "tablotui: terminal user interface"
+        },
+        "url": "subprojects/tablotui",
+        "gate": "defined",
+        "status": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/679b renders the global tableau as a Bubble Tea grid with tree expand and collapse, scrolling, a folded gate window and hidden columns kept in a settings file; emoji lines align where the terminal widens U+FE0F",
+          "date": "2026-09-30",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "40e8",
+              "title": "tablotui"
+            },
+            "url": "subprojects/tablotui",
+            "pin": "a2878b56d03e59ee658dded60603f54d19779ba4",
+            "gate": "function"
+          }
+        },
+        "pin": "a2878b56d03e59ee658dded60603f54d19779ba4",
+        "tip": "a2878b56d03e59ee658dded60603f54d19779ba4",
+        "resolver": "nbyoung@nbyoung.com",
+        "mark": "subproject",
+        "act": "advances",
+        "advance": "gate",
+        "holds": 1,
+        "held": [
+          {
+            "task": {
+              "id": "437e",
+              "title": "Tableaux tooling"
+            },
+            "gate": "mockup",
+            "parent": true,
+            "via": "parent",
+            "child": "c6e8",
+            "requires": null,
+            "contributor": "",
+            "also": [
+              1,
+              3
+            ],
+            "held": []
+          }
         ],
-        "status_commit": null,
-        "junction": null,
+        "status_commit": {
+          "hash": "66c04126c5d1e654ca8dbb2067fbbf97e68f9c8e",
+          "subject": "Record the function demonstration of the tableau grid",
+          "date": "2026-10-02",
+          "author_time": "2026-10-02T14:03:03-04:00",
+          "author": {
+            "name": "Claude Sonnet 5.5",
+            "email": "noreply@anthropic.com"
+          },
+          "committer": {
+            "name": "Claude Sonnet 5.5",
+            "email": "noreply@anthropic.com"
+          },
+          "parents": [
+            "4a3e5bd9f12b858c137496c3777f565724c464c0"
+          ],
+          "trailers": [
+            "Reviewed: 679b function",
+            "Model: claude-sonnet-5-5",
+            "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
+          ],
+          "files": [
+            {
+              "path": ".tableaux/status/679b.yaml",
+              "change": "changed"
+            }
+          ]
+        },
+        "junction": {
+          "gate": "mockup",
+          "kind": "recursive",
+          "marks": [
+            "subproject"
+          ],
+          "acts": false,
+          "contributor": "",
+          "model": "",
+          "reviewer": "",
+          "reviewer_by_default": false,
+          "subproject": {
+            "url": "subprojects/tablotui",
+            "id": "",
+            "task": {
+              "id": "40e8",
+              "title": "tablotui"
+            },
+            "form": "submodule",
+            "commit": "a2878b56d03e59ee658dded60603f54d19779ba4",
+            "why": ""
+          },
+          "references": [],
+          "stands": "next",
+          "reviewed": false,
+          "from": [
+            "c6e8"
+          ]
+        },
         "authorisation": null,
-        "linkage": null,
+        "linkage": {
+          "gates": [
+            "mockup",
+            "function",
+            "design",
+            "implementation",
+            "unit",
+            "integrate",
+            "validate",
+            "release"
+          ],
+          "url": "subprojects/tablotui",
+          "id": "",
+          "task": {
+            "id": "40e8",
+            "title": "tablotui"
+          },
+          "form": "submodule",
+          "commit": "a2878b56d03e59ee658dded60603f54d19779ba4",
+          "why": "",
+          "by": "c6e8",
+          "key": "junctions.mockup.subproject.url",
+          "file": ".tableaux/tasks/c6e8.yaml",
+          "line": 17,
+          "col": 40,
+          "stated_commit": "",
+          "recorded": "a2878b56d03e59ee658dded60603f54d19779ba4",
+          "moved": false,
+          "trunk": "main",
+          "tip": "a2878b56d03e59ee658dded60603f54d19779ba4",
+          "on_trunk": "yes",
+          "behind": "no",
+          "pinned": {
+            "hash": "a2878b56d03e59ee658dded60603f54d19779ba4",
+            "subject": "Accept the actions function prototype",
+            "date": "2026-10-04",
+            "author_time": "2026-10-04T16:33:33-04:00",
+            "author": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "committer": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "parents": [
+              "354a001ff878814472e55f1a4a9002a7d83e656e",
+              "4ad4a83db1866eeda9abafa7765326cb73e9bd54"
+            ],
+            "trailers": [
+              "Model: claude-opus-5-5",
+              "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+            ],
+            "files": [
+              {
+                "path": ".tableaux/status/518e.yaml",
+                "change": "changed"
+              }
+            ]
+          },
+          "set_by": {
+            "hash": "fa4551ecdc8d106722ac41b25a9213abc453fab0",
+            "subject": "Advance tablotui to its five function prototypes",
+            "date": "2026-10-04",
+            "author_time": "2026-10-04T16:38:02-04:00",
+            "author": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "committer": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "parents": [
+              "1c0f04daa18af8b4140e8eab2948466981b65010"
+            ],
+            "trailers": [
+              "Model: claude-opus-5-5",
+              "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+            ],
+            "files": [
+              {
+                "path": "subprojects/tablotui",
+                "change": "pin"
+              }
+            ]
+          }
+        },
+        "resolve": []
+      },
+      {
+        "kind": "snapshot",
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "url": "subprojects/tableaud",
+        "gate": "defined",
+        "status": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
+          "date": "2026-09-30",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "8608",
+              "title": "tableaud"
+            },
+            "url": "subprojects/tableaud",
+            "pin": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+            "gate": "function"
+          }
+        },
+        "pin": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+        "tip": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+        "resolver": "nbyoung@nbyoung.com",
+        "mark": "subproject",
+        "act": "advances",
+        "advance": "gate",
+        "holds": 1,
+        "held": [
+          {
+            "task": {
+              "id": "437e",
+              "title": "Tableaux tooling"
+            },
+            "gate": "mockup",
+            "parent": true,
+            "via": "parent",
+            "child": "595e",
+            "requires": null,
+            "contributor": "",
+            "also": [
+              1,
+              2
+            ],
+            "held": []
+          }
+        ],
+        "status_commit": {
+          "hash": "967df1fb2f8918bfd7713eee996c1ae235390f22",
+          "subject": "Record task 49ce at the function gate",
+          "date": "2026-10-05",
+          "author_time": "2026-10-05T11:27:18-04:00",
+          "author": {
+            "name": "Claude Sonnet 5.5",
+            "email": "noreply@anthropic.com"
+          },
+          "committer": {
+            "name": "Claude Sonnet 5.5",
+            "email": "noreply@anthropic.com"
+          },
+          "parents": [
+            "7d3306034435e3d642d85e54a575bef931116845"
+          ],
+          "trailers": [
+            "Reviewed: 49ce function",
+            "Model: claude-sonnet-5-5",
+            "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
+          ],
+          "files": [
+            {
+              "path": ".tableaux/status/49ce.yaml",
+              "change": "changed"
+            }
+          ]
+        },
+        "junction": {
+          "gate": "mockup",
+          "kind": "recursive",
+          "marks": [
+            "subproject"
+          ],
+          "acts": false,
+          "contributor": "",
+          "model": "",
+          "reviewer": "",
+          "reviewer_by_default": false,
+          "subproject": {
+            "url": "subprojects/tableaud",
+            "id": "",
+            "task": {
+              "id": "8608",
+              "title": "tableaud"
+            },
+            "form": "submodule",
+            "commit": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+            "why": ""
+          },
+          "references": [],
+          "stands": "next",
+          "reviewed": false,
+          "from": [
+            "595e"
+          ]
+        },
+        "authorisation": null,
+        "linkage": {
+          "gates": [
+            "mockup",
+            "function",
+            "design",
+            "implementation",
+            "unit",
+            "integrate",
+            "validate",
+            "release"
+          ],
+          "url": "subprojects/tableaud",
+          "id": "",
+          "task": {
+            "id": "8608",
+            "title": "tableaud"
+          },
+          "form": "submodule",
+          "commit": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+          "why": "",
+          "by": "595e",
+          "key": "junctions.mockup.subproject.url",
+          "file": ".tableaux/tasks/595e.yaml",
+          "line": 16,
+          "col": 40,
+          "stated_commit": "",
+          "recorded": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+          "moved": false,
+          "trunk": "main",
+          "tip": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+          "on_trunk": "yes",
+          "behind": "no",
+          "pinned": {
+            "hash": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+            "subject": "Accept the accessibility and theming function prototype",
+            "date": "2026-10-05",
+            "author_time": "2026-10-05T12:58:51-04:00",
+            "author": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "committer": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "parents": [
+              "24c75974d0b46d79c52898b495a7a3eb774d16e0",
+              "0c38023efa2ec8082969462a461366fbc4774bd7"
+            ],
+            "trailers": [
+              "Model: claude-opus-5-5",
+              "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+            ],
+            "files": [
+              {
+                "path": ".tableaux/status/5a2f.yaml",
+                "change": "changed"
+              }
+            ]
+          },
+          "set_by": {
+            "hash": "3cdae527d47d37fdff55bc302c76c017cf91c606",
+            "subject": "Advance tableaud to the eight function prototypes",
+            "date": "2026-10-05",
+            "author_time": "2026-10-05T12:59:45-04:00",
+            "author": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "committer": {
+              "name": "Norman Young",
+              "email": "nbyoung@nbyoung.com"
+            },
+            "parents": [
+              "fa4551ecdc8d106722ac41b25a9213abc453fab0"
+            ],
+            "trailers": [
+              "Model: claude-opus-5-5",
+              "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+            ],
+            "files": [
+              {
+                "path": "subprojects/tableaud",
+                "change": "pin"
+              }
+            ]
+          }
+        },
         "resolve": []
       }
     ],
     "kinds": [
       {
         "kind": "requirement",
-        "count": 1
+        "count": 0
       },
       {
         "kind": "status",
@@ -455,7 +806,7 @@
       },
       {
         "kind": "review",
-        "count": 1
+        "count": 0
       },
       {
         "kind": "authorisation",
@@ -463,11 +814,11 @@
       },
       {
         "kind": "snapshot",
-        "count": 0
+        "count": 3
       }
     ],
-    "not_due_count": 1,
-    "not_due_unmet": 0,
+    "not_due_count": 10,
+    "not_due_unmet": 8,
     "not_due": [
       {
         "task": {
@@ -475,17 +826,26 @@
           "title": "tablo: backend library and plumbing"
         },
         "status": {
-          "kind": "recorded",
+          "kind": "snapshot",
           "gate": "defined",
           "state": "nominal",
           "reason": "",
-          "note": "",
-          "date": "",
+          "note": "The design is next and no requirement gates it",
+          "date": "2026-09-30",
           "recorder": "",
-          "derived": false,
+          "derived": true,
           "why": "",
           "uncommitted": false,
-          "from": null
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "b2c1",
+              "title": "tablo"
+            },
+            "url": "subprojects/tablo",
+            "pin": "00f8f68e9a25b0d9df783f573d50c403813e285a",
+            "gate": "defined"
+          }
         },
         "next": "mockup",
         "requires": [
@@ -501,7 +861,436 @@
             "due": false,
             "condition": "met",
             "why": "",
-            "status": null,
+            "status": {
+              "kind": "recorded",
+              "gate": "unit",
+              "state": "nominal",
+              "reason": "",
+              "note": "schemas/check.sh (files agree with SYNTAX.md, version 0.2.1) and schemas/load.py (files load as JSON Schema 2020-12) pass; every .tableaux file validates",
+              "date": "2026-09-30",
+              "recorder": "noreply@anthropic.com",
+              "derived": false,
+              "why": "",
+              "uncommitted": false,
+              "from": null
+            },
+            "subproject": "",
+            "commit": "",
+            "at_trunk": "unknown"
+          },
+          {
+            "task": {
+              "id": "e9c6",
+              "title": "Abstract views"
+            },
+            "from": "implementation",
+            "to": "design",
+            "text": "The abstract views it derives",
+            "met": false,
+            "due": false,
+            "condition": "pending",
+            "why": "",
+            "status": {
+              "kind": "recorded",
+              "gate": "design",
+              "state": "nominal",
+              "reason": "",
+              "note": "VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may start, and implementation puts the text in place",
+              "date": "2026-09-30",
+              "recorder": "noreply@anthropic.com",
+              "derived": false,
+              "why": "",
+              "uncommitted": false,
+              "from": null
+            },
+            "subproject": "",
+            "commit": "",
+            "at_trunk": "unknown"
+          },
+          {
+            "task": {
+              "id": "fcec",
+              "title": "Conformance corpus"
+            },
+            "from": "implementation",
+            "to": "unit",
+            "text": "The corpus it conforms to",
+            "met": true,
+            "due": false,
+            "condition": "met",
+            "why": "",
+            "status": {
+              "kind": "recorded",
+              "gate": "implementation",
+              "state": "nominal",
+              "reason": "",
+              "note": "The corpus builds and checks clean, with 85 entries on the trunk; all three corrections from the tablo prototypes are in; the unit gate runs the tablo conformance test against it",
+              "date": "2026-09-30",
+              "recorder": "noreply@anthropic.com",
+              "derived": false,
+              "why": "",
+              "uncommitted": false,
+              "from": null
+            },
+            "subproject": "",
+            "commit": "",
+            "at_trunk": "unknown"
+          }
+        ]
+      },
+      {
+        "task": {
+          "id": "6103",
+          "title": "tabloio: command line, output and input"
+        },
+        "status": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/e3ed renders the gate and task definition views as Markdown at three levels from tablo view data",
+          "date": "2026-09-30",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "07e0",
+              "title": "tabloio"
+            },
+            "url": "subprojects/tabloio",
+            "pin": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
+            "gate": "function"
+          }
+        },
+        "next": "mockup",
+        "requires": [
+          {
+            "task": {
+              "id": "77b2",
+              "title": "tablo: backend library and plumbing"
+            },
+            "from": "implementation",
+            "to": "implementation",
+            "text": "The library and plumbing it calls",
+            "met": false,
+            "due": false,
+            "condition": "pending",
+            "why": "",
+            "status": {
+              "kind": "snapshot",
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "The design is next and no requirement gates it",
+              "date": "2026-09-30",
+              "recorder": "",
+              "derived": true,
+              "why": "",
+              "uncommitted": false,
+              "from": {
+                "kind": "snapshot",
+                "task": {
+                  "id": "b2c1",
+                  "title": "tablo"
+                },
+                "url": "subprojects/tablo",
+                "pin": "00f8f68e9a25b0d9df783f573d50c403813e285a",
+                "gate": "defined"
+              }
+            },
+            "subproject": "",
+            "commit": "",
+            "at_trunk": "unknown"
+          },
+          {
+            "task": {
+              "id": "bc86",
+              "title": "Markdown views"
+            },
+            "from": "mockup",
+            "to": "design",
+            "text": "The Markdown mockups it reproduces",
+            "met": false,
+            "due": false,
+            "condition": "pending",
+            "why": "",
+            "status": {
+              "kind": "rollup",
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "Mockup waits for Abstract views (e9c6) at design",
+              "date": "2026-09-29",
+              "recorder": "",
+              "derived": true,
+              "why": "",
+              "uncommitted": false,
+              "from": {
+                "kind": "rollup",
+                "task": {
+                  "id": "99f0",
+                  "title": "Gate definition view in Markdown"
+                },
+                "url": "",
+                "pin": "",
+                "gate": ""
+              }
+            },
+            "subproject": "",
+            "commit": "",
+            "at_trunk": "unknown"
+          }
+        ]
+      },
+      {
+        "task": {
+          "id": "c6e8",
+          "title": "tablotui: terminal user interface"
+        },
+        "status": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/679b renders the global tableau as a Bubble Tea grid with tree expand and collapse, scrolling, a folded gate window and hidden columns kept in a settings file; emoji lines align where the terminal widens U+FE0F",
+          "date": "2026-09-30",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "40e8",
+              "title": "tablotui"
+            },
+            "url": "subprojects/tablotui",
+            "pin": "a2878b56d03e59ee658dded60603f54d19779ba4",
+            "gate": "function"
+          }
+        },
+        "next": "mockup",
+        "requires": [
+          {
+            "task": {
+              "id": "77b2",
+              "title": "tablo: backend library and plumbing"
+            },
+            "from": "implementation",
+            "to": "implementation",
+            "text": "The library it embeds",
+            "met": false,
+            "due": false,
+            "condition": "pending",
+            "why": "",
+            "status": {
+              "kind": "snapshot",
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "The design is next and no requirement gates it",
+              "date": "2026-09-30",
+              "recorder": "",
+              "derived": true,
+              "why": "",
+              "uncommitted": false,
+              "from": {
+                "kind": "snapshot",
+                "task": {
+                  "id": "b2c1",
+                  "title": "tablo"
+                },
+                "url": "subprojects/tablo",
+                "pin": "00f8f68e9a25b0d9df783f573d50c403813e285a",
+                "gate": "defined"
+              }
+            },
+            "subproject": "",
+            "commit": "",
+            "at_trunk": "unknown"
+          },
+          {
+            "task": {
+              "id": "bc86",
+              "title": "Markdown views"
+            },
+            "from": "mockup",
+            "to": "design",
+            "text": "The Markdown mockups that fix the textual layout",
+            "met": false,
+            "due": false,
+            "condition": "pending",
+            "why": "",
+            "status": {
+              "kind": "rollup",
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "Mockup waits for Abstract views (e9c6) at design",
+              "date": "2026-09-29",
+              "recorder": "",
+              "derived": true,
+              "why": "",
+              "uncommitted": false,
+              "from": {
+                "kind": "rollup",
+                "task": {
+                  "id": "99f0",
+                  "title": "Gate definition view in Markdown"
+                },
+                "url": "",
+                "pin": "",
+                "gate": ""
+              }
+            },
+            "subproject": "",
+            "commit": "",
+            "at_trunk": "unknown"
+          },
+          {
+            "task": {
+              "id": "5fe3",
+              "title": "HTML views"
+            },
+            "from": "mockup",
+            "to": "design",
+            "text": "The HTML mockups that fix the disclosure levels",
+            "met": false,
+            "due": false,
+            "condition": "pending",
+            "why": "",
+            "status": {
+              "kind": "rollup",
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "Mockup waits for Abstract views (e9c6) at design",
+              "date": "2026-09-29",
+              "recorder": "",
+              "derived": true,
+              "why": "",
+              "uncommitted": false,
+              "from": {
+                "kind": "rollup",
+                "task": {
+                  "id": "a6f7",
+                  "title": "Gate definition view in Html"
+                },
+                "url": "",
+                "pin": "",
+                "gate": ""
+              }
+            },
+            "subproject": "",
+            "commit": "",
+            "at_trunk": "unknown"
+          }
+        ]
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "status": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
+          "date": "2026-09-30",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "8608",
+              "title": "tableaud"
+            },
+            "url": "subprojects/tableaud",
+            "pin": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+            "gate": "function"
+          }
+        },
+        "next": "mockup",
+        "requires": [
+          {
+            "task": {
+              "id": "77b2",
+              "title": "tablo: backend library and plumbing"
+            },
+            "from": "implementation",
+            "to": "implementation",
+            "text": "The library it embeds",
+            "met": false,
+            "due": false,
+            "condition": "pending",
+            "why": "",
+            "status": {
+              "kind": "snapshot",
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "The design is next and no requirement gates it",
+              "date": "2026-09-30",
+              "recorder": "",
+              "derived": true,
+              "why": "",
+              "uncommitted": false,
+              "from": {
+                "kind": "snapshot",
+                "task": {
+                  "id": "b2c1",
+                  "title": "tablo"
+                },
+                "url": "subprojects/tablo",
+                "pin": "00f8f68e9a25b0d9df783f573d50c403813e285a",
+                "gate": "defined"
+              }
+            },
+            "subproject": "",
+            "commit": "",
+            "at_trunk": "unknown"
+          },
+          {
+            "task": {
+              "id": "5fe3",
+              "title": "HTML views"
+            },
+            "from": "mockup",
+            "to": "design",
+            "text": "The HTML mockups it reproduces",
+            "met": false,
+            "due": false,
+            "condition": "pending",
+            "why": "",
+            "status": {
+              "kind": "rollup",
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "Mockup waits for Abstract views (e9c6) at design",
+              "date": "2026-09-29",
+              "recorder": "",
+              "derived": true,
+              "why": "",
+              "uncommitted": false,
+              "from": {
+                "kind": "rollup",
+                "task": {
+                  "id": "a6f7",
+                  "title": "Gate definition view in Html"
+                },
+                "url": "",
+                "pin": "",
+                "gate": ""
+              }
+            },
             "subproject": "",
             "commit": "",
             "at_trunk": "unknown"
@@ -511,10 +1300,273 @@
     ],
     "commands": [
       {
-        "text": "tabloio blockage --ref 3cdae52 --level provenance",
-        "comment": "this view"
+        "text": "git log --format='%H %as %ae %ce %s' 3cdae527d47d37fdff55bc302c76c017cf91c606 -- .tableaux/status .tableaux/tasks",
+        "comment": ""
       }
     ]
   },
-  "diagnostics": []
+  "diagnostics": [
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/05a9.yaml",
+      "task": "05a9",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/3194.yaml",
+      "task": "3194",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/32e7.yaml",
+      "task": "32e7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/5471.yaml",
+      "task": "5471",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/69eb.yaml",
+      "task": "69eb",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7166.yaml",
+      "task": "7166",
+      "gate": "implementation",
+      "commit": "d9396b4bb05123ca8027cd5e73950c67cfb12cdc",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7783.yaml",
+      "task": "7783",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7861.yaml",
+      "task": "7861",
+      "gate": "validate",
+      "commit": "c6f2655f1bda4469a6171b77cc21e326f0c99f87",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7dff.yaml",
+      "task": "7dff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/99f0.yaml",
+      "task": "99f0",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/9f3f.yaml",
+      "task": "9f3f",
+      "gate": "implementation",
+      "commit": "43d68e4f7d2b856c4d581983f34355d5b5f4f3b4",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a6f7.yaml",
+      "task": "a6f7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a8b4.yaml",
+      "task": "a8b4",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a9ce.yaml",
+      "task": "a9ce",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ab8e.yaml",
+      "task": "ab8e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ac33.yaml",
+      "task": "ac33",
+      "gate": "implementation",
+      "commit": "6762222ddffef76008daad27ebe26069ac67cc5d",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b14e.yaml",
+      "task": "b14e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b1b7.yaml",
+      "task": "b1b7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/bb7c.yaml",
+      "task": "bb7c",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c2ad.yaml",
+      "task": "c2ad",
+      "gate": "validate",
+      "commit": "3d8ce0eee1e869c75453abba91cae03dec6587ce",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c545.yaml",
+      "task": "c545",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c74a.yaml",
+      "task": "c74a",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/d615.yaml",
+      "task": "d615",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e3cb.yaml",
+      "task": "e3cb",
+      "gate": "validate",
+      "commit": "5cbec7cce7c3cb3bf99f2145713d13ccb0b23d0f",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "error",
+      "code": "S11",
+      "path": ".tableaux/status/e3cb.yaml",
+      "line": 1,
+      "col": 7,
+      "task": "e3cb",
+      "gate": "implementation",
+      "message": "the status passes implementation, whose reviewer is noreply@anthropic.com, and no commit by the reviewer carries Reviewed: e3cb implementation"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e9c6.yaml",
+      "task": "e9c6",
+      "gate": "implementation",
+      "commit": "879b447a920aad55e698906812350ea7d3785b4c",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ea51.yaml",
+      "task": "ea51",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/efff.yaml",
+      "task": "efff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/fcec.yaml",
+      "task": "fcec",
+      "gate": "unit",
+      "commit": "60495c26d886016b40069041386a811b24469312",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have unit to review"
+    }
+  ]
 }

@@ -1,9 +1,8 @@
-4 History e9c6 · 8 events · detail
-2026-09-29 · nbyoung@nbyoung.com · task, authorised · the task file appears
+4 History e9c6 · 7 events · detail
+2026-09-29 · nbyoung@nbyoung.com · task · the task file appears
   Status after: ❔ undefined ⚪ undefined
   Effect: an authority commits the task file on the trunk, so the task is
     authorised
-  Model: none recorded; exempt
 2026-09-29 · noreply@anthropic.com · status · 📝 defined 🟢 nominal
   Status after: 📝 defined 🟢 nominal
   Note: Design waits for Roles (c2ad) at design
@@ -12,7 +11,6 @@
 2026-09-29 · noreply@anthropic.com · reviewed · 📝 defined
   Status after: 📝 defined 🟢 nominal, unchanged
   Effect: none; the authorisation stands as the review
-  Model: none recorded; exempt
   Committer: nbyoung@nbyoung.com
 2026-09-30 · noreply@anthropic.com · status · 📝 defined 🟢 nominal 👓 review
   Status after: 📝 defined 🟢 nominal 👓 review

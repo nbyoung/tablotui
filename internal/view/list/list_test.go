@@ -48,8 +48,8 @@ func TestDecodeFixtures(t *testing.T) {
 		}
 		files = append(files, m...)
 	}
-	if len(files) != 16 {
-		t.Fatalf("found %d fixtures, want 16", len(files))
+	if len(files) != 17 {
+		t.Fatalf("found %d fixtures, want 17", len(files))
 	}
 	for _, path := range files {
 		t.Run(path, func(t *testing.T) {
@@ -77,7 +77,7 @@ func TestDecodeContent(t *testing.T) {
 	if v.Level != Detail || v.Task.ID != "e9c6" || v.Parent == nil || v.Parent.ID != "2034" || v.Parent.Order == nil || *v.Parent.Order != 1 {
 		t.Errorf("task = %+v", v)
 	}
-	if len(v.Junctions) != 10 || v.Junctions[4].Marks[1] != "reviewer" || !v.Junctions[4].Acts {
+	if len(v.Junctions) != 9 || v.Junctions[3].Gate != "design" || v.Junctions[3].Marks[1] != "reviewer" || v.Junctions[3].Acts {
 		t.Errorf("junctions = %+v", v.Junctions)
 	}
 }

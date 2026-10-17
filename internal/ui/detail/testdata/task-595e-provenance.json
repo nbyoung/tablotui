@@ -3,18 +3,19 @@
   "command": "task",
   "source": {
     "ref": "main",
+    "dir": ".",
     "worktree": false,
     "commit": "3cdae527d47d37fdff55bc302c76c017cf91c606",
     "date": "2026-10-05",
     "from": null,
     "trunk": {
-      "name": null,
-      "resolved": "undetermined"
+      "name": "main",
+      "resolved": "stated"
     },
     "on_trunk": true
   },
   "project": {
-    "tableaux": "",
+    "tableaux": "0.3.1",
     "root": "437e",
     "title": "Tableaux tooling",
     "owner": "nbyoung@nbyoung.com"
@@ -197,8 +198,8 @@
       "reason": "",
       "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
       "date": "2026-09-30",
-      "recorder": "noreply@anthropic.com",
-      "derived": false,
+      "recorder": "",
+      "derived": true,
       "why": "",
       "uncommitted": false,
       "from": {
@@ -213,8 +214,21 @@
       }
     },
     "authorised": true,
-    "description": "",
-    "references": [],
+    "description": "The graphical front end. A daemon that a participant runs from the checked-out repository and that serves every view as HTML with role-specific progressive disclosure: the owner explores top-down through the task hierarchy, a contributor starts at the parents of their tasks with a gate window around their next gates. The viewer shows and hides columns and the choice persists; the server holds no column policy of its own. It also exports a static bundle for hosting without a daemon. Its plan lives in its own repository, which this repository pins as the submodule subprojects/tableaud; this task tracks that project's root task through recursive junctions from the mockup gate onward.\n",
+    "references": [
+      {
+        "text": "The submodule",
+        "url": "subprojects/tableaud"
+      },
+      {
+        "text": "The repository",
+        "url": "https://github.com/nbyoung/tableaud"
+      },
+      {
+        "text": "The charter",
+        "url": "PLAN.md#subprojects"
+      }
+    ],
     "path": [
       {
         "id": "437e",
@@ -225,7 +239,7 @@
         "title": "tableaud: local daemon and HTML"
       }
     ],
-    "siblings": 6,
+    "siblings": 5,
     "children": [],
     "authorities": [
       {
@@ -247,17 +261,26 @@
         "condition": "pending",
         "why": "",
         "status": {
-          "kind": "recorded",
+          "kind": "snapshot",
           "gate": "defined",
           "state": "nominal",
           "reason": "",
-          "note": "",
-          "date": "",
+          "note": "The design is next and no requirement gates it",
+          "date": "2026-09-30",
           "recorder": "",
-          "derived": false,
+          "derived": true,
           "why": "",
           "uncommitted": false,
-          "from": null
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "b2c1",
+              "title": "tablo"
+            },
+            "url": "subprojects/tablo",
+            "pin": "00f8f68e9a25b0d9df783f573d50c403813e285a",
+            "gate": "defined"
+          }
         },
         "subproject": "",
         "commit": "",
@@ -276,17 +299,26 @@
         "condition": "pending",
         "why": "",
         "status": {
-          "kind": "recorded",
+          "kind": "rollup",
           "gate": "defined",
           "state": "nominal",
           "reason": "",
-          "note": "",
-          "date": "",
+          "note": "Mockup waits for Abstract views (e9c6) at design",
+          "date": "2026-09-29",
           "recorder": "",
-          "derived": false,
+          "derived": true,
           "why": "",
           "uncommitted": false,
-          "from": null
+          "from": {
+            "kind": "rollup",
+            "task": {
+              "id": "a6f7",
+              "title": "Gate definition view in Html"
+            },
+            "url": "",
+            "pin": "",
+            "gate": ""
+          }
         },
         "subproject": "",
         "commit": "",
@@ -296,27 +328,13 @@
     "dependents": [],
     "junctions": [
       {
-        "gate": "undefined",
-        "kind": "plain",
-        "marks": [],
-        "acts": false,
-        "contributor": "",
-        "model": "",
-        "reviewer": "",
-        "reviewer_by_default": false,
-        "subproject": null,
-        "references": [],
-        "stands": "passed",
-        "reviewed": false
-      },
-      {
         "gate": "defined",
         "kind": "plain",
         "marks": [
           "agent",
           "reviewer"
         ],
-        "acts": true,
+        "acts": false,
         "contributor": "noreply@anthropic.com",
         "model": "claude-haiku",
         "reviewer": "nbyoung@nbyoung.com",
@@ -324,7 +342,10 @@
         "subproject": null,
         "references": [],
         "stands": "here",
-        "reviewed": false
+        "reviewed": true,
+        "from": [
+          "437e"
+        ]
       },
       {
         "gate": "mockup",
@@ -350,7 +371,10 @@
         },
         "references": [],
         "stands": "next",
-        "reviewed": false
+        "reviewed": false,
+        "from": [
+          "595e"
+        ]
       },
       {
         "gate": "function",
@@ -376,7 +400,10 @@
         },
         "references": [],
         "stands": "later",
-        "reviewed": false
+        "reviewed": false,
+        "from": [
+          "595e"
+        ]
       },
       {
         "gate": "design",
@@ -402,7 +429,10 @@
         },
         "references": [],
         "stands": "later",
-        "reviewed": false
+        "reviewed": false,
+        "from": [
+          "595e"
+        ]
       },
       {
         "gate": "implementation",
@@ -428,7 +458,10 @@
         },
         "references": [],
         "stands": "later",
-        "reviewed": false
+        "reviewed": false,
+        "from": [
+          "595e"
+        ]
       },
       {
         "gate": "unit",
@@ -454,7 +487,10 @@
         },
         "references": [],
         "stands": "later",
-        "reviewed": false
+        "reviewed": false,
+        "from": [
+          "595e"
+        ]
       },
       {
         "gate": "integrate",
@@ -480,7 +516,10 @@
         },
         "references": [],
         "stands": "later",
-        "reviewed": false
+        "reviewed": false,
+        "from": [
+          "595e"
+        ]
       },
       {
         "gate": "validate",
@@ -506,7 +545,10 @@
         },
         "references": [],
         "stands": "later",
-        "reviewed": false
+        "reviewed": false,
+        "from": [
+          "595e"
+        ]
       },
       {
         "gate": "release",
@@ -532,7 +574,10 @@
         },
         "references": [],
         "stands": "later",
-        "reviewed": false
+        "reviewed": false,
+        "from": [
+          "595e"
+        ]
       }
     ],
     "snapshot": {
@@ -572,15 +617,15 @@
         {
           "id": "7425",
           "title": "Bootstrap",
-          "order": null,
+          "order": 1,
           "status": {
             "kind": "recorded",
             "gate": "implementation",
             "state": "nominal",
             "reason": "",
-            "note": "",
-            "date": "",
-            "recorder": "",
+            "note": "The skeleton is on the trunk and passes vet and test locally and in CI run 36714734449 on 406c061; formatting, lint and the release workflow are in place; the tablo require line waits for the server task, as the README states",
+            "date": "2026-09-30",
+            "recorder": "noreply@anthropic.com",
             "derived": false,
             "why": "",
             "uncommitted": false,
@@ -590,15 +635,15 @@
         {
           "id": "49ce",
           "title": "Server",
-          "order": null,
+          "order": 2,
           "status": {
             "kind": "recorded",
             "gate": "function",
             "state": "nominal",
             "reason": "",
-            "note": "",
-            "date": "",
-            "recorder": "",
+            "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
+            "date": "2026-10-05",
+            "recorder": "noreply@anthropic.com",
             "derived": false,
             "why": "",
             "uncommitted": false,
@@ -608,33 +653,42 @@
         {
           "id": "097c",
           "title": "HTML views",
-          "order": null,
+          "order": 3,
           "status": {
-            "kind": "recorded",
+            "kind": "rollup",
             "gate": "function",
             "state": "nominal",
             "reason": "",
-            "note": "",
-            "date": "",
+            "note": "prototype/438a renders the legend and task pages from 493e data with inline and HTMX-fetched folds, no-script fallbacks and resolved links",
+            "date": "2026-10-05",
             "recorder": "",
-            "derived": false,
+            "derived": true,
             "why": "",
             "uncommitted": false,
-            "from": null
+            "from": {
+              "kind": "rollup",
+              "task": {
+                "id": "438a",
+                "title": "Legend and task templates"
+              },
+              "url": "",
+              "pin": "",
+              "gate": ""
+            }
           }
         },
         {
           "id": "db74",
           "title": "Progressive disclosure",
-          "order": null,
+          "order": 4,
           "status": {
             "kind": "recorded",
             "gate": "function",
             "state": "nominal",
             "reason": "",
-            "note": "",
-            "date": "",
-            "recorder": "",
+            "note": "One URL carries person, open rows and a column difference from the default gate window; role entry points, hidden markers and a stored choice script",
+            "date": "2026-10-05",
+            "recorder": "noreply@anthropic.com",
             "derived": false,
             "why": "",
             "uncommitted": false,
@@ -644,15 +698,15 @@
         {
           "id": "6160",
           "title": "Static export",
-          "order": null,
+          "order": 5,
           "status": {
             "kind": "recorded",
             "gate": "function",
             "state": "nominal",
             "reason": "",
-            "note": "",
-            "date": "",
-            "recorder": "",
+            "note": "prototype/6160 exports every view as a relative-link bundle in three disclosure modes and recommends native details over HTMX fragments or one page per state",
+            "date": "2026-10-05",
+            "recorder": "noreply@anthropic.com",
             "derived": false,
             "why": "",
             "uncommitted": false,
@@ -662,15 +716,15 @@
         {
           "id": "5a2f",
           "title": "Accessibility and theming",
-          "order": null,
+          "order": 6,
           "status": {
             "kind": "recorded",
             "gate": "function",
             "state": "nominal",
             "reason": "",
-            "note": "",
-            "date": "",
-            "recorder": "",
+            "note": "prototype/5a2f shows symbol text alternatives, plain table against treegrid keyboard use, CSS-only light and dark themes with contrast tests, and scrolling against stacked phone layouts",
+            "date": "2026-10-05",
+            "recorder": "noreply@anthropic.com",
             "derived": false,
             "why": "",
             "uncommitted": false,
@@ -679,12 +733,39 @@
         }
       ]
     },
-    "status_commit": null,
+    "status_commit": {
+      "hash": "967df1fb2f8918bfd7713eee996c1ae235390f22",
+      "subject": "Record task 49ce at the function gate",
+      "date": "2026-10-05",
+      "author_time": "2026-10-05T11:27:18-04:00",
+      "author": {
+        "name": "Claude Sonnet 5.5",
+        "email": "noreply@anthropic.com"
+      },
+      "committer": {
+        "name": "Claude Sonnet 5.5",
+        "email": "noreply@anthropic.com"
+      },
+      "parents": [
+        "7d3306034435e3d642d85e54a575bef931116845"
+      ],
+      "trailers": [
+        "Reviewed: 49ce function",
+        "Model: claude-sonnet-5-5",
+        "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
+      ],
+      "files": [
+        {
+          "path": ".tableaux/status/49ce.yaml",
+          "change": "changed"
+        }
+      ]
+    },
     "own_commit": {
-      "hash": "e66abe2",
+      "hash": "e66abe252ccc5662970c3653b1f181cbe50acbaf",
       "subject": "Record the defined gate for the subproject tasks",
       "date": "2026-09-30",
-      "author_time": "",
+      "author_time": "2026-09-30T12:53:50-04:00",
       "author": {
         "name": "Claude Haiku 4.5",
         "email": "noreply@anthropic.com"
@@ -693,18 +774,38 @@
         "name": "Claude Haiku 4.5",
         "email": "noreply@anthropic.com"
       },
-      "parents": [],
-      "trailers": [
-        "Model: claude-haiku-4-5-20251001"
+      "parents": [
+        "f20271a1fa823298a27d4a79362a98a69f745c1e"
       ],
-      "files": []
+      "trailers": [
+        "Model: claude-haiku-4-5-20251001",
+        "Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>"
+      ],
+      "files": [
+        {
+          "path": ".tableaux/status/595e.yaml",
+          "change": "added"
+        },
+        {
+          "path": ".tableaux/status/6103.yaml",
+          "change": "added"
+        },
+        {
+          "path": ".tableaux/status/77b2.yaml",
+          "change": "added"
+        },
+        {
+          "path": ".tableaux/status/c6e8.yaml",
+          "change": "added"
+        }
+      ]
     },
     "authorisation": {
       "commit": {
-        "hash": "6b6c99a",
+        "hash": "6b6c99a2ca35f684674ad886a33916979137f227",
         "subject": "Plan the Tableaux tooling",
         "date": "2026-09-29",
-        "author_time": "",
+        "author_time": "2026-09-29T16:38:16-04:00",
         "author": {
           "name": "Norman Young",
           "email": "nbyoung@nbyoung.com"
@@ -713,20 +814,262 @@
           "name": "Norman Young",
           "email": "nbyoung@nbyoung.com"
         },
-        "parents": [],
-        "trailers": [],
-        "files": []
+        "parents": [
+          "0a0dcd584a43253286c778593d18ddbf610d0969"
+        ],
+        "trailers": [
+          "Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
+        ],
+        "files": [
+          {
+            "path": ".tableaux/gates.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/05a9.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/2034.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/3194.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/32e7.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/437e.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/5471.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/595e.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/5fe3.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/6103.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/69eb.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/7166.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/7783.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/77b2.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/7861.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/7dff.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/99f0.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/9f3f.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/a6f7.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/a8b4.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/a9ce.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/ab8e.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/ac33.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/b14e.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/b1b7.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/bb7c.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/bc63.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/bc86.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/c2ad.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/c545.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/c6e8.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/c74a.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/d615.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/e3cb.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/e9c6.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/ea51.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/efff.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/tasks/fcec.yaml",
+            "change": "added"
+          },
+          {
+            "path": ".tableaux/version.yaml",
+            "change": "added"
+          }
+        ]
       },
       "way": "change",
       "by": "both",
-      "email": "",
-      "judges": [],
+      "email": "nbyoung@nbyoung.com",
+      "judges": [
+        "nbyoung@nbyoung.com"
+      ],
       "why": "",
       "differs_from_trunk": false,
       "uncommitted": false
     },
     "considered": [],
-    "chain": [],
+    "chain": [
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "url": "",
+        "status": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
+          "date": "2026-09-30",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "8608",
+              "title": "tableaud"
+            },
+            "url": "subprojects/tableaud",
+            "pin": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+            "gate": "function"
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "8608",
+          "title": "tableaud"
+        },
+        "url": "subprojects/tableaud",
+        "status": {
+          "kind": "rollup",
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
+          "date": "2026-09-30",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "rollup",
+            "task": {
+              "id": "49ce",
+              "title": "Server"
+            },
+            "url": "",
+            "pin": "",
+            "gate": ""
+          }
+        }
+      },
+      {
+        "task": {
+          "id": "49ce",
+          "title": "Server"
+        },
+        "url": "subprojects/tableaud",
+        "status": {
+          "kind": "recorded",
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
+          "date": "2026-10-05",
+          "recorder": "noreply@anthropic.com",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        }
+      }
+    ],
     "linkages": [
       {
         "gates": [
@@ -751,20 +1094,20 @@
         "by": "595e",
         "key": "junctions.mockup.subproject.url",
         "file": ".tableaux/tasks/595e.yaml",
-        "line": 0,
-        "col": 0,
+        "line": 16,
+        "col": 40,
         "stated_commit": "",
-        "recorded": "",
+        "recorded": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
         "moved": false,
         "trunk": "main",
-        "tip": "",
+        "tip": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
         "on_trunk": "yes",
-        "behind": "unknown",
+        "behind": "no",
         "pinned": {
           "hash": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
           "subject": "Accept the accessibility and theming function prototype",
           "date": "2026-10-05",
-          "author_time": "",
+          "author_time": "2026-10-05T12:58:51-04:00",
           "author": {
             "name": "Norman Young",
             "email": "nbyoung@nbyoung.com"
@@ -773,15 +1116,26 @@
             "name": "Norman Young",
             "email": "nbyoung@nbyoung.com"
           },
-          "parents": [],
-          "trailers": [],
-          "files": []
+          "parents": [
+            "24c75974d0b46d79c52898b495a7a3eb774d16e0",
+            "0c38023efa2ec8082969462a461366fbc4774bd7"
+          ],
+          "trailers": [
+            "Model: claude-opus-5-5",
+            "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+          ],
+          "files": [
+            {
+              "path": ".tableaux/status/5a2f.yaml",
+              "change": "changed"
+            }
+          ]
         },
         "set_by": {
           "hash": "3cdae527d47d37fdff55bc302c76c017cf91c606",
           "subject": "Advance tableaud to the eight function prototypes",
           "date": "2026-10-05",
-          "author_time": "",
+          "author_time": "2026-10-05T12:59:45-04:00",
           "author": {
             "name": "Norman Young",
             "email": "nbyoung@nbyoung.com"
@@ -790,74 +1144,681 @@
             "name": "Norman Young",
             "email": "nbyoung@nbyoung.com"
           },
-          "parents": [],
-          "trailers": [],
-          "files": []
+          "parents": [
+            "fa4551ecdc8d106722ac41b25a9213abc453fab0"
+          ],
+          "trailers": [
+            "Model: claude-opus-5-5",
+            "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+          ],
+          "files": [
+            {
+              "path": "subprojects/tableaud",
+              "change": "pin"
+            }
+          ]
         }
       }
     ],
-    "sources": [],
-    "reviews": [],
-    "models": [],
+    "sources": [
+      {
+        "gate": "defined",
+        "field": "contributor",
+        "value": "noreply@anthropic.com",
+        "by": "437e",
+        "key": "junctions.defined.contributor",
+        "file": ".tableaux/tasks/437e.yaml",
+        "line": 17,
+        "col": 34
+      },
+      {
+        "gate": "defined",
+        "field": "model",
+        "value": "claude-haiku",
+        "by": "437e",
+        "key": "junctions.defined.model",
+        "file": ".tableaux/tasks/437e.yaml",
+        "line": 17,
+        "col": 64
+      },
+      {
+        "gate": "defined",
+        "field": "reviewer",
+        "value": "nbyoung@nbyoung.com",
+        "by": "assignee",
+        "key": "assignee",
+        "file": "",
+        "line": 0,
+        "col": 0
+      },
+      {
+        "gate": "mockup",
+        "field": "subproject",
+        "value": "subprojects/tableaud",
+        "by": "595e",
+        "key": "junctions.mockup.subproject",
+        "file": ".tableaux/tasks/595e.yaml",
+        "line": 16,
+        "col": 3
+      },
+      {
+        "gate": "function",
+        "field": "subproject",
+        "value": "subprojects/tableaud",
+        "by": "595e",
+        "key": "junctions.function.subproject",
+        "file": ".tableaux/tasks/595e.yaml",
+        "line": 17,
+        "col": 3
+      },
+      {
+        "gate": "design",
+        "field": "subproject",
+        "value": "subprojects/tableaud",
+        "by": "595e",
+        "key": "junctions.design.subproject",
+        "file": ".tableaux/tasks/595e.yaml",
+        "line": 18,
+        "col": 3
+      },
+      {
+        "gate": "implementation",
+        "field": "subproject",
+        "value": "subprojects/tableaud",
+        "by": "595e",
+        "key": "junctions.implementation.subproject",
+        "file": ".tableaux/tasks/595e.yaml",
+        "line": 19,
+        "col": 3
+      },
+      {
+        "gate": "unit",
+        "field": "subproject",
+        "value": "subprojects/tableaud",
+        "by": "595e",
+        "key": "junctions.unit.subproject",
+        "file": ".tableaux/tasks/595e.yaml",
+        "line": 20,
+        "col": 3
+      },
+      {
+        "gate": "integrate",
+        "field": "subproject",
+        "value": "subprojects/tableaud",
+        "by": "595e",
+        "key": "junctions.integrate.subproject",
+        "file": ".tableaux/tasks/595e.yaml",
+        "line": 21,
+        "col": 3
+      },
+      {
+        "gate": "validate",
+        "field": "subproject",
+        "value": "subprojects/tableaud",
+        "by": "595e",
+        "key": "junctions.validate.subproject",
+        "file": ".tableaux/tasks/595e.yaml",
+        "line": 22,
+        "col": 3
+      },
+      {
+        "gate": "release",
+        "field": "subproject",
+        "value": "subprojects/tableaud",
+        "by": "595e",
+        "key": "junctions.release.subproject",
+        "file": ".tableaux/tasks/595e.yaml",
+        "line": 23,
+        "col": 3
+      }
+    ],
+    "reviews": [
+      {
+        "gate": "defined",
+        "reviewer": "nbyoung@nbyoung.com",
+        "effect": "authorisation",
+        "by": "nbyoung@nbyoung.com",
+        "commit": {
+          "hash": "6b6c99a2ca35f684674ad886a33916979137f227",
+          "subject": "Plan the Tableaux tooling",
+          "date": "2026-09-29",
+          "author_time": "2026-09-29T16:38:16-04:00",
+          "author": {
+            "name": "Norman Young",
+            "email": "nbyoung@nbyoung.com"
+          },
+          "committer": {
+            "name": "Norman Young",
+            "email": "nbyoung@nbyoung.com"
+          },
+          "parents": [
+            "0a0dcd584a43253286c778593d18ddbf610d0969"
+          ],
+          "trailers": [
+            "Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
+          ],
+          "files": [
+            {
+              "path": ".tableaux/gates.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/05a9.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/2034.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/3194.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/32e7.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/437e.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/5471.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/595e.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/5fe3.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/6103.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/69eb.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/7166.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/7783.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/77b2.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/7861.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/7dff.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/99f0.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/9f3f.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/a6f7.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/a8b4.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/a9ce.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/ab8e.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/ac33.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/b14e.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/b1b7.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/bb7c.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/bc63.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/bc86.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/c2ad.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/c545.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/c6e8.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/c74a.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/d615.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/e3cb.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/e9c6.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/ea51.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/efff.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/tasks/fcec.yaml",
+              "change": "added"
+            },
+            {
+              "path": ".tableaux/version.yaml",
+              "change": "added"
+            }
+          ]
+        }
+      }
+    ],
+    "models": [
+      {
+        "commit": "e66abe252ccc5662970c3653b1f181cbe50acbaf",
+        "gate": "defined",
+        "stated": "claude-haiku",
+        "trailer": "claude-haiku-4-5-20251001",
+        "reading": "agrees"
+      }
+    ],
     "events": [
       {
         "date": "2026-10-05",
-        "commit": "3cdae52",
+        "commit": "3cdae527d47d37fdff55bc302c76c017cf91c606",
         "by": "nbyoung@nbyoung.com",
         "kind": "pin",
         "recorded": null,
         "gate": "",
         "pin": {
           "url": "subprojects/tableaud",
-          "old": "cffbfa6",
-          "new": "e6ec4ec"
+          "old": "cffbfa66a5eada8a8262c105353ba158f55a9129",
+          "new": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e"
         },
         "subproject": null
       },
       {
-        "date": "2026-10-02",
-        "commit": "552d38f",
-        "by": "nbyoung@nbyoung.com",
-        "kind": "pin",
+        "date": "2026-10-05",
+        "commit": "218d8f35bb43a6c118d0ea4e892e5905ec526910",
+        "by": "noreply@anthropic.com",
+        "kind": "reviewed",
         "recorded": null,
-        "gate": "",
-        "pin": {
+        "gate": "function",
+        "pin": null,
+        "subproject": {
           "url": "subprojects/tableaud",
-          "old": "b06cad0",
-          "new": "cffbfa6"
-        },
-        "subproject": null
+          "task": "6160",
+          "title": "Static export"
+        }
       },
       {
-        "date": "2026-10-02",
-        "commit": "fb8c0b2",
-        "by": "nbyoung@nbyoung.com",
-        "kind": "pin",
-        "recorded": null,
-        "gate": "",
-        "pin": {
-          "url": "subprojects/tableaud",
-          "old": "2061a7f",
-          "new": "b06cad0"
+        "date": "2026-10-05",
+        "commit": "218d8f35bb43a6c118d0ea4e892e5905ec526910",
+        "by": "noreply@anthropic.com",
+        "kind": "status",
+        "recorded": {
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/6160 exports every view as a relative-link bundle in three disclosure modes and recommends native details over HTMX fragments or one page per state"
         },
-        "subproject": null
+        "gate": "",
+        "pin": null,
+        "subproject": {
+          "url": "subprojects/tableaud",
+          "task": "6160",
+          "title": "Static export"
+        }
+      },
+      {
+        "date": "2026-10-05",
+        "commit": "0c38023efa2ec8082969462a461366fbc4774bd7",
+        "by": "noreply@anthropic.com",
+        "kind": "reviewed",
+        "recorded": null,
+        "gate": "function",
+        "pin": null,
+        "subproject": {
+          "url": "subprojects/tableaud",
+          "task": "5a2f",
+          "title": "Accessibility and theming"
+        }
+      },
+      {
+        "date": "2026-10-05",
+        "commit": "0c38023efa2ec8082969462a461366fbc4774bd7",
+        "by": "noreply@anthropic.com",
+        "kind": "status",
+        "recorded": {
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/5a2f shows symbol text alternatives, plain table against treegrid keyboard use, CSS-only light and dark themes with contrast tests, and scrolling against stacked phone layouts"
+        },
+        "gate": "",
+        "pin": null,
+        "subproject": {
+          "url": "subprojects/tableaud",
+          "task": "5a2f",
+          "title": "Accessibility and theming"
+        }
       }
     ],
-    "event_count": 11,
+    "event_count": 69,
     "commands": [
       {
-        "text": "git ls-tree 3cdae52 subprojects/tableaud",
-        "comment": ""
-      },
-      {
-        "text": "git -C subprojects/tableaud show e6ec4ec:.tableaux/tasks/8608.yaml",
-        "comment": ""
-      },
-      {
-        "text": "git log --format='%as %h %ae' 3cdae52 -- .tableaux/tasks/595e.yaml .tableaux/status/595e.yaml subprojects/tableaud",
+        "text": "git log --format='%H %as %ae %s' 3cdae527d47d37fdff55bc302c76c017cf91c606 -- .tableaux/tasks/595e.yaml .tableaux/status/595e.yaml subprojects/tableaud",
         "comment": ""
       }
     ]
   },
-  "diagnostics": []
+  "diagnostics": [
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/05a9.yaml",
+      "task": "05a9",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/3194.yaml",
+      "task": "3194",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/32e7.yaml",
+      "task": "32e7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/5471.yaml",
+      "task": "5471",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/69eb.yaml",
+      "task": "69eb",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7166.yaml",
+      "task": "7166",
+      "gate": "implementation",
+      "commit": "d9396b4bb05123ca8027cd5e73950c67cfb12cdc",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7783.yaml",
+      "task": "7783",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7861.yaml",
+      "task": "7861",
+      "gate": "validate",
+      "commit": "c6f2655f1bda4469a6171b77cc21e326f0c99f87",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7dff.yaml",
+      "task": "7dff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/99f0.yaml",
+      "task": "99f0",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/9f3f.yaml",
+      "task": "9f3f",
+      "gate": "implementation",
+      "commit": "43d68e4f7d2b856c4d581983f34355d5b5f4f3b4",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a6f7.yaml",
+      "task": "a6f7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a8b4.yaml",
+      "task": "a8b4",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a9ce.yaml",
+      "task": "a9ce",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ab8e.yaml",
+      "task": "ab8e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ac33.yaml",
+      "task": "ac33",
+      "gate": "implementation",
+      "commit": "6762222ddffef76008daad27ebe26069ac67cc5d",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b14e.yaml",
+      "task": "b14e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b1b7.yaml",
+      "task": "b1b7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/bb7c.yaml",
+      "task": "bb7c",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c2ad.yaml",
+      "task": "c2ad",
+      "gate": "validate",
+      "commit": "3d8ce0eee1e869c75453abba91cae03dec6587ce",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c545.yaml",
+      "task": "c545",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c74a.yaml",
+      "task": "c74a",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/d615.yaml",
+      "task": "d615",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e3cb.yaml",
+      "task": "e3cb",
+      "gate": "validate",
+      "commit": "5cbec7cce7c3cb3bf99f2145713d13ccb0b23d0f",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "error",
+      "code": "S11",
+      "path": ".tableaux/status/e3cb.yaml",
+      "line": 1,
+      "col": 7,
+      "task": "e3cb",
+      "gate": "implementation",
+      "message": "the status passes implementation, whose reviewer is noreply@anthropic.com, and no commit by the reviewer carries Reviewed: e3cb implementation"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e9c6.yaml",
+      "task": "e9c6",
+      "gate": "implementation",
+      "commit": "879b447a920aad55e698906812350ea7d3785b4c",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ea51.yaml",
+      "task": "ea51",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/efff.yaml",
+      "task": "efff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/fcec.yaml",
+      "task": "fcec",
+      "gate": "unit",
+      "commit": "60495c26d886016b40069041386a811b24469312",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have unit to review"
+    }
+  ]
 }
