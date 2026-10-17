@@ -114,8 +114,12 @@ terminal draws it. `go.mod` carries their `require` lines; the owner accepted
 the major at the review of the tableau grid design.
 
 **tablo.** This front end never reads a task file; it takes view data from
-tablo. tablo has no release yet, and its bootstrap runs alongside this one, so
-`go.mod` carries no `require` for it until it tags. The policy then:
+tablo's library. tablo has no release yet, so `go.mod` requires a
+pseudo-version of tablo's `main`, added with
+`go get github.com/nbyoung/tablo@<commit>`, and `go.sum` pins its hash, as
+tabloio and tableaud do by the owner's ruling. The line moves to
+`v0.N.M`, with `go get github.com/nbyoung/tablo@v0.N.M`, when tablo tags its
+first release. The policy from then:
 
 - Go modules select the minimum version, so a declared range is a floor plus a
   ceiling that convention keeps. The `require` line names the floor, the oldest
