@@ -1,3 +1,3 @@
-gate: unit
+gate: integrate
 state: nominal
-note: T1 to T22 pass with no skip under go test -count=1 and go test -race on this host, the reftable case included, and T23 is that race run; integrate needs the frame to embed the component, --ref in main.go and tablo's Loader with its SetSubmodules call, so it waits on 679b and on tablo; the owner's edit beside a running program waits for validate
+note: The component as a pane that never opens, --ref, tablo's Loader with SetSubmodules, the notice line of its own, Where in the status line and the Force key on ctrl+r stand; T1 to T22 and the integrate tests pass under go test -count=1 and -race, with and without TABLEAUX_CORPUS and TABLEAUX_DIR, and BenchmarkLoad on the umbrella at 50a373b loads in 42 ms at arrival and 91 ms with four panes open, under A8's 100 ms; the validate gate runs the owner's edit beside a running program; the Poke after an action waits on 518e at implementation
