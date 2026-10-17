@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+	"path/filepath"
 	"slices"
 	"strings"
 	"testing"
@@ -298,4 +300,96 @@ func TestIntegrateRAloneIsBound(t *testing.T) {
 			t.Errorf("r, v, a and u change the screen:\n%s\nwas:\n%s", after, before)
 		}
 	}, "-C", dir, "--as", "ben@example.org")
+}
+
+// The integrate tests of 171b that decision 11 keeps for this gate, through
+// the command on a copy of weather-station: Where at the end of the status
+// line, the notice line of the live refresh's own, and the Force key.
+
+// reloads counts the ui.ReloadMsg the session has seen.
+func (s *session) reloads() int {
+	n := 0
+	for _, m := range s.seen {
+		if _, ok := m.(ui.ReloadMsg); ok {
+			n++
+		}
+	}
+	return n
+}
+
+var ctrlR = tea.KeyPressMsg{Code: 'r', Mod: tea.ModCtrl}
+
+// A5 and A6: the status line ends with the source, the working tree on its
+// branch at its commit; ctrl+r reloads at once; a file that breaks the
+// project keeps the view and states the failure on a line of its own above
+// the status line, and the fix clears it.
+func TestIntegrateTheLiveRefreshReports(t *testing.T) {
+	dir := corpustest.Entry(t, "weather-station")
+	labels := corpustest.Labels(t, "weather-station")
+	at := labels["W13"][:7]
+	version := filepath.Join(dir, ".tableaux", "version.yaml")
+	body, err := os.ReadFile(version)
+	if err != nil {
+		t.Fatal(err)
+	}
+	runLive(t, func(s *session) {
+		got := s.until("the arrival", func(l []string) bool { return len(rowIDs(l)) > 0 && s.reloads() > 0 })
+		if status := got[len(got)-2]; !strings.HasSuffix(status, " · working tree on main at "+at) {
+			t.Errorf("status line %q", status)
+		}
+		n := s.reloads()
+		s.key(ctrlR)
+		s.until("a forced reload", func([]string) bool { return s.reloads() > n })
+
+		if err := os.Remove(version); err != nil {
+			t.Fatal(err)
+		}
+		s.key(ctrlR)
+		got = s.until("the failure", func(l []string) bool { return strings.HasPrefix(l[len(l)-3], "Reload failed at ") })
+		if notice := got[len(got)-3]; !strings.Contains(notice, ", showing the view of ") || !strings.Contains(notice, "P2 ") {
+			t.Errorf("notice line %q", notice)
+		}
+		if ids := rowIDs(got); !slices.Contains(ids, "a1c0") {
+			t.Errorf("the view does not stand beside the failure:\n%s", strings.Join(got, "\n"))
+		}
+
+		if err := os.WriteFile(version, body, 0o644); err != nil {
+			t.Fatal(err)
+		}
+		s.key(ctrlR)
+		got = s.until("the fix", func(l []string) bool {
+			return !strings.HasPrefix(l[len(l)-3], "Reload failed") && strings.HasSuffix(l[len(l)-2], "working tree on main at "+at)
+		})
+		if ids := rowIDs(got); !slices.Contains(ids, "a1c0") {
+			t.Errorf("the view does not stand after the fix:\n%s", strings.Join(got, "\n"))
+		}
+	}, "-C", dir, "--as", "ada@example.org")
+}
+
+// With --ref the status line names the ref and its commit, and the help mode
+// lists the Force key; with --fixture no Force key is bound.
+func TestIntegrateTheRefInTheStatusLine(t *testing.T) {
+	dir := corpustest.Entry(t, "weather-station")
+	labels := corpustest.Labels(t, "weather-station")
+	runLive(t, func(s *session) {
+		got := s.until("the arrival", func(l []string) bool { return len(rowIDs(l)) > 0 })
+		if status := got[len(got)-2]; !strings.HasSuffix(status, " · main at "+labels["W13"][:7]) {
+			t.Errorf("status line %q", status)
+		}
+		s.update(tea.WindowSizeMsg{Width: 120, Height: 45})
+		s.key(text('?'))
+		s.until("the Force key in the help mode", func(l []string) bool {
+			return slices.ContainsFunc(l, func(line string) bool { return slices.Equal(strings.Fields(line), []string{"ctrl+r", "reload"}) })
+		})
+	}, "-C", dir, "--ref", "main", "--as", "ada@example.org")
+
+	h := newHarness(t)
+	var help []string
+	h.onRun = func(m tea.Model) { help = lines(press(drive(m, 100, 40), text('?'))) }
+	if code, _, errOut := runArgs("--fixture", fixtureDir(t)); code != 0 {
+		t.Fatalf("exit %d, stderr %q", code, errOut)
+	}
+	if j := strings.Join(help, "\n"); strings.Contains(j, "ctrl+r") || !strings.Contains(j, "Commands") {
+		t.Errorf("with --fixture the help mode reads:\n%s", j)
+	}
 }
