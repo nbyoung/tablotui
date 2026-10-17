@@ -193,6 +193,7 @@
         "since": "2026-09-30",
         "age": 0,
         "causes": [],
+        "why": "",
         "junction": {
           "gate": "design",
           "kind": "plain",
@@ -312,6 +313,7 @@
         "since": "2026-09-22",
         "age": 0,
         "causes": [],
+        "why": "",
         "junction": null,
         "sources": [],
         "task_references": [],
@@ -343,6 +345,7 @@
         "since": "2026-09-30",
         "age": 0,
         "causes": [],
+        "why": "",
         "junction": {
           "gate": "release",
           "kind": "plain",
@@ -391,6 +394,7 @@
         "since": "2026-09-29",
         "age": 1,
         "causes": [],
+        "why": "",
         "junction": null,
         "sources": [],
         "task_references": [],
@@ -433,9 +437,11 @@
               "at_trunk": "unknown"
             },
             "reason": "",
+            "note": "",
             "by": ""
           }
         ],
+        "why": "",
         "junction": null,
         "sources": [],
         "task_references": [],

@@ -75,7 +75,9 @@ func queueLines(d list.Queue, lvl list.Level, unfold bool, sel string) (subject,
 	return subject, counts, lines
 }
 
-// queueEntry reads an item as an entry that opens with its task.
+// queueEntry reads an item as an entry that opens with its task. An item
+// with a cause never folds, as in tabloio: the cause belongs to its task, and
+// an authorisation always carries one.
 func (w words) queueEntry(it list.QueueItem, i int) entry {
 	date := it.Since
 	if it.Kind == "reaffirmation" {
@@ -83,7 +85,7 @@ func (w words) queueEntry(it list.QueueItem, i int) entry {
 	}
 	e := entry{task: it.Task, item: i, gate: it.Gate}
 	if c := w.queueCause(it); c != "" {
-		e.text = task(it.Task) + "; " + c
+		e.text, e.alone = task(it.Task)+"; "+c, true
 	}
 	e.rest = cells(w.gate(it.Gate), it.Model, date)
 	return e
@@ -101,16 +103,13 @@ var authorisationOwed = map[string]string{
 }
 
 // queueCause words why an item waits, or why an authorisation is owed, in
-// tabloio's words: each cause of a waiting item, joined by "; ", a reason
-// with the note of the item's own status; for an authorisation, why its
-// task stands proposed. It reads nothing for an item with neither, and an
-// item's facts alone: at glance tablo gives no note and no authorisation.
+// tabloio's words, from the item's own facts at every level (886d decision
+// 15): each cause of a waiting item, joined by "; ", a reason with its
+// wait's note; for an authorisation, why its task stands proposed, from the
+// item's why. It reads nothing for a waiting item with no cause.
 func (w words) queueCause(it list.QueueItem) string {
 	if it.Kind == "authorisation" {
-		if a := it.Authorisation; a != nil {
-			return authorisationOwed[a.Why]
-		}
-		return ""
+		return authorisationOwed[it.Why]
 	}
 	var runs []string
 	for _, c := range it.Causes {
@@ -125,8 +124,8 @@ func (w words) queueCause(it list.QueueItem) string {
 			}
 		case "reason":
 			x := c.Reason
-			if st := it.Status; st != nil && st.Note != "" {
-				x += ": " + st.Note
+			if c.Note != "" {
+				x += ": " + c.Note
 			}
 			runs = append(runs, x)
 		case "authorisation":

@@ -230,12 +230,13 @@ func cells(parts ...string) string { return join(" · ", parts...) }
 // entry is one row of a list that may fold: the task and the cells that
 // follow it.
 type entry struct {
-	task list.TaskRef
-	text string // the first cell where it is not the task
-	rest string
-	item int
-	gate string
-	ids  []string // on a fold line: the ids the line stands for
+	task  list.TaskRef
+	text  string // the first cell where it is not the task
+	rest  string
+	item  int
+	gate  string
+	ids   []string // on a fold line: the ids the line stands for
+	alone bool     // the entry carries a cause of its task's, so it never folds
 }
 
 // first is the cell that opens the entry.
@@ -257,6 +258,7 @@ func (e entry) line(indent, hang int) Line {
 // foldRuns applies the run fold: a run of more than eight consecutive entries
 // that agree in everything but the task keeps its first three, and one entry
 // with an empty task id stands for the others, its title listing their ids.
+// An entry that stands alone belongs to no run.
 func foldRuns(in []entry, unfold bool) []entry {
 	if unfold {
 		return in
@@ -264,7 +266,7 @@ func foldRuns(in []entry, unfold bool) []entry {
 	var out []entry
 	for i := 0; i < len(in); {
 		j := i + 1
-		for j < len(in) && in[j].rest == in[i].rest {
+		for j < len(in) && !in[i].alone && !in[j].alone && in[j].rest == in[i].rest {
 			j++
 		}
 		if j-i <= 8 {

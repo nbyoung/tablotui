@@ -246,3 +246,41 @@ func TestTabloSubEventTitle(t *testing.T) {
 		}
 	}
 }
+
+// TestTabloQueueCauses: the queue at glance words a reason from its wait's
+// note and an authorisation from its why, as tablo's glance gives them
+// (886d decision 15).
+func TestTabloQueueCauses(t *testing.T) {
+	doc := tabloDoc(t, "queue-ada.glance.json", 400)
+	for _, want := range []string{
+		"9f31 Sensor board; blocked: Barometer ICs on 14-week backorder ·",
+		"3c5d Dashboard; proposed; the deciding commit is not by an authority ·",
+	} {
+		if !strings.Contains(doc, want) {
+			t.Errorf("the glance lacks %q:\n%s", want, doc)
+		}
+	}
+}
+
+// TestQueueCauseReadsTheItemAlone: a reason reads its wait's note and never
+// the item's status, and an authorisation reads its why and never its
+// authorisation.
+func TestQueueCauseReadsTheItemAlone(t *testing.T) {
+	w := words{}
+	waiting := list.QueueItem{
+		Kind:   "waiting",
+		Causes: []list.Wait{{Kind: "reason", Reason: "blocked", Note: "the wait's note"}},
+		Status: &list.Status{Note: "the status's note"},
+	}
+	if got, want := w.queueCause(waiting), "blocked: the wait's note"; got != want {
+		t.Errorf("reason = %q, want %q", got, want)
+	}
+	waiting.Causes[0].Note = ""
+	if got, want := w.queueCause(waiting), "blocked"; got != want {
+		t.Errorf("reason with no note = %q, want %q", got, want)
+	}
+	owed := list.QueueItem{Kind: "authorisation", Why: "no_commit", Authorisation: &list.Authorisation{Why: "off_trunk"}}
+	if got, want := w.queueCause(owed), "proposed; no commit on the trunk decides it"; got != want {
+		t.Errorf("authorisation = %q, want %q", got, want)
+	}
+}

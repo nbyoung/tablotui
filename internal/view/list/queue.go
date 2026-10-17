@@ -17,6 +17,7 @@ type QueueItem struct {
 	Since  string  `json:"since"`  // the date of the status; "" when undetermined
 	Age    int     `json:"age"`    // reaffirmation: days from Since to the date of the source commit
 	Causes []Wait  `json:"causes"` // waiting: why, in the order requirement, reason, authorisation, review
+	Why    string  `json:"why"`    // authorisation: the task's Authorisation.Why, "" where a commit decides but not by an authority; else ""
 
 	Junction       *Junction      `json:"junction"` // detail from here: the next junction, with From; nil for a parent and at the last gate
 	Sources        []Supplier     `json:"sources"`  // of that junction, by field
@@ -35,6 +36,7 @@ type Wait struct {
 	Kind     string       `json:"kind"`     // requirement, reason, authorisation or review
 	Requires *Requirement `json:"requires"` // requirement: the unmet entry
 	Reason   string       `json:"reason"`   // reason: the status's reason, other than review
+	Note     string       `json:"note"`     // reason: the status's note; else ""
 	By       string       `json:"by"`       // authorisation: the nearest authority; review: the reviewer
 }
 

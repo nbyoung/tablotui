@@ -118,6 +118,14 @@ func TestFoldRuns(t *testing.T) {
 	if got := foldRuns(mixed, false); len(got) != 9 {
 		t.Errorf("nine with one that differs fold to %d entries", len(got))
 	}
+	// An entry that stands alone breaks a run and never folds.
+	lone := alike(9, "a")
+	for i := range lone {
+		lone[i].alone = true
+	}
+	if got := foldRuns(lone, false); len(got) != 9 {
+		t.Errorf("nine alone fold to %d entries", len(got))
+	}
 	// Two runs fold on their own.
 	two := append(alike(10, "a"), alike(12, "b")...)
 	if got := foldRuns(two, false); len(got) != 8 {
