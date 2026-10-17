@@ -284,3 +284,22 @@ func TestQueueCauseReadsTheItemAlone(t *testing.T) {
 		t.Errorf("authorisation = %q, want %q", got, want)
 	}
 }
+
+// TestTabloOwnCommit: the task pane at provenance draws, in the section
+// "Status commit", the status commit and then the commit that decides a
+// snapshot task's own file under "deciding commit", as tabloio's task view
+// does (e3ed decision 18). A task with no own commit draws the status commit
+// alone.
+func TestTabloOwnCommit(t *testing.T) {
+	doc := tabloDoc(t, "task-c07d.provenance.json", 78)
+	want := "\nStatus commit\n  commit            cf5b169 Record the node image design\n"
+	own := "\n  deciding commit   97e4231 Pin the firmware at its design\n  date              2026-09-26\n"
+	i, j := strings.Index(doc, want), strings.Index(doc, own)
+	if i < 0 || j < i || strings.Contains(doc[i+1:j], "\n\n") {
+		t.Errorf("the section lacks the status commit, then the own commit:\n%s", doc)
+	}
+	x := pane(t, "task", "testdata", 80, 30).open().sel("e9c6", "").keys("p")
+	if doc := x.doc(78); !strings.Contains(doc, "\nStatus commit\n") || strings.Contains(doc, "deciding commit") {
+		t.Errorf("a task with no own commit draws one, or no status commit:\n%s", doc)
+	}
+}

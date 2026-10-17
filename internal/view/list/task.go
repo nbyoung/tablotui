@@ -20,6 +20,7 @@ type Task struct {
 	Junctions     []Junction     `json:"junctions"`     // every gate after undefined, in order
 	Snapshot      *Snapshot      `json:"snapshot"`      // a snapshot status: the task read; else nil
 	StatusCommit  *Commit        `json:"status_commit"` // provenance from here: the deciding commit of the last status of the chain
+	OwnCommit     *Commit        `json:"own_commit"`    // a snapshot: the deciding commit of the task's own file
 	Authorisation *Authorisation `json:"authorisation"`
 	Considered    []string       `json:"considered"` // a parent: the children its roll-up considers
 	Chain         []Step         `json:"chain"`      // the statuses the status comes through, the task's own first
