@@ -189,3 +189,24 @@ func decode(t *testing.T, name string, v list.View) {
 		t.Fatal(err)
 	}
 }
+
+// A subproject's task reads by id and title, and by id alone where the
+// subproject's files lack the task, in the history and in the task's events.
+func TestSubTask(t *testing.T) {
+	ev := func(title string) list.Event {
+		return list.Event{Kind: "pin", Subproject: &list.SubEvent{URL: "firmware", Task: "f1a0", Title: title}}
+	}
+	w := words{}
+	for _, c := range []struct{ title, line, event string }{
+		{"Weather node image", "c07d Firmware, taken from firmware f1a0 Weather node image", "in the subproject firmware, task f1a0 Weather node image"},
+		{"", "c07d Firmware, taken from firmware f1a0", "in the subproject firmware, task f1a0"},
+	} {
+		l := list.Line{Task: list.TaskRef{ID: "c07d", Title: "Firmware"}, Events: []list.Event{ev(c.title)}}
+		if got := lineTask(l, "4e2b"); got != c.line {
+			t.Errorf("lineTask = %q, want %q", got, c.line)
+		}
+		if got := w.eventRecords(ev(c.title)); got != c.event {
+			t.Errorf("eventRecords = %q, want %q", got, c.event)
+		}
+	}
+}

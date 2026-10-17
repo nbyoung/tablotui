@@ -339,7 +339,7 @@ func (w words) eventRecords(e list.Event) string {
 		x = join(" ", e.Pin.URL, short(e.Pin.Old), "→", short(e.Pin.New))
 	}
 	if s := e.Subproject; s != nil {
-		x = join("; ", x, "in the subproject "+s.URL+", task "+s.Task)
+		x = join("; ", x, "in the subproject "+s.URL+", task "+subTask(*s))
 	}
 	return x
 }

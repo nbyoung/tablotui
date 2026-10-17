@@ -217,3 +217,32 @@ func TestTabloGoldens(t *testing.T) {
 		}
 	}
 }
+
+// tabloDoc draws the document of one of tablo's golden files at width w.
+func tabloDoc(t *testing.T, file string, w int) string {
+	t.Helper()
+	for _, g := range tabloGoldens {
+		if g.file == file {
+			sel, _ := g.params["task"].(string)
+			x := pane(t, g.command, "testdata", w+2, 30).withSource(goldenSource{t, g}).open().sel(sel, "")
+			return x.doc(w)
+		}
+	}
+	t.Fatalf("no golden %s", file)
+	return ""
+}
+
+// TestTabloSubEventTitle: a line taken from a subproject, beneath its pin or
+// in its own place, and an event of the task pane name the subproject's task
+// by id and title, as tablo's golden data gives the title (8ed1 decision 8).
+func TestTabloSubEventTitle(t *testing.T) {
+	for file, want := range map[string]string{
+		"history-4e2b.detail.json":     "f1a0 Weather node image",
+		"history-c07d.provenance.json": "f1a0 Weather node image",
+		"task-c07d.provenance.json":    "in the subproject firmware, task f1a0 Weather node image",
+	} {
+		if doc := tabloDoc(t, file, 400); !strings.Contains(doc, want) {
+			t.Errorf("%s lacks %q:\n%s", file, want, doc)
+		}
+	}
+}

@@ -372,7 +372,8 @@
             "pin": null,
             "subproject": {
               "url": "subprojects/tableaud",
-              "task": "5a2f"
+              "task": "5a2f",
+              "title": "Bootstrap"
             }
           }
         ],
@@ -406,7 +407,8 @@
             "pin": null,
             "subproject": {
               "url": "subprojects/tableaud",
-              "task": "49ce"
+              "task": "49ce",
+              "title": "Server"
             }
           }
         ],

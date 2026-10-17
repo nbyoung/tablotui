@@ -124,14 +124,14 @@ func lineGate(l list.Line) string {
 }
 
 // lineTask is the task cell of a line: the task where it is not the subject,
-// and for a line taken from a subproject the subproject and its task, by id.
+// and for a line taken from a subproject the subproject and its task.
 func lineTask(l list.Line, subject string) string {
 	t := ""
 	if l.Task.ID != subject {
 		t = task(l.Task)
 	}
 	if s := l.Taken(); s != nil {
-		t = join(", ", t, "taken from "+s.URL+" "+s.Task)
+		t = join(", ", t, "taken from "+s.URL+" "+subTask(*s))
 	}
 	return t
 }
@@ -255,7 +255,7 @@ func historyLines(d list.History, lvl list.Level) (subject, counts string, lines
 				sl := d.Lines[k]
 				se := sl.First()
 				lines = append(lines, Line{
-					Text:   cells(se.Date, se.By, kindsText(sl), se.Subproject.Task, w.last(sl), sl.Model),
+					Text:   cells(se.Date, se.By, kindsText(sl), subTask(*se.Subproject), w.last(sl), sl.Model),
 					Indent: 4, Hang: 2, Item: i, Task: l.Task.ID, Gate: gate,
 				})
 			}

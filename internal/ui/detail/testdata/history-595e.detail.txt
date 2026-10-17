@@ -10,9 +10,9 @@
   Status after: 📝 defined 🟢 nominal
   595e tableaud: local daemon and HTML after: 📝 defined 🟢 nominal
   Subproject events: 2 events of subprojects/tableaud
-    2026-10-01 · noreply@anthropic.com · status · 5a2f · 🔧 function 🟢
-      nominal · claude-sonnet-5-5
-    2026-10-02 · noreply@anthropic.com · status · 49ce · 🔧 function 🟢
+    2026-10-01 · noreply@anthropic.com · status · 5a2f Bootstrap · 🔧 function
+      🟢 nominal · claude-sonnet-5-5
+    2026-10-02 · noreply@anthropic.com · status · 49ce Server · 🔧 function 🟢
       nominal · claude-sonnet-5-5
 2026-10-05 · nbyoung@nbyoung.com · pin (proposal) · subprojects/tableaud
   cffbfa6 → e6ec4ec

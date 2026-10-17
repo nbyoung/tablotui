@@ -184,6 +184,11 @@ func pin(p *list.PinMove) string {
 // the id is empty, as on a fold line.
 func task(t list.TaskRef) string { return join(" ", t.ID, t.Title) }
 
+// subTask reads the subproject task an event comes from as a task: its id,
+// and its title where the subproject's files state one, as tabloio's
+// subTask does.
+func subTask(s list.SubEvent) string { return task(list.TaskRef{ID: s.Task, Title: s.Title}) }
+
 // short is the first seven characters of a commit hash.
 func short(hash string) string {
 	if len(hash) > 7 {
