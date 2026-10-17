@@ -1,20 +1,145 @@
-4 History 595e · 4 events · detail
-2026-09-29 · nbyoung@nbyoung.com · pin · subprojects/tableaud new 2061a7f
+4 History 595e · 11 events · detail
+2026-09-29 · nbyoung@nbyoung.com · task · the task file appears
   Status after: ❔ undefined ⚪ undefined
+  Effect: an authority commits the task file on the trunk, so the task is
+    authorised
+2026-09-29 · nbyoung@nbyoung.com · pin · subprojects/tableaud new 59783a9
+  Status after: ❔ undefined ⚪ undefined, unchanged
+  Subproject events: 11 events in 1 commit of subprojects/tableaud
+    2026-09-29 · nbyoung@nbyoung.com · task · 8608 tableaud · the task file
+      appears
+    2026-09-29 · nbyoung@nbyoung.com · task · 7425 Bootstrap · the task file
+      appears
+    2026-09-29 · nbyoung@nbyoung.com · task · 49ce Server · the task file
+      appears
+    2026-09-29 · nbyoung@nbyoung.com · task · 097c HTML views · the task file
+      appears
+    2026-09-29 · nbyoung@nbyoung.com · task · 438a Legend and task templates ·
+      the task file appears
+    2026-09-29 · nbyoung@nbyoung.com · task · e2b6 Structural templates · the
+      task file appears
+    2026-09-29 · nbyoung@nbyoung.com · task · 44bf Status templates · the task
+      file appears
+    2026-09-29 · nbyoung@nbyoung.com · task · 9a9c Temporal templates · the
+      task file appears
+    2026-09-29 · nbyoung@nbyoung.com · task · db74 Progressive disclosure ·
+      the task file appears
+    2026-09-29 · nbyoung@nbyoung.com · task · 6160 Static export · the task
+      file appears
+    2026-09-29 · nbyoung@nbyoung.com · task · 5a2f Accessibility and theming ·
+      the task file appears
+2026-09-30 · nbyoung@nbyoung.com · pin · subprojects/tableaud 59783a9 →
+  d285989
+  Status after: ❔ undefined ⚪ undefined, unchanged
+  Subproject events: 6 events in 5 commits of subprojects/tableaud
+    2026-09-29 · noreply@anthropic.com · task, status · 7425 Bootstrap · 📝
+      defined 🟢 nominal
+    2026-09-29 · noreply@anthropic.com · status · 7425 Bootstrap · 📝 defined
+      🟢 nominal 👓 review
+    2026-09-29 · noreply@anthropic.com · reviewed · 7425 Bootstrap · 📝
+      defined
+    2026-09-30 · nbyoung@nbyoung.com · reviewed · 7425 Bootstrap · 📐 design
+    2026-09-30 · noreply@anthropic.com · status · 7425 Bootstrap · 📐 design
+      🟢 nominal
+2026-09-30 · nbyoung@nbyoung.com · pin · subprojects/tableaud d285989 →
+  1c4d785
+  Status after: ❔ undefined ⚪ undefined, unchanged
+2026-09-30 · nbyoung@nbyoung.com · pin · subprojects/tableaud 1c4d785 →
+  38de8e2
+  Status after: ❔ undefined ⚪ undefined, unchanged
+  Subproject events: 1 event in 1 commit of subprojects/tableaud
+    2026-09-30 · noreply@anthropic.com · task · 8608 tableaud · the task file
+      appears · claude-fable-5-1
+2026-09-30 · nbyoung@nbyoung.com · pin · subprojects/tableaud 38de8e2 →
+  5a99a5c
+  Status after: ❔ undefined ⚪ undefined, unchanged
+  Model: claude-opus-5-5
+  Subproject events: 3 events in 2 commits of subprojects/tableaud
+    2026-09-30 · noreply@anthropic.com · status · 7425 Bootstrap · 📐 design
+      🟢 nominal · claude-sonnet-5-5
+    2026-09-30 · noreply@anthropic.com · status, reviewed · 7425 Bootstrap ·
+      🧱 implementation 🟢 nominal · claude-sonnet-5-5
+2026-09-30 · nbyoung@nbyoung.com · pin · subprojects/tableaud 5a99a5c →
+  2061a7f
+  Status after: ❔ undefined ⚪ undefined, unchanged
+  Model: claude-opus-5-5
+  Subproject events: 16 events in 2 commits of subprojects/tableaud
+    2026-09-30 · noreply@anthropic.com · task · 49ce Server · the task file
+      appears · claude-sonnet-5-5
+    2026-09-30 · noreply@anthropic.com · task · 438a Legend and task templates
+      · the task file appears · claude-sonnet-5-5
+    2026-09-30 · noreply@anthropic.com · task · e2b6 Structural templates ·
+      the task file appears · claude-sonnet-5-5
+    2026-09-30 · noreply@anthropic.com · task · 44bf Status templates · the
+      task file appears · claude-sonnet-5-5
+    2026-09-30 · noreply@anthropic.com · task · 9a9c Temporal templates · the
+      task file appears · claude-sonnet-5-5
+    2026-09-30 · noreply@anthropic.com · task · db74 Progressive disclosure ·
+      the task file appears · claude-sonnet-5-5
+    2026-09-30 · noreply@anthropic.com · task · 6160 Static export · the task
+      file appears · claude-sonnet-5-5
+    2026-09-30 · noreply@anthropic.com · task · 5a2f Accessibility and theming
+      · the task file appears · claude-sonnet-5-5
+    2026-09-30 · noreply@anthropic.com · status · 49ce Server · 📝 defined 🟢
+      nominal · claude-haiku-4-5-20251001
+    2026-09-30 · noreply@anthropic.com · status · 438a Legend and task
+      templates · 📝 defined 🟢 nominal · claude-haiku-4-5-20251001
+    2026-09-30 · noreply@anthropic.com · status · e2b6 Structural templates ·
+      📝 defined 🟢 nominal · claude-haiku-4-5-20251001
+    2026-09-30 · noreply@anthropic.com · status · 44bf Status templates · 📝
+      defined 🟢 nominal · claude-haiku-4-5-20251001
+    2026-09-30 · noreply@anthropic.com · status · 9a9c Temporal templates · 📝
+      defined 🟢 nominal · claude-haiku-4-5-20251001
+    2026-09-30 · noreply@anthropic.com · status · db74 Progressive disclosure
+      · 📝 defined 🟢 nominal · claude-haiku-4-5-20251001
+    2026-09-30 · noreply@anthropic.com · status · 6160 Static export · 📝
+      defined 🟢 nominal · claude-haiku-4-5-20251001
+    2026-09-30 · noreply@anthropic.com · status · 5a2f Accessibility and
+      theming · 📝 defined 🟢 nominal · claude-haiku-4-5-20251001
 2026-09-30 · noreply@anthropic.com · status · 📝 defined
-  Status after: 📝 defined
+  Status after: 📝 defined 🟢 nominal, 🪆 from the subproject
+    subprojects/tableaud
   Model: claude-haiku-4-5-20251001; the 📝 defined junction states
     claude-haiku
 2026-10-02 · nbyoung@nbyoung.com · pin · subprojects/tableaud 2061a7f →
   b06cad0
-  Status after: 📝 defined 🟢 nominal
-  595e tableaud: local daemon and HTML after: 📝 defined 🟢 nominal
-  Subproject events: 2 events of subprojects/tableaud
-    2026-10-01 · noreply@anthropic.com · status · 5a2f Bootstrap · 🔧 function
-      🟢 nominal · claude-sonnet-5-5
-    2026-10-02 · noreply@anthropic.com · status · 49ce Server · 🔧 function 🟢
-      nominal · claude-sonnet-5-5
-2026-10-05 · nbyoung@nbyoung.com · pin (proposal) · subprojects/tableaud
-  cffbfa6 → e6ec4ec
-  Status after: 📝 defined 🟢 nominal
-  Effect: moved
+  Status after: 📝 defined 🟢 nominal, 🪆 from the subproject
+    subprojects/tableaud, unchanged
+  Model: claude-opus-5-5
+2026-10-02 · nbyoung@nbyoung.com · pin · subprojects/tableaud b06cad0 →
+  cffbfa6
+  Status after: 📝 defined 🟢 nominal, 🪆 from the subproject
+    subprojects/tableaud, unchanged
+  Model: claude-opus-5-5
+2026-10-05 · nbyoung@nbyoung.com · pin · subprojects/tableaud cffbfa6 →
+  e6ec4ec
+  Status after: 📝 defined 🟢 nominal, 🪆 from the subproject
+    subprojects/tableaud
+  Model: claude-opus-5-5
+  Subproject events: 21 events in 13 commits of subprojects/tableaud
+    2026-10-05 · noreply@anthropic.com · status, reviewed · 9a9c Temporal
+      templates · 🔧 function 🟢 nominal · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · status, reviewed · 44bf Status
+      templates · 🔧 function 🟢 nominal · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · reviewed · 438a Legend and task
+      templates · 🔧 function · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · status, reviewed · 438a Legend and
+      task templates · 🔧 function 🟢 nominal · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · reviewed · e2b6 Structural templates
+      · 🔧 function · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · status, reviewed · e2b6 Structural
+      templates · 🔧 function 🟢 nominal · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · reviewed · 49ce Server · 🔧 function
+      · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · status, reviewed · 49ce Server · 🔧
+      function 🟢 nominal · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · reviewed · db74 Progressive
+      disclosure · 🔧 function · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · status, reviewed · db74 Progressive
+      disclosure · 🔧 function 🟢 nominal · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · reviewed · 5a2f Accessibility and
+      theming · 🔧 function · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · status, reviewed · 5a2f Accessibility
+      and theming · 🔧 function 🟢 nominal · claude-sonnet-5-5
+    2026-10-05 · noreply@anthropic.com · status, reviewed · 6160 Static export
+      · 🔧 function 🟢 nominal · claude-sonnet-5-5

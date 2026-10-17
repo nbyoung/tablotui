@@ -7,8 +7,8 @@
 // 4 open. It starts where the person at the keyboard works: --as names that
 // person, by default the email Git commits with, and R switches the role. It
 // reads the project through tablo's library, from the working tree or at the
-// commit --ref names, and follows the repository as it changes; --fixture
-// draws from fixture files instead.
+// commit --ref names, and follows the repository as it changes, which ctrl+r
+// reloads at once; --fixture draws from fixture files instead.
 package main
 
 import (
@@ -126,6 +126,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 		source.Viewers
 	}
 	var live []ui.Pane
+	var force []ui.Command
 	if *fixtures != "" {
 		src = source.File{Dir: inDir(*dir, *fixtures)}
 	} else {
@@ -146,19 +147,20 @@ func run(args []string, stdout, stderr io.Writer) int {
 		}
 		src = tab
 		live = append(live, refresh.NewPane(refresh.New(ctx, at, w, time.Now, tab.Load), tab.Store))
+		force = append(force, refresh.Command())
 	}
 
 	// The one place the program's panes and commands come together: the grid is
 	// the home pane, the detail panes follow it, the panes that never open come
 	// last, the role pane and then the live refresh, and each task that adds a
-	// pane or a command extends this list. The grid has no start: the role pane
-	// starts it.
+	// pane or a command extends this list: the live refresh adds the Force key.
+	// The grid has no start: the role pane starts it.
 	g := grid.New(grid.Options{Source: src, Settings: path})
 	details := detail.New(detail.Options{Source: src})
 	who := role.New(role.Options{Source: src, Viewer: email, Ref: *ref})
 	opts := ui.Options{
 		Panes:    append(append(append([]ui.Pane{g}, details.Panes...), who), live...),
-		Commands: append(slices.Clone(details.Commands), role.Command()),
+		Commands: append(append(slices.Clone(details.Commands), role.Command()), force...),
 		Layout:   details.Layout,
 		Styles:   ui.DefaultStyles(),
 		Context:  ctx,

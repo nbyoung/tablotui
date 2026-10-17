@@ -68,12 +68,11 @@ Dependents: 21
     unmet, not yet due
 
 Junctions
-  ❔ undefined · passed
   📝 defined · 🤖 ·
     noreply@anthropic.com ·
     claude-haiku · reviewer the
     assignee, noreply@anthropic.com ·
-    passed
+    passed, reviewed
   📌 mockup · — · does not apply
   🔧 function · — · does not apply
   📐 design · 🤖👀 ·

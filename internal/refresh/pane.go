@@ -17,9 +17,11 @@ const PaneID = "refresh"
 // panes and broadcasts it every message that is not a key, so the component's
 // own messages reach it. On a good load it hands the data to the store and
 // sends ui.ReloadMsg, on which each pane derives its view again; on a failed
-// load it changes nothing the screen shows and sends the component's notice
-// as an error (679b A9, 171b A4), which the next good load clears. It
-// implements ui.Pane, draws nothing and binds no key.
+// load it changes nothing the screen shows (679b A9, 171b A4). As a
+// ui.Reporter it names the source at the end of the status line and states
+// the component's notice on a line of its own, which the next good load
+// clears (171b A5). On ForceMsg it reloads (A6). It implements ui.Pane,
+// draws nothing and binds no key: Command binds the Force key.
 type Pane[T any] struct {
 	m     Model[T]
 	store func(T)
@@ -37,27 +39,44 @@ func (p Pane[T]) ID() string { return PaneID }
 // Init implements ui.Pane: the component reads the first state.
 func (p Pane[T]) Init(ui.Context) tea.Cmd { return p.m.Init() }
 
+// ForceMsg asks the pane to reload now, or as soon as the running load ends.
+type ForceMsg struct{}
+
+// Command binds ctrl+r to the reload, which the component's Force runs: the
+// key is the frame's to name (171b A6), and r is an action's (518e).
+func Command() ui.Command {
+	return ui.Command{
+		Binding: key.NewBinding(key.WithKeys("ctrl+r"), key.WithHelp("ctrl+r", "reload")),
+		Run:     func(ui.SelectionMsg) tea.Cmd { return func() tea.Msg { return ForceMsg{} } },
+	}
+}
+
 // Update implements ui.Pane.
 func (p Pane[T]) Update(msg tea.Msg, _ ui.Context) (ui.Pane, tea.Cmd) {
-	failed := p.m.Status().Err != nil
+	if _, ok := msg.(ForceMsg); ok {
+		p.m.Force()
+		return p, nil
+	}
 	var cmd tea.Cmd
 	p.m, cmd = p.m.Update(msg)
 	ld, ok := msg.(Loaded[T])
-	switch {
-	case !ok:
+	if !ok || ld.Err != nil {
 		return p, cmd
-	case ld.Err != nil:
-		text := p.m.Status().Notice()
-		return p, tea.Batch(cmd, func() tea.Msg { return ui.NoticeMsg{Text: text, Err: true} })
 	}
 	if p.store != nil {
 		p.store(ld.Data)
 	}
-	cmds := []tea.Cmd{cmd, func() tea.Msg { return ui.ReloadMsg{} }}
-	if failed {
-		cmds = append(cmds, func() tea.Msg { return ui.NoticeMsg{} }) // the failure is over
-	}
-	return p, tea.Batch(cmds...)
+	return p, tea.Batch(cmd, func() tea.Msg { return ui.ReloadMsg{} })
+}
+
+// Where implements ui.Reporter: the source in one phrase, Status().Where().
+func (p Pane[T]) Where() string { return p.m.Status().Where() }
+
+// Notice implements ui.Reporter: Status().Notice(), an error while a load
+// fails.
+func (p Pane[T]) Notice() ui.NoticeMsg {
+	st := p.m.Status()
+	return ui.NoticeMsg{Text: st.Notice(), Err: st.Err != nil}
 }
 
 // View implements ui.Pane: h blank lines, since the pane never opens.

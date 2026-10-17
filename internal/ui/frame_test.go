@@ -535,3 +535,57 @@ func TestReloadMsgReachesEveryPane(t *testing.T) {
 		t.Error("another message did not reach every pane")
 	}
 }
+
+// reporter is a pane that never opens and reports on the source.
+type reporter struct {
+	stub
+	where  string
+	notice *ui.NoticeMsg
+}
+
+func (r reporter) Where() string        { return r.where }
+func (r reporter) Notice() ui.NoticeMsg { return *r.notice }
+
+// A Reporter's Where ends the status line, and its notice, while it stands,
+// takes a line of its own above the status line, which the body gives up;
+// every line keeps the terminal's width, and a notice of the frame's own
+// still replaces the status line.
+func TestReporter(t *testing.T) {
+	home := newStub("home", "h")
+	n := &ui.NoticeMsg{}
+	m := ui.New(ui.Options{Panes: []ui.Pane{home, reporter{stub: newStub("watch", "w"), where: "working tree on main at aaaa111", notice: n}}})
+	r := &run{t: t, m: m}
+	r.send(tea.WindowSizeMsg{Width: 60, Height: 10})
+	check := func(body int, notice, status string) {
+		t.Helper()
+		lines := strings.Split(r.m.View().Content, "\n")
+		if len(lines) != 10 {
+			t.Fatalf("%d lines", len(lines))
+		}
+		for i, l := range lines {
+			if w := ansi.StringWidth(l); w != 60 {
+				t.Errorf("line %d is %d cells", i, w)
+			}
+		}
+		strip := func(i int) string { return strings.TrimRight(ansi.Strip(lines[i]), " ") }
+		got := 0
+		for _, l := range lines[1:] {
+			if strings.HasPrefix(l, "h") {
+				got++
+			}
+		}
+		if got != body || strip(8) != status {
+			t.Errorf("body %d lines, status %q; want %d, %q", got, strip(8), body, status)
+		}
+		if notice != "" && strip(7) != notice {
+			t.Errorf("notice line %q, want %q", strip(7), notice)
+		}
+	}
+	check(7, "", "status of home · working tree on main at aaaa111")
+	*n = ui.NoticeMsg{Text: "Reload failed at 14:00:00: boom", Err: true}
+	check(6, "Reload failed at 14:00:00: boom", "status of home · working tree on main at aaaa111")
+	r.send(ui.NoticeMsg{Text: "a notice of the frame"})
+	check(6, "Reload failed at 14:00:00: boom", "a notice of the frame")
+	*n = ui.NoticeMsg{}
+	check(7, "", "a notice of the frame")
+}

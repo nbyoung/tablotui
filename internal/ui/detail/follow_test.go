@@ -206,7 +206,7 @@ func TestQueueNeedsAPerson(t *testing.T) {
 func TestEmptyQueue(t *testing.T) {
 	x := pane(t, QueueID, "testdata/empty", 80, 10).open()
 	v := x.view()
-	if v[0] != "┌─ 2 Queue nbyoung@nbyoung.com · 0 items · glance ──────────────────────────────" || v[1] != "│ The queue is empty." {
+	if v[0] != "┌─ 2 Queue nobody@example.org · 0 items · glance ───────────────────────────────" || v[1] != "│ The queue is empty." {
 		t.Errorf("view = %q", v)
 	}
 }
@@ -326,10 +326,10 @@ func TestAFirstLoadThatFails(t *testing.T) {
 // T11: levels.
 func TestDataThatStatesGlanceDrawsGlance(t *testing.T) {
 	x := pane(t, HistoryID, "testdata", 80, 12).open().sel("5fe3", "")
-	if got := x.view()[0]; !strings.Contains(got, "4 History 5fe3 · 0 events · glance") {
+	if got := x.view()[0]; !strings.Contains(got, "4 History 5fe3 · 31 events · glance") {
 		t.Errorf("title = %q", got)
 	}
-	if got := x.status(); got != "history 5fe3 · glance · lines 1–1 of 1" {
+	if got := x.status(); got != "history 5fe3 · glance · lines 51–61 of 61 · enter selects a8b4 × defined" {
 		t.Errorf("status = %q", got)
 	}
 }

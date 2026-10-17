@@ -10,18 +10,37 @@ note         prototype/49ce serves the ten views with a stdlib HEAD and
 recorded     2026-09-30, from the subproject
 
 Status commit
+  commit            967df1f Record task 49ce at the function gate
+  date              2026-10-05
+  author            Claude Sonnet 5.5, noreply@anthropic.com
+  committer         Claude Sonnet 5.5, noreply@anthropic.com
+  trailers          Reviewed: 49ce function, Model: claude-sonnet-5-5,
+                    Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
   deciding commit   e66abe2 Record the defined gate for the subproject tasks
   date              2026-09-30
   author            Claude Haiku 4.5, noreply@anthropic.com
   committer         Claude Haiku 4.5, noreply@anthropic.com
-  trailers          Model: claude-haiku-4-5-20251001
+  trailers          Model: claude-haiku-4-5-20251001, Co-Authored-By: Claude
+                    Haiku 4.5 <noreply@anthropic.com>
 
 Description
-
+The graphical front end. A daemon that a participant runs from the checked-out
+repository and that serves every view as HTML with role-specific progressive
+disclosure: the owner explores top-down through the task hierarchy, a
+contributor starts at the parents of their tasks with a gate window around
+their next gates. The viewer shows and hides columns and the choice persists;
+the server holds no column policy of its own. It also exports a static bundle
+for hosting without a daemon. Its plan lives in its own repository, which this
+repository pins as the submodule subprojects/tableaud; this task tracks that
+project's root task through recursive junctions from the mockup gate onward.
+References:
+  The submodule, subprojects/tableaud
+  The repository, https://github.com/nbyoung/tableaud
+  The charter, PLAN.md#subprojects
 
 Place in the tree
 path         437e Tableaux tooling › 595e tableaud: local daemon and HTML
-order        5 of 6 under 437e
+order        5 of 5 under 437e
 children     none
 authorities  nbyoung@nbyoung.com (437e)
 authorised   yes
@@ -31,21 +50,23 @@ Authorisation commit
   date              2026-09-29
   author            Norman Young, nbyoung@nbyoung.com
   committer         Norman Young, nbyoung@nbyoung.com
+  trailers          Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
   accepts by        a change on the trunk
   the authority is  the author and the committer
 
 Requires: 2
   77b2 tablo: backend library and plumbing · implementation → implementation ·
-    The library it embeds · 📝 defined 🟢 nominal · unmet, not yet due
+    The library it embeds · 📝 defined 🟢 nominal, 🪆 from the subproject
+    subprojects/tablo · unmet, not yet due
   5fe3 HTML views · mockup → design · The HTML mockups it reproduces · 📝
-    defined 🟢 nominal · unmet, not yet due
+    defined 🟢 nominal, rolled up from a6f7 Gate definition view in Html ·
+    unmet, not yet due
 
 Dependents: none
 
 Junctions
-  ❔ undefined · passed
   📝 defined · 🤖👀 · noreply@anthropic.com · claude-haiku · reviewer the
-    assignee, nbyoung@nbyoung.com · passed; the status stands here
+    assignee, nbyoung@nbyoung.com · passed, reviewed; the status stands here
   📌 mockup · 🪆 · subprojects/tableaud 8608 tableaud · next
   🔧 function · 🪆 · subprojects/tableaud 8608 tableaud · later
   📐 design · 🪆 · subprojects/tableaud 8608 tableaud · later
@@ -64,14 +85,15 @@ note         prototype/49ce serves the ten views with a stdlib HEAD and
              interface and a loopback Host check
   7425 Bootstrap · 🧱 implementation 🟢 nominal
   49ce Server · 🔧 function 🟢 nominal
-  097c HTML views · 🔧 function 🟢 nominal
+  097c HTML views · 🔧 function 🟢 nominal, rolled up from 438a Legend and
+    task templates
   db74 Progressive disclosure · 🔧 function 🟢 nominal
   6160 Static export · 🔧 function 🟢 nominal
   5a2f Accessibility and theming · 🔧 function 🟢 nominal
 
 Linkages
   📌 mockup and 7 more
-    url: subprojects/tableaud, stated in .tableaux/tasks/595e.yaml
+    url: subprojects/tableaud, stated in .tableaux/tasks/595e.yaml, line 16
     Form of the url: A path that is a Git submodule, so the submodule's pin
       fixes the commit
     Pin: e6ec4ec, in full e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e
@@ -80,28 +102,52 @@ Linkages
       prototype, 2026-10-05, author and committer Norman Young,
       nbyoung@nbyoung.com
     id: Not stated; the junction reads the subproject's root, 8608
-    The subproject's trunk: main; the pin is on the trunk
+    The subproject's trunk: main, tip e6ec4ec; the pin is on the trunk, at its
+      tip
     Pin set by: 3cdae52 Advance tableaud to the eight function prototypes,
       2026-10-05, author and committer Norman Young, nbyoung@nbyoung.com
 
 Where each junction field comes from
+  📝 defined · contributor · noreply@anthropic.com · 437e
+  📝 defined · model · claude-haiku · 437e
+  📝 defined · reviewer · nbyoung@nbyoung.com · the assignee
+  📌 mockup · subproject · subprojects/tableaud · 595e
+  🔧 function · subproject · subprojects/tableaud · 595e
+  📐 design · subproject · subprojects/tableaud · 595e
+  🧱 implementation · subproject · subprojects/tableaud · 595e
+  📏 unit · subproject · subprojects/tableaud · 595e
+  🔗 integrate · subproject · subprojects/tableaud · 595e
+  🌍 validate · subproject · subprojects/tableaud · 595e
+  🚀 release · subproject · subprojects/tableaud · 595e
 
-Reviews: none
+Reviews: 1
+  📝 defined · nbyoung@nbyoung.com · 6b6c99a Plan the Tableaux tooling · The
+    authorisation stands as the review
 
-Models: none
+Models: 1
+  e66abe2 · 📝 defined · states claude-haiku · trailer
+    claude-haiku-4-5-20251001 · Agrees
 
 Newest events
-  11 events; the newest 3, newest first.
+  69 events; the newest 5, newest first.
   2026-10-05 · 3cdae52 · nbyoung@nbyoung.com · pin · subprojects/tableaud
     cffbfa6 → e6ec4ec
-  2026-10-02 · 552d38f · nbyoung@nbyoung.com · pin · subprojects/tableaud
-    b06cad0 → cffbfa6
-  2026-10-02 · fb8c0b2 · nbyoung@nbyoung.com · pin · subprojects/tableaud
-    2061a7f → b06cad0
-  … and 8 earlier
+  2026-10-05 · 218d8f3 · noreply@anthropic.com · reviewed · 🔧 function; in
+    the subproject subprojects/tableaud, task 6160 Static export
+  2026-10-05 · 218d8f3 · noreply@anthropic.com · status · 🔧 function 🟢
+    nominal: prototype/6160 exports every view as a relative-link bundle in
+    three disclosure modes and recommends native details over HTMX fragments
+    or one page per state; in the subproject subprojects/tableaud, task 6160
+    Static export
+  2026-10-05 · 0c38023 · noreply@anthropic.com · reviewed · 🔧 function; in
+    the subproject subprojects/tableaud, task 5a2f Accessibility and theming
+  2026-10-05 · 0c38023 · noreply@anthropic.com · status · 🔧 function 🟢
+    nominal: prototype/5a2f shows symbol text alternatives, plain table
+    against treegrid keyboard use, CSS-only light and dark themes with
+    contrast tests, and scrolling against stacked phone layouts; in the
+    subproject subprojects/tableaud, task 5a2f Accessibility and theming
+  … and 64 earlier
 
 Commands
-  git ls-tree 3cdae52 subprojects/tableaud
-  git -C subprojects/tableaud show e6ec4ec:.tableaux/tasks/8608.yaml
-  git log --format='%as %h %ae' 3cdae52 -- .tableaux/tasks/595e.yaml
-    .tableaux/status/595e.yaml subprojects/tableaud
+  git log --format='%H %as %ae %s' 3cdae527d47d37fdff55bc302c76c017cf91c606 --
+    .tableaux/tasks/595e.yaml .tableaux/status/595e.yaml subprojects/tableaud

@@ -241,30 +241,33 @@ func TestEnterSelectsTheTaskInTheGrid(t *testing.T) {
 
 func TestEnterOnAGateInAFoldedColumnLeavesTheColumnCursor(t *testing.T) {
 	r := newRig(t, "testdata", 120, 24).keys("1")
-	// Find the row of the junction of the undefined gate in the task pane.
+	// Find the row of the junction of the release gate in the task pane.
 	var d list.Task
 	decode(t, "task-e9c6.json", &d)
 	_, _, lines := taskLines(d, list.Detail, false)
 	rows := wrap(lines, 38, ui.Measure{})
 	at := -1
 	for i, row := range rows {
-		if l := lines[row.line]; l.Gate == "undefined" && row.sub == 0 {
+		if l := lines[row.line]; l.Task == "e9c6" && l.Gate == "release" && row.sub == 0 {
 			at = i
 		}
 	}
 	if at < 0 {
-		t.Fatal("no junction for the undefined gate")
+		t.Fatal("no junction for the release gate")
 	}
-	// The grid's selection stands on 437e; the pane follows it, so select e9c6 first.
+	// The grid's selection stands on 437e; the pane follows it, so select e9c6
+	// first. The grid then hides the release column, four to the right of
+	// implementation, so that it folds, and its column cursor returns.
 	r.send(ui.GotoMsg{Task: "e9c6", Gate: "implementation"})
-	r.keys("1")
+	r.keys("esc right right right right x")
+	r.send(ui.GotoMsg{Task: "e9c6", Gate: "implementation"})
 	r.keys("1") // the focus back to the pane
 	r.keys(strings.Repeat("down ", at) + "enter")
 	want := ui.SelectionMsg{Task: "e9c6", Gate: "implementation"}
 	if got := r.lastSelected(); got != want {
 		t.Errorf("selection = %+v, want %+v", got, want)
 	}
-	if got := r.status(); !strings.Contains(got, "enter selects e9c6 × undefined") {
+	if got := r.status(); !strings.Contains(got, "enter selects e9c6 × release") {
 		t.Errorf("status = %q", got)
 	}
 }

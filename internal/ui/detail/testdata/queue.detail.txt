@@ -1,12 +1,17 @@
-2 Queue noreply@anthropic.com · 60 items · detail
+2 Queue noreply@anthropic.com · 56 items · detail
 Work ready: 28
   c2ad Roles · 🌍 validate · claude-opus · 2026-09-30
     Gate: 🌍 validate, Validation: Passes user and field tests
-    Contributor: 🤖 noreply@anthropic.com, model claude-opus, from 437e
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus, from bc63
     Reviewer: 👀 nbyoung@nbyoung.com, from 437e
-    Status: 🧱 implementation 🟢 nominal, 2026-09-30, noreply@anthropic.com:
-      The Roles text is on the trunk and covers all seven roles; the validate
-      gate awaits the owner
+    References:
+      Proposed roles, PLAN.md#roles
+    Also required by:
+      e9c6 Abstract views, design → design, The role names the views refer to:
+        met
+    Status: 🧱 implementation 🟢 nominal, 2026-09-30, noreply@anthropic.com,
+      3d8ce0e: The Roles text is on the trunk and covers all seven roles; the
+      validate gate awaits the owner
   e9c6 Abstract views · 🧱 implementation · claude-sonnet · 2026-09-30
     Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
       integration and validation tests
@@ -14,6 +19,8 @@ Work ready: 28
     Reviewer: 👀 noreply@anthropic.com, the assignee
     References:
       Proposed views, PLAN.md#views
+    Requires:
+      c2ad Roles, design → design, The role names the views refer to: met
     Unblocks:
       77b2 tablo: backend library and plumbing, implementation → design, The
         abstract views it derives: unmet, not yet due
@@ -22,76 +29,346 @@ Work ready: 28
         definition of the view: met
       05a9 Task definition view in Markdown, design → mockup, The abstract
         definition of the view: met
+      a9ce Authority delegation view in Markdown, design → mockup, The
+        abstract definition of the view: met
+      bb7c Task assignment view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      c74a Contributor work queue view in Markdown, design → mockup, The
+        abstract definition of the view: met
+      efff Work-blockage tree view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      ab8e Global tableau view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      c545 Contextual tableau view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      d615 History view in Markdown, design → mockup, The abstract definition
+        of the view: met
+      b14e Audit view in Markdown, design → mockup, The abstract definition of
+        the view: met
+      a6f7 Gate definition view in Html, design → mockup, The abstract
+        definition of the view: met
+      7dff Task definition view in Html, design → mockup, The abstract
+        definition of the view: met
+      b1b7 Authority delegation view in Html, design → mockup, The abstract
+        definition of the view: met
+      ea51 Task assignment view in Html, design → mockup, The abstract
+        definition of the view: met
+      7783 Contributor work queue view in Html, design → mockup, The abstract
+        definition of the view: met
+      5471 Work-blockage tree view in Html, design → mockup, The abstract
+        definition of the view: met
+      32e7 Global tableau view in Html, design → mockup, The abstract
+        definition of the view: met
+      69eb Contextual tableau view in Html, design → mockup, The abstract
+        definition of the view: met
+      3194 History view in Html, design → mockup, The abstract definition of
+        the view: met
+      a8b4 Audit view in Html, design → mockup, The abstract definition of the
+        view: met
     Status: 📐 design 🟢 nominal, 2026-09-30, noreply@anthropic.com, 879b447:
       VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may
       start, and implementation puts the text in place
   99f0 Gate definition view in Markdown · 📌 mockup · claude-opus · 2026-09-29
     Gate: 📌 mockup, Mockup: A non-technical mockup of the outcome exists
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus, from 437e
+    Reviewer: 👀 nbyoung@nbyoung.com, from 437e
+    References:
+      The mockup, docs/mockups/gates.md
+    Requires:
+      e9c6 Abstract views, design → mockup, The abstract definition of the
+        view: met
+    Its parent unblocks:
+      bc86 Markdown views at 📌 mockup is required by 6103 tabloio: command
+        line, output and input, mockup → design, The Markdown mockups it
+        reproduces: unmet, not yet due
+      bc86 Markdown views at 📌 mockup is required by c6e8 tablotui: terminal
+        user interface, mockup → design, The Markdown mockups that fix the
+        textual layout: unmet, not yet due
+    Status: 📝 defined 🟢 nominal, 2026-09-29, noreply@anthropic.com, 1a17bfc:
+      Mockup waits for Abstract views (e9c6) at design
   05a9 Task definition view in Markdown · 📌 mockup · claude-opus · 2026-09-29
     Gate: 📌 mockup, Mockup: A non-technical mockup of the outcome exists
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus, from 437e
+    Reviewer: 👀 nbyoung@nbyoung.com, from 437e
+    References:
+      The mockup, docs/mockups/task.md
+    Requires:
+      e9c6 Abstract views, design → mockup, The abstract definition of the
+        view: met
+    Its parent unblocks:
+      bc86 Markdown views at 📌 mockup is required by 6103 tabloio: command
+        line, output and input, mockup → design, The Markdown mockups it
+        reproduces: unmet, not yet due
+      bc86 Markdown views at 📌 mockup is required by c6e8 tablotui: terminal
+        user interface, mockup → design, The Markdown mockups that fix the
+        textual layout: unmet, not yet due
+    Status: 📝 defined 🟢 nominal, 2026-09-29, noreply@anthropic.com, 1a17bfc:
+      Mockup waits for Abstract views (e9c6) at design
   a9ce Authority delegation view in Markdown · 📌 mockup · claude-opus ·
     2026-09-29
     Gate: 📌 mockup, Mockup: A non-technical mockup of the outcome exists
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus, from 437e
+    Reviewer: 👀 nbyoung@nbyoung.com, from 437e
+    References:
+      The mockup, docs/mockups/authority.md
+    Requires:
+      e9c6 Abstract views, design → mockup, The abstract definition of the
+        view: met
+    Its parent unblocks:
+      bc86 Markdown views at 📌 mockup is required by 6103 tabloio: command
+        line, output and input, mockup → design, The Markdown mockups it
+        reproduces: unmet, not yet due
+      bc86 Markdown views at 📌 mockup is required by c6e8 tablotui: terminal
+        user interface, mockup → design, The Markdown mockups that fix the
+        textual layout: unmet, not yet due
+    Status: 📝 defined 🟢 nominal, 2026-09-29, noreply@anthropic.com, 1a17bfc:
+      Mockup waits for Abstract views (e9c6) at design
 > … and 17 more: bb7c c74a efff ab8e c545 d615 b14e a6f7 7dff b1b7 ea51 7783
     5471 32e7 69eb 3194 a8b4 · 📌 mockup · claude-opus · 2026-09-29
   e3cb Schema files · 🌍 validate · claude-opus · 2026-09-30
     Gate: 🌍 validate, Validation: Passes user and field tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus, from bc63
+    Reviewer: 👀 nbyoung@nbyoung.com, from 437e
+    References:
+      The schemas in place, SYNTAX.md
+    Also required by:
+      fcec Conformance corpus, implementation → implementation, The schema
+        files the corpus validates against: met
+      77b2 tablo: backend library and plumbing, implementation →
+        implementation, The schema files it embeds: met, not yet due
+    Status: 📏 unit 🟢 nominal, 2026-09-30, noreply@anthropic.com, 5cbec7c:
+      schemas/check.sh (files agree with SYNTAX.md, version 0.2.1) and
+      schemas/load.py (files load as JSON Schema 2020-12) pass; every
+      .tableaux file validates
   fcec Conformance corpus · 📏 unit · claude-sonnet · 2026-09-30
     Gate: 📏 unit, Unit test: All prescribed tests pass
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet, from 437e
+    Reviewer: 👀 noreply@anthropic.com, the assignee
+    References:
+      The examples the corpus starts from, README.md
+    Requires:
+      e3cb Schema files, implementation → implementation, The schema files the
+        corpus validates against: met
+    Also required by:
+      77b2 tablo: backend library and plumbing, implementation → unit, The
+        corpus it conforms to: met, not yet due
+    Status: 🧱 implementation 🟢 nominal, 2026-09-30, noreply@anthropic.com,
+      60495c2: The corpus builds and checks clean, with 85 entries on the
+      trunk; all three corrections from the tablo prototypes are in; the unit
+      gate runs the tablo conformance test against it
   ac33 Agent identity · 🧱 implementation · claude-sonnet · 2026-09-30
     Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
       integration and validation tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet, from 437e
+    Reviewer: 👀 nbyoung@nbyoung.com, the assignee
+    References:
+      Findings F1, F2, F10 and F20, PLAN.md#findings
+    Status: 📐 design 🟢 nominal, 2026-09-30, noreply@anthropic.com, 6762222:
+      The model plan-and-record rule (F20) is on the trunk; F1, F2 and F10
+      remain for design
   9f3f Subproject linkage · 🧱 implementation · claude-sonnet · 2026-09-30
     Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
       integration and validation tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet, from 437e
+    Reviewer: 👀 nbyoung@nbyoung.com, the assignee
+    References:
+      Findings F3 to F5, PLAN.md#findings
+    Status: 📐 design 🟢 nominal, 2026-09-30, noreply@anthropic.com, 43d68e4:
+      The subproject linkage rule (F3, F5, F12) is on the trunk at language
+      0.3.0; tablo and the subprojects follow
   7861 Productivity evidence · 🌍 validate · claude-opus · 2026-09-30
     Gate: 🌍 validate, Validation: Passes user and field tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus, from bc63
+    Reviewer: 👀 nbyoung@nbyoung.com, from 437e
+    References:
+      The review policy under test, PLAN.md#review-policy
+    Status: 🧱 implementation 🟢 nominal, 2026-09-30, noreply@anthropic.com,
+      c6f2655: The full report, its 23 tests and an example over five
+      repositories are on the trunk
   7166 Language clarifications · 🧱 implementation · claude-sonnet ·
     2026-09-30
     Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
       integration and validation tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet, from 437e
+    Reviewer: 👀 nbyoung@nbyoung.com, the assignee
+    References:
+      Findings F7 to F9 and F19, PLAN.md#findings
+    Status: 📐 design 🟢 nominal, 2026-09-30, noreply@anthropic.com, d9396b4:
+      The trunk clarification (F19) is on the trunk; F7 and F9 remain for
+      design
 
-Reaffirmations: 32
+Reaffirmations: 28
   99f0 Gate definition view in Markdown · 📝 defined · 2026-09-29, 6 days
     Gate: 📝 defined, Defined: Title, description, assignee and references
       exist
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus
+    Reviewer: 👀 nbyoung@nbyoung.com
+    References:
+      The mockup, docs/mockups/gates.md
+    Requires:
+      e9c6 Abstract views, design → mockup, The abstract definition of the
+        view: met
+    Status: 📝 defined 🟢 nominal, 2026-09-29, noreply@anthropic.com, 1a17bfc:
+      Mockup waits for Abstract views (e9c6) at design
   05a9 Task definition view in Markdown · 📝 defined · 2026-09-29, 6 days
     Gate: 📝 defined, Defined: Title, description, assignee and references
       exist
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus
+    Reviewer: 👀 nbyoung@nbyoung.com
+    References:
+      The mockup, docs/mockups/task.md
+    Requires:
+      e9c6 Abstract views, design → mockup, The abstract definition of the
+        view: met
+    Status: 📝 defined 🟢 nominal, 2026-09-29, noreply@anthropic.com, 1a17bfc:
+      Mockup waits for Abstract views (e9c6) at design
   a9ce Authority delegation view in Markdown · 📝 defined · 2026-09-29, 6 days
     Gate: 📝 defined, Defined: Title, description, assignee and references
       exist
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus
+    Reviewer: 👀 nbyoung@nbyoung.com
+    References:
+      The mockup, docs/mockups/authority.md
+    Requires:
+      e9c6 Abstract views, design → mockup, The abstract definition of the
+        view: met
+    Status: 📝 defined 🟢 nominal, 2026-09-29, noreply@anthropic.com, 1a17bfc:
+      Mockup waits for Abstract views (e9c6) at design
 > … and 17 more: bb7c c74a efff ab8e c545 d615 b14e a6f7 7dff b1b7 ea51 7783
     5471 32e7 69eb 3194 a8b4 · 📝 defined · 2026-09-29, 6 days
   7166 Language clarifications · 📐 design · 2026-09-30, 5 days
     Gate: 📐 design, Design: A model and sufficient tests exist
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet
+    Reviewer: 👀 nbyoung@nbyoung.com, the assignee
+    References:
+      Findings F7 to F9 and F19, PLAN.md#findings
+    Status: 📐 design 🟢 nominal, 2026-09-30, noreply@anthropic.com, d9396b4:
+      The trunk clarification (F19) is on the trunk; F7 and F9 remain for
+      design
   ac33 Agent identity · 📐 design · 2026-09-30, 5 days
     Gate: 📐 design, Design: A model and sufficient tests exist
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet
+    Reviewer: 👀 nbyoung@nbyoung.com, the assignee
+    References:
+      Findings F1, F2, F10 and F20, PLAN.md#findings
+    Status: 📐 design 🟢 nominal, 2026-09-30, noreply@anthropic.com, 6762222:
+      The model plan-and-record rule (F20) is on the trunk; F1, F2 and F10
+      remain for design
   c2ad Roles · 🧱 implementation · 2026-09-30, 5 days
     Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
       integration and validation tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus
+    Reviewer: 👀 nbyoung@nbyoung.com
+    References:
+      Proposed roles, PLAN.md#roles
+    Also required by:
+      e9c6 Abstract views, design → design, The role names the views refer to:
+        met
+    Status: 🧱 implementation 🟢 nominal, 2026-09-30, noreply@anthropic.com,
+      3d8ce0e: The Roles text is on the trunk and covers all seven roles; the
+      validate gate awaits the owner
   e3cb Schema files · 📏 unit · 2026-09-30, 5 days
     Gate: 📏 unit, Unit test: All prescribed tests pass
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus
+    Reviewer: 👀 nbyoung@nbyoung.com
+    References:
+      The schemas in place, SYNTAX.md
+    Also required by:
+      fcec Conformance corpus, implementation → implementation, The schema
+        files the corpus validates against: met
+      77b2 tablo: backend library and plumbing, implementation →
+        implementation, The schema files it embeds: met, not yet due
+    Status: 📏 unit 🟢 nominal, 2026-09-30, noreply@anthropic.com, 5cbec7c:
+      schemas/check.sh (files agree with SYNTAX.md, version 0.2.1) and
+      schemas/load.py (files load as JSON Schema 2020-12) pass; every
+      .tableaux file validates
   7861 Productivity evidence · 🧱 implementation · 2026-09-30, 5 days
     Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
       integration and validation tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-opus
+    Reviewer: 👀 nbyoung@nbyoung.com
+    References:
+      The review policy under test, PLAN.md#review-policy
+    Status: 🧱 implementation 🟢 nominal, 2026-09-30, noreply@anthropic.com,
+      c6f2655: The full report, its 23 tests and an example over five
+      repositories are on the trunk
   fcec Conformance corpus · 🧱 implementation · 2026-09-30, 5 days
     Gate: 🧱 implementation, Implementation: Artifacts suffice for unit,
       integration and validation tests
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet
+    Reviewer: 👀 noreply@anthropic.com, the assignee
+    References:
+      The examples the corpus starts from, README.md
+    Requires:
+      e3cb Schema files, implementation → implementation, The schema files the
+        corpus validates against: met
+    Also required by:
+      77b2 tablo: backend library and plumbing, implementation → unit, The
+        corpus it conforms to: met, not yet due
+    Status: 🧱 implementation 🟢 nominal, 2026-09-30, noreply@anthropic.com,
+      60495c2: The corpus builds and checks clean, with 85 entries on the
+      trunk; all three corrections from the tablo prototypes are in; the unit
+      gate runs the tablo conformance test against it
   9f3f Subproject linkage · 📐 design · 2026-09-30, 5 days
     Gate: 📐 design, Design: A model and sufficient tests exist
-  77b2 tablo: backend library and plumbing · 📝 defined · 2026-09-30, 5 days
-    Gate: 📝 defined, Defined: Title, description, assignee and references
-      exist
-  6103 tabloio: command line, output and input · 📝 defined · 2026-09-30, 5
-    days
-    Gate: 📝 defined, Defined: Title, description, assignee and references
-      exist
-  c6e8 tablotui: terminal user interface · 📝 defined · 2026-09-30, 5 days
-    Gate: 📝 defined, Defined: Title, description, assignee and references
-      exist
-  595e tableaud: local daemon and HTML · 📝 defined · 2026-09-30, 5 days
-    Gate: 📝 defined, Defined: Title, description, assignee and references
-      exist
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet
+    Reviewer: 👀 nbyoung@nbyoung.com, the assignee
+    References:
+      Findings F3 to F5, PLAN.md#findings
+    Status: 📐 design 🟢 nominal, 2026-09-30, noreply@anthropic.com, 43d68e4:
+      The subproject linkage rule (F3, F5, F12) is on the trunk at language
+      0.3.0; tablo and the subprojects follow
   e9c6 Abstract views · 📐 design · 2026-09-30, 5 days
     Gate: 📐 design, Design: A model and sufficient tests exist
+    Contributor: 🤖 noreply@anthropic.com, model claude-sonnet
+    Reviewer: 👀 noreply@anthropic.com, the assignee
+    References:
+      Proposed views, PLAN.md#views
+    Requires:
+      c2ad Roles, design → design, The role names the views refer to: met
+    Also required by:
+      99f0 Gate definition view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      05a9 Task definition view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      a9ce Authority delegation view in Markdown, design → mockup, The
+        abstract definition of the view: met
+      bb7c Task assignment view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      c74a Contributor work queue view in Markdown, design → mockup, The
+        abstract definition of the view: met
+      efff Work-blockage tree view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      ab8e Global tableau view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      c545 Contextual tableau view in Markdown, design → mockup, The abstract
+        definition of the view: met
+      d615 History view in Markdown, design → mockup, The abstract definition
+        of the view: met
+      b14e Audit view in Markdown, design → mockup, The abstract definition of
+        the view: met
+      a6f7 Gate definition view in Html, design → mockup, The abstract
+        definition of the view: met
+      7dff Task definition view in Html, design → mockup, The abstract
+        definition of the view: met
+      b1b7 Authority delegation view in Html, design → mockup, The abstract
+        definition of the view: met
+      ea51 Task assignment view in Html, design → mockup, The abstract
+        definition of the view: met
+      7783 Contributor work queue view in Html, design → mockup, The abstract
+        definition of the view: met
+      5471 Work-blockage tree view in Html, design → mockup, The abstract
+        definition of the view: met
+      32e7 Global tableau view in Html, design → mockup, The abstract
+        definition of the view: met
+      69eb Contextual tableau view in Html, design → mockup, The abstract
+        definition of the view: met
+      3194 History view in Html, design → mockup, The abstract definition of
+        the view: met
+      a8b4 Audit view in Html, design → mockup, The abstract definition of the
+        view: met
+      77b2 tablo: backend library and plumbing, implementation → design, The
+        abstract views it derives: unmet, not yet due
+    Status: 📐 design 🟢 nominal, 2026-09-30, noreply@anthropic.com, 879b447:
+      VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may
+      start, and implementation puts the text in place

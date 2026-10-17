@@ -3,18 +3,19 @@
   "command": "history",
   "source": {
     "ref": "main",
+    "dir": ".",
     "worktree": false,
     "commit": "3cdae527d47d37fdff55bc302c76c017cf91c606",
     "date": "2026-10-05",
     "from": null,
     "trunk": {
-      "name": null,
-      "resolved": "undetermined"
+      "name": "main",
+      "resolved": "stated"
     },
     "on_trunk": true
   },
   "project": {
-    "tableaux": "",
+    "tableaux": "0.3.1",
     "root": "437e",
     "title": "Tableaux tooling",
     "owner": "nbyoung@nbyoung.com"
@@ -184,12 +185,12 @@
       "id": "595e",
       "title": "tableaud: local daemon and HTML"
     },
-    "events": 4,
-    "commits": 4,
+    "events": 11,
+    "commits": 11,
     "kinds": [
       {
         "kind": "task",
-        "count": 0
+        "count": 1
       },
       {
         "kind": "authorised",
@@ -209,15 +210,19 @@
       },
       {
         "kind": "pin",
-        "count": 3
+        "count": 9
       }
     ],
     "days": [
       {
         "date": "2026-09-29",
-        "events": 1,
-        "commits": 1,
+        "events": 2,
+        "commits": 2,
         "kinds": [
+          {
+            "kind": "task",
+            "count": 1
+          },
           {
             "kind": "pin",
             "count": 1
@@ -226,23 +231,27 @@
       },
       {
         "date": "2026-09-30",
-        "events": 1,
-        "commits": 1,
+        "events": 6,
+        "commits": 6,
         "kinds": [
           {
             "kind": "status",
             "count": 1
+          },
+          {
+            "kind": "pin",
+            "count": 5
           }
         ]
       },
       {
         "date": "2026-10-02",
-        "events": 1,
-        "commits": 1,
+        "events": 2,
+        "commits": 2,
         "kinds": [
           {
             "kind": "pin",
-            "count": 1
+            "count": 2
           }
         ]
       },
@@ -268,21 +277,17 @@
         "events": [
           {
             "date": "2026-09-29",
-            "commit": "",
+            "commit": "6b6c99a2ca35f684674ad886a33916979137f227",
             "by": "nbyoung@nbyoung.com",
-            "kind": "pin",
+            "kind": "task",
             "recorded": null,
             "gate": "",
-            "pin": {
-              "url": "subprojects/tableaud",
-              "old": "",
-              "new": "2061a7f0"
-            },
+            "pin": null,
             "subproject": null
           }
         ],
         "after": {
-          "kind": "recorded",
+          "kind": "absent",
           "gate": "undefined",
           "state": "undefined",
           "reason": "",
@@ -295,6 +300,827 @@
           "from": null
         },
         "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "8608",
+              "title": "tableaud"
+            }
+          }
+        ],
+        "after": {
+          "kind": "rollup",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "rollup",
+            "task": {
+              "id": "7425",
+              "title": "Bootstrap"
+            },
+            "url": "",
+            "pin": "",
+            "gate": ""
+          }
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "49ce",
+              "title": "Server"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "097c",
+              "title": "HTML views"
+            }
+          }
+        ],
+        "after": {
+          "kind": "rollup",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "rollup",
+            "task": {
+              "id": "438a",
+              "title": "Legend and task templates"
+            },
+            "url": "",
+            "pin": "",
+            "gate": ""
+          }
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "438a",
+              "title": "Legend and task templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "e2b6",
+              "title": "Structural templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "44bf",
+              "title": "Status templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "9a9c",
+              "title": "Temporal templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "db74",
+              "title": "Progressive disclosure"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "6160",
+              "title": "Static export"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "5a2f",
+              "title": "Accessibility and theming"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "authorised_commit",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "37a08e92e840ea3cb48bc7ca6a5041c44096ef8e",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "",
+              "new": "59783a9ba38c2570d0fd0b632a8199e02265a213"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "06e680b2e26cc386ed764e4fba1fd5753055e2a6",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          },
+          {
+            "date": "2026-09-29",
+            "commit": "06e680b2e26cc386ed764e4fba1fd5753055e2a6",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": ""
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "",
+        "check": {
+          "commit": "06e680b2e26cc386ed764e4fba1fd5753055e2a6",
+          "gate": "defined",
+          "stated": "claude-fable-5-1",
+          "trailer": "",
+          "reading": "exempt"
+        },
+        "committer": "nbyoung@nbyoung.com"
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "f7df5651c563b165185e6dcf64fc16973a56c456",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "review",
+              "note": "The module skeleton design on branch task/7425 awaits the owner's design review; CI verification waits for implementation because no Go toolchain runs here"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "review",
+          "note": "The module skeleton design on branch task/7425 awaits the owner's design review; CI verification waits for implementation because no Go toolchain runs here",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "handoff",
+        "model": "",
+        "check": {
+          "commit": "f7df5651c563b165185e6dcf64fc16973a56c456",
+          "gate": "design",
+          "stated": "claude-fable-5-1",
+          "trailer": "",
+          "reading": "exempt"
+        },
+        "committer": "nbyoung@nbyoung.com"
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-29",
+            "commit": "3012b306ada58a35adffc97a6f4a3af73785bf8a",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "defined",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "review",
+          "note": "The module skeleton design on branch task/7425 awaits the owner's design review; CI verification waits for implementation because no Go toolchain runs here",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "stands",
+        "model": "",
+        "check": null,
+        "committer": "nbyoung@nbyoung.com"
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "dc962d06242eed4876ae5d2bd11b989fcf221377",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "design",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "review",
+          "note": "The module skeleton design on branch task/7425 awaits the owner's design review; CI verification waits for implementation because no Go toolchain runs here",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "d2859891baa8abe86ed2035e86891d075d239b59",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "design",
+              "state": "nominal",
+              "reason": "",
+              "note": "The skeleton is on the trunk and passes vet and test locally; the implementation record awaits the first CI run after the push"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "design",
+          "state": "nominal",
+          "reason": "",
+          "note": "The skeleton is on the trunk and passes vet and test locally; the implementation record awaits the first CI run after the push",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "",
+        "check": {
+          "commit": "d2859891baa8abe86ed2035e86891d075d239b59",
+          "gate": "design",
+          "stated": "claude-fable-5-1",
+          "trailer": "",
+          "reading": "exempt"
+        },
+        "committer": "nbyoung@nbyoung.com"
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "5c8700038b30a04f1b387e0268c7782eaa39d384",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "59783a9ba38c2570d0fd0b632a8199e02265a213",
+              "new": "d2859891baa8abe86ed2035e86891d075d239b59"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
         "subject_after": null,
         "effect": "",
         "model": "",
@@ -310,26 +1136,663 @@
         "events": [
           {
             "date": "2026-09-30",
-            "commit": "",
+            "commit": "55018ec6bdb4e5723482d1e5ab1706dd19358eb7",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "d2859891baa8abe86ed2035e86891d075d239b59",
+              "new": "1c4d785b837f5834a179e16cc7713614fee32357"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "00ce894c11f78ea9a9e524b948228dc5e88a384b",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "8608",
+              "title": "tableaud"
+            }
+          }
+        ],
+        "after": {
+          "kind": "rollup",
+          "gate": "design",
+          "state": "nominal",
+          "reason": "",
+          "note": "The skeleton is on the trunk and passes vet and test locally; the implementation record awaits the first CI run after the push",
+          "date": "",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "rollup",
+            "task": {
+              "id": "7425",
+              "title": "Bootstrap"
+            },
+            "url": "",
+            "pin": "",
+            "gate": ""
+          }
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "claude-fable-5-1",
+        "check": null,
+        "committer": "nbyoung@nbyoung.com"
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "bf58fada2d632fae5e8f0608bbb996350e3f4ce6",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "1c4d785b837f5834a179e16cc7713614fee32357",
+              "new": "38de8e2da3c4324bb1974d0e5a0ce2b91f57292f"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "",
+        "model": "",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "d17b0596b0a529cafbe064f1924a28b1f37ae409",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "design",
+              "state": "nominal",
+              "reason": "",
+              "note": "The lint fix is on the branch; the implementation record awaits a green CI run after the push"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "design",
+          "state": "nominal",
+          "reason": "",
+          "note": "The lint fix is on the branch; the implementation record awaits a green CI run after the push",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "d17b0596b0a529cafbe064f1924a28b1f37ae409",
+          "gate": "implementation",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "2a5a1cf5002470b1ba2646fac209dca5983cd0fc",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "implementation",
+              "state": "nominal",
+              "reason": "",
+              "note": "The skeleton is on the trunk and passes vet and test locally and in CI run 36714734449 on 406c061; formatting, lint and the release workflow are in place; the tablo require line waits for the server task, as the README states"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          },
+          {
+            "date": "2026-09-30",
+            "commit": "2a5a1cf5002470b1ba2646fac209dca5983cd0fc",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "implementation",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "7425",
+              "title": "Bootstrap"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "implementation",
+          "state": "nominal",
+          "reason": "",
+          "note": "The skeleton is on the trunk and passes vet and test locally and in CI run 36714734449 on 406c061; formatting, lint and the release workflow are in place; the tablo require line waits for the server task, as the README states",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "2a5a1cf5002470b1ba2646fac209dca5983cd0fc",
+          "gate": "implementation",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "68f87061857c46fdb2c463c4328f9ec31b922b3d",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "38de8e2da3c4324bb1974d0e5a0ce2b91f57292f",
+              "new": "5a99a5c3ad66296bf5ca10b0b0be399caa017a08"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-opus-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "025a2f618b969ad3371b0d059bcff1062e81178a",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "49ce",
+              "title": "Server"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "025a2f618b969ad3371b0d059bcff1062e81178a",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "438a",
+              "title": "Legend and task templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "025a2f618b969ad3371b0d059bcff1062e81178a",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "e2b6",
+              "title": "Structural templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "025a2f618b969ad3371b0d059bcff1062e81178a",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "44bf",
+              "title": "Status templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "025a2f618b969ad3371b0d059bcff1062e81178a",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "9a9c",
+              "title": "Temporal templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "025a2f618b969ad3371b0d059bcff1062e81178a",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "db74",
+              "title": "Progressive disclosure"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "025a2f618b969ad3371b0d059bcff1062e81178a",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "6160",
+              "title": "Static export"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "025a2f618b969ad3371b0d059bcff1062e81178a",
+            "by": "noreply@anthropic.com",
+            "kind": "task",
+            "recorded": null,
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "5a2f",
+              "title": "Accessibility and theming"
+            }
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "proposed",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "895d922208c9ac91a161d044a67185ce386e648c",
             "by": "noreply@anthropic.com",
             "kind": "status",
             "recorded": {
               "gate": "defined",
-              "state": "",
+              "state": "nominal",
               "reason": "",
-              "note": ""
+              "note": "The functional prototype is next and no requirement gates it"
             },
             "gate": "",
             "pin": null,
-            "subproject": null
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "49ce",
+              "title": "Server"
+            }
           }
         ],
         "after": {
           "kind": "recorded",
           "gate": "defined",
-          "state": "",
+          "state": "nominal",
           "reason": "",
-          "note": "",
+          "note": "The functional prototype is next and no requirement gates it",
           "date": "",
           "recorder": "",
           "derived": false,
@@ -342,7 +1805,7 @@
         "effect": "",
         "model": "claude-haiku-4-5-20251001",
         "check": {
-          "commit": "",
+          "commit": "895d922208c9ac91a161d044a67185ce386e648c",
           "gate": "defined",
           "stated": "claude-haiku",
           "trailer": "claude-haiku-4-5-20251001",
@@ -358,30 +1821,517 @@
         "proposal": false,
         "events": [
           {
-            "date": "2026-10-01",
-            "commit": "",
+            "date": "2026-09-30",
+            "commit": "895d922208c9ac91a161d044a67185ce386e648c",
             "by": "noreply@anthropic.com",
             "kind": "status",
             "recorded": {
-              "gate": "function",
+              "gate": "defined",
               "state": "nominal",
               "reason": "",
-              "note": ""
+              "note": "The functional prototype is next and no requirement gates it"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "438a",
+              "title": "Legend and task templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-haiku-4-5-20251001",
+        "check": {
+          "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+          "gate": "defined",
+          "stated": "claude-haiku",
+          "trailer": "claude-haiku-4-5-20251001",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "The functional prototype is next and no requirement gates it"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "e2b6",
+              "title": "Structural templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-haiku-4-5-20251001",
+        "check": {
+          "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+          "gate": "defined",
+          "stated": "claude-haiku",
+          "trailer": "claude-haiku-4-5-20251001",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "The functional prototype is next and no requirement gates it"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "44bf",
+              "title": "Status templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-haiku-4-5-20251001",
+        "check": {
+          "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+          "gate": "defined",
+          "stated": "claude-haiku",
+          "trailer": "claude-haiku-4-5-20251001",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "The functional prototype is next and no requirement gates it"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "9a9c",
+              "title": "Temporal templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-haiku-4-5-20251001",
+        "check": {
+          "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+          "gate": "defined",
+          "stated": "claude-haiku",
+          "trailer": "claude-haiku-4-5-20251001",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "The functional prototype is next and no requirement gates it"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "db74",
+              "title": "Progressive disclosure"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-haiku-4-5-20251001",
+        "check": {
+          "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+          "gate": "defined",
+          "stated": "claude-haiku",
+          "trailer": "claude-haiku-4-5-20251001",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "The functional prototype is next and no requirement gates it"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "6160",
+              "title": "Static export"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-haiku-4-5-20251001",
+        "check": {
+          "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+          "gate": "defined",
+          "stated": "claude-haiku",
+          "trailer": "claude-haiku-4-5-20251001",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "nominal",
+              "reason": "",
+              "note": "The functional prototype is next and no requirement gates it"
             },
             "gate": "",
             "pin": null,
             "subproject": {
               "url": "subprojects/tableaud",
               "task": "5a2f",
-              "title": "Bootstrap"
+              "title": "Accessibility and theming"
             }
           }
         ],
-        "after": null,
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
         "unchanged": false,
         "subject_after": null,
         "effect": "",
-        "model": "claude-sonnet-5-5",
+        "model": "claude-haiku-4-5-20251001",
+        "check": {
+          "commit": "895d922208c9ac91a161d044a67185ce386e648c",
+          "gate": "defined",
+          "stated": "claude-haiku",
+          "trailer": "claude-haiku-4-5-20251001",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "f60f17e57a966cdcaefdae76856bcc3a44ca940d",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "5a99a5c3ad66296bf5ca10b0b0be399caa017a08",
+              "new": "2061a7fdec9259a8bbbc697e3254e56b7893296d"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "absent",
+          "gate": "undefined",
+          "state": "undefined",
+          "reason": "",
+          "note": "",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-opus-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-09-30",
+            "commit": "e66abe252ccc5662970c3653b1f181cbe50acbaf",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "defined",
+              "state": "",
+              "reason": "",
+              "note": ""
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "8608",
+              "title": "tableaud"
+            },
+            "url": "subprojects/tableaud",
+            "pin": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+            "gate": "defined"
+          }
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-haiku-4-5-20251001",
+        "check": {
+          "commit": "e66abe252ccc5662970c3653b1f181cbe50acbaf",
+          "gate": "defined",
+          "stated": "claude-haiku",
+          "trailer": "claude-haiku-4-5-20251001",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-02",
+            "commit": "fb8c0b2b527789760956b0a238c5f07b97c7f277",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "2061a7fdec9259a8bbbc697e3254e56b7893296d",
+              "new": "b06cad000031d9b8bff0a1e115cf2d60ce4b6a4d"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "8608",
+              "title": "tableaud"
+            },
+            "url": "subprojects/tableaud",
+            "pin": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+            "gate": "defined"
+          }
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-opus-5-5",
         "check": null,
         "committer": ""
       },
@@ -394,16 +2344,414 @@
         "events": [
           {
             "date": "2026-10-02",
-            "commit": "",
+            "commit": "552d38fd8adf40e41b39f65d5904e6fc6a88b265",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "b06cad000031d9b8bff0a1e115cf2d60ce4b6a4d",
+              "new": "cffbfa66a5eada8a8262c105353ba158f55a9129"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "8608",
+              "title": "tableaud"
+            },
+            "url": "subprojects/tableaud",
+            "pin": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+            "gate": "defined"
+          }
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-opus-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "1a3f5a2bcce6c320b1cd25f179e743e2956a41c6",
             "by": "noreply@anthropic.com",
             "kind": "status",
             "recorded": {
               "gate": "function",
               "state": "nominal",
               "reason": "",
-              "note": ""
+              "note": "prototype/9a9c shows the history timeline with replayed status and HTMX paging and the audit grouped by resolving action"
             },
             "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "9a9c",
+              "title": "Temporal templates"
+            }
+          },
+          {
+            "date": "2026-10-05",
+            "commit": "1a3f5a2bcce6c320b1cd25f179e743e2956a41c6",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "9a9c",
+              "title": "Temporal templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/9a9c shows the history timeline with replayed status and HTMX paging and the audit grouped by resolving action",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "1a3f5a2bcce6c320b1cd25f179e743e2956a41c6",
+          "gate": "function",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "4320f45fa44bf2b7e248cdef95bfde789412a50b",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "function",
+              "state": "nominal",
+              "reason": "",
+              "note": "prototype/44bf renders the four status views from tablo 886d data with HTMX row fragments and link fallbacks"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "44bf",
+              "title": "Status templates"
+            }
+          },
+          {
+            "date": "2026-10-05",
+            "commit": "4320f45fa44bf2b7e248cdef95bfde789412a50b",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "44bf",
+              "title": "Status templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/44bf renders the four status views from tablo 886d data with HTMX row fragments and link fallbacks",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "4320f45fa44bf2b7e248cdef95bfde789412a50b",
+          "gate": "function",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "af1ec7782bbf4d633f0c82ebc98197538e142b19",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "438a",
+              "title": "Legend and task templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "11ab533590594cf66b55a3029ac265bbe98d3e94",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "function",
+              "state": "nominal",
+              "reason": "",
+              "note": "prototype/438a renders the legend and task pages from 493e data with inline and HTMX-fetched folds, no-script fallbacks and resolved links"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "438a",
+              "title": "Legend and task templates"
+            }
+          },
+          {
+            "date": "2026-10-05",
+            "commit": "11ab533590594cf66b55a3029ac265bbe98d3e94",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "438a",
+              "title": "Legend and task templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/438a renders the legend and task pages from 493e data with inline and HTMX-fetched folds, no-script fallbacks and resolved links",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "none",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "11ab533590594cf66b55a3029ac265bbe98d3e94",
+          "gate": "function",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "7c98883a0b5d02ffa0d667672ecf39177957d6b3",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "e2b6",
+              "title": "Structural templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "2f2304c6d075b2859d5cdc7b03b0d3561bb0f5a2",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "function",
+              "state": "nominal",
+              "reason": "",
+              "note": "prototype/e2b6 renders the authority and assignment views from tablo data with HTMX fragment expansion, a path-keeping proposed filter and per-email pages"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "e2b6",
+              "title": "Structural templates"
+            }
+          },
+          {
+            "date": "2026-10-05",
+            "commit": "2f2304c6d075b2859d5cdc7b03b0d3561bb0f5a2",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "e2b6",
+              "title": "Structural templates"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/e2b6 renders the authority and assignment views from tablo data with HTMX fragment expansion, a path-keeping proposed filter and per-email pages",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "none",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "2f2304c6d075b2859d5cdc7b03b0d3561bb0f5a2",
+          "gate": "function",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "7d3306034435e3d642d85e54a575bef931116845",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
             "pin": null,
             "subproject": {
               "url": "subprojects/tableaud",
@@ -412,10 +2760,22 @@
             }
           }
         ],
-        "after": null,
-        "unchanged": false,
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
         "subject_after": null,
-        "effect": "",
+        "effect": "accepts",
         "model": "claude-sonnet-5-5",
         "check": null,
         "committer": ""
@@ -428,80 +2788,45 @@
         "proposal": false,
         "events": [
           {
-            "date": "2026-10-02",
-            "commit": "",
-            "by": "nbyoung@nbyoung.com",
-            "kind": "pin",
-            "recorded": null,
-            "gate": "",
-            "pin": {
-              "url": "subprojects/tableaud",
-              "old": "2061a7f0",
-              "new": "b06cad01"
+            "date": "2026-10-05",
+            "commit": "967df1fb2f8918bfd7713eee996c1ae235390f22",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "function",
+              "state": "nominal",
+              "reason": "",
+              "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check"
             },
-            "subproject": null
-          }
-        ],
-        "after": {
-          "kind": "recorded",
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "",
-          "note": "",
-          "date": "",
-          "recorder": "",
-          "derived": false,
-          "why": "",
-          "uncommitted": false,
-          "from": null
-        },
-        "unchanged": false,
-        "subject_after": {
-          "kind": "recorded",
-          "gate": "defined",
-          "state": "nominal",
-          "reason": "",
-          "note": "",
-          "date": "",
-          "recorder": "",
-          "derived": false,
-          "why": "",
-          "uncommitted": false,
-          "from": null
-        },
-        "effect": "",
-        "model": "",
-        "check": null,
-        "committer": ""
-      },
-      {
-        "task": {
-          "id": "595e",
-          "title": "tableaud: local daemon and HTML"
-        },
-        "proposal": true,
-        "events": [
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "49ce",
+              "title": "Server"
+            }
+          },
           {
             "date": "2026-10-05",
-            "commit": "",
-            "by": "nbyoung@nbyoung.com",
-            "kind": "pin",
+            "commit": "967df1fb2f8918bfd7713eee996c1ae235390f22",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
             "recorded": null,
-            "gate": "",
-            "pin": {
+            "gate": "function",
+            "pin": null,
+            "subproject": {
               "url": "subprojects/tableaud",
-              "old": "cffbfa6a",
-              "new": "e6ec4ecc"
-            },
-            "subproject": null
+              "task": "49ce",
+              "title": "Server"
+            }
           }
         ],
         "after": {
           "kind": "recorded",
-          "gate": "defined",
+          "gate": "function",
           "state": "nominal",
           "reason": "",
-          "note": "",
+          "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
           "date": "",
           "recorder": "",
           "derived": false,
@@ -511,12 +2836,617 @@
         },
         "unchanged": false,
         "subject_after": null,
-        "effect": "moved",
-        "model": "",
+        "effect": "none",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "967df1fb2f8918bfd7713eee996c1ae235390f22",
+          "gate": "function",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "d3fa0f8c9fcfe749a302f55f0b09653a3290c4d4",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "db74",
+              "title": "Progressive disclosure"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "0a2a0b6954a30a018480f817fd8f87469a53cf2d",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "function",
+              "state": "nominal",
+              "reason": "",
+              "note": "One URL carries person, open rows and a column difference from the default gate window; role entry points, hidden markers and a stored choice script"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "db74",
+              "title": "Progressive disclosure"
+            }
+          },
+          {
+            "date": "2026-10-05",
+            "commit": "0a2a0b6954a30a018480f817fd8f87469a53cf2d",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "db74",
+              "title": "Progressive disclosure"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "One URL carries person, open rows and a column difference from the default gate window; role entry points, hidden markers and a stored choice script",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "none",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "0a2a0b6954a30a018480f817fd8f87469a53cf2d",
+          "gate": "function",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "9e0855198970fd7362c3b5196ceb1b8c44a0cc4b",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "5a2f",
+              "title": "Accessibility and theming"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "The functional prototype is next and no requirement gates it",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": true,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "claude-sonnet-5-5",
+        "check": null,
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "0c38023efa2ec8082969462a461366fbc4774bd7",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "function",
+              "state": "nominal",
+              "reason": "",
+              "note": "prototype/5a2f shows symbol text alternatives, plain table against treegrid keyboard use, CSS-only light and dark themes with contrast tests, and scrolling against stacked phone layouts"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "5a2f",
+              "title": "Accessibility and theming"
+            }
+          },
+          {
+            "date": "2026-10-05",
+            "commit": "0c38023efa2ec8082969462a461366fbc4774bd7",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "5a2f",
+              "title": "Accessibility and theming"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/5a2f shows symbol text alternatives, plain table against treegrid keyboard use, CSS-only light and dark themes with contrast tests, and scrolling against stacked phone layouts",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "none",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "0c38023efa2ec8082969462a461366fbc4774bd7",
+          "gate": "function",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "218d8f35bb43a6c118d0ea4e892e5905ec526910",
+            "by": "noreply@anthropic.com",
+            "kind": "status",
+            "recorded": {
+              "gate": "function",
+              "state": "nominal",
+              "reason": "",
+              "note": "prototype/6160 exports every view as a relative-link bundle in three disclosure modes and recommends native details over HTMX fragments or one page per state"
+            },
+            "gate": "",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "6160",
+              "title": "Static export"
+            }
+          },
+          {
+            "date": "2026-10-05",
+            "commit": "218d8f35bb43a6c118d0ea4e892e5905ec526910",
+            "by": "noreply@anthropic.com",
+            "kind": "reviewed",
+            "recorded": null,
+            "gate": "function",
+            "pin": null,
+            "subproject": {
+              "url": "subprojects/tableaud",
+              "task": "6160",
+              "title": "Static export"
+            }
+          }
+        ],
+        "after": {
+          "kind": "recorded",
+          "gate": "function",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/6160 exports every view as a relative-link bundle in three disclosure modes and recommends native details over HTMX fragments or one page per state",
+          "date": "",
+          "recorder": "",
+          "derived": false,
+          "why": "",
+          "uncommitted": false,
+          "from": null
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "accepts",
+        "model": "claude-sonnet-5-5",
+        "check": {
+          "commit": "218d8f35bb43a6c118d0ea4e892e5905ec526910",
+          "gate": "function",
+          "stated": "claude-sonnet",
+          "trailer": "claude-sonnet-5-5",
+          "reading": "agrees"
+        },
+        "committer": ""
+      },
+      {
+        "task": {
+          "id": "595e",
+          "title": "tableaud: local daemon and HTML"
+        },
+        "proposal": false,
+        "events": [
+          {
+            "date": "2026-10-05",
+            "commit": "3cdae527d47d37fdff55bc302c76c017cf91c606",
+            "by": "nbyoung@nbyoung.com",
+            "kind": "pin",
+            "recorded": null,
+            "gate": "",
+            "pin": {
+              "url": "subprojects/tableaud",
+              "old": "cffbfa66a5eada8a8262c105353ba158f55a9129",
+              "new": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e"
+            },
+            "subproject": null
+          }
+        ],
+        "after": {
+          "kind": "snapshot",
+          "gate": "defined",
+          "state": "nominal",
+          "reason": "",
+          "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
+          "date": "",
+          "recorder": "",
+          "derived": true,
+          "why": "",
+          "uncommitted": false,
+          "from": {
+            "kind": "snapshot",
+            "task": {
+              "id": "8608",
+              "title": "tableaud"
+            },
+            "url": "subprojects/tableaud",
+            "pin": "e6ec4ecc8c30fbaf85a392f186cc0b9caa8e4c8e",
+            "gate": "function"
+          }
+        },
+        "unchanged": false,
+        "subject_after": null,
+        "effect": "",
+        "model": "claude-opus-5-5",
         "check": null,
         "committer": ""
       }
     ]
   },
-  "diagnostics": []
+  "diagnostics": [
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/05a9.yaml",
+      "task": "05a9",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/3194.yaml",
+      "task": "3194",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/32e7.yaml",
+      "task": "32e7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/5471.yaml",
+      "task": "5471",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/69eb.yaml",
+      "task": "69eb",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7166.yaml",
+      "task": "7166",
+      "gate": "implementation",
+      "commit": "d9396b4bb05123ca8027cd5e73950c67cfb12cdc",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7783.yaml",
+      "task": "7783",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7861.yaml",
+      "task": "7861",
+      "gate": "validate",
+      "commit": "c6f2655f1bda4469a6171b77cc21e326f0c99f87",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7dff.yaml",
+      "task": "7dff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/99f0.yaml",
+      "task": "99f0",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/9f3f.yaml",
+      "task": "9f3f",
+      "gate": "implementation",
+      "commit": "43d68e4f7d2b856c4d581983f34355d5b5f4f3b4",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a6f7.yaml",
+      "task": "a6f7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a8b4.yaml",
+      "task": "a8b4",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a9ce.yaml",
+      "task": "a9ce",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ab8e.yaml",
+      "task": "ab8e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ac33.yaml",
+      "task": "ac33",
+      "gate": "implementation",
+      "commit": "6762222ddffef76008daad27ebe26069ac67cc5d",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b14e.yaml",
+      "task": "b14e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b1b7.yaml",
+      "task": "b1b7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/bb7c.yaml",
+      "task": "bb7c",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c2ad.yaml",
+      "task": "c2ad",
+      "gate": "validate",
+      "commit": "3d8ce0eee1e869c75453abba91cae03dec6587ce",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c545.yaml",
+      "task": "c545",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c74a.yaml",
+      "task": "c74a",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/d615.yaml",
+      "task": "d615",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e3cb.yaml",
+      "task": "e3cb",
+      "gate": "validate",
+      "commit": "5cbec7cce7c3cb3bf99f2145713d13ccb0b23d0f",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "error",
+      "code": "S11",
+      "path": ".tableaux/status/e3cb.yaml",
+      "line": 1,
+      "col": 7,
+      "task": "e3cb",
+      "gate": "implementation",
+      "message": "the status passes implementation, whose reviewer is noreply@anthropic.com, and no commit by the reviewer carries Reviewed: e3cb implementation"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e9c6.yaml",
+      "task": "e9c6",
+      "gate": "implementation",
+      "commit": "879b447a920aad55e698906812350ea7d3785b4c",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ea51.yaml",
+      "task": "ea51",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/efff.yaml",
+      "task": "efff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/fcec.yaml",
+      "task": "fcec",
+      "gate": "unit",
+      "commit": "60495c26d886016b40069041386a811b24469312",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have unit to review"
+    }
+  ]
 }

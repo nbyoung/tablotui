@@ -38,6 +38,7 @@ func TestGoldenDocuments(t *testing.T) {
 		{"history-e9c6.provenance.38.txt", "history", "", "e9c6", "p", 38},
 		{"history-595e.detail.txt", "history", "", "595e", "", 78},
 		{"history-5fe3.txt", "history", "", "5fe3", "", 78},
+		{"history-empty.txt", "history", "empty", "5fe3", "", 78},
 	}
 	for _, c := range cases {
 		t.Run(c.golden, func(t *testing.T) {

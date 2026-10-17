@@ -10,7 +10,7 @@ bc86       ▾ Markdown views                   🟢 🤖👀 —   —    —  
 99f0           Gate definition view in…       🟢 🤖👀 —   —    —   —  —   —   —
 05a9           Task definition view in…       🟢 🤖👀 —   —    —   —  —   —   —
 a9ce           Authority delegation vi…       🟢 🤖👀 —   —    —   —  —   —   —
-┌─ 2 Queue noreply@anthropic.com · 60 … ┌─ 4 History e9c6 · 8 events · detail ──
+┌─ 2 Queue noreply@anthropic.com · 56 … ┌─ 4 History e9c6 · 7 events · detail ──
 │ Work ready: 28                        │   status · 📐 design 🟢 nominal
 │   c2ad Roles · 🌍 validate ·          │   Status after: 📐 design 🟢 nominal
 │     claude-opus · 2026-09-30          │   Note: VIEWS.md is on the trunk at
@@ -18,7 +18,7 @@ a9ce           Authority delegation vi…       🟢 🤖👀 —   —    —  
 │       Passes user and field tests     │     may start, and implementation puts
 │     Contributor: 🤖                   │     the text in place
 │       noreply@anthropic.com, model    │   Model: claude-fable-5-1; the 📐
-│       claude-opus, from 437e          │     design junction states
+│       claude-opus, from bc63          │     design junction states
 │     Reviewer: 👀 nbyoung@nbyoung.com, │     claude-fable
-history e9c6 · detail · lines 62–70 of 70 · enter selects e9c6 × design
+history e9c6 · detail · lines 59–67 of 67 · enter selects e9c6 × design
 ↑↓ line  enter select task  d detail  p provenance  f fold  ? help  q quit

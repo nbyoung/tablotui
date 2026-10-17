@@ -12,7 +12,8 @@ Status commit
   date              2026-09-30
   author            Claude Fable 5.1, noreply@anthropic.com
   committer         Claude Fable 5.1, noreply@anthropic.com
-  trailers          Model: claude-fable-5-1
+  trailers          Model: claude-fable-5-1, Co-Authored-By: Claude Fable 5.1
+                    <noreply@anthropic.com>
 
 Description
 VIEWS.md defines each view independently of any format: its question, the
@@ -38,8 +39,9 @@ Authorisation commit
   date              2026-09-29
   author            Norman Young, nbyoung@nbyoung.com
   committer         Norman Young, nbyoung@nbyoung.com
+  trailers          Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
   accepts by        a change on the trunk
-  the authority is  the author
+  the authority is  the author and the committer
 
 Requires: 1
   c2ad Roles · design → design · The role names the views refer to · 🧱
@@ -59,9 +61,8 @@ Dependents: 21
     abstract views it derives · unmet, not yet due
 
 Junctions
-  ❔ undefined · passed
   📝 defined · 🤖 · noreply@anthropic.com · claude-haiku · reviewer the
-    assignee, noreply@anthropic.com · passed
+    assignee, noreply@anthropic.com · passed, reviewed
   📌 mockup · — · does not apply
   🔧 function · — · does not apply
   📐 design · 🤖👀 · noreply@anthropic.com · claude-fable · reviewer
@@ -77,7 +78,7 @@ Junctions
 Where each junction field comes from
   📝 defined · contributor · noreply@anthropic.com · 437e
   📝 defined · model · claude-haiku · 437e
-  📝 defined · reviewer · noreply@anthropic.com · the plain default
+  📝 defined · reviewer · noreply@anthropic.com · the assignee
   📌 mockup · applies · false · e9c6
   🔧 function · applies · false · e9c6
   📐 design · contributor · noreply@anthropic.com · bc63
@@ -85,7 +86,7 @@ Where each junction field comes from
   📐 design · reviewer · nbyoung@nbyoung.com · 437e
   🧱 implementation · contributor · noreply@anthropic.com · 437e
   🧱 implementation · model · claude-sonnet · 437e
-  🧱 implementation · reviewer · noreply@anthropic.com · the plain default
+  🧱 implementation · reviewer · noreply@anthropic.com · the assignee
   📏 unit · applies · false · e9c6
   🔗 integrate · applies · false · e9c6
   🌍 validate · contributor · noreply@anthropic.com · bc63
@@ -94,12 +95,13 @@ Where each junction field comes from
   🚀 release · contributor · nbyoung@nbyoung.com · 437e
 
 Reviews: 2
-  📝 defined · noreply@anthropic.com · The authorisation stands as the review
+  📝 defined · noreply@anthropic.com · 6b6c99a Plan the Tableaux tooling · The
+    authorisation stands as the review
   📐 design · nbyoung@nbyoung.com · 0704a09 Accept the abstract views design ·
     The reviewer accepts
 
 Models: 4
-  1a17bfc · 📝 defined · states claude-haiku · Exempt
+  1a17bfc · 📝 defined · states claude-fable-5-1 · Exempt
   0fed913 · 📐 design · states claude-fable · trailer claude-fable-5-1 ·
     Agrees
   26defc7 · 📐 design · states claude-fable · trailer claude-fable-5-1 ·
@@ -125,14 +127,5 @@ Newest events
   … and 2 earlier
 
 Commands
-  git log -1 --format='%h %as %ae' 3cdae52 -- .tableaux/status/e9c6.yaml # the
-    status commit
-  git log --first-parent -1 --format='%h %as %ae %ce' 3cdae52 --
-    .tableaux/tasks/e9c6.yaml # the authorisation commit
-  grep -l 'id: "e9c6"' .tableaux/tasks/*.yaml # the dependents
-  git log --format='%h %as %ae %ce' -E --grep='^Reviewed: e9c6 ' 3cdae52 # the
-    reviews
-  git log --format='%as %h %ae' 3cdae52 -- .tableaux/tasks/e9c6.yaml
-    .tableaux/status/e9c6.yaml # the events
-  git log --format='%as %h %ae' -E --grep='^(Authorised|Reaffirmed): e9c6$'
-    --grep='^Reviewed: e9c6 ' 3cdae52 # the events
+  git log --format='%H %as %ae %s' 3cdae527d47d37fdff55bc302c76c017cf91c606 --
+    .tableaux/tasks/e9c6.yaml .tableaux/status/e9c6.yaml

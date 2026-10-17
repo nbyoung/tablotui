@@ -1,35 +1,87 @@
-3 Blockage 437e · 2 causes · provenance
-5471 Work-blockage tree view in Html awaits review at 📌 mockup · 👀
-  nbyoung@nbyoung.com reviews · holds 4
-  Action: nbyoung@nbyoung.com accepts the mockup with a commit that carries
-    Reviewed: 5471 mockup.
-  5471 Work-blockage tree view in Html at 📌 mockup: the cause holds the task
-    itself.
-    5fe3 HTML views at 📌 mockup: the parent of 5471.
-      c6e8 tablotui: terminal user interface at 📐 design: requires 5fe3 at 📌
-        mockup, The HTML mockups that fix the disclosure levels. Also under
-        cause 2.
-      595e tableaud: local daemon and HTML at 📐 design: requires 5fe3 at 📌
-        mockup, The HTML mockups it reproduces.
-  The status. 📌 mockup, recorded 2026-10-04 by noreply@anthropic.com.
-  The junction. 5471 at 📌 mockup: reviewer nbyoung@nbyoung.com, from 437e.
-    tabloio review 5471 mockup # accepts the mockup
+3 Blockage 437e · 3 causes · provenance
+6103 tabloio: command line, output and input waits on subprojects/tabloio at
+  4593882 · 🪆 nbyoung@nbyoung.com advances · holds 1
+  Action: nbyoung@nbyoung.com records 6103 past defined, where
+    subprojects/tabloio already stands.
+  437e Tableaux tooling at 📌 mockup: the parent of 6103. Also under cause 2.
+    Also under cause 3.
+  The status. 📝 defined 🟢 nominal, 🪆 from the subproject
+    subprojects/tabloio: prototype/e3ed renders the gate and task definition
+    views as Markdown at three levels from tablo view data, recorded
+    2026-09-30, from the subproject, by the commit 90e66fc Record the function
+    gate for e3ed, 2026-09-30, author and committer Claude Sonnet 5.5,
+    noreply@anthropic.com.
+  The junction. 6103 at 📌 mockup: the subproject subprojects/tabloio 07e0
+    tabloio, from 6103.
+  The linkage. 07e0 tabloio in subprojects/tabloio at 4593882, on the trunk
+    main whose tip is 4593882, at its tip.
 
-efff Work-blockage tree view in Markdown has not passed 📌 mockup · 🤖
-  noreply@anthropic.com contributes · holds 3
-  Action: noreply@anthropic.com takes efff through mockup.
-  bc86 Markdown views at 📌 mockup: the parent of efff.
-    6103 tabloio: command line, output and input at 📐 design: requires bc86
-      at 📌 mockup, The Markdown mockups it reproduces.
-    c6e8 tablotui: terminal user interface at 📐 design: requires bc86 at 📌
-      mockup, The Markdown mockups that fix the textual layout. Also under
-      cause 1.
+c6e8 tablotui: terminal user interface waits on subprojects/tablotui at
+  a2878b5 · 🪆 nbyoung@nbyoung.com advances · holds 1
+  Action: nbyoung@nbyoung.com records c6e8 past defined, where
+    subprojects/tablotui already stands.
+  437e Tableaux tooling at 📌 mockup: the parent of c6e8. Also under cause 1.
+    Also under cause 3.
+  The status. 📝 defined 🟢 nominal, 🪆 from the subproject
+    subprojects/tablotui: prototype/679b renders the global tableau as a
+    Bubble Tea grid with tree expand and collapse, scrolling, a folded gate
+    window and hidden columns kept in a settings file; emoji lines align where
+    the terminal widens U+FE0F, recorded 2026-09-30, from the subproject, by
+    the commit 66c0412 Record the function demonstration of the tableau grid,
+    2026-10-02, author and committer Claude Sonnet 5.5, noreply@anthropic.com.
+  The junction. c6e8 at 📌 mockup: the subproject subprojects/tablotui 40e8
+    tablotui, from c6e8.
+  The linkage. 40e8 tablotui in subprojects/tablotui at a2878b5, on the trunk
+    main whose tip is a2878b5, at its tip.
 
-Next: 1 requirement not yet due
+595e tableaud: local daemon and HTML waits on subprojects/tableaud at e6ec4ec
+  · 🪆 nbyoung@nbyoung.com advances · holds 1
+  Action: nbyoung@nbyoung.com records 595e past defined, where
+    subprojects/tableaud already stands.
+  437e Tableaux tooling at 📌 mockup: the parent of 595e. Also under cause 1.
+    Also under cause 2.
+  The status. 📝 defined 🟢 nominal, 🪆 from the subproject
+    subprojects/tableaud: prototype/49ce serves the ten views with a stdlib
+    HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source
+    interface and a loopback Host check, recorded 2026-09-30, from the
+    subproject, by the commit 967df1f Record task 49ce at the function gate,
+    2026-10-05, author and committer Claude Sonnet 5.5, noreply@anthropic.com.
+  The junction. 595e at 📌 mockup: the subproject subprojects/tableaud 8608
+    tableaud, from 595e.
+  The linkage. 8608 tableaud in subprojects/tableaud at e6ec4ec, on the trunk
+    main whose tip is e6ec4ec, at its tip.
+
+Next: 10 requirements not yet due
   77b2 tablo: backend library and plumbing stands at 📝 defined 🟢 nominal;
     next 📌 mockup.
     🧱 implementation: requires e3cb Schema files at 🧱 implementation, The
       schema files it embeds: met, not yet due.
+    📐 design: requires e9c6 Abstract views at 🧱 implementation, The abstract
+      views it derives: unmet, not yet due.
+    📏 unit: requires fcec Conformance corpus at 🧱 implementation, The corpus
+      it conforms to: met, not yet due.
+  6103 tabloio: command line, output and input stands at 📝 defined 🟢
+    nominal; next 📌 mockup.
+    🧱 implementation: requires 77b2 tablo: backend library and plumbing at 🧱
+      implementation, The library and plumbing it calls: unmet, not yet due.
+    📐 design: requires bc86 Markdown views at 📌 mockup, The Markdown mockups
+      it reproduces: unmet, not yet due.
+  c6e8 tablotui: terminal user interface stands at 📝 defined 🟢 nominal; next
+    📌 mockup.
+    🧱 implementation: requires 77b2 tablo: backend library and plumbing at 🧱
+      implementation, The library it embeds: unmet, not yet due.
+    📐 design: requires bc86 Markdown views at 📌 mockup, The Markdown mockups
+      that fix the textual layout: unmet, not yet due.
+    📐 design: requires 5fe3 HTML views at 📌 mockup, The HTML mockups that
+      fix the disclosure levels: unmet, not yet due.
+  595e tableaud: local daemon and HTML stands at 📝 defined 🟢 nominal; next
+    📌 mockup.
+    🧱 implementation: requires 77b2 tablo: backend library and plumbing at 🧱
+      implementation, The library it embeds: unmet, not yet due.
+    📐 design: requires 5fe3 HTML views at 📌 mockup, The HTML mockups it
+      reproduces: unmet, not yet due.
 
 Commands
-  tabloio blockage --ref 3cdae52 --level provenance # this view
+  git log --format='%H %as %ae %ce %s'
+    3cdae527d47d37fdff55bc302c76c017cf91c606 -- .tableaux/status
+    .tableaux/tasks

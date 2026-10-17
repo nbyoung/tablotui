@@ -1,3 +1,3 @@
-gate: unit
+gate: integrate
 state: nominal
-note: T1 to T20 pass with no skip under go test -count=1 and go test -race on this host, T19 as the unchanged grid tests; the tablo adapter behind source.Lists, the opening level a role gives a pane which tablo resolves and the timed cursor move with four panes wait for integrate; the terminal checks wait for validate
+note: The tablo adapter behind source.Lists, the list fixtures as tablo's output at 3cdae52 and the opening level a role gives a pane from tablo stand; T1 to T20 and the ten integrate tests pass under go test -count=1 and -race, with and without TABLEAUX_CORPUS and TABLEAUX_DIR, and a move of the row cursor with four panes open takes about 3 ms at the median, under 100 ms; the validate gate runs the terminal checks; kinds/queue.json and the history with no event stay hand-made, since tablo derives neither form on the umbrella or the corpus

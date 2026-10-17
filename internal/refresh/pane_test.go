@@ -70,13 +70,14 @@ func (f *frame) run(cmd tea.Cmd) {
 	}
 }
 
-func (f *frame) line(i int) string {
-	return strings.TrimRight(ansi.Strip(strings.Split(f.m.View().Content, "\n")[i]), " ")
-}
+func (f *frame) line(i int) string { return strings.TrimRight(ansi.Strip(f.raw(i)), " ") }
+
+func (f *frame) raw(i int) string { return strings.Split(f.m.View().Content, "\n")[i] }
 
 // The pane stores each good load and broadcasts one ReloadMsg after it; a
-// failed load stores nothing, broadcasts nothing, and shows its notice,
-// which the next good load clears.
+// failed load stores nothing, broadcasts nothing, and shows its notice on a
+// line of its own above the status line, in the error style, which the next
+// good load clears. The status line ends with Where (171b A5).
 func TestPaneStoresAndReloads(t *testing.T) {
 	w := newScript(state("aaaa111"))
 	for range 4 {
@@ -95,7 +96,7 @@ func TestPaneStoresAndReloads(t *testing.T) {
 	if p.ID() != PaneID || p.Keys() != nil || p.Status(ui.Context{}) != "" || p.View(3, 2, ui.Context{}) != "   \n   " {
 		t.Error("the pane is not blank")
 	}
-	opts := ui.Options{Panes: []ui.Pane{counter{}, p}}
+	opts := ui.Options{Panes: []ui.Pane{counter{}, p}, Styles: ui.DefaultStyles()}
 	if err := ui.CheckKeys(opts); err != nil {
 		t.Fatal(err)
 	}
@@ -110,7 +111,13 @@ func TestPaneStoresAndReloads(t *testing.T) {
 	if len(stored) != 1 || f.line(1) != "x" {
 		t.Errorf("a failed load stored %q, body %q", stored, f.line(1))
 	}
-	if got := f.line(6); !strings.HasPrefix(got, "error: Reload failed at ") || !strings.HasSuffix(got, ": boom") {
+	if got := f.line(5); !strings.HasPrefix(got, "Reload failed at ") || !strings.HasSuffix(got, ": boom") {
+		t.Errorf("notice line = %q", got)
+	}
+	if got := f.raw(5); !strings.Contains(got, "\x1b[") {
+		t.Errorf("the notice line %q carries no style", got)
+	}
+	if got := f.line(6); got != "home status · working tree on main at aaaa111" {
 		t.Errorf("status line = %q", got)
 	}
 	fail = false
@@ -118,8 +125,8 @@ func TestPaneStoresAndReloads(t *testing.T) {
 	if len(stored) != 2 || stored[1] != "data of cccc333" || f.line(1) != "xx" {
 		t.Errorf("after the fix: stored %q, body %q", stored, f.line(1))
 	}
-	if got := f.line(6); got != "home status" {
-		t.Errorf("status line = %q", got)
+	if got, body := f.line(6), f.line(5); got != "home status · working tree on main at cccc333" || body != "" {
+		t.Errorf("status line = %q, the last line of the body %q", got, body)
 	}
 }
 
@@ -134,11 +141,63 @@ func TestPaneFirstLoadFails(t *testing.T) {
 	f := &frame{t: t, m: ui.New(ui.Options{Panes: []ui.Pane{counter{}, NewPane(m, nil)}})}
 	f.send(tea.WindowSizeMsg{Width: 60, Height: 8})
 	f.run(f.m.Init())
-	if got := f.line(6); got != "error: No view yet: not a git repository" || f.line(1) != "" {
-		t.Errorf("status line %q, body %q", got, f.line(1))
+	if got := f.line(5); got != "No view yet: not a git repository" || f.line(1) != "" || f.line(6) != "home status · working tree" {
+		t.Errorf("notice line %q, body %q, status line %q", got, f.line(1), f.line(6))
 	}
 	f.send(changed{state("aaaa111")})
-	if f.line(1) != "x" || f.line(6) != "home status" {
-		t.Errorf("body %q, status line %q", f.line(1), f.line(6))
+	if f.line(1) != "x" || f.line(5) != "" || f.line(6) != "home status · working tree on main at aaaa111" {
+		t.Errorf("body %q, notice %q, status line %q", f.line(1), f.line(5), f.line(6))
+	}
+}
+
+// The first state loads with Loading on its own line, and with --ref the
+// status line names the ref and the commit: the rows of 171b's table.
+func TestPaneLoadingAndARef(t *testing.T) {
+	w := newScript(state("aaaa111"))
+	for range 4 {
+		w.feed <- state("aaaa111")
+	}
+	block := make(chan struct{})
+	m := New(t.Context(), watch.Source{Dir: ".", Ref: "v1.0"}, w, newStepper().now, func(context.Context, watch.State) (int, error) {
+		<-block
+		return 1, nil
+	})
+	p := NewPane(m, nil)
+	if n := p.Notice(); n != (ui.NoticeMsg{Text: "Loading"}) || p.Where() != "v1.0" {
+		t.Errorf("before the first load: notice %+v, where %q", n, p.Where())
+	}
+	f := &frame{t: t, m: ui.New(ui.Options{Panes: []ui.Pane{counter{}, p}})}
+	f.send(tea.WindowSizeMsg{Width: 60, Height: 8})
+	if f.line(5) != "Loading" || f.line(6) != "home status · v1.0" {
+		t.Errorf("notice %q, status %q", f.line(5), f.line(6))
+	}
+	close(block)
+	f.run(f.m.Init())
+	if f.line(5) != "" || f.line(6) != "home status · v1.0 at aaaa111" {
+		t.Errorf("notice %q, status %q", f.line(5), f.line(6))
+	}
+}
+
+// A6: the Force key, ctrl+r, reaches the pane through the frame as ForceMsg
+// and pokes the watcher once; it clashes with no other key.
+func TestForceKeyPokes(t *testing.T) {
+	w := newScript(state("aaaa111"))
+	for range 4 {
+		w.feed <- state("aaaa111")
+	}
+	m := New(t.Context(), live, w, newStepper().now, func(context.Context, watch.State) (int, error) { return 1, nil })
+	opts := ui.Options{Panes: []ui.Pane{counter{}, NewPane(m, nil)}, Commands: []ui.Command{Command()}}
+	if err := ui.CheckKeys(opts); err != nil {
+		t.Fatal(err)
+	}
+	if h := Command().Binding.Help(); h.Key != "ctrl+r" || h.Desc != "reload" {
+		t.Errorf("the binding's help %+v", h)
+	}
+	f := &frame{t: t, m: ui.New(opts)}
+	f.send(tea.WindowSizeMsg{Width: 60, Height: 8})
+	f.run(f.m.Init())
+	f.send(tea.KeyPressMsg{Code: 'r', Mod: tea.ModCtrl})
+	if got := w.pokes.Load(); got != 1 {
+		t.Errorf("ctrl+r poked %d times, want once", got)
 	}
 }

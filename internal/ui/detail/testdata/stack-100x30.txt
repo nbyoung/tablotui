@@ -13,7 +13,7 @@ a9ce           Authority delegation view in Markdown         🟢 🤖👀 —  
 bb7c           Task assignment view in Markdown              🟢 🤖👀 —   —    —   —  —   —   —
 c74a           Contributor work queue view in Markdown       🟢 🤖👀 —   —    —   —  —   —   —
 efff           Work-blockage tree view in Markdown           🟢 🤖👀 —   —    —   —  —   —   —
-┌─ 1 Task e9c6 · detail ─────────────────────────────────────────────────────────────── 1–12 of 55 ─
+┌─ 1 Task e9c6 · detail ─────────────────────────────────────────────────────────────── 1–12 of 54 ─
 │ e9c6 Abstract views
 │ assignee     noreply@anthropic.com
 │ parent       2034 Views, order 1
@@ -26,5 +26,5 @@ efff           Work-blockage tree view in Markdown           🟢 🤖👀 —  
 │ VIEWS.md defines each view independently of any format: its question, the roles it serves, the
 │ data it draws from the project and the history, the parameters that focus it (a task, a person, a
 │ gate window or a list of columns, a ref) and its progressive-disclosure levels. The views are the
-task e9c6 · detail · lines 1–12 of 55
+task e9c6 · detail · lines 1–12 of 54
 ↑↓ line  enter select task  d detail  p provenance  f fold  ? help  q quit

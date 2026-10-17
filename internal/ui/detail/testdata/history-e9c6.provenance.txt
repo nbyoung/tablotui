@@ -1,48 +1,124 @@
-4 History e9c6 · 8 events · provenance
-2026-09-29 · nbyoung@nbyoung.com · task, authorised · the task file appears
+4 History e9c6 · 7 events · provenance
+2026-09-29 · nbyoung@nbyoung.com · task · the task file appears
   Status after: ❔ undefined ⚪ undefined
   Effect: an authority commits the task file on the trunk, so the task is
     authorised
-  Model: none recorded; exempt
+  Commit: 6b6c99a2ca35f684674ad886a33916979137f227
+  Subject: Plan the Tableaux tooling
+  Author: Norman Young <nbyoung@nbyoung.com>, 2026-09-29T16:38:16-04:00
+  Committer: Norman Young <nbyoung@nbyoung.com>
+  Trailers: Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+  Files: .tableaux/gates.yaml (added), .tableaux/tasks/05a9.yaml (added),
+    .tableaux/tasks/2034.yaml (added), .tableaux/tasks/3194.yaml (added),
+    .tableaux/tasks/32e7.yaml (added), .tableaux/tasks/437e.yaml (added),
+    .tableaux/tasks/5471.yaml (added), .tableaux/tasks/595e.yaml (added),
+    .tableaux/tasks/5fe3.yaml (added), .tableaux/tasks/6103.yaml (added),
+    .tableaux/tasks/69eb.yaml (added), .tableaux/tasks/7166.yaml (added),
+    .tableaux/tasks/7783.yaml (added), .tableaux/tasks/77b2.yaml (added),
+    .tableaux/tasks/7861.yaml (added), .tableaux/tasks/7dff.yaml (added),
+    .tableaux/tasks/99f0.yaml (added), .tableaux/tasks/9f3f.yaml (added),
+    .tableaux/tasks/a6f7.yaml (added), .tableaux/tasks/a8b4.yaml (added),
+    .tableaux/tasks/a9ce.yaml (added), .tableaux/tasks/ab8e.yaml (added),
+    .tableaux/tasks/ac33.yaml (added), .tableaux/tasks/b14e.yaml (added),
+    .tableaux/tasks/b1b7.yaml (added), .tableaux/tasks/bb7c.yaml (added),
+    .tableaux/tasks/bc63.yaml (added), .tableaux/tasks/bc86.yaml (added),
+    .tableaux/tasks/c2ad.yaml (added), .tableaux/tasks/c545.yaml (added),
+    .tableaux/tasks/c6e8.yaml (added), .tableaux/tasks/c74a.yaml (added),
+    .tableaux/tasks/d615.yaml (added), .tableaux/tasks/e3cb.yaml (added),
+    .tableaux/tasks/e9c6.yaml (added), .tableaux/tasks/ea51.yaml (added),
+    .tableaux/tasks/efff.yaml (added), .tableaux/tasks/fcec.yaml (added),
+    .tableaux/version.yaml (added)
 2026-09-29 · noreply@anthropic.com · status · 📝 defined 🟢 nominal
   Status after: 📝 defined 🟢 nominal
   Note: Design waits for Roles (c2ad) at design
   Model: none recorded; exempt
   Committer: nbyoung@nbyoung.com
+  Commit: 1a17bfcca843d4436e2eb4c75b5cfa98ec05d658
+  Subject: Record the defined gate for the views and mockups
+  Author: Claude Fable 5.1 <noreply@anthropic.com>, 2026-09-29T17:46:53-04:00
+  Committer: Norman Young <nbyoung@nbyoung.com>
+  Trailers: Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+  Files: .tableaux/status/05a9.yaml (added), .tableaux/status/3194.yaml
+    (added), .tableaux/status/32e7.yaml (added), .tableaux/status/5471.yaml
+    (added), .tableaux/status/69eb.yaml (added), .tableaux/status/7783.yaml
+    (added), .tableaux/status/7dff.yaml (added), .tableaux/status/99f0.yaml
+    (added), .tableaux/status/a6f7.yaml (added), .tableaux/status/a8b4.yaml
+    (added), .tableaux/status/a9ce.yaml (added), .tableaux/status/ab8e.yaml
+    (added), .tableaux/status/b14e.yaml (added), .tableaux/status/b1b7.yaml
+    (added), .tableaux/status/bb7c.yaml (added), .tableaux/status/c545.yaml
+    (added), .tableaux/status/c74a.yaml (added), .tableaux/status/d615.yaml
+    (added), .tableaux/status/e9c6.yaml (added), .tableaux/status/ea51.yaml
+    (added), .tableaux/status/efff.yaml (added)
 2026-09-29 · noreply@anthropic.com · reviewed · 📝 defined
   Status after: 📝 defined 🟢 nominal, unchanged
   Effect: none; the authorisation stands as the review
-  Model: none recorded; exempt
   Committer: nbyoung@nbyoung.com
+  Commit: 5958858ff25a624aea18f26471f95b92616fc7e6
+  Subject: Accept the defined gate of the views and mockups
+  Author: Claude Fable 5.1 <noreply@anthropic.com>, 2026-09-29T18:01:32-04:00
+  Committer: Norman Young <nbyoung@nbyoung.com>
+  Trailers: Reviewed: e9c6 defined, Reviewed: 99f0 defined, Reviewed: 05a9
+    defined, Reviewed: a9ce defined, Reviewed: bb7c defined, Reviewed: c74a
+    defined, Reviewed: efff defined, Reviewed: ab8e defined, Reviewed: c545
+    defined, Reviewed: d615 defined, Reviewed: b14e defined, Reviewed: a6f7
+    defined, Reviewed: 7dff defined, Reviewed: b1b7 defined, Reviewed: ea51
+    defined, Reviewed: 7783 defined, Reviewed: 5471 defined, Reviewed: 32e7
+    defined, Reviewed: 69eb defined, Reviewed: 3194 defined, Reviewed: a8b4
+    defined, Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
 2026-09-30 · noreply@anthropic.com · status · 📝 defined 🟢 nominal 👓 review
   Status after: 📝 defined 🟢 nominal 👓 review
   Note: The VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd awaits
     the owner's review at the design gate
   Effect: the contributor hands the work to the reviewer
   Model: claude-fable-5-1; the 📐 design junction states claude-fable
+  Commit: 0fed913a401606e7d6d2bbee72385f2c56204231
+  Subject: Mark the abstract views design as awaiting review
+  Author: Claude Fable 5.1 <noreply@anthropic.com>, 2026-09-30T07:43:32-04:00
+  Committer: Claude Fable 5.1 <noreply@anthropic.com>
+  Trailers: Model: claude-fable-5-1, Co-Authored-By: Claude Fable 5.1
+    <noreply@anthropic.com>
+  Files: .tableaux/status/e9c6.yaml (changed)
 2026-09-30 · noreply@anthropic.com · status · 📝 defined 🟢 nominal 👓 review
   Status after: 📝 defined 🟢 nominal 👓 review
   Note: The revised VIEWS.md design on branch worktree-agent-a6b84238bbacc4fcd
     awaits the owner's acceptance at the design gate
   Effect: the contributor hands the work to the reviewer
   Model: claude-fable-5-1; the 📐 design junction states claude-fable
+  Commit: 26defc75c452b21dcd9c86d4a2bfa71b685e52a3
+  Subject: Mark the revised abstract views design as awaiting acceptance
+  Author: Claude Fable 5.1 <noreply@anthropic.com>, 2026-09-30T15:12:04-04:00
+  Committer: Claude Fable 5.1 <noreply@anthropic.com>
+  Trailers: Model: claude-fable-5-1, Co-Authored-By: Claude Fable 5.1
+    <noreply@anthropic.com>
+  Files: .tableaux/status/e9c6.yaml (changed)
 2026-09-30 · nbyoung@nbyoung.com · reviewed · 📐 design
   Status after: 📝 defined 🟢 nominal 👓 review, unchanged
   Effect: the reviewer accepts the work at the gate
   Model: claude-opus-5-5
+  Commit: 0704a0912297b3de0218b821384cf1b9956a44bb
+  Subject: Accept the abstract views design
+  Author: Norman Young <nbyoung@nbyoung.com>, 2026-09-30T15:16:33-04:00
+  Committer: Norman Young <nbyoung@nbyoung.com>
+  Trailers: Reviewed: e9c6 design, Model: claude-opus-5-5, Co-Authored-By:
+    Claude Opus 5.5 <noreply@anthropic.com>
+  Files: .tableaux/gates.yaml (changed), .tableaux/status/e9c6.yaml (changed),
+    .tableaux/version.yaml (changed)
 2026-09-30 · noreply@anthropic.com · status · 📐 design 🟢 nominal
   Status after: 📐 design 🟢 nominal
   Note: VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may
     start, and implementation puts the text in place
   Model: claude-fable-5-1; the 📐 design junction states claude-fable
-  Commit: 879b4471c0ffee00d15ea5e0fabc0de0feedbeef
+  Commit: 879b447a920aad55e698906812350ea7d3785b4c
   Subject: Advance the abstract views task to its design gate
-  Author: Claude Fable 5.1 <noreply@anthropic.com>, 2026-09-30T16:02:11-04:00
+  Author: Claude Fable 5.1 <noreply@anthropic.com>, 2026-09-30T15:17:53-04:00
   Committer: Claude Fable 5.1 <noreply@anthropic.com>
   Trailers: Model: claude-fable-5-1, Co-Authored-By: Claude Fable 5.1
     <noreply@anthropic.com>
   Files: .tableaux/status/e9c6.yaml (changed)
 
 Commands
-  git log --format='%h %as %ae %s' 3cdae52 -- .tableaux/tasks/e9c6.yaml
-    .tableaux/status/e9c6.yaml # the events of the task
+  git log --format='%H %as %ae %s' 3cdae527d47d37fdff55bc302c76c017cf91c606 --
+    .tableaux/tasks/e9c6.yaml .tableaux/status/e9c6.yaml
+  git log --format='%H %as %ae %s' -E --grep='^(Authorised|Reaffirmed):
+    (e9c6)$' --grep='^Reviewed: (e9c6) '
+    3cdae527d47d37fdff55bc302c76c017cf91c606

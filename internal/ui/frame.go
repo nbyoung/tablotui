@@ -26,6 +26,16 @@ type Pane interface {
 // Headliner is a home pane that supplies the context line.
 type Headliner interface{ Headline(c Context) string }
 
+// Reporter is a pane that reports on the source every view reads, as the
+// live refresh does (171b A5): the frame ends the status line with Where,
+// and while the Text of Notice is not empty draws it on a line of its own
+// above the status line, in the error style when Err is set. The first pane
+// that implements it reports.
+type Reporter interface {
+	Where() string
+	Notice() NoticeMsg
+}
+
 // Mode takes the whole body and every key but ctrl+c and esc: a form, a
 // confirmation, the help. Update returns nil to close the mode.
 type Mode interface {
@@ -80,7 +90,8 @@ type Options struct {
 const (
 	minWidth  = 40
 	minHeight = 8
-	// chrome is the lines outside the body: the context, status and help lines.
+	// chrome is the lines outside the body: the context, status and help
+	// lines, and a Reporter's notice line while it stands.
 	chrome = 3
 )
 
@@ -128,7 +139,31 @@ func (m Model) home() string {
 	return m.panes[0].ID()
 }
 
-func (m Model) bodyHeight() int { return max(0, m.h-chrome) }
+func (m Model) bodyHeight() int {
+	h := m.h - chrome
+	if m.report().Text != "" {
+		h--
+	}
+	return max(0, h)
+}
+
+// reporter returns the first pane that implements Reporter, or nil.
+func (m Model) reporter() Reporter {
+	for _, p := range m.panes {
+		if r, ok := p.(Reporter); ok {
+			return r
+		}
+	}
+	return nil
+}
+
+// report returns the Reporter's notice, or the zero value.
+func (m Model) report() NoticeMsg {
+	if r := m.reporter(); r != nil {
+		return r.Notice()
+	}
+	return NoticeMsg{}
+}
 
 func (m Model) tooSmall() bool { return m.w < minWidth || m.h < minHeight }
 
@@ -353,6 +388,13 @@ func (m Model) content() string {
 	lines := make([]string, 0, m.h)
 	lines = append(lines, m.contextLine())
 	lines = append(lines, m.body()...)
+	if n := m.report(); n.Text != "" {
+		style := m.o.Styles.Muted
+		if n.Err {
+			style = m.o.Styles.Error
+		}
+		lines = append(lines, style.Render(m.measure.Fit(n.Text, m.w)))
+	}
 	lines = append(lines, m.statusLine(), m.helpLine())
 	return strings.Join(lines, "\n")
 }
@@ -452,6 +494,12 @@ func (m Model) statusLine() string {
 		if i := m.paneIndex(m.focus); i >= 0 {
 			text = m.panes[i].Status(m.context(m.focus))
 		}
+	}
+	if r := m.reporter(); r != nil && r.Where() != "" {
+		if text != "" {
+			text += " · "
+		}
+		text += r.Where()
 	}
 	return s.Muted.Render(m.measure.Fit(text, m.w))
 }

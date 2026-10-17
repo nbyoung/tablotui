@@ -280,7 +280,7 @@ func liveRig(t *testing.T, dir string) *rig {
 // error diagnostic beside view data stores the snapshot, draws the tableau
 // and shows the diagnostic; a missing version, an unaccepted version, an
 // unusable gates.yaml and a broken tree fail the load, and the screen keeps
-// what it shows and says why.
+// what it shows and says why, on the live refresh's notice line (171b A5).
 func TestIntegrateDiagnosticBesideTheView(t *testing.T) {
 	r := liveRig(t, corpustest.Entry(t, "status-unknown-state"))
 	r.send(StartMsg{Start: GlanceStart()})
@@ -301,8 +301,12 @@ func TestIntegrateDiagnosticBesideTheView(t *testing.T) {
 			if got := r.line(1); got != "loading…" {
 				t.Errorf("body = %q", got)
 			}
-			if got := r.status(); !strings.HasPrefix(got, "error: No view yet: ") || !strings.Contains(got, code+" ") {
-				t.Errorf("status = %q, want the first diagnostic, %s", got, code)
+			lines := strings.Split(r.screen(), "\n")
+			if got := lines[len(lines)-3]; !strings.HasPrefix(got, "No view yet: ") || !strings.Contains(got, code+" ") {
+				t.Errorf("notice line = %q, want the first diagnostic, %s", got, code)
+			}
+			if got := r.status(); got != "working tree" {
+				t.Errorf("status = %q, want the source", got)
 			}
 		})
 	}
