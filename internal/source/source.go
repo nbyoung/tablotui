@@ -1,11 +1,13 @@
 // Package source names where the panes get their view data. The grid asks
 // through the Tableaux interface, the detail panes through Lists, and the role
-// pane through Viewers; none learns how the data arrives: this build serves
-// fixture files, and the tablo adapter joins at the integrate gate.
+// pane through Viewers; none learns how the data arrives. Two sources serve
+// them: File reads fixture files, and Tablo derives each view from the
+// snapshot of tablo's library that the frame stores.
 package source
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/nbyoung/tablotui/internal/view"
 )
@@ -24,6 +26,52 @@ type Request struct {
 }
 
 // Tableaux loads a tableau. A call blocks; the frame runs it in a command.
+// It returns a view and no error, an error and no view, or a view beside a
+// *DiagnosticError: the project's error diagnostics leave the view standing
+// (679b decision 16).
 type Tableaux interface {
 	Tableau(ctx context.Context, r Request) (view.Tableau, error)
+}
+
+// Diagnostic is one finding of tablo's Loader or Validator, as its envelope
+// states it. Path starts with .tableaux/; Line and Col are 0 where they do
+// not apply.
+type Diagnostic struct {
+	Severity, Code, Path string
+	Line, Col            int
+	Message              string
+}
+
+// String writes the diagnostic as "path:line:col: code message", with the
+// parts that do not apply left out.
+func (d Diagnostic) String() string {
+	at := d.Path
+	if at != "" && d.Line > 0 {
+		at += fmt.Sprintf(":%d", d.Line)
+		if d.Col > 0 {
+			at += fmt.Sprintf(":%d", d.Col)
+		}
+	}
+	s := d.Code + " " + d.Message
+	if at != "" {
+		s = at + ": " + s
+	}
+	return s
+}
+
+// DiagnosticError holds the error diagnostics of a project. A source returns
+// it beside the view those errors leave standing, and the pane draws the view
+// and shows the error.
+type DiagnosticError struct{ Diagnostics []Diagnostic }
+
+// Error names the first diagnostic and counts the rest.
+func (e *DiagnosticError) Error() string {
+	if len(e.Diagnostics) == 0 {
+		return "the project has errors"
+	}
+	s := e.Diagnostics[0].String()
+	if n := len(e.Diagnostics) - 1; n > 0 {
+		s += fmt.Sprintf(" (and %d more)", n)
+	}
+	return s
 }

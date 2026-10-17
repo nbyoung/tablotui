@@ -23,8 +23,8 @@ The Roles text is on the trunk and covers all seven roles; the validate gate awa
 
 provenance of c2ad at 🧱 implementation
   Date: 2026-09-30
-  Recorder: noreply@anthropic.com
+  Recorder: Claude Sonnet 5.5, noreply@anthropic.com
   Deciding commit: 3d8ce0e Record the Roles task at its implementation gate
-  Committer: noreply@anthropic.com
+  … 2 more
 c2ad × 🧱 implementation · rows 1–15 of 37 · window 1 · historical off
 ↑↓ row  ←→ column  enter fold  E all  C glance  d detail  p provenance  x hide  ? help  q quit

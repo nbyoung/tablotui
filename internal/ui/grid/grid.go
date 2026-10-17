@@ -7,6 +7,7 @@ package grid
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"maps"
 	"slices"
@@ -248,13 +249,23 @@ func (g Grid) goTo(msg ui.GotoMsg, c ui.Context) (Grid, tea.Cmd) {
 	return g, nil
 }
 
-// loaded takes the answer to a request. The bool says that a view arrived.
+// loaded takes the answer to a request. The bool says that a view arrived,
+// alone or beside the project's error diagnostics.
 func (g Grid) loaded(msg ui.LoadedMsg) (Grid, tea.Cmd, bool) {
 	if msg.Seq != g.seq {
 		return g, nil, false
 	}
 	var t view.Tableau
 	err := msg.Err
+	// Error diagnostics beside a view leave it standing: the grid draws it
+	// and shows the first diagnostic (679b decision 16).
+	var cmd tea.Cmd
+	var diag *source.DiagnosticError
+	if errors.As(err, &diag) {
+		if _, ok := msg.Value.(view.Tableau); ok {
+			err, cmd = nil, notice(diag.Error(), true)
+		}
+	}
 	if err == nil {
 		var ok bool
 		if t, ok = msg.Value.(view.Tableau); !ok {
@@ -280,7 +291,7 @@ func (g Grid) loaded(msg ui.LoadedMsg) (Grid, tea.Cmd, bool) {
 	} else if old != nil {
 		g.sel = survivor(old.Rows, t.Rows, g.sel)
 	}
-	return g, nil, true
+	return g, cmd, true
 }
 
 // arrive applies a start's folds and selection to the data.

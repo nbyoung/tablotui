@@ -5,13 +5,17 @@ import (
 	"context"
 	"errors"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime/debug"
 	"strings"
 	"testing"
+	"time"
 
 	tea "charm.land/bubbletea/v2"
 	"github.com/charmbracelet/x/ansi"
+
+	"github.com/nbyoung/tablotui/internal/source/corpustest"
 )
 
 // TestMain gives every test of the command no Git identity: no author
@@ -177,7 +181,7 @@ func TestHelpOption(t *testing.T) {
 	if code != 0 {
 		t.Errorf("--help exits %d", code)
 	}
-	for _, want := range []string{"usage: tablotui", "--as", "--settings", "--fixture", "--version", "-C"} {
+	for _, want := range []string{"usage: tablotui", "--ref", "--as", "--settings", "--fixture", "--version", "-C"} {
 		if !strings.Contains(out, want) {
 			t.Errorf("usage lacks %q:\n%s", want, out)
 		}
@@ -220,14 +224,122 @@ func TestUsageErrorsExitTwo(t *testing.T) {
 	}
 }
 
-func TestNoSourceExitsOne(t *testing.T) {
+// Without --fixture the source is the repository: outside any repository
+// the program does not start, and the command names the directory, with
+// exit 3, as 171b sets it for a repository it cannot read.
+func TestNoRepositoryExitsThree(t *testing.T) {
 	h := newHarness(t)
-	code, out, errOut := runArgs()
-	if code != 1 || out != "" || errOut != "tablotui: this build has no tablo source; pass --fixture <dir>\n" {
+	t.Setenv("GIT_CEILING_DIRECTORIES", filepath.Dir(t.TempDir()))
+	dir := t.TempDir()
+	code, out, errOut := runArgs("-C", dir)
+	if code != 3 || out != "" || !strings.HasPrefix(errOut, "tablotui: "+dir+": ") {
 		t.Errorf("exit %d, stdout %q, stderr %q", code, out, errOut)
 	}
 	if h.calls != 0 {
 		t.Error("the program started without a source")
+	}
+}
+
+// --ref names one commit: a leading hyphen and a range are usage errors, and
+// a name the repository lacks exits 3.
+func TestRefOption(t *testing.T) {
+	h := newHarness(t)
+	for _, c := range []struct {
+		ref  string
+		code int
+		want string
+	}{
+		{"-x", 2, "tablotui: usage: --ref -x: name one commit\n"},
+		{"main..topic", 2, "tablotui: usage: --ref main..topic: name one commit\n"},
+	} {
+		if code, _, errOut := runArgs("--ref", c.ref); code != c.code || errOut != c.want {
+			t.Errorf("--ref %s: exit %d, stderr %q", c.ref, code, errOut)
+		}
+	}
+	if _, err := exec.LookPath("git"); err != nil {
+		t.Skip("git is not on the path")
+	}
+	dir := t.TempDir()
+	corpustest.Git(t, "", "init", "--quiet", dir)
+	if code, _, errOut := runArgs("-C", dir, "--ref", "nope"); code != 3 || errOut != "tablotui: --ref nope: no such commit\n" {
+		t.Errorf("--ref nope: exit %d, stderr %q", code, errOut)
+	}
+	if h.calls != 0 {
+		t.Error("a bad --ref started the program")
+	}
+}
+
+// live drives m as the program does, each command in its own goroutine, and
+// returns the stripped screen once done accepts it. The watcher's wait blocks
+// until the program's context ends, so no command runs to its end here.
+func live(t *testing.T, m tea.Model, w, h int, done func([]string) bool) []string {
+	t.Helper()
+	msgs := make(chan tea.Msg, 256)
+	var start func(cmd tea.Cmd)
+	start = func(cmd tea.Cmd) {
+		if cmd == nil {
+			return
+		}
+		go func() {
+			switch msg := cmd().(type) {
+			case nil:
+			case tea.BatchMsg:
+				for _, c := range msg {
+					start(c)
+				}
+			default:
+				msgs <- msg
+			}
+		}()
+	}
+	m, _ = m.Update(tea.WindowSizeMsg{Width: w, Height: h})
+	start(m.Init())
+	timeout := time.After(time.Minute)
+	for {
+		select {
+		case msg := <-msgs:
+			var cmd tea.Cmd
+			m, cmd = m.Update(msg)
+			start(cmd)
+			if got := lines(m); done(got) {
+				return got
+			}
+		case <-timeout:
+			t.Fatalf("the screen never settled:\n%s", strings.Join(lines(m), "\n"))
+		}
+	}
+}
+
+// Without --fixture the program reads the repository through tablo's
+// library: the working tree by default, the commit --ref names otherwise.
+func TestTheRepositoryDrawsTheGrid(t *testing.T) {
+	dir := corpustest.Entry(t, "weather-station")
+	labels := corpustest.Labels(t, "weather-station")
+	t.Setenv("HOME", t.TempDir())
+	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
+	for _, c := range []struct {
+		name string
+		args []string
+		want string
+	}{
+		{"the working tree", []string{"-C", dir}, "Weather station · main at " + labels["W13"][:7] + ", 2026-09-28"},
+		{"a ref", []string{"-C", dir, "--ref", labels["W1"]}, "Weather station · " + labels["W1"] + " at " + labels["W1"][:7]},
+		{"a subdirectory", []string{"-C", filepath.Join(dir, "docs"), "--ref", "main", "--as", "ada@example.org"}, "Weather station · main at " + labels["W13"][:7] + ", 2026-09-28 · viewer ada@example.org, owner"},
+	} {
+		t.Run(c.name, func(t *testing.T) {
+			h := newHarness(t)
+			var got []string
+			h.onRun = func(m tea.Model) {
+				got = live(t, m, 100, 14, func(l []string) bool { return strings.HasPrefix(l[0], c.want) && strings.HasPrefix(l[3], "a1c0") })
+			}
+			code, _, errOut := runArgs(c.args...)
+			if code != 0 || errOut != "" || h.calls != 1 {
+				t.Fatalf("exit %d, stderr %q, calls %d", code, errOut, h.calls)
+			}
+			if !strings.HasPrefix(got[0], c.want) {
+				t.Errorf("context line %q, want %q", got[0], c.want)
+			}
+		})
 	}
 }
 

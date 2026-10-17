@@ -117,6 +117,42 @@ func TestAFailedLoadKeepsTheView(t *testing.T) {
 	}
 }
 
+// Decision 16: a view beside error diagnostics draws, and the status line
+// shows the first diagnostic; a later view with none draws alone.
+func TestAViewBesideADiagnostic(t *testing.T) {
+	src := asFixture(t)
+	good := src.fn
+	diag := &source.DiagnosticError{Diagnostics: []source.Diagnostic{
+		{Severity: "error", Code: "S11", Path: ".tableaux/status/e3cb.yaml", Line: 1, Col: 7, Message: "no review"},
+		{Severity: "error", Code: "S6", Message: "no such state"},
+	}}
+	src.fn = func(q source.Request) (view.Tableau, error) {
+		tb, err := good(q)
+		if q.Window == 2 {
+			tb.Project.Title = "Diagnosed"
+			return tb, diag
+		}
+		return tb, err
+	}
+	r := newRig(t, src, "", GlanceStart(), 100, 20).keys("w")
+	want := "error: .tableaux/status/e3cb.yaml:1:7: S11 no review (and 1 more)"
+	if !strings.HasPrefix(r.line(0), "Diagnosed") || r.status() != want {
+		t.Errorf("context line %q, status %q", r.line(0), r.status())
+	}
+	if n := len(r.notices); n != 1 || !r.notices[0].Err {
+		t.Errorf("notices = %+v", r.notices)
+	}
+	r.keys("W")
+	if strings.HasPrefix(r.line(0), "Diagnosed") || strings.HasPrefix(r.status(), "error:") {
+		t.Errorf("after a view with no diagnostic: %q, %q", r.line(0), r.status())
+	}
+	// A DiagnosticError with no view is a failed load.
+	r.send(ui.LoadedMsg{Pane: ID, Seq: 3, Err: diag})
+	if got := r.status(); !strings.HasSuffix(got, "(showing the last good view)") {
+		t.Errorf("status = %q", got)
+	}
+}
+
 func TestAFailedFirstLoad(t *testing.T) {
 	src := &recorder{fn: func(source.Request) (view.Tableau, error) { return view.Tableau{}, errBoom }}
 	r := newRig(t, src, "", GlanceStart(), 100, 12)

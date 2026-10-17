@@ -3,18 +3,19 @@
   "command": "tableau",
   "source": {
     "ref": "main",
+    "dir": ".",
     "worktree": false,
     "commit": "3cdae527d47d37fdff55bc302c76c017cf91c606",
     "date": "2026-10-05",
     "from": null,
     "trunk": {
-      "name": null,
-      "resolved": "undetermined"
+      "name": "main",
+      "resolved": "stated"
     },
-    "on_trunk": false
+    "on_trunk": true
   },
   "project": {
-    "tableaux": "",
+    "tableaux": "0.3.1",
     "root": "437e",
     "title": "Tableaux tooling",
     "owner": "nbyoung@nbyoung.com"
@@ -26,7 +27,6 @@
     ]
   },
   "params": {
-    "task": null,
     "person": null,
     "window": 1,
     "columns": null,
@@ -834,7 +834,7 @@
           "reason": "",
           "note": "VIEWS.md is on the trunk at language 0.3.1; the twenty mockups may start, and implementation puts the text in place",
           "date": "2026-09-30",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -851,7 +851,17 @@
             "acts": false
           },
           {
-            "kind": "empty",
+            "kind": "marks",
+            "historical": true,
+            "state": "",
+            "reason": "",
+            "marks": [
+              "agent"
+            ],
+            "acts": false
+          },
+          {
+            "kind": "exempt",
             "historical": true,
             "state": "",
             "reason": "",
@@ -859,15 +869,7 @@
             "acts": false
           },
           {
-            "kind": "empty",
-            "historical": true,
-            "state": "",
-            "reason": "",
-            "marks": [],
-            "acts": false
-          },
-          {
-            "kind": "empty",
+            "kind": "exempt",
             "historical": true,
             "state": "",
             "reason": "",
@@ -1069,7 +1071,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -1177,7 +1179,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -1285,7 +1287,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -1393,7 +1395,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -1501,7 +1503,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -1609,7 +1611,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -1717,7 +1719,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -1825,7 +1827,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -1933,7 +1935,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -2041,7 +2043,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -2272,7 +2274,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -2380,7 +2382,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -2488,7 +2490,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -2596,7 +2598,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -2704,7 +2706,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -2812,7 +2814,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -2920,7 +2922,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -3028,7 +3030,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -3136,7 +3138,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -3244,7 +3246,7 @@
           "reason": "",
           "note": "Mockup waits for Abstract views (e9c6) at design",
           "date": "2026-09-29",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -3352,7 +3354,7 @@
           "reason": "",
           "note": "schemas/check.sh (files agree with SYNTAX.md, version 0.2.1) and schemas/load.py (files load as JSON Schema 2020-12) pass; every .tableaux file validates",
           "date": "2026-09-30",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -3469,7 +3471,7 @@
           "reason": "",
           "note": "The corpus builds and checks clean, with 85 entries on the trunk; all three corrections from the tablo prototypes are in; the unit gate runs the tablo conformance test against it",
           "date": "2026-09-30",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -3588,7 +3590,7 @@
           "reason": "",
           "note": "The model plan-and-record rule (F20) is on the trunk; F1, F2 and F10 remain for design",
           "date": "2026-09-30",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -3704,7 +3706,7 @@
           "reason": "",
           "note": "The subproject linkage rule (F3, F5, F12) is on the trunk at language 0.3.0; tablo and the subprojects follow",
           "date": "2026-09-30",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -3820,7 +3822,7 @@
           "reason": "",
           "note": "The full report, its 23 tests and an example over five repositories are on the trunk",
           "date": "2026-09-30",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -3935,7 +3937,7 @@
           "reason": "",
           "note": "The trunk clarification (F19) is on the trunk; F7 and F9 remain for design",
           "date": "2026-09-30",
-          "recorder": "",
+          "recorder": "noreply@anthropic.com",
           "derived": false,
           "why": "",
           "uncommitted": false,
@@ -4052,7 +4054,7 @@
           "note": "The design is next and no requirement gates it",
           "date": "2026-09-30",
           "recorder": "",
-          "derived": false,
+          "derived": true,
           "why": "",
           "uncommitted": false,
           "from": {
@@ -4061,17 +4063,17 @@
               "id": "b2c1",
               "title": "tablo"
             },
-            "url": "",
-            "pin": "00f8f68",
+            "url": "subprojects/tablo",
+            "pin": "00f8f68e9a25b0d9df783f573d50c403813e285a",
             "gate": "defined"
           }
         },
         "leaf": {
           "task": {
-            "id": "b2c1",
-            "title": "tablo"
+            "id": "4b4f",
+            "title": "Conformance"
           },
-          "url": ""
+          "url": "subprojects/tablo"
         },
         "cells": [
           {
@@ -4188,7 +4190,7 @@
           "note": "prototype/e3ed renders the gate and task definition views as Markdown at three levels from tablo view data",
           "date": "2026-09-30",
           "recorder": "",
-          "derived": false,
+          "derived": true,
           "why": "",
           "uncommitted": false,
           "from": {
@@ -4197,17 +4199,17 @@
               "id": "07e0",
               "title": "tabloio"
             },
-            "url": "",
-            "pin": "4593882",
+            "url": "subprojects/tabloio",
+            "pin": "4593882a7b506cd9461fef8f9ccc6a6d653f6390",
             "gate": "function"
           }
         },
         "leaf": {
           "task": {
-            "id": "07e0",
-            "title": "tabloio"
+            "id": "e3ed",
+            "title": "Legend and task renderers"
           },
-          "url": ""
+          "url": "subprojects/tabloio"
         },
         "cells": [
           {
@@ -4324,7 +4326,7 @@
           "note": "prototype/679b renders the global tableau as a Bubble Tea grid with tree expand and collapse, scrolling, a folded gate window and hidden columns kept in a settings file; emoji lines align where the terminal widens U+FE0F",
           "date": "2026-09-30",
           "recorder": "",
-          "derived": false,
+          "derived": true,
           "why": "",
           "uncommitted": false,
           "from": {
@@ -4334,7 +4336,7 @@
               "title": "tablotui"
             },
             "url": "subprojects/tablotui",
-            "pin": "a2878b5",
+            "pin": "a2878b56d03e59ee658dded60603f54d19779ba4",
             "gate": "function"
           }
         },
@@ -4460,7 +4462,7 @@
           "note": "prototype/49ce serves the ten views with a stdlib HEAD and .tableaux watcher, ETag 304 polling through htmx, a Source interface and a loopback Host check",
           "date": "2026-09-30",
           "recorder": "",
-          "derived": false,
+          "derived": true,
           "why": "",
           "uncommitted": false,
           "from": {
@@ -4476,8 +4478,8 @@
         },
         "leaf": {
           "task": {
-            "id": "8608",
-            "title": "tableaud"
+            "id": "49ce",
+            "title": "Server"
           },
           "url": "subprojects/tableaud"
         },
@@ -4582,5 +4584,268 @@
       }
     ]
   },
-  "diagnostics": []
+  "diagnostics": [
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/05a9.yaml",
+      "task": "05a9",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/3194.yaml",
+      "task": "3194",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/32e7.yaml",
+      "task": "32e7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/5471.yaml",
+      "task": "5471",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/69eb.yaml",
+      "task": "69eb",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7166.yaml",
+      "task": "7166",
+      "gate": "implementation",
+      "commit": "d9396b4bb05123ca8027cd5e73950c67cfb12cdc",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7783.yaml",
+      "task": "7783",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7861.yaml",
+      "task": "7861",
+      "gate": "validate",
+      "commit": "c6f2655f1bda4469a6171b77cc21e326f0c99f87",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/7dff.yaml",
+      "task": "7dff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/99f0.yaml",
+      "task": "99f0",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/9f3f.yaml",
+      "task": "9f3f",
+      "gate": "implementation",
+      "commit": "43d68e4f7d2b856c4d581983f34355d5b5f4f3b4",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a6f7.yaml",
+      "task": "a6f7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a8b4.yaml",
+      "task": "a8b4",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/a9ce.yaml",
+      "task": "a9ce",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ab8e.yaml",
+      "task": "ab8e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ac33.yaml",
+      "task": "ac33",
+      "gate": "implementation",
+      "commit": "6762222ddffef76008daad27ebe26069ac67cc5d",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b14e.yaml",
+      "task": "b14e",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/b1b7.yaml",
+      "task": "b1b7",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/bb7c.yaml",
+      "task": "bb7c",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c2ad.yaml",
+      "task": "c2ad",
+      "gate": "validate",
+      "commit": "3d8ce0eee1e869c75453abba91cae03dec6587ce",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c545.yaml",
+      "task": "c545",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/c74a.yaml",
+      "task": "c74a",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/d615.yaml",
+      "task": "d615",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e3cb.yaml",
+      "task": "e3cb",
+      "gate": "validate",
+      "commit": "5cbec7cce7c3cb3bf99f2145713d13ccb0b23d0f",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have validate to review"
+    },
+    {
+      "severity": "error",
+      "code": "S11",
+      "path": ".tableaux/status/e3cb.yaml",
+      "line": 1,
+      "col": 7,
+      "task": "e3cb",
+      "gate": "implementation",
+      "message": "the status passes implementation, whose reviewer is noreply@anthropic.com, and no commit by the reviewer carries Reviewed: e3cb implementation"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/e9c6.yaml",
+      "task": "e9c6",
+      "gate": "implementation",
+      "commit": "879b447a920aad55e698906812350ea7d3785b4c",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have implementation to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/ea51.yaml",
+      "task": "ea51",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/efff.yaml",
+      "task": "efff",
+      "gate": "mockup",
+      "commit": "5958858ff25a624aea18f26471f95b92616fc7e6",
+      "message": "the newest event is the contributor's and the status states no review; nbyoung@nbyoung.com may have mockup to review"
+    },
+    {
+      "severity": "information",
+      "code": "H4",
+      "path": ".tableaux/status/fcec.yaml",
+      "task": "fcec",
+      "gate": "unit",
+      "commit": "60495c26d886016b40069041386a811b24469312",
+      "message": "the newest event is the contributor's and the status states no review; noreply@anthropic.com may have unit to review"
+    }
+  ]
 }

@@ -1,12 +1,14 @@
 // Command tablotui is the Tableaux terminal front end.
 //
-//	tablotui [-C <dir>] [--as <email>] [--settings <file>] [--fixture <dir>] [--version] [--help]
+//	tablotui [-C <dir>] [--ref <ref>] [--as <email>] [--settings <file>] [--fixture <dir>] [--version] [--help]
 //
 // It draws the tableau as a full-screen grid, and beside it the panes for the
 // task, the work queue, the blockage tree and the history, which the keys 1 to
 // 4 open. It starts where the person at the keyboard works: --as names that
-// person, by default the email Git commits with, and R switches the role. This
-// build draws from fixture files; the tablo source joins at the integrate gate.
+// person, by default the email Git commits with, and R switches the role. It
+// reads the project through tablo's library, from the working tree or at the
+// commit --ref names, and follows the repository as it changes; --fixture
+// draws from fixture files instead.
 package main
 
 import (
@@ -20,28 +22,32 @@ import (
 	"runtime/debug"
 	"slices"
 	"strings"
+	"time"
 
 	tea "charm.land/bubbletea/v2"
 
 	"github.com/nbyoung/tablotui/internal/identity"
+	"github.com/nbyoung/tablotui/internal/refresh"
 	"github.com/nbyoung/tablotui/internal/settings"
 	"github.com/nbyoung/tablotui/internal/source"
 	"github.com/nbyoung/tablotui/internal/ui"
 	"github.com/nbyoung/tablotui/internal/ui/detail"
 	"github.com/nbyoung/tablotui/internal/ui/grid"
 	"github.com/nbyoung/tablotui/internal/ui/role"
+	"github.com/nbyoung/tablotui/internal/watch"
 )
 
 // version is the release version. GoReleaser sets it through
 // -ldflags "-X main.version=...". A build from source leaves it at "dev".
 var version = "dev"
 
-// The exit codes.
+// The exit codes. A repository that cannot be read at the start exits 3, as
+// tablo's plumbing does (171b).
 const (
-	exitOK       = 0
-	exitFailure  = 1
-	exitUsage    = 2
-	noSourceText = "this build has no tablo source; pass --fixture <dir>"
+	exitOK      = 0
+	exitFailure = 1
+	exitUsage   = 2
+	exitRead    = 3
 )
 
 // runProgram runs the program until the viewer quits. The tests replace it,
@@ -61,6 +67,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 	fs := flag.NewFlagSet("tablotui", flag.ContinueOnError)
 	fs.SetOutput(io.Discard)
 	dir := fs.String("C", ".", "the project directory")
+	ref := fs.String("ref", "", "read the commit this revision names, and follow the name (default: the working tree on HEAD)")
 	as := fs.String("as", "", "the email of the person at the keyboard (default: the Git identity)")
 	settingsPath := fs.String("settings", "", "the settings file (default: tablotui/settings.json in the user configuration directory)")
 	fixtures := fs.String("fixture", "", "draw from the tableau and list files in this directory")
@@ -103,10 +110,6 @@ func run(args []string, stdout, stderr io.Writer) int {
 		_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
 		return exitUsage
 	}
-	if *fixtures == "" {
-		_, _ = fmt.Fprintf(stderr, "tablotui: %s\n", noSourceText)
-		return exitFailure
-	}
 	path := *settingsPath
 	if path == "" {
 		// No configuration directory means no choice kept.
@@ -115,16 +118,46 @@ func run(args []string, stdout, stderr io.Writer) int {
 		path = inDir(*dir, path)
 	}
 
+	// The source: fixture files, or tablo's library over the snapshot that the
+	// live refresh loads once per settled change and the frame stores.
+	var src interface {
+		source.Tableaux
+		source.Lists
+		source.Viewers
+	}
+	var live []ui.Pane
+	if *fixtures != "" {
+		src = source.File{Dir: inDir(*dir, *fixtures)}
+	} else {
+		at, err := watch.Open(ctx, *dir, *ref)
+		if err != nil {
+			_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
+			if errors.Is(err, watch.ErrUsage) {
+				return exitUsage
+			}
+			return exitRead
+		}
+		at.Dir = projectDir(at.Dir)
+		w := watch.New(at)
+		tab, err := source.NewTablo(ctx, at.Dir, at.Ref, w)
+		if err != nil {
+			_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
+			return exitRead
+		}
+		src = tab
+		live = append(live, refresh.NewPane(refresh.New(ctx, at, w, time.Now, tab.Load), tab.Store))
+	}
+
 	// The one place the program's panes and commands come together: the grid is
-	// the home pane, the detail panes follow it, the role pane that never opens
-	// comes last, and each task that adds a pane or a command extends this list.
-	// The grid has no start: the role pane starts it.
-	src := source.File{Dir: inDir(*dir, *fixtures)}
+	// the home pane, the detail panes follow it, the panes that never open come
+	// last, the role pane and then the live refresh, and each task that adds a
+	// pane or a command extends this list. The grid has no start: the role pane
+	// starts it.
 	g := grid.New(grid.Options{Source: src, Settings: path})
 	details := detail.New(detail.Options{Source: src})
-	who := role.New(role.Options{Source: src, Viewer: email})
+	who := role.New(role.Options{Source: src, Viewer: email, Ref: *ref})
 	opts := ui.Options{
-		Panes:    append(append([]ui.Pane{g}, details.Panes...), who),
+		Panes:    append(append(append([]ui.Pane{g}, details.Panes...), who), live...),
 		Commands: append(slices.Clone(details.Commands), role.Command()),
 		Layout:   details.Layout,
 		Styles:   ui.DefaultStyles(),
@@ -139,6 +172,25 @@ func run(args []string, stdout, stderr io.Writer) int {
 		return exitFailure
 	}
 	return exitOK
+}
+
+// projectDir returns the directory that holds the project tablo reads: the
+// nearest at or above dir that holds .tableaux, below the root of the
+// repository, else dir itself. The watcher watches it (watch.Open).
+func projectDir(dir string) string {
+	for d := dir; ; {
+		if st, err := os.Stat(filepath.Join(d, ".tableaux")); err == nil && st.IsDir() {
+			return d
+		}
+		if _, err := os.Stat(filepath.Join(d, ".git")); err == nil {
+			return dir
+		}
+		up := filepath.Dir(d)
+		if up == d {
+			return dir
+		}
+		d = up
+	}
 }
 
 // inDir resolves a relative path against the project directory, as git -C does.
@@ -179,7 +231,7 @@ func isBool(f *flag.Flag) bool {
 
 // usage prints each long option with its double hyphen.
 func usage(fs *flag.FlagSet, w io.Writer) {
-	_, _ = fmt.Fprintln(w, "usage: tablotui [-C <dir>] [--as <email>] [--settings <file>] [--fixture <dir>] [--version] [--help]")
+	_, _ = fmt.Fprintln(w, "usage: tablotui [-C <dir>] [--ref <ref>] [--as <email>] [--settings <file>] [--fixture <dir>] [--version] [--help]")
 	_, _ = fmt.Fprintln(w, "options:")
 	fs.VisitAll(func(f *flag.Flag) {
 		name := "--" + f.Name

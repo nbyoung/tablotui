@@ -1,6 +1,7 @@
 package grid
 
 import (
+	"context"
 	"strings"
 	"testing"
 
@@ -147,13 +148,15 @@ func TestProvenanceFacts(t *testing.T) {
 			t.Errorf("provenance line %d = %q, want %q", i, got, w)
 		}
 	}
-	// Six facts draw three and "… 3 more".
+	// A snapshot's ten facts draw three and "… 7 more": its own commit's five,
+	// then the subproject, the pin, who set it, the root task at the pin and
+	// the child that task rolls up from.
 	r = newRig(t, fixtures(), "", GlanceStart(), 100, 40).keys("down down down down p right right")
 	at = ruleAt(r)
-	if got := r.line(at + 6); got != "  Deciding commit: e66abe2 Record the defined gate for the subproject tasks" {
+	if got := r.line(at + 6); got != "  Date: 2026-09-30" {
 		t.Errorf("first fact = %q", got)
 	}
-	if got := r.line(at + 9); got != "  … 3 more" {
+	if got := r.line(at + 9); got != "  … 7 more" {
 		t.Errorf("last line = %q", got)
 	}
 	// A cell of marks gives its junction and the tasks that supply it.
@@ -168,18 +171,41 @@ func TestProvenanceFacts(t *testing.T) {
 			t.Errorf("marks line %d = %q, want %q", i, got, w)
 		}
 	}
-	// Four facts draw all four.
-	r = newRig(t, fixtures(), "", GlanceStart(), 100, 40).keys("E p down down right right right right right right")
+	// Five facts draw three and "… 2 more".
+	keys := "E p down down right right right right right right"
+	r = newRig(t, fixtures(), "", GlanceStart(), 100, 40).keys(keys)
 	at = ruleAt(r)
-	if got := r.line(at + 9); got != "  Committer: noreply@anthropic.com" {
+	for i, w := range []string{
+		"provenance of c2ad at 🧱 implementation",
+		"  Date: 2026-09-30",
+		"  Recorder: Claude Sonnet 5.5, noreply@anthropic.com",
+		"  Deciding commit: 3d8ce0e Record the Roles task at its implementation gate",
+		"  … 2 more",
+	} {
+		if got := r.line(at + 5 + i); got != w {
+			t.Errorf("five-fact line %d = %q, want %q", i, got, w)
+		}
+	}
+	// Four facts draw all four: the same cell, its commit without trailers.
+	four := &recorder{fn: func(q source.Request) (view.Tableau, error) {
+		tb, err := fixtures().Tableau(context.Background(), q)
+		if err == nil {
+			c := *tb.Rows[2].StatusCommit
+			c.Trailers = nil
+			tb.Rows[2].StatusCommit = &c
+		}
+		return tb, err
+	}}
+	r4 := newRig(t, four, "", GlanceStart(), 100, 40).keys(keys)
+	if got := r4.line(at + 9); got != "  Committer: Claude Sonnet 5.5, noreply@anthropic.com" {
 		t.Errorf("fourth fact = %q", got)
 	}
 	// A cell with no fact, and a cursor off the gate cells.
-	r.keys("right")
+	r.keys("left")
 	if got := r.line(at + 5); got != "this cell holds no fact" {
 		t.Errorf("no-fact line = %q", got)
 	}
-	r.keys("left left left left left left left")
+	r.keys("left left left left left")
 	if got := r.line(at + 5); got != "move the column cursor to a gate cell" {
 		t.Errorf("off-cell line = %q", got)
 	}
