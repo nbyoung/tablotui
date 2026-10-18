@@ -102,6 +102,7 @@ may change the interface.
 | Module                                  | Path                                  | Major | Role                        |
 |-----------------------------------------|---------------------------------------|-------|-----------------------------|
 | [tablo](https://github.com/nbyoung/tablo) | `github.com/nbyoung/tablo`          | v0    | The view data this front end renders |
+| [tabloio](https://github.com/nbyoung/tabloio) | `github.com/nbyoung/tabloio`  | v0    | The package `action`, through which the four actions plan and make their commits |
 | Bubble Tea                              | `charm.land/bubbletea/v2`             | v2    | The program and its event loop |
 | Bubbles                                 | `charm.land/bubbles/v2`               | v2    | The key bindings; later the viewport and the text input |
 | Lip Gloss                               | `charm.land/lipgloss/v2`              | v2    | The styles                  |
@@ -133,6 +134,21 @@ first release. The policy from then:
   uses the personal `go.work` in the directory above the `tableaux` repository
   that its plan describes, which points at the local `tablo` checkout and stays
   uncommitted. A release builds against the tagged tablo alone.
+
+**tabloio.** The four actions plan and make their commits through tabloio's
+package `action`, so a commit made here is the one tabloio's command line
+makes. `go.mod` requires the tag `v0.1.0`, the first release that holds
+`action`, added with `go get github.com/nbyoung/tabloio@v0.1.0`, and `go.sum`
+pins its hash. The policy for tablo extends to tabloio word for word: the
+`require` line names the floor, the oldest tabloio release whose `action` this
+front end compiles against; while tabloio is at major `0`, the range is one
+minor, `v0.N.x`; from tabloio `v1`, the range is the major; and no `replace`
+directive enters `go.mod`. `action` links tablo's library, so the `require`
+brings tablo, MIT, and `gopkg.in/yaml.v3`, MIT and Apache-2.0, which tablo
+brings already, and no other module: tabloio requires the same tablo, so the
+two front ends sit on one minor of it, and it raises `golang.org/x/text` and
+`golang.org/x/sync`, which the module requires already, to the versions it
+names.
 
 ## Licence
 
