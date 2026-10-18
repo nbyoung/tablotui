@@ -13,6 +13,7 @@ import (
 	"github.com/nbyoung/tabloio/action"
 
 	"github.com/nbyoung/tablotui/internal/ui"
+	"github.com/nbyoung/tablotui/internal/ui/grid"
 )
 
 // grapheme switches the frame to the grapheme method, as a terminal that
@@ -451,12 +452,12 @@ func TestEveryLineFits(t *testing.T) {
 	t.Logf("%d screens", sizes)
 }
 
-// T16: the four commands clash with no key of the frame, and the help mode
-// lists them under Commands.
+// T16: the four commands clash with no key of the frame or of the grid, and
+// the help mode lists them under Commands.
 func TestKeysAndHelp(t *testing.T) {
 	r := newRig(t, 80, 30, nil)
 	cs := r.acts.Commands()
-	if err := ui.CheckKeys(ui.Options{Panes: []ui.Pane{home{new(int)}}, Commands: cs}); err != nil {
+	if err := ui.CheckKeys(ui.Options{Panes: []ui.Pane{grid.New(grid.Options{})}, Commands: cs}); err != nil {
 		t.Error(err)
 	}
 	var keys []string
