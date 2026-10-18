@@ -264,7 +264,7 @@ func TestIntegrateTheRoleSitsWithThePanes(t *testing.T) {
 // mode lists as the role. Since 518e's implementation r, v, a and u are the
 // four actions, which the help mode lists beside it; until 518e's integrate
 // gate gives them a Repo, each says that no action runs.
-func TestIntegrateRAloneIsBound(t *testing.T) {
+func TestIntegrateTheRoleAndTheActionsAreBound(t *testing.T) {
 	dir := corpustest.Entry(t, "weather-station")
 	runLive(t, func(s *session) {
 		s.until("Ben's corner", func(l []string) bool {

@@ -106,7 +106,7 @@ may change the interface.
 | [tablo](https://github.com/nbyoung/tablo) | `github.com/nbyoung/tablo`          | v0    | The view data this front end renders |
 | [tabloio](https://github.com/nbyoung/tabloio) | `github.com/nbyoung/tabloio`  | v0    | The package `action`, through which the four actions plan and make their commits |
 | Bubble Tea                              | `charm.land/bubbletea/v2`             | v2    | The program and its event loop |
-| Bubbles                                 | `charm.land/bubbles/v2`               | v2    | The key bindings; later the viewport and the text input |
+| Bubbles                                 | `charm.land/bubbles/v2`               | v2    | The key bindings alone; the note editor of the actions is the program's own, not its text input (518e decision 9) |
 | Lip Gloss                               | `charm.land/lipgloss/v2`              | v2    | The styles                  |
 | x/ansi                                  | `github.com/charmbracelet/x/ansi`     | v0    | The two width methods, cutting and stripping |
 | colorprofile                            | `github.com/charmbracelet/colorprofile` | v0    | The colour profiles the tests fix; Bubble Tea requires it already |
