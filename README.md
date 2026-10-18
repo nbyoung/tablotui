@@ -24,6 +24,7 @@ never reads a task file itself.
 - **Follow** the selection into panes for the task definition, the work queue, the blockage tree and the history.
 - **Start** where the person at the keyboard works: the owner at the root, a contributor at the parents of their tasks.
 - **Refresh** when the repository changes, and view any ref.
+- **Act** on the selected task: `r` records a status, `v` reviews the gate under the cursor, `a` reaffirms and `u` authorises. Each shows the commit tabloio's action package plans, and `y` makes it.
 
 ```
 tablotui                          # the working tree on HEAD, as the Git identity
@@ -53,6 +54,7 @@ internal/ui/        # the frame: the Bubble Tea root model, panes, modes, measur
 internal/ui/grid/   # the tableau grid pane
 internal/ui/detail/ # the four detail panes, the keys that open them and their layout
 internal/ui/role/   # the role pane that never opens: the arrival of each role and the R key
+internal/ui/act/    # the four actions: the keys r, v, a and u, their form and confirmation
 internal/watch/     # the Git-polling watcher: what counts as a change, with its test clock
 internal/refresh/   # the Bubble Tea component that reloads once per settled change
 .github/workflows/  # ci.yml on push and pull request, release.yml on a tag
