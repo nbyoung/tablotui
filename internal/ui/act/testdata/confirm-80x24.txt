@@ -1,0 +1,24 @@
+Weather station · working tree on main at 3cdae52
+record 9f31 on main at 3cdae52
+author    Ada Lovelace <ada@example.org>
+committer Ada Lovelace <ada@example.org>
+
+    Record sensor board (9f31) at design
+
+diff --git a/.tableaux/status/9f31.yaml b/.tableaux/status/9f31.yaml
+index 49edd55..0881b37 100644
+--- a/.tableaux/status/9f31.yaml
++++ b/.tableaux/status/9f31.yaml
+@@ -1,4 +1,3 @@
+-gate: function
+-state: at_risk
+-reason: blocked
+-note: The supplier slips the prototype boards to November
++gate: design
++state: nominal
++note: The boards arrive and pass the bench test
+
+────────────────────────────────────────────────────────────────────────────────
+Commit? y commits, n cancels
+record 9f31 · lines 1–18 of 18
+y commit  n cancel  ↑↓ scroll  ? help  q quit

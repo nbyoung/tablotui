@@ -1,7 +1,3 @@
-// Package act holds the four actions of the tablotui program: record a
-// status, review a gate, reaffirm and authorise. Each is a ui.Command that
-// plans one commit through tabloio's action package, shows it in a ui.Mode
-// and makes it on confirmation.
 package act
 
 import (
