@@ -261,9 +261,10 @@ func TestIntegrateTheRoleSitsWithThePanes(t *testing.T) {
 }
 
 // A12, as far as this task binds it: the command binds R, which the help
-// mode lists as the role, and none of r, v, a and u, which 518e's commands
-// take at its own integrate gate.
-func TestIntegrateRAloneIsBound(t *testing.T) {
+// mode lists as the role. Since 518e's implementation r, v, a and u are the
+// four actions, which the help mode lists beside it; until 518e's integrate
+// gate gives them a Repo, each says that no action runs.
+func TestIntegrateTheRoleAndTheActionsAreBound(t *testing.T) {
 	dir := corpustest.Entry(t, "weather-station")
 	runLive(t, func(s *session) {
 		s.until("Ben's corner", func(l []string) bool {
@@ -286,18 +287,17 @@ func TestIntegrateRAloneIsBound(t *testing.T) {
 		if !slices.Contains(keys, "R") || !slices.Contains(keys, "1") {
 			t.Errorf("the help mode lists %v", keys)
 		}
-		for _, k := range keys {
-			if slices.Contains([]string{"r", "v", "a", "u"}, k) {
-				t.Errorf("the help mode binds %s", k)
+		for _, k := range []string{"r", "v", "a", "u"} {
+			if !slices.Contains(keys, k) {
+				t.Errorf("the help mode lacks the action %s: %v", k, keys)
 			}
 		}
 		s.key(tea.KeyPressMsg{Code: tea.KeyEscape})
-		before := strings.Join(lines(s.m), "\n")
 		for _, k := range "rvau" {
 			s.key(text(k))
-		}
-		if after := strings.Join(lines(s.m), "\n"); after != before {
-			t.Errorf("r, v, a and u change the screen:\n%s\nwas:\n%s", after, before)
+			s.until(string(k)+" answers that no action runs", func(l []string) bool {
+				return l[len(l)-2] == "no action: this build draws fixtures"
+			})
 		}
 	}, "-C", dir, "--as", "ben@example.org")
 }

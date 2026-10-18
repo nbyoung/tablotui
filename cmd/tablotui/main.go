@@ -8,7 +8,9 @@
 // person, by default the email Git commits with, and R switches the role. It
 // reads the project through tablo's library, from the working tree or at the
 // commit --ref names, and follows the repository as it changes, which ctrl+r
-// reloads at once; --fixture draws from fixture files instead.
+// reloads at once; --fixture draws from fixture files instead. The keys r, v,
+// a and u record a status, review a gate, reaffirm and authorise the selected
+// task, each through the commit tabloio's action package plans.
 package main
 
 import (
@@ -31,6 +33,7 @@ import (
 	"github.com/nbyoung/tablotui/internal/settings"
 	"github.com/nbyoung/tablotui/internal/source"
 	"github.com/nbyoung/tablotui/internal/ui"
+	"github.com/nbyoung/tablotui/internal/ui/act"
 	"github.com/nbyoung/tablotui/internal/ui/detail"
 	"github.com/nbyoung/tablotui/internal/ui/grid"
 	"github.com/nbyoung/tablotui/internal/ui/role"
@@ -56,6 +59,10 @@ var runProgram = func(ctx context.Context, m tea.Model) error {
 	_, err := tea.NewProgram(m, tea.WithContext(ctx)).Run()
 	return err
 }
+
+// newActions builds the four actions. The tests replace it, so that the
+// actions plan through a Repo of the test.
+var newActions = act.New
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdout, os.Stderr))
@@ -154,13 +161,16 @@ func run(args []string, stdout, stderr io.Writer) int {
 	// the home pane, the detail panes follow it, the panes that never open come
 	// last, the role pane and then the live refresh, and each task that adds a
 	// pane or a command extends this list: the live refresh adds the Force key.
-	// The grid has no start: the role pane starts it.
+	// The grid has no start: the role pane starts it. The four actions follow,
+	// over the project directory; the integrate gate of 518e gives them their
+	// Repo, the ref, the viewer and the poke.
 	g := grid.New(grid.Options{Source: src, Settings: path})
 	details := detail.New(detail.Options{Source: src})
 	who := role.New(role.Options{Source: src, Viewer: email, Ref: *ref})
+	actions := newActions(act.Options{Dir: *dir, Context: ctx})
 	opts := ui.Options{
 		Panes:    append(append(append([]ui.Pane{g}, details.Panes...), who), live...),
-		Commands: append(append(slices.Clone(details.Commands), role.Command()), force...),
+		Commands: append(append(append(slices.Clone(details.Commands), role.Command()), force...), actions.Commands()...),
 		Layout:   details.Layout,
 		Styles:   ui.DefaultStyles(),
 		Context:  ctx,
@@ -169,7 +179,14 @@ func run(args []string, stdout, stderr io.Writer) int {
 		_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
 		return exitFailure
 	}
-	if err := runProgram(ctx, ui.New(opts)); err != nil {
+	err = runProgram(ctx, ui.New(opts))
+	// A quit never cuts a commit in two: the command waits for the one in
+	// flight before it cancels its context (518e decision 12).
+	if actions.Busy() {
+		_, _ = fmt.Fprintln(stderr, "tablotui: a commit is in flight; waiting for git")
+	}
+	actions.Wait()
+	if err != nil {
 		_, _ = fmt.Fprintf(stderr, "tablotui: %v\n", err)
 		return exitFailure
 	}

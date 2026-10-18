@@ -1,0 +1,12 @@
+Weather station · working tree on main at 3cdae52
+review 9f31 design: refused
+
+9f31 design: ben@example.org reviews this junction, and the commit is
+ada@example.org's (wrong-hand, H2)
+
+
+
+
+
+review 9f31 design · lines 1–2 of 2
+enter close  ↑↓ scroll  ? help  q quit

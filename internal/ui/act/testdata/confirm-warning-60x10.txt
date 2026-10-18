@@ -1,0 +1,10 @@
+Weather station · working tree on main at 3cdae52
+reaffirm 9f31 on main at 3cdae52
+author    Ada Lovelace <ada@example.org>
+committer Ada Lovelace <ada@example.org>
+warning: not-contributor: ada@example.org is neither the co…
+uncommitted edits under .tableaux; the plan reads HEAD
+drawn for noreply@anthropic.com; the commit is ada@example.…
+Commit? y commits, n cancels
+reaffirm 9f31 · lines 1–3 of 10
+y commit  n cancel  ↑↓ scroll  ? help  q quit
