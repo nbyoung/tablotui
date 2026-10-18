@@ -12,6 +12,7 @@ requires:
   - { id: "0afa", from: implementation, to: integrate, text: The panes the actions act from }
   - { id: "171b", from: integrate, to: integrate, text: The ref the actions refuse at and the poke after a commit }
   - { id: "f394", from: implementation, to: integrate, text: The viewer the confirmation names }
+  - { subproject: { url: https://github.com/nbyoung/tabloio, id: "b618", commit: d443471fa49bf757eface7fdd9975a406a8be147 }, from: implementation, to: implementation, text: The action package the commands plan and apply through }
 junctions:
   mockup:         { applies: false }
 parent: { id: "40e8", order: 6 }
