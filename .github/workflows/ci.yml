@@ -24,3 +24,39 @@ jobs:
           version: latest
       - name: go test
         run: go test ./...
+
+  corpus:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Fetch the tableaux repository at the locked commit and build its corpus
+        run: sh .github/corpus.sh fetch "$RUNNER_TEMP/tableaux"
+      - name: go test on the corpus
+        env:
+          TABLEAUX_CORPUS: ${{ runner.temp }}/tableaux/corpus/build
+          TABLEAUX_DIR: ${{ runner.temp }}/tableaux
+        run: |
+          go test -count=1 -json ./... | tee "$RUNNER_TEMP/test.json" |
+            jq -rj 'select(.Action == "output") | .Output'
+      - name: List the tests that still skip
+        if: always()
+        run: |
+          [ -f "$RUNNER_TEMP/test.json" ] || exit 0
+          jq -rs '
+            (map(select(.Test and .Action == "output"))
+              | group_by([.Package, .Test])
+              | map({key: "\(.[0].Package) \(.[0].Test)", value: (map(.Output) | add)})
+              | from_entries) as $out
+            | map(select(.Test and .Action == "skip")) as $skips
+            | "## Tests that skip with the corpus set\n\n\($skips | length) skip.\n",
+              if ($skips | length) > 0 then "| Package | Test | Reason |\n|---|---|---|" else empty end,
+              ($skips[]
+                | ($out["\(.Package) \(.Test)"] // ""
+                    | split("\n")
+                    | map(select(test("^\\s*$|^=== |^\\s*--- SKIP") | not) | sub("^\\s+"; ""))
+                    | join(" ") | gsub("\\|"; "\\|")) as $why
+                | "| `\(.Package | ltrimstr("github.com/nbyoung/tablotui/"))` | `\(.Test)` | \($why) |")
+          ' "$RUNNER_TEMP/test.json" >> "$GITHUB_STEP_SUMMARY"

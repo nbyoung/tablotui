@@ -1,0 +1,7 @@
+# corpus.lock.yaml: the tableaux commit whose corpus the job corpus of
+# .github/workflows/ci.yml builds and tests against. A person moves it, by
+# hand and in a commit of its own, when a test needs a newer umbrella; tooling
+# is the commit the umbrella's tag corpus/tooling names at that commit.
+repository: https://github.com/nbyoung/tableaux
+commit: 25bf4657a0d5b7274f9084bad7769bf4c0783ffa
+tooling: 50a373b2857a36e4ef1a754605433943d6bfe324
