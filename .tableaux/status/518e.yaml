@@ -1,3 +1,3 @@
-gate: unit
+gate: integrate
 state: nominal
-note: T1 to T19 pass by name with -race, with the corpus variables set and without them, T18 in cmd/tablotui and the rest in internal/ui/act, T19 on tabloio v0.1.0's action package in a watchtest repository with git alone; no test waits for a later gate; integrate wires Repo, a Facts that opens a fresh action.Tablo per form, Ref, Viewer and Poke in main.go and repeats T19 on weather-station
+note: main.go wires an action.Repo over the watcher's project directory, a Facts that opens a fresh action.Tablo per form, the watcher's Ref and Poke and the viewer identity.Email names, on tablo v0.1.0 and tabloio v0.1.1; T1 to T19 and the four integrate tests pass under go test -count=1 and -race, with and without TABLEAUX_CORPUS and TABLEAUX_DIR, T19 again on weather-station with tablo's facts, and A2, A8, A12 to A14 and f394's A12 meet their owners; the validate gate waits on the owner in terminals for the keys, the reversed cursor, a hook that prints, a signed commit and each action by a hand that may and one that may not
