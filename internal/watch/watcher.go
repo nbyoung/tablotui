@@ -74,6 +74,9 @@ func (w *Watcher) Poke() {
 
 // Next blocks until the state differs from prev and has settled, or until a
 // poke, and returns it. It returns prev and the context's error when cancelled.
+// A state that differs from prev in Modules alone, where prev holds none, is
+// no change: SetSubmodules named the checkouts after prev was read, by the
+// load that read them, so Next takes that state as its baseline instead.
 func (w *Watcher) Next(ctx context.Context, prev State) (State, error) {
 	for {
 		// 1. A poke that waits returns the current state at once.
@@ -86,10 +89,14 @@ func (w *Watcher) Next(ctx context.Context, prev State) (State, error) {
 			return cur, nil
 		default:
 		}
-		// 2. Read the state; an unchanged one goes straight to the wait.
+		// 2. Read the state; an unchanged one goes straight to the wait, and
+		// the first digest of the checkouts becomes part of the baseline.
 		cur := w.Snapshot(ctx)
 		if err := ctx.Err(); err != nil {
 			return prev, err
+		}
+		if firstModules(prev, cur) {
+			prev = cur
 		}
 		if cur != prev {
 			// 3. Settle: read until two reads agree or MaxSettle runs out.
@@ -124,6 +131,16 @@ func (w *Watcher) Next(ctx context.Context, prev State) (State, error) {
 		case <-timer:
 		}
 	}
+}
+
+// firstModules reports whether cur differs from prev in Modules alone, and
+// prev holds no digest of the checkouts.
+func firstModules(prev, cur State) bool {
+	if prev.Modules != "" || cur.Modules == "" {
+		return false
+	}
+	prev.Modules = cur.Modules
+	return prev == cur
 }
 
 // sleep waits d on the clock or until the context ends.
