@@ -58,7 +58,9 @@ var subprojects = []string{"tablo", "tabloio", "tablotui", "tableaud"}
 // with a clone that reads and never writes it, and checks out commit on the
 // branch main, so that the plan reads "main at" that commit as the mockups
 // do. Each subproject is a clone of the umbrella's module store, checked out
-// at the commit's pin, since a recursive junction reads its subproject there.
+// at the commit's pin, since a recursive junction reads its subproject there,
+// with its trunk main at the pin too, so that the plan reads the same
+// whatever the store's own main holds on the host.
 // It skips without TABLEAUX_DIR, without git, or without the module stores.
 func Umbrella(t testing.TB, commit string) string {
 	t.Helper()
@@ -87,6 +89,7 @@ func Umbrella(t testing.TB, commit string) string {
 		}
 		Git(t, "", "clone", "--quiet", "--shared", "--no-checkout", filepath.Join(src, ".git", "modules", "subprojects", m), sub)
 		Git(t, sub, "checkout", "--quiet", "--detach", fields[2])
+		Git(t, sub, "update-ref", "refs/remotes/origin/main", fields[2])
 	}
 	return dir
 }

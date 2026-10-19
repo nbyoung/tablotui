@@ -84,7 +84,11 @@ golangci-lint run              # the linters in .golangci.yml
 
 CI runs those four checks on every push and pull request. The golangci-lint
 job uses the official action at its latest release, and `.golangci.yml` keeps
-the standard linter set. A pull request merges when CI passes.
+the standard linter set. A second job, `corpus`, fetches the tableaux
+repository at the commit `.github/corpus.lock.yaml` names, builds its corpus
+with `.github/corpus.sh`, and runs `go test` with `TABLEAUX_CORPUS` and
+`TABLEAUX_DIR` set, so the tests that read the corpus or the umbrella, which
+skip without them, run there too. A pull request merges when CI passes.
 
 ## Release
 
