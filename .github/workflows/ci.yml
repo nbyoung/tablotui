@@ -35,6 +35,7 @@ jobs:
       - name: Fetch the tableaux repository at the locked commit and build its corpus
         run: sh .github/corpus.sh fetch "$RUNNER_TEMP/tableaux"
       - name: go test on the corpus
+        shell: bash
         env:
           TABLEAUX_CORPUS: ${{ runner.temp }}/tableaux/corpus/build
           TABLEAUX_DIR: ${{ runner.temp }}/tableaux
