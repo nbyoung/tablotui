@@ -275,13 +275,14 @@ func queueAt(l []string, level string) bool {
 
 // A12, as far as this task binds it: the command binds R, which the help
 // mode lists as the role. Since 518e's implementation r, v, a and u are the
-// four actions, which the help mode lists beside it; until 518e's integrate
-// gate gives them a Repo, each says that no action runs.
+// four actions, which the help mode lists beside it; since 518e's integrate
+// gate gives them a Repo, each plans over the grid's selection: r and v
+// answer for 4e2b, a parent off a gate cell, before a plan.
 func TestIntegrateTheRoleAndTheActionsAreBound(t *testing.T) {
 	dir := corpustest.Entry(t, "weather-station")
 	runLive(t, func(s *session) {
 		s.until("Ben's corner", func(l []string) bool {
-			return strings.HasSuffix(l[0], "ben@example.org, assignee") && len(rowIDs(l)) > 0
+			return strings.HasSuffix(l[0], "ben@example.org, assignee") && len(rowIDs(l)) > 0 && s.selected() == ui.SelectionMsg{Task: "4e2b"}
 		})
 		s.update(tea.WindowSizeMsg{Width: 120, Height: 45})
 		s.key(text('?'))
@@ -306,11 +307,9 @@ func TestIntegrateTheRoleAndTheActionsAreBound(t *testing.T) {
 			}
 		}
 		s.key(tea.KeyPressMsg{Code: tea.KeyEscape})
-		for _, k := range "rvau" {
+		for k, notice := range map[rune]string{'r': "4e2b is a parent; its children hold the status", 'v': "move the cursor to the gate you review"} {
 			s.key(text(k))
-			s.until(string(k)+" answers that no action runs", func(l []string) bool {
-				return l[len(l)-2] == "no action: this build draws fixtures"
-			})
+			s.until(string(k)+" answers for 4e2b", func(l []string) bool { return l[len(l)-2] == notice })
 		}
 	}, "-C", dir, "--as", "ben@example.org")
 }
