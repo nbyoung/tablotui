@@ -241,9 +241,11 @@ func TestIntegrateTheActionsCommit(t *testing.T) {
 			t.Errorf("the plan at %s carries %q", p.Base, trailerLines(p))
 		}
 		s.key(text('y'))
+		// The poke follows the end of Apply, so the wait ends only when the
+		// action no longer counts as in flight.
 		s.until("the new commit in the grid", func(l []string) bool {
 			c := git(t, dir, "rev-parse", "--short=7", "HEAD")
-			return strings.Contains(l[0], "main at "+c+",") && screenHas("9f31 Sensor board · 🚀 release ✅ complete")(l)
+			return w.pokes.Load() == 1 && strings.Contains(l[0], "main at "+c+",") && screenHas("9f31 Sensor board · 🚀 release ✅ complete")(l)
 		})
 		commit := git(t, dir, "rev-parse", "HEAD")
 		if git(t, dir, "rev-parse", "HEAD~1") != head || git(t, dir, "log", "-1", "--format=%s") != p.Subject {
@@ -269,7 +271,7 @@ func TestIntegrateTheActionsCommit(t *testing.T) {
 		s.key(text('y'))
 		s.until("the reaffirmation in the grid", func(l []string) bool {
 			c := git(t, dir, "rev-parse", "--short=7", "HEAD")
-			return c != head[:7] && strings.Contains(l[0], "main at "+c+",")
+			return w.pokes.Load() == 2 && c != head[:7] && strings.Contains(l[0], "main at "+c+",")
 		})
 		commit = git(t, dir, "rev-parse", "HEAD")
 		if git(t, dir, "rev-parse", "HEAD~1") != head || git(t, dir, "diff", "--name-only", head, commit) != "" {
@@ -416,7 +418,9 @@ func TestIntegrateTheActionsCommitAsGit(t *testing.T) {
 				t.Errorf("--as %q: the confirmation states %q: %v\n%s", c.as, drawn, got, strings.Join(lines(s.m), "\n"))
 			}
 			s.key(text('y'))
-			s.until("the commit", func([]string) bool { return git(t, dir, "rev-parse", "HEAD~1") == head })
+			// Git moves HEAD before Apply returns; the poke follows the end
+			// of Apply, so the quit after this wait finds no commit in flight.
+			s.until("the commit", func([]string) bool { return w.pokes.Load() == 1 && git(t, dir, "rev-parse", "HEAD~1") == head })
 			if got := git(t, dir, "log", "-1", "--format=%an <%ae> / %cn <%ce>"); got != "Ada Byron <ada@example.org> / Ada Byron <ada@example.org>" {
 				t.Errorf("--as %q: the commit is %s's", c.as, got)
 			}
