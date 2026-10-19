@@ -241,7 +241,7 @@ func TestIntegrateTheRoleSitsWithThePanes(t *testing.T) {
 		}
 		got := s.until("the four panes", func(l []string) bool {
 			j := strings.Join(l, "\n")
-			return strings.Contains(j, "2 Queue ben@example.org · ") && strings.Contains(j, "4 History 4e2b · ") && !strings.Contains(j, "loading…")
+			return queueAt(l, "glance") && strings.Contains(j, "4 History 4e2b · ") && !strings.Contains(j, "loading…")
 		})
 		screen := strings.Join(got, "\n")
 		if !strings.Contains(screen, "· glance ─") || strings.Contains(screen, "role") {
@@ -250,7 +250,7 @@ func TestIntegrateTheRoleSitsWithThePanes(t *testing.T) {
 		s.key(text('R'))
 		got = s.until("the reviewer's panes", func(l []string) bool {
 			j := strings.Join(l, "\n")
-			return strings.HasSuffix(l[0], "ben@example.org, reviewer") && strings.Contains(j, "2 Queue ben@example.org · ") && !strings.Contains(j, "loading…")
+			return strings.HasSuffix(l[0], "ben@example.org, reviewer") && queueAt(l, "detail") && !strings.Contains(j, "loading…")
 		})
 		for _, l := range got {
 			if strings.Contains(l, "2 Queue ben@example.org") && !strings.Contains(l, " · detail ") {
@@ -258,6 +258,19 @@ func TestIntegrateTheRoleSitsWithThePanes(t *testing.T) {
 			}
 		}
 	}, "-C", dir, "--as", "ben@example.org")
+}
+
+// queueAt reports whether Ben's queue pane has loaded at level: its title
+// names the level with nothing after it. A title still loading ends
+// "loading…", which a narrow pane cuts short, so the word alone tells no
+// loaded pane from a loading one.
+func queueAt(l []string, level string) bool {
+	for _, s := range l {
+		if strings.Contains(s, "2 Queue ben@example.org · ") && strings.Contains(s, " · "+level+" ─") {
+			return true
+		}
+	}
+	return false
 }
 
 // A12, as far as this task binds it: the command binds R, which the help
