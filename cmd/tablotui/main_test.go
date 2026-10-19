@@ -388,9 +388,11 @@ func typed(m tea.Model, keys ...tea.KeyPressMsg) tea.Model {
 	return m
 }
 
-// T18: the command hands the grid, the four panes, their five commands and
-// their layout to the frame, and no key clashes.
-func TestFixtureHandsTheFrameFivePanesAndFiveCommands(t *testing.T) {
+// T18 of 0afa: the command hands the frame the grid, the four detail panes
+// and their layout, and every command beside them: the panes' 1 to 4 and z,
+// the role's R and the four actions. No key clashes, no pane stands open on
+// arrival, 1 to 4 open the panes, and z zooms the focused one and returns.
+func TestFixtureHandsTheFrameFourPanesAndEveryCommand(t *testing.T) {
 	h := newHarness(t)
 	t.Setenv("HOME", t.TempDir())
 	t.Setenv("XDG_CONFIG_HOME", t.TempDir())
