@@ -150,8 +150,8 @@ tabloio `v1`, the range is the major; and no `replace` directive enters
 and `gopkg.in/yaml.v3`, MIT and Apache-2.0, which tablo brings already, and no
 other module: Go raises tabloio's older tablo to the one `go.mod` names, so
 the two front ends sit on one minor of it, and tabloio raises
-`golang.org/x/text` and `golang.org/x/sync`, which the module requires
-already, to the versions it names.
+`golang.org/x/text`, which the module requires already, to the version it
+names.
 
 ## Licence
 
