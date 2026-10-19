@@ -30,7 +30,7 @@ var failedCommit = &action.ExecError{Tool: "git", Args: []string{"commit", "--cl
 // T1: the eight goldens of fixtures.md, under both methods, each line
 // exactly the width.
 func TestGoldens(t *testing.T) {
-	unreviewed := refusal("unreviewed", "9f31", "design", "S11", "the status passes design, which ben@example.org reviews and has not accepted; record the reason review to hand the work off")
+	unreviewed := refusal("unreviewed", "9f31", "design", "S11", "the reviewer ben@example.org has not accepted design; hand the work off with the reason review")
 	cases := []struct {
 		golden string
 		w, h   int

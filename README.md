@@ -121,12 +121,9 @@ terminal draws it. `go.mod` carries their `require` lines; the owner accepted
 the major at the review of the tableau grid design.
 
 **tablo.** This front end never reads a task file; it takes view data from
-tablo's library. tablo has no release yet, so `go.mod` requires a
-pseudo-version of tablo's `main`, added with
-`go get github.com/nbyoung/tablo@<commit>`, and `go.sum` pins its hash, as
-tabloio and tableaud do by the owner's ruling. The line moves to
-`v0.N.M`, with `go get github.com/nbyoung/tablo@v0.N.M`, when tablo tags its
-first release. The policy from then:
+tablo's library. `go.mod` requires the tag `v0.1.0`, tablo's first
+release, added with `go get github.com/nbyoung/tablo@v0.1.0`, and `go.sum`
+pins its hash. The policy:
 
 - Go modules select the minimum version, so a declared range is a floor plus a
   ceiling that convention keeps. The `require` line names the floor, the oldest
@@ -143,17 +140,17 @@ first release. The policy from then:
 
 **tabloio.** The four actions plan and make their commits through tabloio's
 package `action`, so a commit made here is the one tabloio's command line
-makes. `go.mod` requires the tag `v0.1.0`, the first release that holds
-`action`, added with `go get github.com/nbyoung/tabloio@v0.1.0`, and `go.sum`
-pins its hash. The policy for tablo extends to tabloio word for word: the
-`require` line names the floor, the oldest tabloio release whose `action` this
-front end compiles against; while tabloio is at major `0`, the range is one
-minor, `v0.N.x`; from tabloio `v1`, the range is the major; and no `replace`
-directive enters `go.mod`. `action` links tablo's library, so the `require`
-brings tablo, MIT, and `gopkg.in/yaml.v3`, MIT and Apache-2.0, which tablo
-brings already, and no other module: tabloio requires the same tablo, so the
-two front ends sit on one minor of it, and it raises `golang.org/x/text` and
-`golang.org/x/sync`, which the module requires already, to the versions it
+makes. `go.mod` requires the tag `v0.1.1`, added with
+`go get github.com/nbyoung/tabloio@v0.1.1`, and `go.sum` pins its hash. The
+policy for tablo extends to tabloio word for word: the `require` line names
+the floor, the oldest tabloio release whose `action` this front end compiles
+against; while tabloio is at major `0`, the range is one minor, `v0.N.x`; from
+tabloio `v1`, the range is the major; and no `replace` directive enters
+`go.mod`. `action` links tablo's library, so the `require` brings tablo, MIT,
+and `gopkg.in/yaml.v3`, MIT and Apache-2.0, which tablo brings already, and no
+other module: Go raises tabloio's older tablo to the one `go.mod` names, so
+the two front ends sit on one minor of it, and tabloio raises
+`golang.org/x/text`, which the module requires already, to the version it
 names.
 
 ## Licence

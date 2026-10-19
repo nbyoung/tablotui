@@ -24,9 +24,11 @@ import (
 	"runtime/debug"
 	"slices"
 	"strings"
+	"sync"
 	"time"
 
 	tea "charm.land/bubbletea/v2"
+	"github.com/nbyoung/tabloio/action"
 
 	"github.com/nbyoung/tablotui/internal/identity"
 	"github.com/nbyoung/tablotui/internal/refresh"
@@ -134,6 +136,9 @@ func run(args []string, stdout, stderr io.Writer) int {
 	}
 	var live []ui.Pane
 	var force []ui.Command
+	// The four actions: from fixture files they have no Repo, so each key
+	// says that no action runs.
+	ao := act.Options{Dir: *dir, Context: ctx}
 	if *fixtures != "" {
 		src = source.File{Dir: inDir(*dir, *fixtures)}
 	} else {
@@ -155,19 +160,36 @@ func run(args []string, stdout, stderr io.Writer) int {
 		src = tab
 		live = append(live, refresh.NewPane(refresh.New(ctx, at, w, time.Now, tab.Load), tab.Store))
 		force = append(force, refresh.Command())
+		ao = act.Options{
+			// Each plan reads HEAD through a fresh action.Tablo, since the
+			// Repo names no Source (A2).
+			Repo: &action.Repo{Dir: at.Dir},
+			// Each record form reads HEAD through a fresh action.Tablo of
+			// its own (518e decision 16 a).
+			Facts: &formFacts{dir: at.Dir},
+			// The project directory the watcher watches (A12).
+			Dir: at.Dir,
+			// The --ref in view: with one, nothing writes (A12, D4).
+			Ref: at.Ref,
+			// The person the view is drawn for, as identity.Email names
+			// them; the commit stays Git's identity's (A14, D2).
+			Viewer: email,
+			// The end of the program ends the plans, not a commit (D12).
+			Context: ctx,
+			// After every commit the watcher loads at once (A12).
+			Poke: w.Poke,
+		}
 	}
 
 	// The one place the program's panes and commands come together: the grid is
 	// the home pane, the detail panes follow it, the panes that never open come
 	// last, the role pane and then the live refresh, and each task that adds a
 	// pane or a command extends this list: the live refresh adds the Force key.
-	// The grid has no start: the role pane starts it. The four actions follow,
-	// over the project directory; the integrate gate of 518e gives them their
-	// Repo, the ref, the viewer and the poke.
+	// The grid has no start: the role pane starts it. The four actions follow.
 	g := grid.New(grid.Options{Source: src, Settings: path})
 	details := detail.New(detail.Options{Source: src})
 	who := role.New(role.Options{Source: src, Viewer: email, Ref: *ref})
-	actions := newActions(act.Options{Dir: *dir, Context: ctx})
+	actions := newActions(ao)
 	opts := ui.Options{
 		Panes:    append(append(append([]ui.Pane{g}, details.Panes...), who), live...),
 		Commands: append(append(append(slices.Clone(details.Commands), role.Command()), force...), actions.Commands()...),
@@ -191,6 +213,37 @@ func run(args []string, stdout, stderr io.Writer) int {
 		return exitFailure
 	}
 	return exitOK
+}
+
+// formFacts is the Facts of the record form. A form asks Project and then
+// Task; Project opens a fresh action.Tablo, which loads HEAD once, and Task
+// reads the same one, so each form states HEAD as it stands when the form
+// opens (518e decision 16 a).
+type formFacts struct {
+	dir string
+	mu  sync.Mutex
+	t   *action.Tablo
+}
+
+// Project opens a fresh action.Tablo and reads the project from it.
+func (f *formFacts) Project(ctx context.Context) (action.Project, error) {
+	t := &action.Tablo{Dir: f.dir}
+	f.mu.Lock()
+	f.t = t
+	f.mu.Unlock()
+	return t.Project(ctx)
+}
+
+// Task reads the task from the action.Tablo that Project opened last, or
+// from a fresh one.
+func (f *formFacts) Task(ctx context.Context, id string) (action.Task, error) {
+	f.mu.Lock()
+	t := f.t
+	f.mu.Unlock()
+	if t == nil {
+		t = &action.Tablo{Dir: f.dir}
+	}
+	return t.Task(ctx, id)
 }
 
 // projectDir returns the directory that holds the project tablo reads: the

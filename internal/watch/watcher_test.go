@@ -278,6 +278,36 @@ func TestT6Submodule(t *testing.T) {
 	h.quiet(func() { commit(t, inner, "unseen") })
 }
 
+// A start loads once: the state the first load read holds no digest of the
+// checkouts, since the load names them through SetSubmodules, so their first
+// digest is no change. A move of a checkout right after it still is one.
+func TestTheFirstSubmoduleListIsNoChange(t *testing.T) {
+	sub := watchtest.Repo(t)
+	super := watchtest.Repo(t)
+	watchtest.Git(t, super, "-c", "protocol.file.allow=always", "submodule", "add", "-q", sub, "libs/sub")
+	watchtest.Git(t, super, "commit", "-q", "-m", "add submodule")
+	inner := filepath.Join(super, "libs/sub")
+
+	h := live(t, super)
+	loaded := h.snap()
+	h.w.SetSubmodules([]string{"libs/sub"})
+	named := h.snap()
+	if loaded.Modules != "" || named.Modules == "" {
+		t.Fatalf("the digests %q before the list and %q after it", loaded.Modules, named.Modules)
+	}
+	c := h.start(loaded)
+	h.asked(h.w.Interval) // no settle: the first digest is no change
+	h.none(c)
+	commit(t, inner, "moves the checkout")
+	h.tick()
+	h.asked(h.w.Settle)
+	h.tick()
+	r := <-c
+	if r.err != nil || r.st.Commit != loaded.Commit || r.st.Modules == named.Modules || r.st.Modules == "" {
+		t.Fatalf("got %+v, %v; want only the digest moved from %q", r.st, r.err, named.Modules)
+	}
+}
+
 func TestT7WorkingTreeEdits(t *testing.T) {
 	dir := watchtest.Repo(t)
 	h := live(t, dir)
