@@ -9,8 +9,8 @@ record 9f31 Sensor board
 > note    The boards arrive
 
   refused:
-  9f31 design: the status passes design, which ben@example.org reviews and has
-  not accepted; record the reason review to hand the work off (unreviewed, S11)
+  9f31 design: the reviewer ben@example.org has not accepted design; hand the
+  work off with the reason review (unreviewed, S11)
 
 record 9f31 · note · cursor 17 of 17
 enter plan  ↑↓ field  ←→ choice  esc cancel  ? help  q quit
