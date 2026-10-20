@@ -11,7 +11,7 @@ type History struct {
 	Commits  int         `json:"commits"`  // the distinct commits of those lines
 	Kinds    []KindCount `json:"kinds"`    // the six kinds, in SYNTAX.md's order, zeros included
 	Lines    []Line      `json:"lines"`    // oldest first; a subproject's lines from detail on
-	Commands []Command   `json:"commands"` // provenance: the two git log commands over the subtree and the range
+	Commands []Command   `json:"commands"` // provenance: the git log commands over the subtree and the range, and a third over the trunk's merges where the trunk is determined
 }
 
 // Line is what one commit does to one task: its events, each the shared
@@ -30,6 +30,7 @@ type Line struct {
 	Model        string      `json:"model"`         // the commit's first Model: trailer
 	Check        *ModelCheck `json:"check"`         // the model check of the line's status or reaffirmed event
 	Committer    string      `json:"committer"`     // the committer's email where it differs from the author's
+	CoAuthor     string      `json:"co_author"`     // the first agent a Co-Authored-By: trailer names on a person's commit; else ""
 
 	Commit *Commit `json:"commit"` // provenance: the commit, of the project or of the subproject the line comes from
 }

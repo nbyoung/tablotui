@@ -71,7 +71,7 @@ type Junction struct {
 	Contributor string      `json:"contributor"`
 	Model       string      `json:"model"`
 	Reviewer    string      `json:"reviewer"`
-	ByDefault   bool        `json:"reviewer_by_default"` // the assignee reviews, since no entry states one
+	ByDefault   bool        `json:"reviewer_by_default"` // the default supplies the reviewer, the assignee or the nearest person, since no entry states one
 	Subproject  *SubRef     `json:"subproject"`          // a recursive junction; else nil
 	References  []Reference `json:"references"`
 	Stands      string      `json:"stands"` // passed, here, next, later or exempt; "" on a parent
@@ -150,11 +150,12 @@ type Review struct {
 
 // ModelCheck compares a junction's model with a commit's Model: trailer.
 type ModelCheck struct {
-	Commit  string `json:"commit"`
-	Gate    string `json:"gate"`
-	Stated  string `json:"stated"`
-	Trailer string `json:"trailer"`
-	Reading string `json:"reading"` // agrees, differs, missing, exempt or unstated
+	Commit   string `json:"commit"`
+	Gate     string `json:"gate"`
+	Stated   string `json:"stated"`
+	Trailer  string `json:"trailer"`
+	Reading  string `json:"reading"`   // agrees, differs, missing, exempt or unstated
+	CoAuthor string `json:"co_author"` // the first agent a Co-Authored-By: trailer names on a person's commit; else ""
 }
 
 // Event is one event of a task: what one commit does to it of one kind.

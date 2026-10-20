@@ -20,5 +20,5 @@ a9ce           Authority delegation vi…       🟢 🤖👀 —   —    —  
 │       noreply@anthropic.com, model    │   Model: claude-fable-5-1; the 📐
 │       claude-opus, from bc63          │     design junction states
 │     Reviewer: 👀 nbyoung@nbyoung.com, │     claude-fable
-history e9c6 · detail · lines 59–67 of 67 · enter selects e9c6 × design
+history e9c6 · detail · lines 61–69 of 69 · enter selects e9c6 × design
 ↑↓ line  enter select task  d detail  p provenance  f fold  ? help  q quit

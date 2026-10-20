@@ -6,6 +6,7 @@
   Effect: an authority commits the
     task file on the trunk, so the
     task is authorised
+  Co-author: noreply@anthropic.com
   Commit:
     6b6c99a2ca35f684674ad886a339169791
     37f227
@@ -218,6 +219,7 @@
   Effect: the reviewer accepts the
     work at the gate
   Model: claude-opus-5-5
+  Co-author: noreply@anthropic.com
   Commit:
     0704a0912297b3de0218b821384cf1b995
     6a44bb
@@ -275,3 +277,6 @@ Commands
     '
     3cdae527d47d37fdff55bc302c76c017cf
     91c606
+  git log --format='%H %as %ae %s'
+    --first-parent --merges main --
+    .tableaux/tasks/e9c6.yaml

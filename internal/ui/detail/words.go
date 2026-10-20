@@ -119,6 +119,28 @@ var statedBy = map[string]string{
 	"assignee": "the assignee",
 }
 
+// reviewerDefaults words the default that supplies a junction's reviewer
+// where no entry states one, as tabloio does (cdb0 decision 2): the task's
+// assignee, or, at an agent's junction from 0.4.0, the nearest person among
+// the authorities. Where a pane cannot tell the two apart, the reviewer
+// stands by default.
+var reviewerDefaults = map[string]string{
+	"assignee": "the assignee",
+	"nearest":  "the nearest person",
+	"":         "by default",
+}
+
+// defaultReviewer returns the key of reviewerDefaults for a default
+// reviewer: assignee where the reviewer is the task's assignee, else
+// nearest, since the nearest person is an authority that is no assignee of
+// the task.
+func defaultReviewer(isAssignee bool) string {
+	if isAssignee {
+		return "assignee"
+	}
+	return "nearest"
+}
+
 // markFrom words where a field comes from, after its value: ", from <id>",
 // ", by default", or ", from " and the phrase of statedBy.
 func markFrom(src string) string {

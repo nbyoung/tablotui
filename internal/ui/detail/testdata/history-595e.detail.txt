@@ -3,8 +3,10 @@
   Status after: ❔ undefined ⚪ undefined
   Effect: an authority commits the task file on the trunk, so the task is
     authorised
+  Co-author: noreply@anthropic.com
 2026-09-29 · nbyoung@nbyoung.com · pin · subprojects/tableaud new 59783a9
   Status after: ❔ undefined ⚪ undefined, unchanged
+  Co-author: noreply@anthropic.com
   Subproject events: 11 events in 1 commit of subprojects/tableaud
     2026-09-29 · nbyoung@nbyoung.com · task · 8608 tableaud · the task file
       appears
@@ -31,14 +33,15 @@
 2026-09-30 · nbyoung@nbyoung.com · pin · subprojects/tableaud 59783a9 →
   d285989
   Status after: ❔ undefined ⚪ undefined, unchanged
-  Subproject events: 6 events in 5 commits of subprojects/tableaud
+  Subproject events: 7 events in 5 commits of subprojects/tableaud
     2026-09-29 · noreply@anthropic.com · task, status · 7425 Bootstrap · 📝
       defined 🟢 nominal
     2026-09-29 · noreply@anthropic.com · status · 7425 Bootstrap · 📝 defined
       🟢 nominal 👓 review
     2026-09-29 · noreply@anthropic.com · reviewed · 7425 Bootstrap · 📝
       defined
-    2026-09-30 · nbyoung@nbyoung.com · reviewed · 7425 Bootstrap · 📐 design
+    2026-09-30 · nbyoung@nbyoung.com · authorised, reviewed · 7425 Bootstrap ·
+      📐 design
     2026-09-30 · noreply@anthropic.com · status · 7425 Bootstrap · 📐 design
       🟢 nominal
 2026-09-30 · nbyoung@nbyoung.com · pin · subprojects/tableaud d285989 →
@@ -47,13 +50,15 @@
 2026-09-30 · nbyoung@nbyoung.com · pin · subprojects/tableaud 1c4d785 →
   38de8e2
   Status after: ❔ undefined ⚪ undefined, unchanged
-  Subproject events: 1 event in 1 commit of subprojects/tableaud
+  Subproject events: 2 events in 2 commits of subprojects/tableaud
     2026-09-30 · noreply@anthropic.com · task · 8608 tableaud · the task file
       appears · claude-fable-5-1
+    2026-09-30 · nbyoung@nbyoung.com · authorised · 8608 tableaud
 2026-09-30 · nbyoung@nbyoung.com · pin · subprojects/tableaud 38de8e2 →
   5a99a5c
   Status after: ❔ undefined ⚪ undefined, unchanged
   Model: claude-opus-5-5
+  Co-author: noreply@anthropic.com
   Subproject events: 3 events in 2 commits of subprojects/tableaud
     2026-09-30 · noreply@anthropic.com · status · 7425 Bootstrap · 📐 design
       🟢 nominal · claude-sonnet-5-5
@@ -63,7 +68,8 @@
   2061a7f
   Status after: ❔ undefined ⚪ undefined, unchanged
   Model: claude-opus-5-5
-  Subproject events: 16 events in 2 commits of subprojects/tableaud
+  Co-author: noreply@anthropic.com
+  Subproject events: 24 events in 3 commits of subprojects/tableaud
     2026-09-30 · noreply@anthropic.com · task · 49ce Server · the task file
       appears · claude-sonnet-5-5
     2026-09-30 · noreply@anthropic.com · task · 438a Legend and task templates
@@ -80,6 +86,22 @@
       file appears · claude-sonnet-5-5
     2026-09-30 · noreply@anthropic.com · task · 5a2f Accessibility and theming
       · the task file appears · claude-sonnet-5-5
+    2026-09-30 · nbyoung@nbyoung.com · authorised · 49ce Server ·
+      claude-opus-5-5
+    2026-09-30 · nbyoung@nbyoung.com · authorised · 438a Legend and task
+      templates · claude-opus-5-5
+    2026-09-30 · nbyoung@nbyoung.com · authorised · e2b6 Structural templates
+      · claude-opus-5-5
+    2026-09-30 · nbyoung@nbyoung.com · authorised · 44bf Status templates ·
+      claude-opus-5-5
+    2026-09-30 · nbyoung@nbyoung.com · authorised · 9a9c Temporal templates ·
+      claude-opus-5-5
+    2026-09-30 · nbyoung@nbyoung.com · authorised · db74 Progressive
+      disclosure · claude-opus-5-5
+    2026-09-30 · nbyoung@nbyoung.com · authorised · 6160 Static export ·
+      claude-opus-5-5
+    2026-09-30 · nbyoung@nbyoung.com · authorised · 5a2f Accessibility and
+      theming · claude-opus-5-5
     2026-09-30 · noreply@anthropic.com · status · 49ce Server · 📝 defined 🟢
       nominal · claude-haiku-4-5-20251001
     2026-09-30 · noreply@anthropic.com · status · 438a Legend and task
@@ -106,16 +128,19 @@
   Status after: 📝 defined 🟢 nominal, 🪆 from the subproject
     subprojects/tableaud, unchanged
   Model: claude-opus-5-5
+  Co-author: noreply@anthropic.com
 2026-10-02 · nbyoung@nbyoung.com · pin · subprojects/tableaud b06cad0 →
   cffbfa6
   Status after: 📝 defined 🟢 nominal, 🪆 from the subproject
     subprojects/tableaud, unchanged
   Model: claude-opus-5-5
+  Co-author: noreply@anthropic.com
 2026-10-05 · nbyoung@nbyoung.com · pin · subprojects/tableaud cffbfa6 →
   e6ec4ec
   Status after: 📝 defined 🟢 nominal, 🪆 from the subproject
     subprojects/tableaud
   Model: claude-opus-5-5
+  Co-author: noreply@anthropic.com
   Subproject events: 21 events in 13 commits of subprojects/tableaud
     2026-10-05 · noreply@anthropic.com · status, reviewed · 9a9c Temporal
       templates · 🔧 function 🟢 nominal · claude-sonnet-5-5
