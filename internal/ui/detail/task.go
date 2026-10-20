@@ -186,7 +186,7 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 		var reviewer, sub string
 		switch {
 		case j.Reviewer != "" && j.ByDefault:
-			reviewer = "reviewer the assignee, " + j.Reviewer
+			reviewer = "reviewer " + reviewerDefaults[defaultReviewer(j.Reviewer == d.Assignee)] + ", " + j.Reviewer
 		case j.Reviewer != "":
 			reviewer = "reviewer " + j.Reviewer
 		}

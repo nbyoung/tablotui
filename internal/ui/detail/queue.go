@@ -194,7 +194,12 @@ func (w words) queueDetail(it list.QueueItem, item int) []Line {
 		if j.Reviewer != "" {
 			text := join(" ", w.symbol("reviewer"), j.Reviewer)
 			if j.ByDefault {
-				text += ", the assignee"
+				// The reviewer's supplier is the assignee, or the ancestor
+				// at whose assignee the nearest person stands (cdb0
+				// decision 2).
+				src := sourceOf(it, "reviewer")
+				_, word := statedBy[src]
+				text += ", " + reviewerDefaults[defaultReviewer(word || src == "")]
 			} else {
 				text += markFrom(sourceOf(it, "reviewer"))
 			}

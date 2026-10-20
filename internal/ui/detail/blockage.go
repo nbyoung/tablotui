@@ -133,7 +133,10 @@ func (w words) junctionFields(j list.Junction) string {
 	if j.Reviewer != "" {
 		r := "reviewer " + j.Reviewer
 		if j.ByDefault {
-			r += ", the assignee"
+			// The line names no assignee and no supplier, so it says the
+			// default supplies the reviewer, the assignee or the nearest
+			// person (cdb0 decision 2).
+			r += ", " + reviewerDefaults[""]
 		}
 		fields = append(fields, r)
 	}

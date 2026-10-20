@@ -71,7 +71,7 @@ type Junction struct {
 	Contributor string      `json:"contributor"`
 	Model       string      `json:"model"`
 	Reviewer    string      `json:"reviewer"`
-	ByDefault   bool        `json:"reviewer_by_default"` // the assignee reviews, since no entry states one
+	ByDefault   bool        `json:"reviewer_by_default"` // the default supplies the reviewer, the assignee or the nearest person, since no entry states one
 	Subproject  *SubRef     `json:"subproject"`          // a recursive junction; else nil
 	References  []Reference `json:"references"`
 	Stands      string      `json:"stands"` // passed, here, next, later or exempt; "" on a parent
