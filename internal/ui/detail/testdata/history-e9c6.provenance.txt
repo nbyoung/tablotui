@@ -122,3 +122,5 @@ Commands
   git log --format='%H %as %ae %s' -E --grep='^(Authorised|Reaffirmed):
     (e9c6)$' --grep='^Reviewed: (e9c6) '
     3cdae527d47d37fdff55bc302c76c017cf91c606
+  git log --format='%H %as %ae %s' --first-parent --merges main --
+    .tableaux/tasks/e9c6.yaml

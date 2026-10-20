@@ -275,3 +275,6 @@ Commands
     '
     3cdae527d47d37fdff55bc302c76c017cf
     91c606
+  git log --format='%H %as %ae %s'
+    --first-parent --merges main --
+    .tableaux/tasks/e9c6.yaml

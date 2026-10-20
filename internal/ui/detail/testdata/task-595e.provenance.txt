@@ -129,7 +129,7 @@ Models: 1
     claude-haiku-4-5-20251001 · Agrees
 
 Newest events
-  69 events; the newest 5, newest first.
+  79 events; the newest 5, newest first.
   2026-10-05 · 3cdae52 · nbyoung@nbyoung.com · pin · subprojects/tableaud
     cffbfa6 → e6ec4ec
   2026-10-05 · 218d8f3 · noreply@anthropic.com · reviewed · 🔧 function; in
@@ -146,7 +146,7 @@ Newest events
     against treegrid keyboard use, CSS-only light and dark themes with
     contrast tests, and scrolling against stacked phone layouts; in the
     subproject subprojects/tableaud, task 5a2f Accessibility and theming
-  … and 64 earlier
+  … and 74 earlier
 
 Commands
   git log --format='%H %as %ae %s' 3cdae527d47d37fdff55bc302c76c017cf91c606 --
