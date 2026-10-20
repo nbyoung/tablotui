@@ -267,7 +267,7 @@ func taskLines(d list.Task, lvl list.Level, unfold bool) (subject, counts string
 		if m.Trailer != "" {
 			trailer = "trailer " + m.Trailer
 		}
-		add(Line{Text: cells(short(m.Commit), w.gate(m.Gate), stated, trailer, phraseOf(modelReadings, m.Reading)), Indent: 2, Hang: 2, Item: 11, Task: id, Gate: m.Gate})
+		add(Line{Text: cells(short(m.Commit), w.gate(m.Gate), stated, trailer, phraseOf(modelReadings, m.Reading)+coAuthor(m.CoAuthor)), Indent: 2, Hang: 2, Item: 11, Task: id, Gate: m.Gate})
 	}
 	section(12, "Newest events")
 	add(Line{
@@ -319,6 +319,17 @@ var modelReadings = map[string]string{
 	"missing":  "No trailer",
 	"exempt":   "Exempt",
 	"unstated": "No model stated",
+}
+
+// coAuthor words the agent that a person's commit names in a
+// Co-Authored-By: trailer, after a model check's reading, as tabloio does
+// (cdb0 decision 3): "; co-author <email>", or nothing where the commit
+// names none.
+func coAuthor(email string) string {
+	if email == "" {
+		return ""
+	}
+	return "; co-author " + email
 }
 
 // phraseOf returns the phrase of a key, or the key where the table has none.

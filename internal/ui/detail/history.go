@@ -233,6 +233,9 @@ func historyLines(d list.History, lvl list.Level) (subject, counts string, lines
 		if m := w.model(l); m != "" {
 			add("Model: " + m)
 		}
+		if l.CoAuthor != "" {
+			add("Co-author: " + l.CoAuthor)
+		}
 		if l.Committer != "" {
 			add("Committer: " + l.Committer)
 		}

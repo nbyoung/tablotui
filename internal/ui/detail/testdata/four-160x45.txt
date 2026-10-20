@@ -31,8 +31,8 @@ a8b4           Audit view in Html                            🟢 🤖👀 —  
 e3cb       Schema files                                                           🟢 —  🤖👀 🧑            │
 fcec       Conformance corpus                                                 🟢  🤖 🤖 🤖👀 🧑            │
 ac33       Agent identity                                                🟢  🤖👀 —  —  🤖👀 🧑            │
-9f3f       Subproject linkage                                            🟢  🤖👀 —  —  🤖👀 🧑            ┌─ 4 History e9c6 · 7 events · detail ─ 43–51 of 51 ─
-7861       Productivity evidence                                              🟢  —  —  🤖👀 🧑            │   Model: claude-opus-5-5
+9f3f       Subproject linkage                                            🟢  🤖👀 —  —  🤖👀 🧑            ┌─ 4 History e9c6 · 7 events · detail ─ 45–53 of 53 ─
+7861       Productivity evidence                                              🟢  —  —  🤖👀 🧑            │   Co-author: noreply@anthropic.com
 7166       Language clarifications                                       🟢  🤖👀 —  —  🤖👀 🧑            │ 2026-09-30 · noreply@anthropic.com · status · 📐
 77b2     tablo: backend library and plumbing                 🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆            │   design 🟢 nominal
 6103     tabloio: command line, output and input             🟢  🪆  🪆  🪆   🪆  🪆 🪆  🪆  🪆            │   Status after: 📐 design 🟢 nominal
@@ -41,5 +41,5 @@ c6e8     tablotui: terminal user interface                   🟢  🪆  🪆  �
                                                                                                            │     implementation puts the text in place
                                                                                                            │   Model: claude-fable-5-1; the 📐 design junction
                                                                                                            │     states claude-fable
-history e9c6 · detail · lines 43–51 of 51 · enter selects e9c6 × design
+history e9c6 · detail · lines 45–53 of 53 · enter selects e9c6 × design
 ↑↓ line  enter select task  d detail  p provenance  f fold  ? help  q quit

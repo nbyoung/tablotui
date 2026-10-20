@@ -99,7 +99,6 @@ history lines/*/after/derived
 history lines/*/after/kind
 history lines/*/after/uncommitted
 history lines/*/after/why
-history lines/*/co_author
 history lines/*/commit/parents
 history lines/*/subject_after/derived
 history lines/*/subject_after/kind

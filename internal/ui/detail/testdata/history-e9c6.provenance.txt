@@ -3,6 +3,7 @@
   Status after: ❔ undefined ⚪ undefined
   Effect: an authority commits the task file on the trunk, so the task is
     authorised
+  Co-author: noreply@anthropic.com
   Commit: 6b6c99a2ca35f684674ad886a33916979137f227
   Subject: Plan the Tableaux tooling
   Author: Norman Young <nbyoung@nbyoung.com>, 2026-09-29T16:38:16-04:00
@@ -95,6 +96,7 @@
   Status after: 📝 defined 🟢 nominal 👓 review, unchanged
   Effect: the reviewer accepts the work at the gate
   Model: claude-opus-5-5
+  Co-author: noreply@anthropic.com
   Commit: 0704a0912297b3de0218b821384cf1b9956a44bb
   Subject: Accept the abstract views design
   Author: Norman Young <nbyoung@nbyoung.com>, 2026-09-30T15:16:33-04:00
