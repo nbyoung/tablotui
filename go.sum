@@ -32,8 +32,8 @@ github.com/mattn/go-runewidth v0.0.27 h1:Feg/Oou5zI/wnpgDF6omIU0OokC9GxLC/WRknhV
 github.com/mattn/go-runewidth v0.0.27/go.mod h1:3qAiGCV4Koz/yuveO58qUefmUTRm8r0IGEXZ9jeHp/8=
 github.com/muesli/cancelreader v0.2.2 h1:3I4Kt4BQjOR54NavqnDogx/MIoWBFa0StPA8ELUXHmA=
 github.com/muesli/cancelreader v0.2.2/go.mod h1:3XuTXfFS2VjM+HTLZY9Ak0l6eUKfijIfMUZ4EgX0QYo=
-github.com/nbyoung/tablo v0.1.1-0.20261020192233-fd3ecc37057b h1:OnAkVtDd/YgIkolM4ZdVptBo4uCNACkU80/4OvgBfKk=
-github.com/nbyoung/tablo v0.1.1-0.20261020192233-fd3ecc37057b/go.mod h1:o8EfV1Ce9PIxbaT55xdINRFiBDCHf3X2cqFmQw2HhRk=
+github.com/nbyoung/tablo v0.2.0 h1:9AcVchb766ralYYvvvEgsIUni4mwLyz4SIxJ8G6eu40=
+github.com/nbyoung/tablo v0.2.0/go.mod h1:o8EfV1Ce9PIxbaT55xdINRFiBDCHf3X2cqFmQw2HhRk=
 github.com/nbyoung/tabloio v0.1.1 h1:w7Y80Nt2Tcjrouk2hjDwr2pP3hgsXZQ4mEDcn65v75I=
 github.com/nbyoung/tabloio v0.1.1/go.mod h1:XtW3mJS4ZfVP2FeixxZ8eQ5jOd2Ljw0k++ONf96ugpA=
 github.com/rivo/uniseg v0.4.7 h1:WUdvkW8uEhrYfLC4ZzdpI2ztxP1I582+49Oc5Mq64VQ=
