@@ -2,8 +2,8 @@
 
 The JSON files here are tablo's golden data of the two tableaux, copied
 unchanged from `github.com/nbyoung/tablo` at commit
-`620473c299bd693af258804146c44d28bd3d737b`, the module version
-`v0.0.0-20261017000822-620473c299bd`, from
+`21d423c4bdc1323125f2fffc41133435ea010764`, the module version
+`v0.2.0`, from
 `internal/views/testdata/weather-station/`. Each holds the `data` of one
 envelope: the view of the corpus entry `weather-station` at `main`.
 
