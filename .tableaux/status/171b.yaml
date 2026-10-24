@@ -1,3 +1,4 @@
 gate: integrate
 state: nominal
-note: The component as a pane that never opens, --ref, tablo's Loader with SetSubmodules, the notice line of its own, Where in the status line and the Force key on ctrl+r stand; T1 to T22 and the integrate tests pass under go test -count=1 and -race, with and without TABLEAUX_CORPUS and TABLEAUX_DIR, and BenchmarkLoad on the umbrella at 50a373b loads in 42 ms at arrival and 91 ms with four panes open, under A8's 100 ms; the validate gate runs the owner's edit beside a running program; the Poke after an action waits on 518e at implementation
+reason: review
+note: Validate awaits the owner's review. BenchmarkLoad on the umbrella at 50a373b gives a median of 45 ms at arrival and 97 ms with four panes open on a quiet host (110 ms at a load average of 4), against A8's 100 ms, and a pseudo-terminal showed an edit within the poll, the Reload failed notice and its removal on mending, ctrl+r reading an edit the poll misses, and a clean quit. The owner runs the edit beside a running program, the broken file and its notice, ctrl+r and the quit
