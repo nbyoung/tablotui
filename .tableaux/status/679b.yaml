@@ -1,3 +1,4 @@
 gate: integrate
 state: nominal
-note: The tablo adapter, the live refresh as a pane that never opens and main.go on tablo stand; T1 to T17 and the four integrate tests pass under go test -count=1 and -race, with and without TABLEAUX_CORPUS and TABLEAUX_DIR; the validate gate runs the terminal checks; the Force key and the notice line of its own wait on 171b at integrate
+reason: review
+note: Validate awaits the owner's review. The suites pass under go test -count=1 and -race in six runs (827 to 896 passes, no failure), a start on the umbrella and on weather-station under a pseudo-terminal draws the root, the program strips U+FE0F when the terminal gives no mode 2027 answer and keeps it when it does, sets no hue of its own and quits with the terminal restored. The owner runs the terminal checks of alignment with and without mode 2027, the stripped glyph, attributes and NO_COLOR, resize and the keys on a real keyboard
