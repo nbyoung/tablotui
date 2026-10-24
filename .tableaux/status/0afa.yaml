@@ -1,3 +1,4 @@
 gate: integrate
 state: nominal
-note: The tablo adapter behind source.Lists, the list fixtures as tablo's output at 3cdae52 and the opening level a role gives a pane from tablo stand; T1 to T20 and the ten integrate tests pass under go test -count=1 and -race, with and without TABLEAUX_CORPUS and TABLEAUX_DIR, and a move of the row cursor with four panes open takes about 3 ms at the median, under 100 ms; the validate gate runs the terminal checks; kinds/queue.json and the history with no event stay hand-made, since tablo derives neither form on the umbrella or the corpus
+reason: review
+note: Validate awaits the owner's review. The suites pass in six runs with no failure, the cursor move with four panes open passes on the corpus and on the umbrella, and a pseudo-terminal drove the four panes, the zoom and the role keys. The owner runs the terminal checks of the grid, the box characters with East Asian Ambiguous set wide, a cursor move with four panes open on the umbrella and the panes beside the role pane and the prompt
