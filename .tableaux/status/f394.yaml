@@ -1,3 +1,4 @@
 gate: integrate
 state: nominal
-note: The adapter that implements source.Viewers, Ada's and Ben's arrivals and the observer on weather-station, the ref of --ref on every start and the role pane beside the four panes stand; T1 to T17 and the six integrate tests pass under go test -count=1 and -race, with and without TABLEAUX_CORPUS and TABLEAUX_DIR, Ben's arrival selecting 4e2b by decision 13; the validate gate runs the terminal checks; R is the one key bound here, and A12 with the keys r, v, a and u waits on 518e at integrate
+reason: review
+note: Validate awaits the owner's review. The suites pass in six runs with no failure, a pseudo-terminal drove R through the owner's three roles in the umbrella, Ada owner on the root, Ben assignee on 4e2b and a stranger as observer, and the keys r, v, a and u of A12 are bound and wired. The owner runs the start under the owner's own Git identity, R on a real keyboard and the context line at the owner's width
