@@ -73,10 +73,10 @@ func (p Pane[T]) Update(msg tea.Msg, _ ui.Context) (ui.Pane, tea.Cmd) {
 func (p Pane[T]) Where() string { return p.m.Status().Where() }
 
 // Notice implements ui.Reporter: Status().Notice(), an error while a load
-// fails.
+// fails or the project has error diagnostics.
 func (p Pane[T]) Notice() ui.NoticeMsg {
 	st := p.m.Status()
-	return ui.NoticeMsg{Text: st.Notice(), Err: st.Err != nil}
+	return ui.NoticeMsg{Text: st.Notice(), Err: st.Err != nil || st.Diag != nil}
 }
 
 // View implements ui.Pane: h blank lines, since the pane never opens.

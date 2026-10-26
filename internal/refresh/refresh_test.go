@@ -188,6 +188,69 @@ func TestT18FailedReloadKeepsTheView(t *testing.T) {
 	}
 }
 
+// beside is a Beside error, as source.DiagnosticError is.
+type beside struct{ msg string }
+
+func (e beside) Error() string { return e.msg }
+func (beside) Beside()         {}
+
+func TestT18DiagnosticBesideTheView(t *testing.T) {
+	s1, s2, s3, s4 := state("aaaaaaa1"), state("bbbbbbb2"), state("cccccccc3"), state("dddddddd4")
+	w := newScript(s1)
+	var next error
+	m := New(context.Background(), live, w, newStepper().now, func(_ context.Context, st watch.State) (string, error) {
+		return st.Commit, next
+	})
+	step := func(st watch.State) Loaded[string] {
+		t.Helper()
+		var cmd tea.Cmd
+		m, cmd = m.Update(changed{st})
+		l := run(t, cmd).(Loaded[string])
+		m, _ = m.Update(l)
+		return l
+	}
+	diag := beside{"status/9f31.yaml:3:8: S6 state nomnal names no state\n(and 1 more)"}
+
+	// A good load beside a diagnostic carries both.
+	next = diag
+	l := step(s1)
+	if l.Err != nil || l.Diag != diag || l.Data != s1.Commit {
+		t.Fatalf("the load yields %#v", l)
+	}
+	st := m.Status()
+	if !st.Good || st.Err != nil || st.Diag != diag || st.State != s1 || st.Loaded.IsZero() {
+		t.Fatalf("status %+v after a load beside a diagnostic", st)
+	}
+	want := "The project has errors: status/9f31.yaml:3:8: S6 state nomnal names no state"
+	if got := st.Notice(); got != want {
+		t.Fatalf("Notice %q, want %q", got, want)
+	}
+
+	// A failed load keeps the diagnostic with the view it keeps.
+	next = errors.New("boom")
+	if l := step(s2); l.Err == nil {
+		t.Fatalf("the failed load yields %#v", l)
+	}
+	st = m.Status()
+	if st.Diag != diag || st.Err == nil || st.State != s1 {
+		t.Fatalf("status %+v after a failure", st)
+	}
+
+	// A load beside a diagnostic after a failure clears the failure only.
+	next = diag
+	step(s3)
+	if st := m.Status(); st.Err != nil || st.Diag != diag || st.State != s3 {
+		t.Fatalf("status %+v after a second load beside a diagnostic", st)
+	}
+
+	// A clean load clears the diagnostic.
+	next = nil
+	step(s4)
+	if st := m.Status(); st.Diag != nil || st.Err != nil || st.State != s4 || st.Notice() != "" {
+		t.Fatalf("status %+v after a clean load", st)
+	}
+}
+
 func TestT18WaitArmsAgainstTheFailedState(t *testing.T) {
 	s1, s2 := state("aaaaaaa1"), state("bbbbbbb2")
 	w := newScript(s1)
@@ -365,6 +428,8 @@ func TestT21Lines(t *testing.T) {
 		"ref-gone": {Source: at, Good: true, State: pin, Loaded: loaded, Failed: failed,
 			Err: errors.New("Needed a single revision")},
 		"no-view-yet": {Source: live, Err: errors.New("no .tableaux directory")},
+		"diagnostic-beside": {Source: live, Good: true, State: main, Loaded: loaded,
+			Diag: beside{"status/9f31.yaml:3:8: S6 state nomnal names no state in gates.yaml\nsecond line"}},
 	}
 	names, where, notice := goldenCases(t)
 	if len(names) != len(cases) {

@@ -51,7 +51,8 @@ func adapter(t *testing.T, dir, ref string, st watch.State) *source.Tablo {
 		t.Fatal(err)
 	}
 	snap, err := src.Load(t.Context(), st)
-	if err != nil {
+	var diag *source.DiagnosticError
+	if err != nil && !errors.As(err, &diag) { // a diagnostic beside the snapshot leaves it good
 		t.Fatal(err)
 	}
 	src.Store(snap)

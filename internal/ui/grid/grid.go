@@ -258,12 +258,12 @@ func (g Grid) loaded(msg ui.LoadedMsg) (Grid, tea.Cmd, bool) {
 	var t view.Tableau
 	err := msg.Err
 	// Error diagnostics beside a view leave it standing: the grid draws it
-	// and shows the first diagnostic (679b decision 16).
-	var cmd tea.Cmd
+	// and sends no notice, since the live refresh reports the diagnostics on
+	// the notice line (679b decision 16, 171b decision 15).
 	var diag *source.DiagnosticError
 	if errors.As(err, &diag) {
 		if _, ok := msg.Value.(view.Tableau); ok {
-			err, cmd = nil, notice(diag.Error(), true)
+			err = nil
 		}
 	}
 	if err == nil {
@@ -291,7 +291,7 @@ func (g Grid) loaded(msg ui.LoadedMsg) (Grid, tea.Cmd, bool) {
 	} else if old != nil {
 		g.sel = survivor(old.Rows, t.Rows, g.sel)
 	}
-	return g, cmd, true
+	return g, nil, true
 }
 
 // arrive applies a start's folds and selection to the data.

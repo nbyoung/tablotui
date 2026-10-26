@@ -3,6 +3,7 @@ package source
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"flag"
 	"os"
 	"path/filepath"
@@ -75,7 +76,8 @@ func fixtureSource(t *testing.T) *Tablo {
 		t.Fatal(err)
 	}
 	snap, err := src.Load(t.Context(), watch.State{Commit: fixtureCommit})
-	if err != nil {
+	var diag *DiagnosticError
+	if err != nil && !errors.As(err, &diag) { // a diagnostic beside the snapshot leaves it good
 		t.Fatal(err)
 	}
 	src.Store(snap)

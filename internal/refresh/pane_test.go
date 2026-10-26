@@ -130,6 +130,33 @@ func TestPaneStoresAndReloads(t *testing.T) {
 	}
 }
 
+// A good load beside a diagnostic shows it on the notice line in the error
+// style; a key leaves it, and the next clean load clears it (171b decision 15).
+func TestPaneDiagnosticBesideTheView(t *testing.T) {
+	w := newScript(state("aaaa111"))
+	for range 4 {
+		w.feed <- state("aaaa111")
+	}
+	var next error = beside{"status/9f31.yaml:3:8: S6 bad"}
+	m := New(t.Context(), live, w, newStepper().now, func(context.Context, watch.State) (int, error) { return 1, next })
+	f := &frame{t: t, m: ui.New(ui.Options{Panes: []ui.Pane{counter{}, NewPane(m, nil)}, Styles: ui.DefaultStyles()})}
+	f.send(tea.WindowSizeMsg{Width: 60, Height: 8})
+	f.run(f.m.Init())
+	want := "The project has errors: status/9f31.yaml:3:8: S6 bad"
+	if f.line(5) != want || !strings.Contains(f.raw(5), "\x1b[") || f.line(1) != "x" {
+		t.Errorf("notice %q (raw %q), body %q", f.line(5), f.raw(5), f.line(1))
+	}
+	f.send(tea.KeyPressMsg{Code: 'x', Text: "x"})
+	if f.line(5) != want {
+		t.Errorf("after a key the notice reads %q", f.line(5))
+	}
+	next = nil
+	f.send(changed{state("bbbb222")})
+	if f.line(5) != "" {
+		t.Errorf("after a clean load the notice reads %q", f.line(5))
+	}
+}
+
 // A first load that fails says there is no view yet, and a nil store is no
 // fault.
 func TestPaneFirstLoadFails(t *testing.T) {

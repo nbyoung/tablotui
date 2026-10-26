@@ -20,14 +20,25 @@ type Watcher interface {
 }
 
 // Loader loads the view data for one settled state. The frame supplies it. It
-// runs in a command's goroutine, and st.Err is always empty when it runs.
+// runs in a command's goroutine, and st.Err is always empty when it runs. It
+// returns data and no error, an error and no data, or data beside an error
+// that is a Beside.
 type Loader[T any] func(ctx context.Context, st watch.State) (T, error)
+
+// Beside marks an error that a Loader returns beside data that stands: the
+// load is good, and the error is a condition of the project that Status
+// carries (171b decision 15). Any other error fails the load with zero data.
+type Beside interface {
+	error
+	Beside()
+}
 
 // Loaded is the one message the frame handles. It carries the result of one load.
 type Loaded[T any] struct {
 	State watch.State // the state the load read
 	Data  T           // the view data; the zero value when Err is set
 	Err   error       // why the load failed; the frame then keeps what it shows
+	Diag  error       // the error beside Data that stands, nil for none; Err is then nil
 }
 
 // changed reports a settled state that the component loads next.
@@ -79,6 +90,7 @@ func (m Model[T]) Update(msg tea.Msg) (Model[T], tea.Cmd) {
 			m.status.Good = true
 			m.status.State = msg.State
 			m.status.Loaded = m.now()
+			m.status.Diag = msg.Diag
 		}
 		return m, m.waitCmd(msg.State)
 	}
@@ -104,6 +116,10 @@ func (m Model[T]) loadCmd(st watch.State) tea.Cmd {
 		data, err := m.load(m.ctx, st)
 		if m.ctx.Err() != nil {
 			return nil
+		}
+		var beside Beside
+		if errors.As(err, &beside) {
+			return Loaded[T]{State: st, Data: data, Diag: err}
 		}
 		if err != nil {
 			return Loaded[T]{State: st, Err: err}

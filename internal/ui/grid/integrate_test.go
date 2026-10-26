@@ -41,7 +41,8 @@ func adapter(t *testing.T, dir, ref string, st watch.State) *source.Tablo {
 	start := time.Now()
 	snap, err := src.Load(t.Context(), st)
 	t.Logf("the load of %s took %v", filepath.Base(dir), time.Since(start))
-	if err != nil {
+	var diag *source.DiagnosticError
+	if err != nil && !errors.As(err, &diag) { // a diagnostic beside the snapshot leaves it good
 		t.Fatal(err)
 	}
 	src.Store(snap)
@@ -263,32 +264,60 @@ func (stillWatcher) Next(_ context.Context, prev watch.State) (watch.State, erro
 }
 func (stillWatcher) Poke() {}
 
+// forceWatcher is a stillWatcher that counts the pokes it receives.
+type forceWatcher struct {
+	stillWatcher
+	pokes int
+}
+
+func (w *forceWatcher) Poke() { w.pokes++ }
+
 // liveRig builds the frame with the grid, whose start waits, and the live
 // refresh over the adapter on dir, and runs the first load.
 func liveRig(t *testing.T, dir string) *rig {
+	t.Helper()
+	r, _, _ := liveRigWith(t, dir)
+	return r
+}
+
+// liveRigWith is liveRig that also returns the refresh pane and the watcher
+// that counts the pokes.
+func liveRigWith(t *testing.T, dir string) (*rig, ui.Pane, *forceWatcher) {
 	t.Helper()
 	src, err := source.NewTablo(t.Context(), dir, "", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
-	m := refresh.New(t.Context(), watch.Source{Dir: dir}, stillWatcher{}, time.Now, src.Load)
+	w := &forceWatcher{}
+	m := refresh.New(t.Context(), watch.Source{Dir: dir}, w, time.Now, src.Load)
+	p := refresh.NewPane(m, src.Store)
 	g := New(Options{Source: src})
-	return newRigWith(t, ui.New(ui.Options{Panes: []ui.Pane{g, refresh.NewPane(m, src.Store)}, Styles: ui.DefaultStyles()}), 120, 16)
+	return newRigWith(t, ui.New(ui.Options{Panes: []ui.Pane{g, p}, Styles: ui.DefaultStyles()}), 120, 16), p, w
+}
+
+// notice returns the frame's notice line, the third from the bottom.
+func (r *rig) notice() string {
+	lines := strings.Split(r.screen(), "\n")
+	return lines[len(lines)-3]
 }
 
 // (d) Decision 16, through the live refresh, the adapter and the grid: an
 // error diagnostic beside view data stores the snapshot, draws the tableau
-// and shows the diagnostic; a missing version, an unaccepted version, an
-// unusable gates.yaml and a broken tree fail the load, and the screen keeps
-// what it shows and says why, on the live refresh's notice line (171b A5).
+// and reports the diagnostic on the notice line (171b decision 15); a
+// missing version, an unaccepted version, an unusable gates.yaml and a broken
+// tree fail the load, and the screen keeps what it shows and says why, on the
+// live refresh's notice line (171b A5).
 func TestIntegrateDiagnosticBesideTheView(t *testing.T) {
 	r := liveRig(t, corpustest.Entry(t, "status-unknown-state"))
 	r.send(StartMsg{Start: GlanceStart()})
 	if !strings.HasPrefix(r.line(1), "Id") || r.line(3) == "" || strings.Contains(r.screen(), "no task in view") {
 		t.Errorf("the tableau does not draw:\n%s", r.screen())
 	}
-	if got := r.status(); !strings.HasPrefix(got, "error: .tableaux/status/") || !strings.Contains(got, ": S6 ") {
-		t.Errorf("status = %q", got)
+	if got := r.notice(); !strings.HasPrefix(got, "The project has errors: .tableaux/status/") || !strings.Contains(got, ": S6 ") {
+		t.Errorf("notice line = %q", got)
+	}
+	if got := r.status(); strings.HasPrefix(got, "error:") || !strings.HasSuffix(got, "working tree at , detached") {
+		t.Errorf("status = %q, want the source", got)
 	}
 	for entry, code := range map[string]string{
 		"version-missing":        "P2",
@@ -309,5 +338,38 @@ func TestIntegrateDiagnosticBesideTheView(t *testing.T) {
 				t.Errorf("status = %q, want the source", got)
 			}
 		})
+	}
+}
+
+// 171b decision 15: the notice line holds an error beside the view for as long
+// as the error holds. A key leaves it; the mend of the file and a forced
+// reload clear it. The watcher never reports a change, so ctrl+r's ForceMsg
+// pokes it, and the pane's Init, which reads the watcher's state again,
+// stands in for the poll that the poke wakes: no test sleeps on the clock.
+func TestIntegrateDiagnosticClearsOnTheMend(t *testing.T) {
+	dir := corpustest.Entry(t, "status-unknown-state")
+	r, p, w := liveRigWith(t, dir)
+	r.send(StartMsg{Start: GlanceStart()})
+	if got := r.notice(); !strings.HasPrefix(got, "The project has errors: .tableaux/status/") || !strings.Contains(got, ": S6 ") {
+		t.Fatalf("notice line = %q", got)
+	}
+	r.keys("j j")
+	if got := r.notice(); !strings.HasPrefix(got, "The project has errors: ") {
+		t.Errorf("after keys the notice line = %q", got)
+	}
+	file := filepath.Join(dir, ".tableaux", "status", "b2c9.yaml")
+	if err := os.WriteFile(file, []byte("gate: defined\nstate: nominal\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	r.send(refresh.ForceMsg{})
+	if w.pokes != 1 {
+		t.Fatalf("%d pokes after the force", w.pokes)
+	}
+	r.run(p.Init(ui.Context{}))
+	if got := r.notice(); got != "" {
+		t.Errorf("after the mend the notice line = %q", got)
+	}
+	if strings.Contains(r.screen(), "The project has errors") || !strings.HasPrefix(r.line(1), "Id") {
+		t.Errorf("after the mend:\n%s", r.screen())
 	}
 }

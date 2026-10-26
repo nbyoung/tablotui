@@ -5,6 +5,7 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"reflect"
 	"slices"
 	"strings"
 	"testing"
@@ -31,7 +32,8 @@ func stored(t *testing.T, dir, ref string, st watch.State) (*Tablo, *poller) {
 		t.Fatal(err)
 	}
 	snap, err := src.Load(t.Context(), st)
-	if err != nil {
+	var diag *DiagnosticError
+	if err != nil && !errors.As(err, &diag) { // a diagnostic beside the snapshot leaves it good
 		t.Fatal(err)
 	}
 	src.Store(snap)
@@ -211,6 +213,13 @@ func TestTabloDiagnostics(t *testing.T) {
 	}
 	if _, err := src.Task(t.Context(), ListRequest{View: "task", Task: tb.Rows[0].ID, Level: "detail"}); err != nil {
 		t.Errorf("a list beside the diagnostic: %v", err)
+	}
+	// Load derives the Gates envelope: its snapshot comes beside the same
+	// error diagnostics as the tableau's (171b decision 15).
+	snap, err := src.Load(t.Context(), watch.State{})
+	var loadDiag *DiagnosticError
+	if snap == nil || !errors.As(err, &loadDiag) || loadDiag.Error() != diag.Error() || !reflect.DeepEqual(loadDiag.Diagnostics, diag.Diagnostics) {
+		t.Errorf("Load gives %v, %v; want the snapshot beside %v", snap, err, diag)
 	}
 	for entry, code := range map[string]string{
 		"version-missing":        "P2",

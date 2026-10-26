@@ -19,6 +19,7 @@ type Status struct {
 	Loading bool        // a load runs now
 	Err     error       // the latest load's failure; nil after a good load
 	Failed  time.Time   // when the present run of failures began
+	Diag    error       // the error diagnostics of the last good load; nil when it carried none
 }
 
 // Where names the source in one phrase, in the mockups' form "main at 3cdae52".
@@ -41,7 +42,7 @@ func (s Status) Where() string {
 }
 
 // Notice is the line the frame adds while there is no view or a stale one; it
-// is empty when the view is current.
+// is empty when the view is current and the project has no error diagnostics.
 func (s Status) Notice() string {
 	switch {
 	case !s.Good && s.Err == nil:
@@ -52,6 +53,8 @@ func (s Status) Notice() string {
 		return "Reload failed at " + s.Failed.Local().Format(timeLayout) +
 			", showing the view of " + s.Loaded.Local().Format(timeLayout) +
 			": " + firstLine(s.Err.Error())
+	case s.Diag != nil:
+		return "The project has errors: " + firstLine(s.Diag.Error())
 	default:
 		return ""
 	}
