@@ -10,3 +10,4 @@ reload-failed | working tree on main at 3cdae52 | Reload failed at 14:03:10, sho
 repository-broken | working tree on main at 3cdae52 | Reload failed at 14:03:10, showing the view of 14:02:26: not a git repository (or any parent up to mount point /)
 ref-gone | v1.0 at 3cdae52 | Reload failed at 14:03:10, showing the view of 14:02:26: Needed a single revision
 no-view-yet | working tree | No view yet: no .tableaux directory
+diagnostic-beside | working tree on main at 3cdae52 | The project has errors: status/9f31.yaml:3:8: S6 state nomnal names no state in gates.yaml
