@@ -117,8 +117,9 @@ func TestAFailedLoadKeepsTheView(t *testing.T) {
 	}
 }
 
-// Decision 16: a view beside error diagnostics draws, and the status line
-// shows the first diagnostic; a later view with none draws alone.
+// Decision 16 and 171b decision 15: a view beside error diagnostics draws,
+// and the grid sends no notice for them, since the live refresh reports them
+// on its notice line; a later view with none draws alone.
 func TestAViewBesideADiagnostic(t *testing.T) {
 	src := asFixture(t)
 	good := src.fn
@@ -135,11 +136,10 @@ func TestAViewBesideADiagnostic(t *testing.T) {
 		return tb, err
 	}
 	r := newRig(t, src, "", GlanceStart(), 100, 20).keys("w")
-	want := "error: .tableaux/status/e3cb.yaml:1:7: S11 no review (and 1 more)"
-	if !strings.HasPrefix(r.line(0), "Diagnosed") || r.status() != want {
+	if !strings.HasPrefix(r.line(0), "Diagnosed") || strings.HasPrefix(r.status(), "error:") {
 		t.Errorf("context line %q, status %q", r.line(0), r.status())
 	}
-	if n := len(r.notices); n != 1 || !r.notices[0].Err {
+	if len(r.notices) != 0 {
 		t.Errorf("notices = %+v", r.notices)
 	}
 	r.keys("W")

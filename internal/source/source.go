@@ -60,9 +60,13 @@ func (d Diagnostic) String() string {
 }
 
 // DiagnosticError holds the error diagnostics of a project. A source returns
-// it beside the view those errors leave standing, and the pane draws the view
-// and shows the error.
+// it beside the view those errors leave standing, and the pane draws the view;
+// the refresh shows the error on the notice line.
 type DiagnosticError struct{ Diagnostics []Diagnostic }
+
+// Beside marks the error as one that stands beside data: the refresh treats a
+// load that returns it as good and carries it in its status.
+func (*DiagnosticError) Beside() {}
 
 // Error names the first diagnostic and counts the rest.
 func (e *DiagnosticError) Error() string {

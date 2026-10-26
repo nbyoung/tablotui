@@ -37,7 +37,7 @@ func BenchmarkLoad(b *testing.B) {
 			var diag *DiagnosticError
 			for b.Loop() {
 				snap, err := src.Load(ctx, watch.State{})
-				if err != nil {
+				if err != nil && !errors.As(err, &diag) {
 					b.Fatal(err)
 				}
 				src.Store(snap)

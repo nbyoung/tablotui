@@ -52,7 +52,10 @@ func NewTablo(ctx context.Context, dir, ref string, poll Poller) (*Tablo, error)
 // fails exactly when tablo gives no view data: for a ref or a repository it
 // cannot read, and for a missing or unaccepted version, an unusable
 // gates.yaml or a broken tree, with the first error diagnostic. Every other
-// error diagnostic leaves the snapshot good (679b decision 16).
+// error diagnostic leaves the snapshot good (679b decision 16): Load returns
+// the snapshot beside them as a *DiagnosticError, which the refresh carries
+// in its status (171b decision 15). The caller stores the snapshot whenever
+// it is not nil.
 func (t *Tablo) Load(ctx context.Context, st watch.State) (*tablo.Snapshot, error) {
 	at := ""
 	if t.ref != "" {
@@ -75,7 +78,7 @@ func (t *Tablo) Load(ctx context.Context, st watch.State) (*tablo.Snapshot, erro
 	if env.Data == nil {
 		return nil, noView(env.Diagnostics)
 	}
-	return snap, nil
+	return snap, diagnosed(env.Diagnostics)
 }
 
 // Store makes s the snapshot every later call derives from.
