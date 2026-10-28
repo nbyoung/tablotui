@@ -1,4 +1,3 @@
-gate: integrate
+gate: validate
 state: nominal
-reason: review
-note: Validate awaits the owner's review. The suites pass in six runs with no failure, the cursor move with four panes open passes on the corpus and on the umbrella, and a pseudo-terminal drove the four panes, the zoom and the role keys. The owner runs the terminal checks of the grid, the box characters with East Asian Ambiguous set wide, a cursor move with four panes open on the umbrella and the panes beside the role pane and the prompt
+note: Accepted by the owner at validate in abbfb12. The checks of the checklist pass but 0afa.3, which the owner did not run since no terminal of daily use offers East Asian Ambiguous wide, as decision 19 records. The field tests give six runs of the suites with no failure at be0c129 (830 pass and 38 skip plain, 900 and 14 with a corpus, 854 and 34 with the umbrella), the cursor move with four panes open passing on the corpus and on the umbrella, and a pseudo-terminal driving the four panes, the zoom and the role keys.
