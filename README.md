@@ -140,18 +140,19 @@ and `go.sum` pins its hash. The policy:
 
 **tabloio.** The four actions plan and make their commits through tabloio's
 package `action`, so a commit made here is the one tabloio's command line
-makes. `go.mod` requires the tag `v0.1.1`, added with
-`go get github.com/nbyoung/tabloio@v0.1.1`, and `go.sum` pins its hash. The
+makes. `go.mod` requires the tag `v0.2.1`, added with
+`go get github.com/nbyoung/tabloio@v0.2.1`, and `go.sum` pins its hash. The
 policy for tablo extends to tabloio word for word: the `require` line names
 the floor, the oldest tabloio release whose `action` this front end compiles
 against; while tabloio is at major `0`, the range is one minor, `v0.N.x`; from
 tabloio `v1`, the range is the major; and no `replace` directive enters
 `go.mod`. `action` links tablo's library, so the `require` brings tablo, MIT,
 and `gopkg.in/yaml.v3`, MIT and Apache-2.0, which tablo brings already, and no
-other module: Go raises tabloio's older tablo to the one `go.mod` names, so
-the two front ends sit on one minor of it, and tabloio raises
-`golang.org/x/text`, which the module requires already, to the version it
-names.
+other module that this front end builds: tabloio names the same tablo as
+`go.mod`, so the two front ends sit on one minor of it, and tabloio raises
+`golang.org/x/sys`, BSD-3-Clause, which the module requires already, to the
+version it names. `golang.org/x/term`, BSD-3-Clause, enters the module graph
+through tabloio's command line, and no package here imports it.
 
 ## Licence
 

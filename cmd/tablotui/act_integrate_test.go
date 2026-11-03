@@ -320,6 +320,95 @@ func TestIntegrateTheActionsCommit(t *testing.T) {
 	}, "-C", dir, "--as", "ben@example.org")
 }
 
+// selectGate moves the grid's column cursor right by n columns and waits
+// until the selection names gate. A folded column lies between, and the
+// selection of a folded column names no gate, so no message marks each step.
+func (s *session) selectGate(n int, gate string) {
+	s.t.Helper()
+	for range n {
+		s.key(tea.KeyPressMsg{Code: tea.KeyRight})
+	}
+	s.until("the gate "+gate, func([]string) bool { return s.selected().Gate == gate })
+}
+
+// 518e decision 19 (tabloio v0.2.1, over tabloio's b618 decision 18): on a
+// copy of junction-review-waived reset to W1, where the root states
+// reviewer: false at design, pat, b2c9's assignee, records b2c9 at design
+// with no review and no Reviewed: trailer, and v on that design then refuses
+// no-reviewer; bot, the contributor, recording c3d8 at design is refused as
+// unreviewed and the refusal names pat, whom c3d8's own entry states.
+func TestIntegrateTheActionsLeaveAWaiverStanding(t *testing.T) {
+	fresh := func(t *testing.T) string {
+		dir := corpustest.Entry(t, "junction-review-waived")
+		git(t, dir, "reset", "--hard", "--quiet", corpustest.Labels(t, "junction-review-waived")["W1"])
+		return dir
+	}
+	t.Run("assignee", func(t *testing.T) {
+		dir := fresh(t)
+		hand(t, "Pat Singh", "pat@example.org")
+		w := wire(t)
+		runLive(t, func(s *session) {
+			s.until("pat's arrival", func(l []string) bool {
+				return strings.Contains(l[0], "viewer pat@example.org, ") && slices.Contains(rowIDs(l), "b2c9") && s.selected().Task != ""
+			})
+			s.selectTask("b2c9")
+			s.selectGate(3, "design")
+
+			head := git(t, dir, "rev-parse", "HEAD")
+			s.key(text('r'))
+			s.until("the form at design", screenHas("< design >"))
+			s.key(tea.KeyPressMsg{Code: tea.KeyEnter})
+			got := s.until("the confirmation", screenHas("Commit? y commits, n cancels"))
+			p := w.repo.plan()
+			if p == nil || p.Base != head || trailerLines(p) != "" {
+				t.Errorf("the plan carries %+v, want no trailer\n%s", p, strings.Join(got, "\n"))
+			}
+			if j := strings.Join(got, "\n"); strings.Contains(j, "unreviewed") || strings.Contains(j, "refused") {
+				t.Errorf("the confirmation shows a refusal:\n%s", j)
+			}
+			s.key(text('y'))
+			s.until("the new commit in the grid", func(l []string) bool {
+				c := git(t, dir, "rev-parse", "--short=7", "HEAD")
+				return w.pokes.Load() == 1 && c != head[:7] && strings.Contains(l[0], "main at "+c+",") && s.selected().Task == "b2c9"
+			})
+			commit := git(t, dir, "rev-parse", "HEAD")
+			if got := trailersOf(t, dir, commit); strings.Contains(got, "Reviewed:") {
+				t.Errorf("the commit carries %q", got)
+			}
+			if b, _ := os.ReadFile(filepath.Join(dir, ".tableaux", "status", "b2c9.yaml")); !strings.Contains(string(b), "gate: design") {
+				t.Errorf("the status file holds %q", b)
+			}
+
+			// The reload may land v on another column; wait for design again.
+			s.selectGate(0, "design")
+			s.key(text('v'))
+			s.until("the refusal", screenHas("(no-reviewer)"))
+			if git(t, dir, "rev-parse", "HEAD") != commit {
+				t.Errorf("v moved HEAD")
+			}
+		}, "-C", dir, "--as", "pat@example.org")
+	})
+
+	t.Run("contributor", func(t *testing.T) {
+		dir := fresh(t)
+		hand(t, "Corpus Agent", "bot@example.org")
+		runLive(t, func(s *session) {
+			s.until("bot's arrival", func(l []string) bool {
+				return strings.Contains(l[0], "viewer bot@example.org, ") && slices.Contains(rowIDs(l), "c3d8") && s.selected().Task != ""
+			})
+			s.selectTask("c3d8")
+			s.selectGate(3, "design")
+			s.key(text('r'))
+			s.until("the form at design", screenHas("< design >"))
+			s.key(tea.KeyPressMsg{Code: tea.KeyEnter})
+			got := s.until("the refusal", screenHas("(unreviewed, S11)"))
+			if j := strings.Join(got, "\n"); !strings.Contains(j, "pat@example.org") {
+				t.Errorf("the refusal does not name pat:\n%s", j)
+			}
+		}, "-C", dir, "--as", "bot@example.org")
+	})
+}
+
 // gotos returns the ui.GotoMsg the panes sent, in order.
 func (s *session) gotos() []ui.GotoMsg {
 	var out []ui.GotoMsg
