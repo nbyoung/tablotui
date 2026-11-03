@@ -135,11 +135,11 @@ func mockupTable(t *testing.T, md, heading string) (header []string, ids []strin
 // at a glance: the headers with the fold count, the ids in order, and each
 // gate cell, a folded one empty.
 func TestIntegrateUmbrellaMatchesTheMockup(t *testing.T) {
+	src := umbrella(t)
 	md, err := os.ReadFile(filepath.Join(os.Getenv("TABLEAUX_DIR"), "docs", "mockups", "tableau.md"))
 	if err != nil {
 		t.Skipf("the umbrella's docs/mockups/tableau.md: %v", err)
 	}
-	src := umbrella(t)
 	tb, err := src.Tableau(t.Context(), source.Request{View: "tableau", Window: 1, Level: "detail"})
 	var diag *source.DiagnosticError
 	if err != nil && !errors.As(err, &diag) {
