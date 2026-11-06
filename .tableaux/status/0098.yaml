@@ -1,3 +1,3 @@
-gate: implementation
-state: nominal
-note: The skeleton is on the trunk and passes vet and test locally and in CI run 36714732026 on a12147a; formatting, lint and the release workflow are in place; the tablo require line waits for tablo's first release, as the README states
+gate: release
+state: complete
+note: Released as v0.1.0 on b535986 by Release run 42256106200, which publishes six archives for Linux, macOS and Windows on amd64 and arm64 with checksums.txt; the Linux amd64 archive matches its checksum and reports tablotui 0.1.0; go.mod requires tablo v0.2.1 and tabloio v0.2.1
