@@ -1157,7 +1157,7 @@
     "event_count": 1,
     "commands": [
       {
-        "text": "git log --format='%H %as %ae %s' 3cdae527d47d37fdff55bc302c76c017cf91c606 -- .tableaux/tasks/5fe3.yaml .tableaux/status/5fe3.yaml",
+        "text": "git log --format='%H %as %ae %s' 3cdae527d47d37fdff55bc302c76c017cf91c606 -- .tableaux/tasks/5fe3.yaml .tableaux/status/5fe3.yaml .tableaux/status/a6f7.yaml",
         "comment": ""
       }
     ]
